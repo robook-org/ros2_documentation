@@ -656,6 +656,7 @@ callback.</p>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 <span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">Empty</span>
 
@@ -670,15 +671,13 @@ callback.</p>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="n">ServiceNode</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting server node, shut down with CTRL-C&quot;</span><span class="p">)</span>
-        <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Keyboard interrupt, shutting down.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">node</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">ServiceNode</span><span class="p">()</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting server node, shut down with CTRL-C&quot;</span><span class="p">)</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 </pre></div>
 </div>
 </div></div>
@@ -747,7 +746,7 @@ synchronous call.</p>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
-<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">MultiThreadedExecutor</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span><span class="p">,</span> <span class="n">MultiThreadedExecutor</span>
 <span class="kn">from</span> <span class="nn">rclpy.callback_groups</span> <span class="kn">import</span> <span class="n">MutuallyExclusiveCallbackGroup</span><span class="p">,</span> <span class="n">ReentrantCallbackGroup</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 <span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">Empty</span>
@@ -769,18 +768,16 @@ synchronous call.</p>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="n">CallbackGroupDemo</span><span class="p">()</span>
-    <span class="n">executor</span> <span class="o">=</span> <span class="n">MultiThreadedExecutor</span><span class="p">()</span>
-    <span class="n">executor</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Beginning client, shut down with CTRL-C&#39;</span><span class="p">)</span>
-        <span class="n">executor</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
-    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Keyboard interrupt, shutting down.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">node</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">CallbackGroupDemo</span><span class="p">()</span>
+            <span class="n">executor</span> <span class="o">=</span> <span class="n">MultiThreadedExecutor</span><span class="p">()</span>
+            <span class="n">executor</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+            <span class="n">node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Beginning client, shut down with CTRL-C&#39;</span><span class="p">)</span>
+            <span class="n">executor</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 </pre></div>
 </div>
 </div></div>

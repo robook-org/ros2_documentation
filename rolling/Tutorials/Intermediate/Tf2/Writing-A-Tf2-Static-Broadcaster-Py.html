@@ -500,6 +500,7 @@ Inside the <code class="docutils literal notranslate"><span class="pre">src/lear
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
 <span class="kn">from</span> <span class="nn">tf2_ros.static_transform_broadcaster</span> <span class="kn">import</span> <span class="n">StaticTransformBroadcaster</span>
@@ -567,28 +568,26 @@ Inside the <code class="docutils literal notranslate"><span class="pre">src/lear
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">logger</span> <span class="o">=</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="s1">&#39;logger&#39;</span><span class="p">)</span>
-
-    <span class="c1"># obtain parameters from command line arguments</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">8</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Invalid number of parameters. Usage: </span><span class="se">\n</span><span class="s1">&#39;</span>
-                    <span class="s1">&#39;$ ros2 run learning_tf2_py static_turtle_tf2_broadcaster&#39;</span>
-                    <span class="s1">&#39;child_frame_name x y z roll pitch yaw&#39;</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;world&#39;</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Your static turtle name cannot be &quot;world&quot;&#39;</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-    <span class="c1"># pass parameters and initialize node</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="n">StaticFramePublisher</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-        <span class="k">pass</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="s1">&#39;logger&#39;</span><span class="p">)</span>
 
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+        <span class="c1"># obtain parameters from command line arguments</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Invalid number of parameters. Usage: </span><span class="se">\n</span><span class="s1">&#39;</span>
+                        <span class="s1">&#39;$ ros2 run learning_tf2_py static_turtle_tf2_broadcaster&#39;</span>
+                        <span class="s1">&#39;child_frame_name x y z roll pitch yaw&#39;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;world&#39;</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Your static turtle name cannot be &quot;world&quot;&#39;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># pass parameters and initialize node</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">StaticFramePublisher</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 </pre></div>
 </div>
 <section id="examine-the-code">
@@ -601,6 +600,7 @@ First we import the <code class="docutils literal notranslate"><span class="pre"
 </div>
 <p>Afterward, <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> is imported so its <code class="docutils literal notranslate"><span class="pre">Node</span></code> class can be used.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 </pre></div>
 </div>

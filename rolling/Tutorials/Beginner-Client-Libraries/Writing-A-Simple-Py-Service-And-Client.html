@@ -501,6 +501,7 @@ Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">example_interfaces.srv</span> <span class="kn">import</span> <span class="n">AddTwoInts</span>
 
 <span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
 
@@ -518,13 +519,13 @@ Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+            <span class="n">minimal_service</span> <span class="o">=</span> <span class="n">MinimalService</span><span class="p">()</span>
 
-    <span class="n">minimal_service</span> <span class="o">=</span> <span class="n">MinimalService</span><span class="p">()</span>
-
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_service</span><span class="p">)</span>
-
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_service</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -534,10 +535,11 @@ Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_
 <section id="examine-the-code">
 <h4>2.1 Examine the code<a class="headerlink" href="#examine-the-code" title="Link to this heading"></a></h4>
 <p>The first <code class="docutils literal notranslate"><span class="pre">import</span></code> statement imports the <code class="docutils literal notranslate"><span class="pre">AddTwoInts</span></code> service type from the <code class="docutils literal notranslate"><span class="pre">example_interfaces</span></code> package.
-The following <code class="docutils literal notranslate"><span class="pre">import</span></code> statement imports the ROS 2 Python client library, and specifically the <code class="docutils literal notranslate"><span class="pre">Node</span></code> class.</p>
+The following <code class="docutils literal notranslate"><span class="pre">import</span></code> statements import the necessary ROS 2 Python client library interfaces.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">example_interfaces.srv</span> <span class="kn">import</span> <span class="n">AddTwoInts</span>
 
 <span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 </pre></div>
 </div>
@@ -570,10 +572,10 @@ Then, it creates a service and defines the type, name, and callback.</p>
 <section id="write-the-client-node">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">3 Write the client node</a><a class="headerlink" href="#write-the-client-node" title="Link to this heading"></a></h3>
 <p>Inside the <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/py_srvcli/py_srvcli</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">client_member_function.py</span></code> and paste the following code within:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">example_interfaces.srv</span> <span class="kn">import</span> <span class="n">AddTwoInts</span>
 
-<span class="kn">from</span> <span class="nn">example_interfaces.srv</span> <span class="kn">import</span> <span class="n">AddTwoInts</span>
 <span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
 
@@ -586,25 +588,24 @@ Then, it creates a service and defines the type, name, and callback.</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;service not available, waiting again...&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">req</span> <span class="o">=</span> <span class="n">AddTwoInts</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">41</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-
-    <span class="n">minimal_client</span> <span class="o">=</span> <span class="n">MinimalClientAsync</span><span class="p">()</span>
-    <span class="n">future</span> <span class="o">=</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin_until_future_complete</span><span class="p">(</span><span class="n">minimal_client</span><span class="p">,</span> <span class="n">future</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-    <span class="n">minimal_client</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="s1">&#39;Result of add_two_ints: for </span><span class="si">%d</span><span class="s1"> + </span><span class="si">%d</span><span class="s1"> = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span>
-        <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">response</span><span class="o">.</span><span class="n">sum</span><span class="p">))</span>
-
-    <span class="n">minimal_client</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">):</span>
+            <span class="n">minimal_client</span> <span class="o">=</span> <span class="n">MinimalClientAsync</span><span class="p">()</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">send_request</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin_until_future_complete</span><span class="p">(</span><span class="n">minimal_client</span><span class="p">,</span> <span class="n">future</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="n">minimal_client</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s1">&#39;Result of add_two_ints: for </span><span class="si">%d</span><span class="s1"> + </span><span class="si">%d</span><span class="s1"> = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span>
+                <span class="p">(</span><span class="n">minimal_client</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">sum</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -614,10 +615,10 @@ Then, it creates a service and defines the type, name, and callback.</p>
 <section id="id1">
 <h4>3.1 Examine the code<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 <p>As with the service code, we first <code class="docutils literal notranslate"><span class="pre">import</span></code> the necessary libraries.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">example_interfaces.srv</span> <span class="kn">import</span> <span class="n">AddTwoInts</span>
 
-<span class="kn">from</span> <span class="nn">example_interfaces.srv</span> <span class="kn">import</span> <span class="n">AddTwoInts</span>
 <span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 </pre></div>
 </div>
@@ -635,26 +636,25 @@ Finally it creates a new <code class="docutils literal notranslate"><span class=
 </pre></div>
 </div>
 <p>Below the constructor is the <code class="docutils literal notranslate"><span class="pre">send_request</span></code> method, which will send the request and return a future that can be passed to <code class="docutils literal notranslate"><span class="pre">spin_until_future_complete</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">41</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Finally we have the <code class="docutils literal notranslate"><span class="pre">main</span></code> method, which constructs a <code class="docutils literal notranslate"><span class="pre">MinimalClientAsync</span></code> object, sends the request using the passed-in command-line arguments, calls <code class="docutils literal notranslate"><span class="pre">spin_until_future_complete</span></code>, and logs the results:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-
-    <span class="n">minimal_client</span> <span class="o">=</span> <span class="n">MinimalClientAsync</span><span class="p">()</span>
-    <span class="n">future</span> <span class="o">=</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin_until_future_complete</span><span class="p">(</span><span class="n">minimal_client</span><span class="p">,</span> <span class="n">future</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-    <span class="n">minimal_client</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="s1">&#39;Result of add_two_ints: for </span><span class="si">%d</span><span class="s1"> + </span><span class="si">%d</span><span class="s1"> = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span>
-        <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">response</span><span class="o">.</span><span class="n">sum</span><span class="p">))</span>
-
-    <span class="n">minimal_client</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">):</span>
+            <span class="n">minimal_client</span> <span class="o">=</span> <span class="n">MinimalClientAsync</span><span class="p">()</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">send_request</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin_until_future_complete</span><span class="p">(</span><span class="n">minimal_client</span><span class="p">,</span> <span class="n">future</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="n">minimal_client</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s1">&#39;Result of add_two_ints: for </span><span class="si">%d</span><span class="s1"> + </span><span class="si">%d</span><span class="s1"> = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span>
+                <span class="p">(</span><span class="n">minimal_client</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">sum</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 </pre></div>
 </div>
 </section>
@@ -704,18 +704,19 @@ Finally it creates a new <code class="docutils literal notranslate"><span class=
 </div>
 <p>The node will wait for the client’s request.</p>
 <p>Open another terminal and source the setup files from inside <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> again.
-Start the client node, followed by any two integers separated by a space:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run py_srvcli client 2 3</span>
+Start the client node:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run py_srvcli client</span>
 </pre></div>
 </div>
-<p>If you chose <code class="docutils literal notranslate"><span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">3</span></code>, for example, the client would receive a response like this:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [minimal_client_async]: Result of add_two_ints: for 2 + 3 = 5</span>
+<p>The client sends the request to the service, which computes the sum and returns the result.
+The client should receive the following response:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [minimal_client_async]: Result of add_two_ints: for 41 + 1 = 42</span>
 </pre></div>
 </div>
 <p>Return to the terminal where your service node is running.
 You will see that it published log messages when it received the request:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [minimal_service]: Incoming request</span>
-<span class="go">a: 2 b: 3</span>
+<span class="go">a: 41 b: 1</span>
 </pre></div>
 </div>
 <p>Enter <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in the server terminal to stop the node from spinning.</p>

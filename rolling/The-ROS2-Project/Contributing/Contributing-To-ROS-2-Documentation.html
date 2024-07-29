@@ -430,24 +430,25 @@
 <li><p><a class="reference internal" href="#building-the-site-locally" id="id4">Building the site locally</a></p>
 <ul>
 <li><p><a class="reference internal" href="#building-the-site-for-one-branch" id="id5">Building the site for one branch</a></p></li>
-<li><p><a class="reference internal" href="#building-the-site-for-all-branches" id="id6">Building the site for all branches</a></p></li>
-<li><p><a class="reference internal" href="#checking-for-broken-links" id="id7">Checking for broken links</a></p></li>
+<li><p><a class="reference internal" href="#view-site-through-github-ci" id="id6">View Site Through Github CI</a></p></li>
+<li><p><a class="reference internal" href="#building-the-site-for-all-branches" id="id7">Building the site for all branches</a></p></li>
+<li><p><a class="reference internal" href="#checking-for-broken-links" id="id8">Checking for broken links</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#migrating-pages-from-the-ros-wiki" id="id8">Migrating Pages from the ROS Wiki</a></p>
+<li><p><a class="reference internal" href="#migrating-pages-from-the-ros-wiki" id="id9">Migrating Pages from the ROS Wiki</a></p>
 <ul>
-<li><p><a class="reference internal" href="#migrating-a-wiki-file" id="id9">Migrating a Wiki File</a></p></li>
+<li><p><a class="reference internal" href="#migrating-a-wiki-file" id="id10">Migrating a Wiki File</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#building-the-site-with-github-codespaces" id="id10">Building the Site with GitHub Codespaces</a></p></li>
-<li><p><a class="reference internal" href="#writing-pages" id="id11">Writing pages</a></p>
+<li><p><a class="reference internal" href="#building-the-site-with-github-codespaces" id="id11">Building the Site with GitHub Codespaces</a></p></li>
+<li><p><a class="reference internal" href="#writing-pages" id="id12">Writing pages</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id1" id="id12">Table of Contents</a></p></li>
-<li><p><a class="reference internal" href="#headings" id="id13">Headings</a></p></li>
-<li><p><a class="reference internal" href="#lists" id="id14">Lists</a></p></li>
-<li><p><a class="reference internal" href="#code-formatting" id="id15">Code Formatting</a></p></li>
-<li><p><a class="reference internal" href="#images" id="id16">Images</a></p></li>
-<li><p><a class="reference internal" href="#references-and-links" id="id17">References and Links</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id13">Table of Contents</a></p></li>
+<li><p><a class="reference internal" href="#headings" id="id14">Headings</a></p></li>
+<li><p><a class="reference internal" href="#lists" id="id15">Lists</a></p></li>
+<li><p><a class="reference internal" href="#code-formatting" id="id16">Code Formatting</a></p></li>
+<li><p><a class="reference internal" href="#images" id="id17">Images</a></p></li>
+<li><p><a class="reference internal" href="#references-and-links" id="id18">References and Links</a></p></li>
 </ul>
 </li>
 </ul>
@@ -509,8 +510,18 @@ To see the output, open <code class="docutils literal notranslate"><span class="
 </pre></div>
 </div>
 </section>
+<section id="view-site-through-github-ci">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">View Site Through Github CI</a><a class="headerlink" href="#view-site-through-github-ci" title="Link to this heading"></a></h3>
+<p>For small changes to the ROS 2 Docs you can view your changes as rendered HTML using artifacts generated in our Github Actions.
+The “build” action produces the entire ROS Docs as a downloadable Zip file that contains all HTML for <a class="reference external" href="https://docs.ros.org/">docs.ros.org</a>
+This build action is triggered after passing the test action and lint action.</p>
+<p>To download and view your changes first go to your pull request and under the title click the “Checks” tab.
+On the left hand side of the checks page, click on the “Test” section under the “tests” section  click on “build” dialog.
+This will open a menu on the right, where you can click on “Upload document artifacts” and scroll to the bottom to see the download link for the Zipped’ HTML files under the heading “Artifact download URL”.</p>
+<a class="reference internal image-reference" href="../../_images/github_action.png"><img alt="Steps to find rendered HTML files on ROS Github action" src="../../_images/github_action.png" style="width: 100%;" /></a>
+</section>
 <section id="building-the-site-for-all-branches">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Building the site for all branches</a><a class="headerlink" href="#building-the-site-for-all-branches" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Building the site for all branches</a><a class="headerlink" href="#building-the-site-for-all-branches" title="Link to this heading"></a></h3>
 <p>To build the site for all branches, type <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">multiversion</span></code> from the <code class="docutils literal notranslate"><span class="pre">rolling</span></code> branch.
 This has two drawbacks:</p>
 <ol class="arabic simple">
@@ -523,7 +534,7 @@ That means that local changes will not be shown.</p></li>
 Then you must edit the <a class="reference external" href="https://github.com/ros2/ros2_documentation/blob/rolling/conf.py">conf.py</a> file and change the <code class="docutils literal notranslate"><span class="pre">smv_branch_whitelist</span></code> variable to point to your branch.</p>
 </section>
 <section id="checking-for-broken-links">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Checking for broken links</a><a class="headerlink" href="#checking-for-broken-links" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Checking for broken links</a><a class="headerlink" href="#checking-for-broken-links" title="Link to this heading"></a></h3>
 <p>To check for broken links on the site, run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make linkcheck</span>
 </pre></div>
@@ -532,7 +543,7 @@ Then you must edit the <a class="reference external" href="https://github.com/ro
 </section>
 </section>
 <section id="migrating-pages-from-the-ros-wiki">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Migrating Pages from the ROS Wiki</a><a class="headerlink" href="#migrating-pages-from-the-ros-wiki" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Migrating Pages from the ROS Wiki</a><a class="headerlink" href="#migrating-pages-from-the-ros-wiki" title="Link to this heading"></a></h2>
 <p>The first step in migrating a page from the <a class="reference external" href="https://wiki.ros.org">ROS Wiki</a> to the ROS 2 documentation is to determine if the page needs to be migrated.
 Check if the content, or something similar, is available on <a class="reference external" href="https://docs.ros.org/en/rolling">https://docs.ros.org/en/rolling</a> by searching for related terms.
 If it has already been migrated, congratulations!
@@ -551,7 +562,7 @@ PanDoc is supported by most modern operating systems using the installation inst
 It is worth noting that the ROS Wiki uses an older wiki technology (MoinMoin), so the markup language used is an obscure dialect of the <a class="reference external" href="https://www.mediawiki.org/wiki/Help:Formatting">MediaWiki</a> format.
 We’ve found that the easiest way to migrate a page from the ROS Wiki is to convert it from HTML into reStructured text using PanDoc.</p>
 <section id="migrating-a-wiki-file">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Migrating a Wiki File</a><a class="headerlink" href="#migrating-a-wiki-file" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Migrating a Wiki File</a><a class="headerlink" href="#migrating-a-wiki-file" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Clone the appropriate repository.  If you are migrating a page to the official documentation hosted here, then you should clone <a class="reference external" href="https://github.com/ros2/ros2_documentation">https://github.com/ros2/ros2_documentation</a>.</p></li>
 <li><p>Create a new Github branch for your migrated page. We suggest something like <code class="docutils literal notranslate"><span class="pre">pagename-migration</span></code>.</p></li>
@@ -586,7 +597,7 @@ The completed documentation page can be found in the <a class="reference externa
 </section>
 </section>
 <section id="building-the-site-with-github-codespaces">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Building the Site with GitHub Codespaces</a><a class="headerlink" href="#building-the-site-with-github-codespaces" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Building the Site with GitHub Codespaces</a><a class="headerlink" href="#building-the-site-with-github-codespaces" title="Link to this heading"></a></h2>
 <p>First, you need to have a GitHub account (if you don’t have one, you can create one for free).
 Then, you need to go to the <a class="reference external" href="https://github.com/ros2/ros2_documentation">ROS 2 Documentation GitHub repository</a>.
 After that, you can open the repository in Codespaces, it can be done just by clicking on the “Code” button on the repository page, then choose “Open with Codespaces” from the dropdown menu.</p>
@@ -601,12 +612,12 @@ Once it is done, a Visual Studio Code tab will be opened in your browser. You ca
 <a class="reference internal image-reference" href="../../_images/live_server.png"><img alt="Live Server" src="../../_images/live_server.png" style="width: 100%;" /></a>
 </section>
 <section id="writing-pages">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Writing pages</a><a class="headerlink" href="#writing-pages" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Writing pages</a><a class="headerlink" href="#writing-pages" title="Link to this heading"></a></h2>
 <p>The ROS 2 documentation website uses the <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> format, which is the default plaintext markup language used by Sphinx.
 This section is a brief introduction to <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> concepts, syntax, and best practices.</p>
 <p>You can refer to <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText User Documentation</a> for a detailed technical specification.</p>
 <section id="id1">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Table of Contents</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Table of Contents</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>There are two types of directives used for the generation of a table of contents, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">toctree::</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">contents::</span></code>.
 The <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">toctree::</span></code> is used in top-level pages like <code class="docutils literal notranslate"><span class="pre">Tutorials.rst</span></code> to set ordering and visibility of its child pages.
 This directive creates both left navigation panel and in-page navigation links to the child pages listed.
@@ -627,7 +638,7 @@ Using <code class="docutils literal notranslate"><span class="pre">:depth:</span
 </div>
 </section>
 <section id="headings">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Headings</a><a class="headerlink" href="#headings" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Headings</a><a class="headerlink" href="#headings" title="Link to this heading"></a></h3>
 <p>There are four main Heading types used in the documentation.
 Note that the number of symbols has to match the length of the title.</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Page Title Header</span>
@@ -646,7 +657,7 @@ Note that the number of symbols has to match the length of the title.</p>
 <p>We usually use one digit for numbering subsections and two digits (dot separated) for numbering subsubsections in Tutorials and How-To-Guides.</p>
 </section>
 <section id="lists">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Lists</a><a class="headerlink" href="#lists" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Lists</a><a class="headerlink" href="#lists" title="Link to this heading"></a></h3>
 <p>Stars <code class="docutils literal notranslate"><span class="pre">*</span></code> are used for listing unordered items with bullet points and number sign <code class="docutils literal notranslate"><span class="pre">#.</span></code>  is used for listing numbered items.
 Both of them support nested definitions and will render accordingly.</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">*</span> bullet point
@@ -663,7 +674,7 @@ Both of them support nested definitions and will render accordingly.</p>
 </div>
 </section>
 <section id="code-formatting">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Code Formatting</a><a class="headerlink" href="#code-formatting" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Code Formatting</a><a class="headerlink" href="#code-formatting" title="Link to this heading"></a></h3>
 <p>In-text code can be formatted using <code class="docutils literal notranslate"><span class="pre">backticks</span></code> for showing <code class="docutils literal notranslate"><span class="pre">highlighted</span></code> code.</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>In-text code can be formatted using <span class="s">``backticks``</span> for showing <span class="s">``highlighted``</span> code.
 </pre></div>
@@ -684,14 +695,14 @@ Code inside the directive needs to be indented.</p>
 </div>
 </section>
 <section id="images">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Images</a><a class="headerlink" href="#images" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Images</a><a class="headerlink" href="#images" title="Link to this heading"></a></h3>
 <p>Images can be inserted using the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">image::</span></code> directive.</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> images/turtlesim_follow1.png
 </pre></div>
 </div>
 </section>
 <section id="references-and-links">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">References and Links</a><a class="headerlink" href="#references-and-links" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">References and Links</a><a class="headerlink" href="#references-and-links" title="Link to this heading"></a></h3>
 <section id="external-links">
 <h4>External links<a class="headerlink" href="#external-links" title="Link to this heading"></a></h4>
 <p>The syntax of creating links to external web pages is shown below.</p>

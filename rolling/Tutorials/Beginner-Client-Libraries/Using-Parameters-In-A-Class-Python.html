@@ -479,6 +479,7 @@ Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">2 Write the Python node</a><a class="headerlink" href="#write-the-python-node" title="Link to this heading"></a></h3>
 <p>Inside the <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/python_parameters/python_parameters</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">python_parameters_node.py</span></code> and paste the following code within:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">import</span> <span class="nn">rclpy.node</span>
 
 <span class="k">class</span> <span class="nc">MinimalParam</span><span class="p">(</span><span class="n">rclpy</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
@@ -503,9 +504,12 @@ Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_
         <span class="bp">self</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">all_new_parameters</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="n">MinimalParam</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">MinimalParam</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
@@ -548,9 +552,12 @@ In the case that the user changed the parameter externally, this ensures it is a
 <p>Following the <code class="docutils literal notranslate"><span class="pre">timer_callback</span></code> is our <code class="docutils literal notranslate"><span class="pre">main</span></code>.
 Here ROS 2 is initialized, an instance of the <code class="docutils literal notranslate"><span class="pre">MinimalParam</span></code> class is constructed, and <code class="docutils literal notranslate"><span class="pre">rclpy.spin</span></code> starts processing data from the node.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="n">MinimalParam</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">MinimalParam</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>

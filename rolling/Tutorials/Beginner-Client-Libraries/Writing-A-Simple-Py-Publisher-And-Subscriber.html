@@ -492,6 +492,7 @@ Recall that this directory is a <a class="reference external" href="https://docs
 <p>Now there will be a new file named <code class="docutils literal notranslate"><span class="pre">publisher_member_function.py</span></code> adjacent to <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
 <p>Open the file using your preferred text editor.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
 <span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
@@ -515,17 +516,13 @@ Recall that this directory is a <a class="reference external" href="https://docs
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">):</span>
+            <span class="n">minimal_publisher</span> <span class="o">=</span> <span class="n">MinimalPublisher</span><span class="p">()</span>
 
-    <span class="n">minimal_publisher</span> <span class="o">=</span> <span class="n">MinimalPublisher</span><span class="p">()</span>
-
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_publisher</span><span class="p">)</span>
-
-    <span class="c1"># Destroy the node explicitly</span>
-    <span class="c1"># (optional - otherwise it will be done automatically</span>
-    <span class="c1"># when the garbage collector destroys the node object)</span>
-    <span class="n">minimal_publisher</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_publisher</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -536,6 +533,7 @@ Recall that this directory is a <a class="reference external" href="https://docs
 <h4>2.1 Examine the code<a class="headerlink" href="#examine-the-code" title="Link to this heading"></a></h4>
 <p>The first lines of code after the comments import <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> so its <code class="docutils literal notranslate"><span class="pre">Node</span></code> class can be used.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 </pre></div>
 </div>
@@ -574,17 +572,13 @@ Queue size is a required QoS (quality of service) setting that limits the amount
 </div>
 <p>Lastly, the main function is defined.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">):</span>
+            <span class="n">minimal_publisher</span> <span class="o">=</span> <span class="n">MinimalPublisher</span><span class="p">()</span>
 
-    <span class="n">minimal_publisher</span> <span class="o">=</span> <span class="n">MinimalPublisher</span><span class="p">()</span>
-
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_publisher</span><span class="p">)</span>
-
-    <span class="c1"># Destroy the node explicitly</span>
-    <span class="c1"># (optional - otherwise it will be done automatically</span>
-    <span class="c1"># when the garbage collector destroys the node object)</span>
-    <span class="n">minimal_publisher</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_publisher</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 </pre></div>
 </div>
 <p>First the <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> library is initialized, then the node is created, and then it “spins” the node so its callbacks are called.</p>
@@ -668,6 +662,7 @@ Enter the following code in your terminal:</p>
 <h4>3.1 Examine the code<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 <p>Open the <code class="docutils literal notranslate"><span class="pre">subscriber_member_function.py</span></code> with your text editor.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
 <span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
@@ -689,17 +684,13 @@ Enter the following code in your terminal:</p>
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">):</span>
+            <span class="n">minimal_subscriber</span> <span class="o">=</span> <span class="n">MinimalSubscriber</span><span class="p">()</span>
 
-    <span class="n">minimal_subscriber</span> <span class="o">=</span> <span class="n">MinimalSubscriber</span><span class="p">()</span>
-
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_subscriber</span><span class="p">)</span>
-
-    <span class="c1"># Destroy the node explicitly</span>
-    <span class="c1"># (optional - otherwise it will be done automatically</span>
-    <span class="c1"># when the garbage collector destroys the node object)</span>
-    <span class="n">minimal_subscriber</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_subscriber</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

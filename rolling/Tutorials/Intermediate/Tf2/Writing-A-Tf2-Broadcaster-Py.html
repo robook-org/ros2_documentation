@@ -484,6 +484,7 @@ Inside the <code class="docutils literal notranslate"><span class="pre">src/lear
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
 <span class="kn">from</span> <span class="nn">tf2_ros</span> <span class="kn">import</span> <span class="n">TransformBroadcaster</span>
@@ -565,14 +566,12 @@ Inside the <code class="docutils literal notranslate"><span class="pre">src/lear
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-    <span class="n">node</span> <span class="o">=</span> <span class="n">FramePublisher</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">FramePublisher</span><span class="p">()</span>
+            <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
         <span class="k">pass</span>
-
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 </pre></div>
 </div>
 <section id="examine-the-code">

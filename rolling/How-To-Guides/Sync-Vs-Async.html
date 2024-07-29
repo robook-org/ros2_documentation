@@ -448,11 +448,11 @@ The definition of async given here generally applies to C++, with some exception
 The call can take arbitrary amounts of time to complete.
 Once complete, the response returns directly to the client.</p>
 <p>The following is an example of how to correctly execute a synchronous service call from a client node, similar to the async node in the <a class="reference internal" href="../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html"><span class="doc">Simple Service and Client</span></a> tutorial.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
 
 <span class="kn">from</span> <span class="nn">example_interfaces.srv</span> <span class="kn">import</span> <span class="n">AddTwoInts</span>
 <span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
 <span class="k">class</span> <span class="nc">MinimalClientSync</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
@@ -465,27 +465,26 @@ Once complete, the response returns directly to the client.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">req</span> <span class="o">=</span> <span class="n">AddTwoInts</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">41</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="p">)</span>
         <span class="c1"># This only works because rclpy.spin() is called in a separate thread below.</span>
         <span class="c1"># Another configuration, like spinning later in main() or calling this method from a timer callback, would result in a deadlock.</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">():</span>
+            <span class="n">minimal_client</span> <span class="o">=</span> <span class="n">MinimalClientSync</span><span class="p">()</span>
 
-    <span class="n">minimal_client</span> <span class="o">=</span> <span class="n">MinimalClientSync</span><span class="p">()</span>
+            <span class="n">spin_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">minimal_client</span><span class="p">,))</span>
+            <span class="n">spin_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
-    <span class="n">spin_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">minimal_client</span><span class="p">,))</span>
-    <span class="n">spin_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-    <span class="n">response</span> <span class="o">=</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">send_request</span><span class="p">()</span>
-    <span class="n">minimal_client</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="s1">&#39;Result of add_two_ints: for </span><span class="si">%d</span><span class="s1"> + </span><span class="si">%d</span><span class="s1"> = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span>
-        <span class="p">(</span><span class="n">minimal_client</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">sum</span><span class="p">))</span>
-
-    <span class="n">minimal_client</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">send_request</span><span class="p">()</span>
+            <span class="n">minimal_client</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s1">&#39;Result of add_two_ints: for </span><span class="si">%d</span><span class="s1"> + </span><span class="si">%d</span><span class="s1"> = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span>
+                <span class="p">(</span><span class="n">minimal_client</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">minimal_client</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">sum</span><span class="p">))</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyboardInterrupt</span><span class="p">,</span> <span class="n">ExternalShutdownException</span><span class="p">):</span>
+        <span class="k">pass</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

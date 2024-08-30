@@ -54,7 +54,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Installation.html">安装</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Installation/Ubuntu-Install-Debians.html">Ubuntu (Debian packages)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Installation/Ubuntu-Install-Debs.html">Ubuntu (deb packages)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Installation/Windows-Install-Binary.html">Windows (binary)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Installation/RHEL-Install-RPMs.html">RHEL (RPM packages)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Installation/Alternatives.html">Alternatives</a><ul>
@@ -185,6 +185,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Testing/CLI.html">Running Tests in ROS 2 from the Command Line</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Testing/Cpp.html">Writing Basic Tests with C++ with GTest</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Testing/Python.html">Writing Basic Tests with Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Testing/BuildFarmTesting.html">Testing Your Code with the ROS Build Farm</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/URDF/URDF-Main.html">URDF</a><ul>
@@ -296,8 +297,8 @@
 <li class="toctree-l2"><a class="reference internal" href="RQt-Port-Plugin-Windows.html">Porting RQt plugins to Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Run-2-nodes-in-single-or-separate-docker-containers.html">Running ROS 2 nodes in Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Visualizing-ROS-2-Data-With-Foxglove-Studio.html">Visualizing ROS 2 data with Foxglove Studio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Package-maintainer-guide.html">ROS 2 Package Maintainer Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Building-a-Custom-Debian-Package.html">Building a custom Debian package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Core-maintainer-guide.html">ROS 2 Core Maintainer Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Building-a-Custom-Deb-Package.html">Building a custom deb package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Building-ROS-2-with-Tracing-Instrumentation.html">Building ROS 2 with tracing instrumentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Topics-Services-Actions.html">Topics vs Services vs Actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Using-Variants.html">Using variants</a></li>
@@ -368,13 +369,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Feature-Ideas.html">Feature Ideas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Roadmap.html">Roadmap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/ROSCon-Content.html">ROSCon Talks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Governance.html">Project Governance</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../The-ROS2-Project/Governance/ROS2-TSC-Charter.html">ROS 2 Technical Steering Committee Charter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../The-ROS2-Project/Governance/ROS2-TSC-Intake-process.html">ROS 2 TSC applicant intake process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../The-ROS2-Project/Governance/Working-Groups.html">About Working Groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../The-ROS2-Project/Governance/How-To-Start-A-Community-Working-Group.html">How to Start a Community Working Group</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Governance.html">Project Governance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Marketing.html">Marketing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Metrics.html">Metrics</a></li>
 </ul>
@@ -523,7 +518,7 @@ Therefore add the following to <code class="docutils literal notranslate"><span 
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;workspaceFolder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/ws&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;workspaceMount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source=${localWorkspaceFolder},target=/home/ws/src,type=bind&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;workspaceMount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source=${localWorkspaceFolder},target=/home/ws,type=bind&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;customizations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;vscode&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;extensions&quot;</span><span class="p">:[</span>
@@ -543,11 +538,13 @@ Therefore add the following to <code class="docutils literal notranslate"><span 
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;runArgs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="s2">&quot;--net=host&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;--pid=host&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;--ipc=host&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;-e&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;DISPLAY=${env:DISPLAY}&quot;</span>
 <span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="nt">&quot;mounts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">       </span><span class="s2">&quot;source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;source=/dev/dri,target=/dev/dri,type=bind,consistency=cached&quot;</span>
+<span class="w">       </span><span class="s2">&quot;source=/dev/dri,target=/dev/dri,type=bind,consistency=cached&quot;</span>
 <span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="nt">&quot;postCreateCommand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sudo rosdep update &amp;&amp; sudo rosdep install --from-paths src --ignore-src -y &amp;&amp; sudo chown -R $(whoami) /home/ws/&quot;</span>
 <span class="p">}</span>
@@ -564,6 +561,9 @@ If you do not know your username, you can find it by running <code class="docuti
 ARG<span class="w"> </span><span class="nv">USERNAME</span><span class="o">=</span>USERNAME
 ARG<span class="w"> </span><span class="nv">USER_UID</span><span class="o">=</span><span class="m">1000</span>
 ARG<span class="w"> </span><span class="nv">USER_GID</span><span class="o">=</span><span class="nv">$USER_UID</span>
+
+<span class="c1"># Delete user if it exists in container (e.g Ubuntu Noble: ubuntu)</span>
+RUN<span class="w"> </span><span class="k">if</span><span class="w"> </span>id<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER_UID</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>userdel<span class="w"> </span><span class="sb">`</span>id<span class="w"> </span>-un<span class="w"> </span><span class="nv">$USER_UID</span><span class="sb">`</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
 
 <span class="c1"># Create the user</span>
 RUN<span class="w"> </span>groupadd<span class="w"> </span>--gid<span class="w"> </span><span class="nv">$USER_GID</span><span class="w"> </span><span class="nv">$USERNAME</span><span class="w"> </span><span class="se">\</span>
@@ -606,7 +606,7 @@ Inside the terminal do the following:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There might be a problem with displaying RVIZ. If no window pops up, then check the value of <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$DISPLAY</span></code> - if the output is 1, you can fix this problem with <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;export</span> <span class="pre">DISPLAY=unix:1&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">/etc/bash.bashrc</span></code> and then test it again. You can also change the DISPLAY value in the devcontainer.json and rebuild it.</p>
+<p>There might be a problem with displaying RVIZ. Please make sure to allow the user to access X window system with <code class="docutils literal notranslate"><span class="pre">xhost</span> <span class="pre">+local:&lt;USERNAME&gt;</span></code>. If no window still pops up, then check the value of <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$DISPLAY</span></code> - if the output is 1, you can fix this problem with <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;export</span> <span class="pre">DISPLAY=unix:1&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">/etc/bash.bashrc</span></code> and then test it again. You can also change the DISPLAY value in the devcontainer.json and rebuild it.</p>
 </div>
 </section>
 </section>
@@ -651,7 +651,6 @@ Inside the terminal do the following:</p>
     </dl>
     <dl>
       <dt>In Development</dt>
-      <dd><a href="../../rolling/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html">Rolling</a></dd>
     </dl>
   </div>
 </div><script>

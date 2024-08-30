@@ -54,7 +54,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../Installation.html">安装</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../Installation/Ubuntu-Install-Debians.html">Ubuntu (Debian packages)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../Installation/Ubuntu-Install-Debs.html">Ubuntu (deb packages)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../Installation/Windows-Install-Binary.html">Windows (binary)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../Installation/RHEL-Install-RPMs.html">RHEL (RPM packages)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../Installation/Alternatives.html">Alternatives</a><ul>
@@ -185,6 +185,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../Testing/CLI.html">Running Tests in ROS 2 from the Command Line</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Testing/Cpp.html">Writing Basic Tests with C++ with GTest</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Testing/Python.html">Writing Basic Tests with Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Testing/BuildFarmTesting.html">Testing Your Code with the ROS Build Farm</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../URDF/URDF-Main.html">URDF</a><ul>
@@ -296,8 +297,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/RQt-Port-Plugin-Windows.html">Porting RQt plugins to Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html">Running ROS 2 nodes in Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Visualizing-ROS-2-Data-With-Foxglove-Studio.html">Visualizing ROS 2 data with Foxglove Studio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Package-maintainer-guide.html">ROS 2 Package Maintainer Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Building-a-Custom-Debian-Package.html">Building a custom Debian package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Core-maintainer-guide.html">ROS 2 Core Maintainer Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Building-a-Custom-Deb-Package.html">Building a custom deb package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Building-ROS-2-with-Tracing-Instrumentation.html">Building ROS 2 with tracing instrumentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Topics-Services-Actions.html">Topics vs Services vs Actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Using-Variants.html">Using variants</a></li>
@@ -368,13 +369,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../The-ROS2-Project/Feature-Ideas.html">Feature Ideas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../The-ROS2-Project/Roadmap.html">Roadmap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../The-ROS2-Project/ROSCon-Content.html">ROSCon Talks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../The-ROS2-Project/Governance.html">Project Governance</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../The-ROS2-Project/Governance/ROS2-TSC-Charter.html">ROS 2 Technical Steering Committee Charter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../The-ROS2-Project/Governance/ROS2-TSC-Intake-process.html">ROS 2 TSC applicant intake process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../The-ROS2-Project/Governance/Working-Groups.html">About Working Groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../The-ROS2-Project/Governance/How-To-Start-A-Community-Working-Group.html">How to Start a Community Working Group</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../The-ROS2-Project/Governance.html">Project Governance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../The-ROS2-Project/Marketing.html">Marketing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../The-ROS2-Project/Metrics.html">Metrics</a></li>
 </ul>
@@ -641,7 +636,6 @@ To learn how to do that, refer to the <a class="reference internal" href="../../
 <span class="w">      </span><span class="nt">background_r</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150</span>
 </pre></div>
 </div>
-<p>If we now start the <code class="docutils literal notranslate"><span class="pre">turtlesim_world_2.launch.py</span></code> launch file, we will start the <code class="docutils literal notranslate"><span class="pre">turtlesim_node</span></code> with preconfigured background colors.</p>
 <p>To learn more about using parameters and using YAML files, take a look at the <a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html"><span class="doc">Understand parameters</span></a> tutorial.</p>
 </section>
 <section id="using-wildcards-in-yaml-files">
@@ -864,6 +858,10 @@ This RViz configuration will set the world frame, enable TF visualization, and s
 </div>
 <p>This launch file shows the way environment variables can be called inside the launch files.
 Environment variables can be used to define or push namespaces for distinguishing nodes on different computers or robots.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are running the launch file where the <code class="docutils literal notranslate"><span class="pre">USER</span></code> environment variable is not defined (like in the ROS docker file), then you can replace the <code class="docutils literal notranslate"><span class="pre">EnvironmentVariable('USER')</span></code> above with any other word of your liking.</p>
+</div>
 </section>
 </section>
 <section id="running-launch-files">
@@ -883,6 +881,8 @@ The <code class="docutils literal notranslate"><span class="pre">data_files</spa
          <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;*.launch.py&#39;</span><span class="p">))),</span>
       <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;share&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">),</span>
          <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;*.yaml&#39;</span><span class="p">))),</span>
+      <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;share&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s1">&#39;rviz&#39;</span><span class="p">),</span>
+         <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;*.rviz&#39;</span><span class="p">))),</span>
    <span class="p">],</span>
 </pre></div>
 </div>
@@ -954,7 +954,6 @@ It will show all turtle frames relative to the <code class="docutils literal not
     </dl>
     <dl>
       <dt>In Development</dt>
-      <dd><a href="../../../../rolling/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html">Rolling</a></dd>
     </dl>
   </div>
 </div><script>

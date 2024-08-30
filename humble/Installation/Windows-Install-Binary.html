@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="RHEL (RPM packages)" href="RHEL-Install-RPMs.html" />
-    <link rel="prev" title="Ubuntu (Debian packages)" href="Ubuntu-Install-Debians.html" /> 
+    <link rel="prev" title="Ubuntu (deb packages)" href="Ubuntu-Install-Debs.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,7 +54,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../Installation.html">安装</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Ubuntu-Install-Debians.html">Ubuntu (Debian packages)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ubuntu-Install-Debs.html">Ubuntu (deb packages)</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Windows (binary)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="RHEL-Install-RPMs.html">RHEL (RPM packages)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Alternatives.html">Alternatives</a><ul>
@@ -185,6 +185,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Testing/CLI.html">Running Tests in ROS 2 from the Command Line</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Testing/Cpp.html">Writing Basic Tests with C++ with GTest</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Testing/Python.html">Writing Basic Tests with Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Testing/BuildFarmTesting.html">Testing Your Code with the ROS Build Farm</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/URDF/URDF-Main.html">URDF</a><ul>
@@ -296,8 +297,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/RQt-Port-Plugin-Windows.html">Porting RQt plugins to Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html">Running ROS 2 nodes in Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Visualizing-ROS-2-Data-With-Foxglove-Studio.html">Visualizing ROS 2 data with Foxglove Studio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Package-maintainer-guide.html">ROS 2 Package Maintainer Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Building-a-Custom-Debian-Package.html">Building a custom Debian package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Core-maintainer-guide.html">ROS 2 Core Maintainer Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Building-a-Custom-Deb-Package.html">Building a custom deb package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Building-ROS-2-with-Tracing-Instrumentation.html">Building ROS 2 with tracing instrumentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Topics-Services-Actions.html">Topics vs Services vs Actions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../How-To-Guides/Using-Variants.html">Using variants</a></li>
@@ -368,13 +369,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Feature-Ideas.html">Feature Ideas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Roadmap.html">Roadmap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/ROSCon-Content.html">ROSCon Talks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Governance.html">Project Governance</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../The-ROS2-Project/Governance/ROS2-TSC-Charter.html">ROS 2 Technical Steering Committee Charter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../The-ROS2-Project/Governance/ROS2-TSC-Intake-process.html">ROS 2 TSC applicant intake process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../The-ROS2-Project/Governance/Working-Groups.html">About Working Groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../The-ROS2-Project/Governance/How-To-Start-A-Community-Working-Group.html">How to Start a Community Working Group</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Governance.html">Project Governance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Marketing.html">Marketing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../The-ROS2-Project/Metrics.html">Metrics</a></li>
 </ul>
@@ -682,7 +677,7 @@ Please note that debug libraries require some more additional configuration/setu
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Ubuntu-Install-Debians.html" class="btn btn-neutral float-left" title="Ubuntu (Debian packages)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Ubuntu-Install-Debs.html" class="btn btn-neutral float-left" title="Ubuntu (deb packages)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="RHEL-Install-RPMs.html" class="btn btn-neutral float-right" title="RHEL (RPM packages)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -716,7 +711,6 @@ Please note that debug libraries require some more additional configuration/setu
     </dl>
     <dl>
       <dt>In Development</dt>
-      <dd><a href="../../rolling/Installation/Windows-Install-Binary.html">Rolling</a></dd>
     </dl>
   </div>
 </div><script>

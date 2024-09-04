@@ -33,4 +33,3 @@ jobs:
                   publish_dir: ./build/html
                   cname: ros2docs.robook.org
                   commit_message: ${{ github.event.head_commit.message }}
-                  enable_jekyll: true

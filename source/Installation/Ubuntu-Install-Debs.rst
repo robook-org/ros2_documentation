@@ -88,7 +88,7 @@ source 以下脚本之一以设置环境变量（译者注： 取决于你使用
    source /opt/ros/{DISTRO}/setup.bash
 
 尝试一些样例以验证安装
----------------------
+--------------------------
 
 Talker-listener
 ^^^^^^^^^^^^^^^
@@ -115,7 +115,7 @@ Talker-listener
 
 安装完成后下一步做什么
 ---------------------------
-继续查看 :doc:`tutorials and demos <../../Tutorials>` 来配置环境, 创建你自己的工作区(workspace)和包(packages), 学习 ROS 2 核心概念.
+继续查看 :doc:`教程 <../../Tutorials>` 来配置环境, 创建你自己的工作区(workspace)和包(packages), 学习 ROS 2 核心概念.
 
 使用 the ROS 1 bridge
 ----------------------
@@ -129,7 +129,7 @@ See the :doc:`guide <../How-To-Guides/Working-with-multiple-RMW-implementations>
 异常排查
 ---------------
 
-异常排查有关的技巧和文档 :doc:`here <../How-To-Guides/Installation-Troubleshooting>`.
+异常排查有关的技巧和文档可以在 :doc:`这里 <../How-To-Guides/Installation-Troubleshooting>` 查看.
 
 卸载
 ---------

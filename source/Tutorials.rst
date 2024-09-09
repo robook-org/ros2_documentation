@@ -3,11 +3,11 @@
 教程
 ====
 
-The tutorials are a collection of step-by-step instructions meant to steadily build skills in ROS 2.
+本教程包含一系列循序渐进的指导，旨在逐步掌握 ROS 2 。
 
-The best way to approach the tutorials is to walk through them for the first time in order, as they build off of each other and are not meant to be comprehensive documentation.
+首次学习此教程的最佳方式是按顺序浏览，因为他们的内容是相互依赖的，而不是一个全面的文档。
 
-For quick solutions to more specific questions, see the :doc:`How-To-Guides`.
+对于更具体问题的快速解决方案，请参阅 :doc:`How-To-Guides`。
 
 .. toctree::
    :maxdepth: 2

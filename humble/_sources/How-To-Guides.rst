@@ -7,14 +7,13 @@
 应用指南
 =============
 
-How-to Guides provide direct and modular answers to "How-to" questions regarding key aspects of ROS 2.
-They contain succinct steps to help you accomplish important tasks quickly.
+应用指南以模块化的方式直接回答了有关 ROS 2 关键方面的“如何操作(How-to)”的问题。
+其中包含了简明扼要的步骤，以帮助您快速完成重要任务。
 
-How-to Guides are meant for users who already have some knowledge of ROS 2 and just want to find out how to implement something specific.
-They will not go in-depth by providing background information or teaching how a concept ties into the greater ROS 2 ecosystem.
+应用指南适用于已经对 ROS 2 有一定了解，但此刻只想了解如何实现特定任务的用户。
+它们不会通过提供背景信息、教授某个概念或者介绍如何与 ROS 2 生态系统相联系来深入介绍。
 
-If you are new and looking to learn the ropes, start with the :doc:`Tutorials <Tutorials>` for a more well-rounded progression through ROS 2.
-
+如果您是新手并希望了解基本操作，请从 :doc:`教程 <Tutorials>` 开始，以便更全面地学习 ROS 2。
 
 
 .. toctree::

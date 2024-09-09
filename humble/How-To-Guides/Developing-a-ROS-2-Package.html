@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Developing a ROS 2 package &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>开发一个 ROS 2 包 &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
@@ -264,7 +264,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../How-To-Guides.html">应用指南</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Installation-Troubleshooting.html">Installation troubleshooting</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Developing a ROS 2 package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">开发一个 ROS 2 包</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Documenting-a-ROS-2-Package.html">Documenting a ROS 2 package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Ament-CMake-Documentation.html">ament_cmake user documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Ament-CMake-Python-Documentation.html">ament_cmake_python user documentation</a></li>
@@ -400,7 +400,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../How-To-Guides.html">应用指南</a></li>
-      <li class="breadcrumb-item active">Developing a ROS 2 package</li>
+      <li class="breadcrumb-item active">开发一个 ROS 2 包</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/How-To-Guides/Developing-a-ROS-2-Package.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -412,39 +412,39 @@
              
 
 
-  <section id="developing-a-ros-2-package">
-<h1>Developing a ROS 2 package<a class="headerlink" href="#developing-a-ros-2-package" title="Link to this heading"></a></h1>
+  <section id="ros-2">
+<h1>开发一个 ROS 2 包<a class="headerlink" href="#ros-2" title="Link to this heading"></a></h1>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#prerequisites" id="id1">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#creating-a-package" id="id2">Creating a package</a></p>
+<li><p><a class="reference internal" href="#id1" id="id4">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id5">创建一个新的 ROS 2 包</a></p>
 <ul>
-<li><p><a class="reference internal" href="#c-packages" id="id3">C++ Packages</a></p></li>
-<li><p><a class="reference internal" href="#python-packages" id="id4">Python Packages</a></p></li>
-<li><p><a class="reference internal" href="#combined-c-and-python-packages" id="id5">Combined C++ and Python Packages</a></p></li>
+<li><p><a class="reference internal" href="#c" id="id6">C++ 包</a></p></li>
+<li><p><a class="reference internal" href="#python" id="id7">Python 包</a></p></li>
+<li><p><a class="reference internal" href="#c-and-python" id="id8">C++ and Python 混合包</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
-<p>This tutorial will teach you how to create your first ROS 2 application.
-It is intended for developers who want to learn how to create custom packages in ROS 2, not for people who want to use ROS 2 with its existing packages.</p>
-<section id="prerequisites">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>本教程将教你如何创建你的第一个 ROS 2 应用。
+它适用于想要学习如何在 ROS 2 中创建自定义包的开发人员，而不是想要使用 ROS 2 的现有包的人。</p>
+<section id="id1">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="../Installation.html"><span class="doc">Install ROS</span></a></p></li>
-<li><p><a class="reference external" href="https://colcon.readthedocs.io/en/released/user/installation.html">Install colcon</a></p></li>
-<li><p>Setup your workspace by sourcing your ROS 2 installation.</p></li>
+<li><p><a class="reference internal" href="../Installation.html"><span class="doc">安装 ROS</span></a></p></li>
+<li><p><a class="reference external" href="https://colcon.readthedocs.io/en/released/user/installation.html">安装 colcon</a></p></li>
+<li><p>source 你的 ROS 2 安装以设置你的工作空间。</p></li>
 </ul>
 </section>
-<section id="creating-a-package">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Creating a package</a><a class="headerlink" href="#creating-a-package" title="Link to this heading"></a></h2>
-<p>All ROS 2 packages begin by running the command</p>
+<section id="id2">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">创建一个新的 ROS 2 包</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>所有 ROS 2 包都是通过运行以下命令开始的:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>--license<span class="w"> </span>Apache-2.0<span class="w"> </span>&lt;pkg-name&gt;<span class="w"> </span>--dependencies<span class="w"> </span><span class="o">[</span>deps<span class="o">]</span>
 </pre></div>
 </div>
-<p>in your workspace (usually <code class="docutils literal notranslate"><span class="pre">~/ros2_ws/src</span></code>).</p>
-<p>To create a package for a specific client library:</p>
+<p>在你的 workspace 中(通常是 <code class="docutils literal notranslate"><span class="pre">~/ros2_ws/src</span></code>).</p>
+<p>如果你想为特定的客户端库创建一个包:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Qysr" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="0">C++</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel group-tab" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w">  </span>--build-type<span class="w"> </span>ament_cmake<span class="w"> </span>--license<span class="w"> </span>Apache-2.0<span class="w"> </span>&lt;pkg-name&gt;<span class="w"> </span>--dependencies<span class="w"> </span><span class="o">[</span>deps<span class="o">]</span>
 </pre></div>
@@ -453,16 +453,16 @@ It is intended for developers who want to learn how to create custom packages in
 </pre></div>
 </div>
 </div></div>
-<p>You can then update the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> with your package info such as dependencies, descriptions, and authorship.</p>
-<section id="c-packages">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">C++ Packages</a><a class="headerlink" href="#c-packages" title="Link to this heading"></a></h3>
-<p>You will mostly use the <code class="docutils literal notranslate"><span class="pre">add_executable()</span></code> CMake macro along with</p>
+<p>你可以在 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 文件中更新你的包信息，如依赖、描述和作者。</p>
+<section id="c">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">C++ 包</a><a class="headerlink" href="#c" title="Link to this heading"></a></h3>
+<p>你会主要使用 <code class="docutils literal notranslate"><span class="pre">add_executable()</span></code> CMake 宏</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">&lt;executable-name&gt;</span><span class="w"> </span><span class="s">[dependencies]</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>to create executable nodes and link dependencies.</p>
-<p>To install your launch files and nodes, you can use the <code class="docutils literal notranslate"><span class="pre">install()</span></code> macro placed towards the end of the file but before the <code class="docutils literal notranslate"><span class="pre">ament_package()</span></code> macro.</p>
-<p>An example for launch files and nodes:</p>
+<p>来可执行的节点并且链接依赖。</p>
+<p>用 <code class="docutils literal notranslate"><span class="pre">install()</span></code> 宏安装你的启动文件和节点，放在文件末尾但在 <code class="docutils literal notranslate"><span class="pre">ament_package()</span></code> 宏之前。</p>
+<p>样例：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Install launch files</span>
 <span class="nb">install</span><span class="p">(</span>
 <span class="w">  </span><span class="s">DIRECTORY</span><span class="w"> </span><span class="s">launch</span>
@@ -477,19 +477,19 @@ It is intended for developers who want to learn how to create custom packages in
 </pre></div>
 </div>
 </section>
-<section id="python-packages">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Python Packages</a><a class="headerlink" href="#python-packages" title="Link to this heading"></a></h3>
-<p>ROS 2 follows Python’s standard module distribution process that uses <code class="docutils literal notranslate"><span class="pre">setuptools</span></code>.
-For Python packages, the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file complements a C++ package’s <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>.
-More details on distribution can be found in the <a class="reference external" href="https://docs.python.org/3/distributing/index.html#distributing-index">official documentation</a>.</p>
-<p>In your ROS 2 package, you should have a <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file which looks like:</p>
+<section id="python">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Python 包</a><a class="headerlink" href="#python" title="Link to this heading"></a></h3>
+<p>ROS 2 遵循使用使用 <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> 的 Python 标准模块分发流程，。
+对于 Python 包，<code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 文件与 C++ 包的 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 文件作用相似。
+更多关于分发的细节可以在 <a class="reference external" href="https://docs.python.org/3/distributing/index.html#distributing-index">官方文档</a> 中找到。</p>
+<p>在你的 ROS 2 包中，你应该有一个类似这样的 <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> 文件:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>develop<span class="o">]</span>
 <span class="nv">script_dir</span><span class="o">=</span><span class="nv">$base</span>/lib/&lt;package-name&gt;
 <span class="o">[</span>install<span class="o">]</span>
 <span class="nv">install_scripts</span><span class="o">=</span><span class="nv">$base</span>/lib/&lt;package-name&gt;
 </pre></div>
 </div>
-<p>and a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file that looks like:</p>
+<p>和一个类似这样的 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 文件:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 <span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
@@ -537,10 +537,9 @@ More details on distribution can be found in the <a class="reference external" h
 </pre></div>
 </div>
 </section>
-<section id="combined-c-and-python-packages">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Combined C++ and Python Packages</a><a class="headerlink" href="#combined-c-and-python-packages" title="Link to this heading"></a></h3>
-<p>When writing a package with both C++ and Python code, the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file and <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file are not used.
-Instead, use <a class="reference internal" href="Ament-CMake-Python-Documentation.html"><span class="doc">ament_cmake_python</span></a>.</p>
+<section id="c-and-python">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">C++ and Python 混合包</a><a class="headerlink" href="#c-and-python" title="Link to this heading"></a></h3>
+<p>编写既包含 C++ 代码又包含 Python 代码的包时，不使用 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 文件和 <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> 文件，请使用 <a class="reference internal" href="Ament-CMake-Python-Documentation.html"><span class="doc">ament_cmake_python</span></a>。</p>
 </section>
 </section>
 </section>

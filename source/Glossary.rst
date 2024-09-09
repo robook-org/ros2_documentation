@@ -30,3 +30,14 @@ Glossary of terms used throughout this documentation:
    repository
        A collection of packages usually managed using a :term:`VCS` like git or mercurial and usually hosted on a site like GitHub or BitBucket.
        In the context of this document, repositories usually contain one or more |packages| of one type or another.
+
+翻译对照表
+------------
+
+.. glossary::
+
+    workspace
+        工作空间, ROS 2 中的工作空间是一个包含需要使用的 ROS 2 包的目录。工作空间中的包可以被构建、安装和运行。它的存在是为了方便用户组织和管理 ROS 2 包，尤其是在一台设备上拥有多个ROS版本的包或者多个不用依赖的项目时。
+
+    build
+        构建, 在 ROS 2 中，构建是指将源代码转换为可执行文件的过程。构建过程通常包括编译、链接和安装等。由于一些计算机学科的历史发展原因，或者在其他领域已经被广泛使用的用法的影响下，在交流中我们也有可能直接将这个过程称为编译。

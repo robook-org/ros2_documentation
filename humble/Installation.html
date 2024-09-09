@@ -400,7 +400,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">安装</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Installation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Installation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -412,24 +412,24 @@
 
   <section id="rollinginstall">
 <span id="installationguide"></span><span id="id1"></span><h1>安装<a class="headerlink" href="#rollinginstall" title="Link to this heading"></a></h1>
-<p>Options for installing ROS 2 Humble Hawksbill:</p>
+<p>可行的 ROS 2 Humble Hawksbill 安装方式:</p>
 <div class="toctree-wrapper compound">
 </div>
-<section id="binary-packages">
-<h2>Binary packages<a class="headerlink" href="#binary-packages" title="Link to this heading"></a></h2>
-<p>Binaries are only created for the Tier 1 operating systems listed in <a class="reference external" href="https://www.ros.org/reps/rep-2000.html#rolling-ridley-june-2020-ongoing">REP-2000</a>.
-If you are not running any of the following operating systems you may need to build from source or use a <a class="reference internal" href="How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html"><span class="doc">container solution</span></a> to run ROS 2 on your platform.</p>
-<p>We provide ROS 2 binary packages for the following platforms:</p>
+<section id="id2">
+<h2>从二进制包安装<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>只有在 Tier 1 系统上才会为 ROS 2 提供二进制包，这些系统列在 <a class="reference external" href="https://www.ros.org/reps/rep-2000.html#rolling-ridley-june-2020-ongoing">REP-2000</a> 中。
+如果您的操作系统中不在下述列表中，您可能需要从源码构建或使用 <a class="reference internal" href="How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html"><span class="doc">容器解决方案</span></a> 在您的平台上运行 ROS 2。</p>
+<p>我们为以下平台提供 ROS 2 二进制包:</p>
 <ul class="simple">
 <li><p>Ubuntu Linux - Jammy Jellyfish (22.04)</p>
 <ul>
-<li><p><a class="reference internal" href="Installation/Ubuntu-Install-Debs.html"><span class="doc">deb packages</span></a> (recommended)</p></li>
+<li><p><a class="reference internal" href="Installation/Ubuntu-Install-Debs.html"><span class="doc">deb packages</span></a> (推荐)</p></li>
 <li><p><a class="reference internal" href="Installation/Alternatives/Ubuntu-Install-Binary.html"><span class="doc">binary archive</span></a></p></li>
 </ul>
 </li>
 <li><p>RHEL 8</p>
 <ul>
-<li><p><a class="reference internal" href="Installation/RHEL-Install-RPMs.html"><span class="doc">RPM packages</span></a> (recommended)</p></li>
+<li><p><a class="reference internal" href="Installation/RHEL-Install-RPMs.html"><span class="doc">RPM packages</span></a> (推荐)</p></li>
 <li><p><a class="reference internal" href="Installation/Alternatives/RHEL-Install-Binary.html"><span class="doc">binary archive</span></a></p></li>
 </ul>
 </li>
@@ -441,8 +441,8 @@ If you are not running any of the following operating systems you may need to bu
 </ul>
 </section>
 <section id="building-from-source">
-<span id="id2"></span><h2>Building from source<a class="headerlink" href="#building-from-source" title="Link to this heading"></a></h2>
-<p>We support building ROS 2 from source on the following platforms:</p>
+<span id="id3"></span><h2>从源码构建并安装<a class="headerlink" href="#building-from-source" title="Link to this heading"></a></h2>
+<p>我们支持在以下平台上从源码构建 ROS 2:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="Installation/Alternatives/Ubuntu-Development-Setup.html"><span class="doc">Ubuntu Linux 22.04</span></a></p></li>
 <li><p><a class="reference internal" href="Installation/Alternatives/Windows-Development-Setup.html"><span class="doc">Windows 10</span></a></p></li>
@@ -450,28 +450,28 @@ If you are not running any of the following operating systems you may need to bu
 <li><p><a class="reference internal" href="Installation/Alternatives/macOS-Development-Setup.html"><span class="doc">macOS</span></a></p></li>
 </ul>
 </section>
-<section id="which-install-should-you-choose">
-<h2>Which install should you choose?<a class="headerlink" href="#which-install-should-you-choose" title="Link to this heading"></a></h2>
-<p>Installing from binary packages or from source will both result in a fully-functional and usable ROS 2 install.
-Differences between the options depend on what you plan to do with ROS 2.</p>
-<p><strong>Binary packages</strong> are for general use and provide an already-built install of ROS 2.
-This is great for people who want to dive in and start using ROS 2 as-is, right away.</p>
-<p>Linux users have two options for installing binary packages:</p>
+<section id="id4">
+<h2>我应该选择哪种安装方式?<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>从二进制包或从源码安装都是完全可用的 ROS 2 安装方式。
+这两种方式的区别取决于您打算如何使用 ROS 2。</p>
+<p><a href="#id5"><span class="problematic" id="id6">**</span></a>二进制包**适用于一般用户，提供了 ROS 2 的已构建安装。
+这对于想要立即开始使用 ROS 2 的人来说非常方便。</p>
+<p>Linux 用户有两种安装二进制包的方式:</p>
 <ul class="simple">
 <li><p>Packages (debs or RPMS, depending on the platform)</p></li>
 <li><p>binary archive</p></li>
 </ul>
-<p>Installing from packages is the recommended method, as it installs necessary dependencies automatically and also updates alongside regular system updates.
-However, you need root access in order to install deb packages.
-If you don’t have root access, the binary archive is the next best choice.</p>
-<p>Windows users who choose to install from binary packages only have the binary archive option
-(deb packages are exclusive to Ubuntu/Debian).</p>
-<p><strong>Building from source</strong> is meant for developers looking to alter or explicitly omit parts of ROS 2’s base.
-It is also recommended for platforms that don’t support binaries.
-Building from source also gives you the option to install the absolute latest version of ROS 2.</p>
-<section id="contributing-to-ros-2-core">
-<h3>Contributing to ROS 2 core?<a class="headerlink" href="#contributing-to-ros-2-core" title="Link to this heading"></a></h3>
-<p>If you plan to contribute directly to ROS 2 core packages, you can install the <a class="reference internal" href="Installation/Alternatives/Latest-Development-Setup.html"><span class="doc">latest development from source</span></a> which shares installation instructions with the <a class="reference internal" href="Releases.html#rolling-distribution"><span class="std std-ref">Rolling distribution</span></a>.</p>
+<p>从包(Packages)安装是推荐的方法，因为它会自动安装必要的依赖项，并且还会随着常规系统更新一起更新。
+但是，您需要 root 权限才能安装 Debian 包。
+如果您没有 root 权限，二进制存档(binary archive)则是最佳选择。</p>
+<p>Windows 用户只能选择二进制存档。
+(deb 包仅适用于 Ubuntu/Debian)</p>
+<p><a href="#id7"><span class="problematic" id="id8">**</span></a>从源码构建**适用于想要更改或屏蔽部分 ROS 2 核心的开发人员。
+它还适用于不支持二进制的平台。
+从源码构建还可以让您安装 ROS 2 的最新版本。</p>
+<section id="ros-2-core">
+<h3>向 ROS 2 core 贡献代码?<a class="headerlink" href="#ros-2-core" title="Link to this heading"></a></h3>
+<p>如果您计划直接向 ROS 2 核心包贡献代码，您可以安装 <a class="reference internal" href="Installation/Alternatives/Latest-Development-Setup.html"><span class="doc">最新的开发源码</span></a>，这与 <a class="reference internal" href="Releases.html#rolling-distribution"><span class="std std-ref">Rolling 发行版</span></a> 共享安装说明。</p>
 </section>
 </section>
 </section>

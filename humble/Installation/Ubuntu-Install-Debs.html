@@ -401,7 +401,7 @@
           <li class="breadcrumb-item"><a href="../Installation.html">安装</a></li>
       <li class="breadcrumb-item active">Ubuntu (deb packages)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Installation/Ubuntu-Install-Debs.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Installation/Ubuntu-Install-Debs.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -416,43 +416,40 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#resources" id="id1">Resources</a></p></li>
-<li><p><a class="reference internal" href="#set-locale" id="id2">Set locale</a></p></li>
-<li><p><a class="reference internal" href="#setup-sources" id="id3">Setup Sources</a></p></li>
-<li><p><a class="reference internal" href="#install-ros-2-packages" id="id4">Install ROS 2 packages</a></p></li>
-<li><p><a class="reference internal" href="#environment-setup" id="id5">Environment setup</a></p>
+<li><p><a class="reference internal" href="#id1" id="id8">相关资源</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id9">设置地区</a></p></li>
+<li><p><a class="reference internal" href="#apt" id="id10">设置 apt 源仓库</a></p></li>
+<li><p><a class="reference internal" href="#ros-2" id="id11">安装 ROS 2</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id12">环境配置</a></p>
 <ul>
-<li><p><a class="reference internal" href="#sourcing-the-setup-script" id="id6">Sourcing the setup script</a></p></li>
+<li><p><a class="reference internal" href="#sourcing" id="id13">Sourcing 配置脚本</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#try-some-examples" id="id7">Try some examples</a></p>
+<li><p><a class="reference internal" href="#id4" id="id14">尝试一些样例以验证安装</a></p>
 <ul>
-<li><p><a class="reference internal" href="#talker-listener" id="id8">Talker-listener</a></p></li>
+<li><p><a class="reference internal" href="#talker-listener" id="id15">Talker-listener</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#next-steps-after-installing" id="id9">Next steps after installing</a></p></li>
-<li><p><a class="reference internal" href="#using-the-ros-1-bridge" id="id10">Using the ROS 1 bridge</a></p></li>
-<li><p><a class="reference internal" href="#additional-rmw-implementations-optional" id="id11">Additional RMW implementations (optional)</a></p></li>
-<li><p><a class="reference internal" href="#troubleshooting" id="id12">Troubleshooting</a></p></li>
-<li><p><a class="reference internal" href="#uninstall" id="id13">Uninstall</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id16">安装完成后下一步做什么</a></p></li>
+<li><p><a class="reference internal" href="#the-ros-1-bridge" id="id17">使用 the ROS 1 bridge</a></p></li>
+<li><p><a class="reference internal" href="#rmw" id="id18">其它 RMW 实现 (可选内容)</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id19">异常排查</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id20">卸载</a></p></li>
 </ul>
 </nav>
-<p>Deb packages for ROS 2 Humble Hawksbill are currently available for Ubuntu Jammy (22.04).
+<p>ROS 2 Humble Hawksbill 的 Deb packages 目前在 Ubuntu Jammy (22.04) 上可用.
 The target platforms are defined in <a class="reference external" href="https://ros.org/reps/rep-2000.html">REP 2000</a>.</p>
-<section id="resources">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Resources</a><a class="headerlink" href="#resources" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">相关资源</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Status Page:</p>
-<ul>
-<li><p>ROS 2 Humble (Ubuntu Jammy): <a class="reference external" href="http://repo.ros2.org/status_page/ros_humble_default.html">amd64</a>, <a class="reference external" href="http://repo.ros2.org/status_page/ros_humble_ujv8.html">arm64</a></p></li>
-</ul>
-</li>
+<li><p>状态页:
+* ROS 2 Humble (Ubuntu Jammy): <a class="reference external" href="http://repo.ros2.org/status_page/ros_humble_default.html">amd64</a>, <a class="reference external" href="http://repo.ros2.org/status_page/ros_humble_ujv8.html">arm64</a></p></li>
 <li><p><a class="reference external" href="http://build.ros2.org/">Jenkins Instance</a></p></li>
-<li><p><a class="reference external" href="http://repo.ros2.org">Repositories</a></p></li>
+<li><p><a class="reference external" href="http://repo.ros2.org">源码仓库</a></p></li>
 </ul>
 </section>
-<section id="set-locale">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Set locale</a><a class="headerlink" href="#set-locale" title="Link to this heading"></a></h2>
+<section id="id2">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">设置地区</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>Make sure you have a locale which supports <code class="docutils literal notranslate"><span class="pre">UTF-8</span></code>.
 If you are in a minimal environment (such as a docker container), the locale may be something minimal like <code class="docutils literal notranslate"><span class="pre">POSIX</span></code>.
 We test with the following settings. However, it should be fine if you’re using a different UTF-8 supported locale.</p>
@@ -467,8 +464,8 @@ locale<span class="w">  </span><span class="c1"># verify settings</span>
 </pre></div>
 </div>
 </section>
-<section id="setup-sources">
-<span id="linux-install-debians-setup-sources"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Setup Sources</a><a class="headerlink" href="#setup-sources" title="Link to this heading"></a></h2>
+<section id="apt">
+<span id="linux-install-debians-setup-sources"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">设置 apt 源仓库</a><a class="headerlink" href="#apt" title="Link to this heading"></a></h2>
 <p>You will need to add the ROS 2 apt repository to your system.</p>
 <p>First ensure that the <a class="reference external" href="https://help.ubuntu.com/community/Repositories/Ubuntu">Ubuntu Universe repository</a> is enabled.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>software-properties-common
@@ -485,9 +482,9 @@ sudo<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </s
 </pre></div>
 </div>
 </section>
-<section id="install-ros-2-packages">
-<span id="linux-install-debs-install-ros-2-packages"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Install ROS 2 packages</a><a class="headerlink" href="#install-ros-2-packages" title="Link to this heading"></a></h2>
-<p>Update your apt repository caches after setting up the repositories.</p>
+<section id="ros-2">
+<span id="linux-install-debs-install-ros-2-packages"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">安装 ROS 2</a><a class="headerlink" href="#ros-2" title="Link to this heading"></a></h2>
+<p>设置好仓库后，请更新 apt 仓库缓存。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </pre></div>
 </div>
@@ -502,25 +499,25 @@ It is always recommended that you ensure your system is up to date before instal
 The installation of ROS 2’s dependencies on a freshly installed system without upgrading can trigger the <strong>removal of critical system packages</strong>.</p>
 <p>Please refer to <a class="reference external" href="https://github.com/ros2/ros2/issues/1272">ros2/ros2#1272</a> and <a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/systemd/+bug/1974196">Launchpad #1974196</a> for more information.</p>
 </div>
-<p>Desktop Install (Recommended): ROS, RViz, demos, tutorials.</p>
+<p>桌面版安装(推荐)包含: ROS, RViz, demos, 教程.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-humble-desktop
 </pre></div>
 </div>
-<p>ROS-Base Install (Bare Bones): Communication libraries, message packages, command line tools.
-No GUI tools.</p>
+<p>基本版安装包含：通信库、消息包、命令行工具.
+没有 GUI 工具.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-humble-ros-base
 </pre></div>
 </div>
-<p>Development tools: Compilers and other tools to build ROS packages</p>
+<p>开发工具包: 编译器和其他工具用于构建 ROS 包.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-dev-tools
 </pre></div>
 </div>
 </section>
-<section id="environment-setup">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Environment setup</a><a class="headerlink" href="#environment-setup" title="Link to this heading"></a></h2>
-<section id="sourcing-the-setup-script">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Sourcing the setup script</a><a class="headerlink" href="#sourcing-the-setup-script" title="Link to this heading"></a></h3>
-<p>Set up your environment by sourcing the following file.</p>
+<section id="id3">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">环境配置</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="sourcing">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Sourcing 配置脚本</a><a class="headerlink" href="#sourcing" title="Link to this heading"></a></h3>
+<p>source 以下脚本之一以设置环境变量（译者注： 取决于你使用何种shell）:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace &quot;.bash&quot; with your shell if you&#39;re not using bash</span>
 <span class="c1"># Possible values are: setup.bash, setup.sh, setup.zsh</span>
 <span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
@@ -528,51 +525,50 @@ No GUI tools.</p>
 </div>
 </section>
 </section>
-<section id="try-some-examples">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Try some examples</a><a class="headerlink" href="#try-some-examples" title="Link to this heading"></a></h2>
+<section id="id4">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">尝试一些样例以验证安装</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <section id="talker-listener">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Talker-listener</a><a class="headerlink" href="#talker-listener" title="Link to this heading"></a></h3>
-<p>If you installed <code class="docutils literal notranslate"><span class="pre">ros-humble-desktop</span></code> above you can try some examples.</p>
-<p>In one terminal, source the setup file and then run a C++ <code class="docutils literal notranslate"><span class="pre">talker</span></code>:</p>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Talker-listener</a><a class="headerlink" href="#talker-listener" title="Link to this heading"></a></h3>
+<p>如果你之前安装了 <code class="docutils literal notranslate"><span class="pre">ros-humble-desktop</span></code>，那你可以运行这个样例.</p>
+<p>在一个 terminal 中，source 配置文件然后运行 C++ <code class="docutils literal notranslate"><span class="pre">talker</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
 ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
 </pre></div>
 </div>
-<p>In another terminal source the setup file and then run a Python <code class="docutils literal notranslate"><span class="pre">listener</span></code>:</p>
+<p>在另一个 terminal 中，source 配置文件然后运行 Python <code class="docutils literal notranslate"><span class="pre">listener</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
 ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_py<span class="w"> </span>listener
 </pre></div>
 </div>
-<p>You should see the <code class="docutils literal notranslate"><span class="pre">talker</span></code> saying that it’s <code class="docutils literal notranslate"><span class="pre">Publishing</span></code> messages and the <code class="docutils literal notranslate"><span class="pre">listener</span></code> saying <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">heard</span></code> those messages.
-This verifies both the C++ and Python APIs are working properly.
-Hooray!</p>
+<p>你应该看到 <code class="docutils literal notranslate"><span class="pre">talker</span></code> 说它在 <code class="docutils literal notranslate"><span class="pre">Publishing</span></code> 消息，而 <code class="docutils literal notranslate"><span class="pre">listener</span></code> 说 <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">heard</span></code> 这些消息.
+这验证了 C++ 和 Python API 都正常工作.
+说明你做得很好！</p>
 </section>
 </section>
-<section id="next-steps-after-installing">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Next steps after installing</a><a class="headerlink" href="#next-steps-after-installing" title="Link to this heading"></a></h2>
-<p>Continue with the <a class="reference internal" href="../Tutorials.html"><span class="doc">tutorials and demos</span></a> to configure your environment, create your own workspace and packages, and learn ROS 2 core concepts.</p>
+<section id="id5">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">安装完成后下一步做什么</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>继续查看 <a class="reference internal" href="../Tutorials.html"><span class="doc">tutorials and demos</span></a> 来配置环境, 创建你自己的工作区(workspace)和包(packages), 学习 ROS 2 核心概念.</p>
 </section>
-<section id="using-the-ros-1-bridge">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Using the ROS 1 bridge</a><a class="headerlink" href="#using-the-ros-1-bridge" title="Link to this heading"></a></h2>
-<p>The ROS 1 bridge can connect topics from ROS 1 to ROS 2 and vice-versa. See the dedicated <a class="reference external" href="https://github.com/ros2/ros1_bridge/blob/master/README.md">documentation</a> on how to build and use the ROS 1 bridge.</p>
+<section id="the-ros-1-bridge">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">使用 the ROS 1 bridge</a><a class="headerlink" href="#the-ros-1-bridge" title="Link to this heading"></a></h2>
+<p>The ROS 1 bridge 可以将 topic 从 ROS 1 传递至 ROS 2，反之亦然. 请查看 <a class="reference external" href="https://github.com/ros2/ros1_bridge/blob/master/README.md">此文档</a> 以知晓如何构建和使用 the ROS 1 bridge.</p>
 </section>
-<section id="additional-rmw-implementations-optional">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Additional RMW implementations (optional)</a><a class="headerlink" href="#additional-rmw-implementations-optional" title="Link to this heading"></a></h2>
+<section id="rmw">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">其它 RMW 实现 (可选内容)</a><a class="headerlink" href="#rmw" title="Link to this heading"></a></h2>
 <p>The default middleware that ROS 2 uses is <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">DDS</span></code>, but the middleware (RMW) can be replaced at runtime.
 See the <a class="reference internal" href="../How-To-Guides/Working-with-multiple-RMW-implementations.html"><span class="doc">guide</span></a> on how to work with multiple RMWs.</p>
 </section>
-<section id="troubleshooting">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
-<p>Troubleshooting techniques can be found <a class="reference internal" href="../How-To-Guides/Installation-Troubleshooting.html"><span class="doc">here</span></a>.</p>
+<section id="id6">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">异常排查</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>异常排查有关的技巧和文档 <a class="reference internal" href="../How-To-Guides/Installation-Troubleshooting.html"><span class="doc">here</span></a>.</p>
 </section>
-<section id="uninstall">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Uninstall</a><a class="headerlink" href="#uninstall" title="Link to this heading"></a></h2>
-<p>If you need to uninstall ROS 2 or switch to a source-based install once you
-have already installed from binaries, run the following command:</p>
+<section id="id7">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">卸载</a><a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>如果你需要卸载 ROS 2 或者在已经安装了二进制包后想切换到源码安装，运行以下命令:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>~nros-humble-*<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>autoremove
 </pre></div>
 </div>
-<p>You may also want to remove the repository:</p>
+<p>你可能还想移除仓库源:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>rm<span class="w"> </span>/etc/apt/sources.list.d/ros2.list
 sudo<span class="w"> </span>apt<span class="w"> </span>update
 sudo<span class="w"> </span>apt<span class="w"> </span>autoremove

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configuring environment &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>配置环境 &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -121,7 +121,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../Tutorials.html">教程</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Configuring environment</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Introducing-Turtlesim/Introducing-Turtlesim.html">Using <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, and <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
@@ -401,9 +401,9 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../Beginner-CLI-Tools.html">初级: 命令行交互工具</a></li>
-      <li class="breadcrumb-item active">Configuring environment</li>
+      <li class="breadcrumb-item active">配置环境</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -413,56 +413,54 @@
              
 
 
-  <section id="configuring-environment">
-<span id="configros2"></span><h1>Configuring environment<a class="headerlink" href="#configuring-environment" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> This tutorial will show you how to prepare your ROS 2 environment.</p>
-<p><strong>Tutorial level:</strong> Beginner</p>
-<p><strong>Time:</strong> 5 minutes</p>
-<nav class="contents local" id="contents">
-<p class="topic-title">Contents</p>
+  <section id="configros2">
+<span id="id1"></span><h1>配置环境<a class="headerlink" href="#configros2" title="Link to this heading"></a></h1>
+<p><strong>目标:</strong> 本教程将向您展示如何配置 ROS 2 环境。</p>
+<p><strong>教程级别:</strong> 初级</p>
+<p><strong>预计时长:</strong> 5 分钟</p>
+<nav class="contents local" id="id2">
+<p class="topic-title">目录</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id1">Background</a></p></li>
-<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id3">Tasks</a></p>
+<li><p><a class="reference internal" href="#id3" id="id9">背景</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id10">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id11">任务</a></p>
 <ul>
-<li><p><a class="reference internal" href="#source-the-setup-files" id="id4">1 Source the setup files</a></p></li>
-<li><p><a class="reference internal" href="#add-sourcing-to-your-shell-startup-script" id="id5">2 Add sourcing to your shell startup script</a></p></li>
-<li><p><a class="reference internal" href="#check-environment-variables" id="id6">3 Check environment variables</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id12">1 Source 配置脚本</a></p></li>
+<li><p><a class="reference internal" href="#source-shell" id="id13">2 把 source 指令添加到你的 shell 启动脚本中</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id14">3 检查环境变量</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary" id="id7">Summary</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id8">Next steps</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id15">总结</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id16">下一步</a></p></li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
-<p>ROS 2 relies on the notion of combining workspaces using the shell environment.
-“Workspace” is a ROS term for the location on your system where you’re developing with ROS 2.
-The core ROS 2 workspace is called the underlay.
-Subsequent local workspaces are called overlays.
-When developing with ROS 2, you will typically have several workspaces active concurrently.</p>
-<p>Combining workspaces makes developing against different versions of ROS 2, or against different sets of packages, easier.
-It also allows the installation of several ROS 2 distributions (or “distros”, e.g. Dashing and Eloquent) on the same computer and switching between them.</p>
-<p>This is accomplished by sourcing setup files every time you open a new shell, or by adding the source command to your shell startup script once.
-Without sourcing the setup files, you won’t be able to access ROS 2 commands, or find or use ROS 2 packages.
-In other words, you won’t be able to use ROS 2.</p>
+<section id="id3">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">背景</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>ROS 2 依赖于使用 shell 环境来组合工作空间的概念。
+“工作空间”是一个用于指代你在系统上开发 ROS 2 的位置的 ROS 术语。
+ROS 2 的核心工作空间称为底层(underlay)工作空间。
+后续的本地工作空间称为上层(overlays)工作空间。
+当使用 ROS 2 进行开发时，通常会同时激活几个工作空间。</p>
+<p>组合工作空间使得开发不同版本的 ROS 2 或不同的项目更容易。
+它还允许在同一台设备上安装多个不同版本的 ROS 2（或“distros”，例如 Dashing 和 Eloquent）并在它们之间切换。</p>
+<p>要想激活工作空间，你可以在每次打开一个新的 shell 时都 source 一下配置脚本；或者把 这条 source 指令添加到 shell 的启动脚本中，这样每次你打开一个新的 shell 都会默认运行一次你添加的 source 指令。
+如果不 source 配置脚本，你就没办法直接使用 ROS 2 命令，或者直接找到、使用 ROS 2 包。换句话说，你就用不了 ROS 2.</p>
 </section>
-<section id="prerequisites">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<p>Before starting these tutorials, install ROS 2 by following the instructions on the ROS 2 <a class="reference internal" href="../../Installation.html"><span class="doc">安装</span></a> page.</p>
-<p>The commands used in this tutorial assume you followed the binary packages installation guide for your operating system (deb packages for Linux).
-You can still follow along if you built from source, but the path to your setup files will likely be different.
-You also won’t be able to use the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">ros-&lt;distro&gt;-&lt;package&gt;</span></code> command (used frequently in the beginner level tutorials) if you install from source.</p>
-<p>If you are using Linux or macOS, but are not already familiar with the shell, <a class="reference external" href="https://www.linux.com/training-tutorials/bash-101-working-cli/">this tutorial</a> will help.</p>
+<section id="id4">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">前提条件</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>在开始学习本教程之前，请确保你已经完成了 <a class="reference internal" href="../../Installation.html"><span class="doc">安装</span></a> 中的步骤。</p>
+<p>本教程中使用的命令是假定你是从二进制安装的 ROS 2。如果你是从源码构建并安装的，那么你的配置脚本的路径会有些不一样，需要你自己在使用时注意。
+当然，如果是从源码安装的，你也没办法使用诸如 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">ros-&lt;distro&gt;-&lt;package&gt;</span></code> 的命令(在初级教程中最常用的命令)。</p>
+<p>如果你现在使用的设备是 Linux 或者 macOS 的系统，但是你不太熟悉 shell，可以先查看 <a class="reference external" href="https://www.linux.com/training-tutorials/bash-101-working-cli/">这个关于 shell 的教程</a> 。</p>
 </section>
-<section id="tasks">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
-<section id="source-the-setup-files">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">1 Source the setup files</a><a class="headerlink" href="#source-the-setup-files" title="Link to this heading"></a></h3>
-<p>You will need to run this command on every new shell you open to have access to the ROS 2 commands, like so:</p>
+<section id="id5">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">任务</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<section id="source">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">1 Source 配置脚本</a><a class="headerlink" href="#source" title="Link to this heading"></a></h3>
+<p>每次你打开一个新 shell 想使用 ROS 2 的指令时，都需要运行一下这个指令：</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace &quot;.bash&quot; with your shell if you&#39;re not using bash</span>
-<span class="c1"># Possible values are: setup.bash, setup.sh, setup.zsh</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 如果你用的不是 bash， 记得把 &quot;.bash&quot; 替换成你的 shell类型</span>
+<span class="c1"># 常见的比如: setup.bash, setup.sh, setup.zsh</span>
 <span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
 </pre></div>
 </div>
@@ -475,24 +473,24 @@ You also won’t be able to use the <code class="docutils literal notranslate"><
 </div></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The exact command depends on where you installed ROS 2.
-If you’re having problems, ensure the file path leads to your installation.</p>
+<p>当然这条指令具体是不是完全和列举的一样，取决于你是怎么安装 ROS 2 的。
+如果你在运行的时候遇到些问题，请先检查上述指令中的脚本真的存在，有可能是你的安装路径和上述指令中不一样。</p>
 </div>
 </section>
-<section id="add-sourcing-to-your-shell-startup-script">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">2 Add sourcing to your shell startup script</a><a class="headerlink" href="#add-sourcing-to-your-shell-startup-script" title="Link to this heading"></a></h3>
-<p>If you don’t want to have to source the setup file every time you open a new shell (skipping task 1), then you can add the command to your shell startup script:</p>
+<section id="source-shell">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">2 把 source 指令添加到你的 shell 启动脚本中</a><a class="headerlink" href="#source-shell" title="Link to this heading"></a></h3>
+<p>如果你不想像第一步一样每次打开新 shell 都要 source 配置脚本，你可以用下面这个指令把那条 source 指令添加到你的 shell 启动脚本中:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-1-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-1-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &quot;source /opt/ros/humble/setup.bash&quot; &gt;&gt; ~/.bashrc</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>To undo this, locate your system’s shell startup script and remove the appended source command.</p>
+<p>如果不想要这个功能生效了，你需要自己把刚刚添加的这条指令从系统的 shell 启动脚本（译者注： 比如此处你就需要用任意的编辑器打开 <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> 文件，删掉其中的 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/ros/humble/setup.bash</span></code> ）中删掉。</p>
 </div><div aria-labelledby="tab-1-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &quot;source ~/ros2_install/ros2-osx/setup.bash&quot; &gt;&gt; ~/.bash_profile</span>
 </pre></div>
 </div>
-<p>To undo this, locate your system’s shell startup script and remove the appended source command.</p>
+<p>如果不想要这个功能生效了，你需要自己把刚刚添加的这条指令从系统的 shell 启动脚本中删掉。</p>
 </div><div aria-labelledby="tab-1-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>Only for PowerShell users, create a folder in ‘My Documents’ called ‘WindowsPowerShell’.
 Within ‘WindowsPowerShell’, create file ‘Microsoft.PowerShell_profile.ps1’.
 Inside the file, paste:</p>
@@ -507,10 +505,10 @@ To avoid that issue you can run:</p>
 <p>To undo this, remove the new ‘Microsoft.PowerShell_profile.ps1’ file.</p>
 </div></div>
 </section>
-<section id="check-environment-variables">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">3 Check environment variables</a><a class="headerlink" href="#check-environment-variables" title="Link to this heading"></a></h3>
-<p>Sourcing ROS 2 setup files will set several environment variables necessary for operating ROS 2.
-If you ever have problems finding or using your ROS 2 packages, make sure that your environment is properly set up using the following command:</p>
+<section id="id6">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">3 检查环境变量</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>source ROS 2 配置脚本这个操作会添加一些必要的系统变量。
+如果你在后续使用 ROS 2 命令时遇到问题，可以先用下面的指令检查一下这些系统变量是不是正常的：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-2-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-2-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-2-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-2-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">printenv | grep -i ROS</span>
 </pre></div>
@@ -522,18 +520,18 @@ If you ever have problems finding or using your ROS 2 packages, make sure that y
 </pre></div>
 </div>
 </div></div>
-<p>Check that variables like <code class="docutils literal notranslate"><span class="pre">ROS_DISTRO</span></code> and <code class="docutils literal notranslate"><span class="pre">ROS_VERSION</span></code> are set.</p>
+<p>检查如下变量，例如 <code class="docutils literal notranslate"><span class="pre">ROS_DISTRO</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ROS_VERSION</span></code> 的变量已经配置好.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ROS_VERSION</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">ROS_PYTHON_VERSION</span><span class="o">=</span><span class="mi">3</span>
 <span class="n">ROS_DISTRO</span><span class="o">=</span><span class="n">humble</span>
 </pre></div>
 </div>
-<p>If the environment variables are not set correctly, return to the ROS 2 package installation section of the installation guide you followed.
-If you need more specific help (because environment setup files can come from different places), you can <a class="reference external" href="https://robotics.stackexchange.com/">get answers</a> from the community.</p>
-<section id="the-ros-domain-id-variable">
-<h4>3.1 The <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code> variable<a class="headerlink" href="#the-ros-domain-id-variable" title="Link to this heading"></a></h4>
-<p>See the <a class="reference internal" href="../../Concepts/Intermediate/About-Domain-ID.html"><span class="doc">domain ID</span></a> article for details on ROS domain IDs.</p>
-<p>Once you have determined a unique integer for your group of ROS 2 nodes, you can set the environment variable with the following command:</p>
+<p>如果环境变量配置不正常，那就重新按照安装教程再细致地操作一次。
+如果你需要一些更具体或者更特殊的帮助，可以 <a class="reference external" href="https://robotics.stackexchange.com/">从社区寻找帮助</a> 。</p>
+<section id="ros-domain-id">
+<h4>3.1 <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code><a class="headerlink" href="#ros-domain-id" title="Link to this heading"></a></h4>
+<p>查看 <a class="reference internal" href="../../Concepts/Intermediate/About-Domain-ID.html"><span class="doc">domain ID</span></a> 一文了解更多细节.</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code> 环境变量可以为你的 ROS 2 节点组分配一个唯一的整数。</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-3-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-3-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-3-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-3-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export ROS_DOMAIN_ID=&lt;your_domain_id&gt;</span>
 </pre></div>
@@ -558,13 +556,13 @@ If you need more specific help (because environment setup files can come from di
 </div>
 </div></div>
 </section>
-<section id="the-ros-localhost-only-variable">
-<h4>3.2 The <code class="docutils literal notranslate"><span class="pre">ROS_LOCALHOST_ONLY</span></code> variable<a class="headerlink" href="#the-ros-localhost-only-variable" title="Link to this heading"></a></h4>
-<p>By default, ROS 2 communication is not limited to localhost.
-<code class="docutils literal notranslate"><span class="pre">ROS_LOCALHOST_ONLY</span></code> environment variable allows you to limit ROS 2 communication to localhost only.
-This means your ROS 2 system, and its topics, services, and actions will not be visible to other computers on the local network.
-Using <code class="docutils literal notranslate"><span class="pre">ROS_LOCALHOST_ONLY</span></code> is helpful in certain settings, such as classrooms, where multiple robots may publish to the same topic causing strange behaviors.
-You can set the environment variable with the following command:</p>
+<section id="ros-localhost-only">
+<h4>3.2 <code class="docutils literal notranslate"><span class="pre">ROS_LOCALHOST_ONLY</span></code><a class="headerlink" href="#ros-localhost-only" title="Link to this heading"></a></h4>
+<p>默认情况下，ROS 2 通信不限于 localhost。
+<code class="docutils literal notranslate"><span class="pre">ROS_LOCALHOST_ONLY</span></code> 环境变量可以让你限制 ROS 2 通信只在 localhost 上进行。
+这意味着你的 ROS 2 系统和它的 topics、services 和 actions 将无法被本地网络的其他设备访问到。
+<code class="docutils literal notranslate"><span class="pre">ROS_LOCALHOST_ONLY</span></code> 在某些情况下很有用，比如在教室里，多个机器人可能会发布到同一个 topic，导致产生一些奇怪的现象。
+你可以使用如下命令配置这个环境变量：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-4-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-4-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-4-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-4-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export ROS_LOCALHOST_ONLY=1</span>
 </pre></div>
@@ -591,15 +589,15 @@ You can set the environment variable with the following command:</p>
 </section>
 </section>
 </section>
-<section id="summary">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
-<p>The ROS 2 development environment needs to be correctly configured before use.
-This can be done in two ways: either sourcing the setup files in every new shell you open, or adding the source command to your startup script.</p>
-<p>If you ever face any problems locating or using packages with ROS 2, the first thing you should do is check your environment variables and ensure they are set to the version and distro you intended.</p>
+<section id="id7">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">总结</a><a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>ROS 2 开发环境需要在使用之前正确配置好。
+有两种方法可以配置：一种是在每个新 shell 中都运行一次配置脚本，另一种是把 source 指令添加到你的启动脚本中。</p>
+<p>如果你在使用 ROS 2 时遇到任何问题，首先检查你的环境变量是否设置正确，确保变量已经配置到你想要的值。</p>
 </section>
-<section id="next-steps">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
-<p>Now that you have a working ROS 2 installation and you know how to source its setup files, you can start learning the ins and outs of ROS 2 with the <a class="reference internal" href="Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">turtlesim tool</span></a>.</p>
+<section id="id8">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">下一步</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>现在你已经有一个可以正常工作的 ROS 2 环境，并且知道如何 source 配置脚本，你可以继续学习 ROS 2 的各种细节，比如 <a class="reference internal" href="Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">turtlesim 工具</span></a>。</p>
 </section>
 </section>
 

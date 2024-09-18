@@ -110,6 +110,11 @@ The ROS PMC currently consists of the following constituents:
      - Yadunund
      - Member
      - PST (UTC-8)/PDT (UTC-7)
+   * - Steven! Ragnarök
+     - Intrinsic
+     - nuclearsandwich
+     - Member / Infrastructure Project Lead
+     - PST (UTC-8)/PDT (UTC-7)
 
 Current ROS Committers
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -130,6 +135,10 @@ The ROS committers (who are not also part of the ROS PMC) consists of the follow
    * - Tully Foote
      - Intrinsic
      - tfoote
+     - PST (UTC-8)/PDT (UTC-7)
+   * - Steve Peters
+     - Intrinsic
+     - scpeters
      - PST (UTC-8)/PDT (UTC-7)
    * - Barry Xu
      - Sony

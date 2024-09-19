@@ -1,4 +1,4 @@
-Advanced
+高级教程
 ========
 
 .. toctree::

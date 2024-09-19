@@ -1,4 +1,4 @@
-Miscellaneous
+杂项
 =============
 
 .. toctree::

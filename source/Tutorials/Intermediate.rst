@@ -1,4 +1,4 @@
-Intermediate
+中级教程
 ============
 
 .. toctree::

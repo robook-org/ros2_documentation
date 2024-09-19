@@ -44,3 +44,12 @@ Glossary of terms used throughout this documentation:
 
     source
         执行、运行，这是一个Linux指令，意味着运行一个文件。在 ROS2 中，这个指令通常用于运行配置工作空间的脚本。
+
+    node
+        节点。
+
+    terminal
+        终端。
+
+    command-line
+        命令行。

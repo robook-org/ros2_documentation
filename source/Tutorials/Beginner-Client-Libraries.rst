@@ -1,4 +1,4 @@
-Beginner: Client libraries
+初级: 客户端库
 ==========================
 
 .. toctree::

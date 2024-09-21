@@ -48,8 +48,17 @@ Glossary of terms used throughout this documentation:
     node
         节点。
 
+    service
+        服务。
+
     terminal
         终端。
 
     command-line
         命令行。
+
+    call
+        调用。当表达 call a service 时，意为调用一个服务。
+
+    remap
+        重映射。在 ROS 2 多数语境中，重映射是指将一个节点的某个话题或服务的名称映射到另一个节点的话题或服务的名称。这样可以在不修改源代码的情况下改变节点之间的通信方式。

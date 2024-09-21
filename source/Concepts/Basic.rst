@@ -1,7 +1,7 @@
 基础概念
 ==============
 
-ROS 2是基于类型严格(strongly-typed)、匿名发布/订阅机制(anonymous publish/subscribe mechanism)的中间件，允许不同进程(processes)之间进行消息传递。
+ROS 2 是基于类型严格(strongly-typed)、匿名发布/订阅机制(anonymous publish/subscribe mechanism)的中间件，允许不同进程(processes)之间进行消息传递。
 
 ROS 2 系统的核心是 ROS graph。
 ROS graph 指的是 ROS 系统中节点构成的网络，以及节点之间通信所使用的连接。

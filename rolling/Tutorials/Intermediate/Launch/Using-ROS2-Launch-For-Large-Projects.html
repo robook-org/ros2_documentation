@@ -406,7 +406,7 @@
           <li class="breadcrumb-item"><a href="Launch-Main.html">Launch</a></li>
       <li class="breadcrumb-item active">Managing large projects</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -690,6 +690,10 @@ Unique namespaces allow the system to start two similar nodes without node name 
 <p>However, if the launch file contains a large number of nodes, defining namespaces for each of them can become tedious.
 To solve that issue, the <code class="docutils literal notranslate"><span class="pre">PushROSNamespace</span></code> action can be used to define the global namespace for each launch file description.
 Every nested node will inherit that namespace automatically.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>PushROSNamespace has to be the first Action in the list for the following actions to apply the namespace</p>
+</div>
 <p>To do that, firstly, we need to remove the <code class="docutils literal notranslate"><span class="pre">namespace='turtlesim2'</span></code> line from the <code class="docutils literal notranslate"><span class="pre">turtlesim_world_2_launch.py</span></code> file.
 Afterwards, we need to update the <code class="docutils literal notranslate"><span class="pre">launch_turtlesim_launch.py</span></code> to include the following lines:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">GroupAction</span>

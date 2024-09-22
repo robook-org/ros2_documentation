@@ -405,7 +405,7 @@
           <li class="breadcrumb-item"><a href="../How-To-Guides.html">How-to Guides</a></li>
       <li class="breadcrumb-item active">Using Python, XML, and YAML for ROS 2 Launch Files</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/How-To-Guides/Launch-file-different-formats.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/How-To-Guides/Launch-file-different-formats.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -454,7 +454,7 @@ Each launch file performs the following actions:</p>
 <span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="n">LaunchConfiguration</span>
 <span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="n">TextSubstitution</span>
 <span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
-<span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">PushRosNamespace</span>
+<span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">PushROSNamespace</span>
 <span class="kn">from</span> <span class="nn">launch_xml.launch_description_sources</span> <span class="kn">import</span> <span class="n">XMLLaunchDescriptionSource</span>
 <span class="kn">from</span> <span class="nn">launch_yaml.launch_description_sources</span> <span class="kn">import</span> <span class="n">YAMLLaunchDescriptionSource</span>
 
@@ -491,8 +491,8 @@ Each launch file performs the following actions:</p>
     <span class="c1"># include a Python launch file in the chatter_py_ns namespace</span>
     <span class="n">launch_py_include_with_namespace</span> <span class="o">=</span> <span class="n">GroupAction</span><span class="p">(</span>
         <span class="n">actions</span><span class="o">=</span><span class="p">[</span>
-            <span class="c1"># push_ros_namespace to set namespace of included nodes</span>
-            <span class="n">PushRosNamespace</span><span class="p">(</span><span class="s1">&#39;chatter_py_ns&#39;</span><span class="p">),</span>
+            <span class="c1"># push_ros_namespace first to set namespace of included nodes for following actions</span>
+            <span class="n">PushROSNamespace</span><span class="p">(</span><span class="s1">&#39;chatter_py_ns&#39;</span><span class="p">),</span>
             <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
                 <span class="n">PythonLaunchDescriptionSource</span><span class="p">(</span>
                     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
@@ -505,8 +505,8 @@ Each launch file performs the following actions:</p>
     <span class="c1"># include a xml launch file in the chatter_xml_ns namespace</span>
     <span class="n">launch_xml_include_with_namespace</span> <span class="o">=</span> <span class="n">GroupAction</span><span class="p">(</span>
         <span class="n">actions</span><span class="o">=</span><span class="p">[</span>
-            <span class="c1"># push_ros_namespace to set namespace of included nodes</span>
-            <span class="n">PushRosNamespace</span><span class="p">(</span><span class="s1">&#39;chatter_xml_ns&#39;</span><span class="p">),</span>
+            <span class="c1"># push_ros_namespace first to set namespace of included nodes for following actions</span>
+            <span class="n">PushROSNamespace</span><span class="p">(</span><span class="s1">&#39;chatter_xml_ns&#39;</span><span class="p">),</span>
             <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
                 <span class="n">XMLLaunchDescriptionSource</span><span class="p">(</span>
                     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
@@ -519,8 +519,8 @@ Each launch file performs the following actions:</p>
     <span class="c1"># include a yaml launch file in the chatter_yaml_ns namespace</span>
     <span class="n">launch_yaml_include_with_namespace</span> <span class="o">=</span> <span class="n">GroupAction</span><span class="p">(</span>
         <span class="n">actions</span><span class="o">=</span><span class="p">[</span>
-            <span class="c1"># push_ros_namespace to set namespace of included nodes</span>
-            <span class="n">PushRosNamespace</span><span class="p">(</span><span class="s1">&#39;chatter_yaml_ns&#39;</span><span class="p">),</span>
+            <span class="c1"># push_ros_namespace first to set namespace of included nodes for following actions</span>
+            <span class="n">PushROSNamespace</span><span class="p">(</span><span class="s1">&#39;chatter_yaml_ns&#39;</span><span class="p">),</span>
             <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
                 <span class="n">YAMLLaunchDescriptionSource</span><span class="p">(</span>
                     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>

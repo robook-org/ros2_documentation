@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basic Concepts &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>基础概念 &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
@@ -28,7 +28,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Nodes" href="Basic/About-Nodes.html" />
+    <link rel="next" title="节点" href="Basic/About-Nodes.html" />
     <link rel="prev" title="概念" href="../Concepts.html" /> 
 </head>
 
@@ -319,10 +319,10 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Concepts.html">概念</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic Concepts</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Basic/About-Nodes.html">Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Basic/About-Discovery.html">Discovery</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Basic/About-Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Basic/About-Nodes.html">节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Basic/About-Discovery.html">发现(Discovery)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Basic/About-Interfaces.html">接口(Interfaces)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Basic/About-Topics.html">Topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Basic/About-Services.html">Services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Basic/About-Actions.html">Actions</a></li>
@@ -399,9 +399,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../Concepts.html">概念</a></li>
-      <li class="breadcrumb-item active">Basic Concepts</li>
+      <li class="breadcrumb-item active">基础概念</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Concepts/Basic.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Concepts/Basic.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -411,17 +411,17 @@
              
 
 
-  <section id="basic-concepts">
-<h1>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading"></a></h1>
-<p>ROS 2 is a middleware based on a strongly-typed, anonymous publish/subscribe mechanism that allows for message passing between different processes.</p>
-<p>At the heart of any ROS 2 system is the ROS graph.
-The ROS graph refers to the network of nodes in a ROS system and the connections between them by which they communicate.</p>
-<p>These are the concepts that will help you get started understanding the basics of ROS 2.</p>
+  <section id="id1">
+<h1>基础概念<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>ROS 2 是基于类型严格(strongly-typed)、匿名发布/订阅机制(anonymous publish/subscribe mechanism)的中间件，允许不同进程(processes)之间进行消息传递。</p>
+<p>ROS 2 系统的核心是 ROS graph。
+ROS graph 指的是 ROS 系统中节点构成的网络，以及节点之间通信所使用的连接。</p>
+<p>这些概念可以帮助你开始理解 ROS 2 的基础知识。</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Basic/About-Nodes.html">Nodes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Basic/About-Discovery.html">Discovery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Basic/About-Interfaces.html">Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Basic/About-Nodes.html">节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Basic/About-Discovery.html">发现(Discovery)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Basic/About-Interfaces.html">接口(Interfaces)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Basic/About-Topics.html">Topics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Basic/About-Services.html">Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Basic/About-Actions.html">Actions</a></li>
@@ -439,7 +439,7 @@ The ROS graph refers to the network of nodes in a ROS system and the connections
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../Concepts.html" class="btn btn-neutral float-left" title="概念" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Basic/About-Nodes.html" class="btn btn-neutral float-right" title="Nodes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Basic/About-Nodes.html" class="btn btn-neutral float-right" title="节点" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

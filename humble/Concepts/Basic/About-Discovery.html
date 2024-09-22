@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Discovery &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>发现(Discovery) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -28,8 +28,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Interfaces" href="About-Interfaces.html" />
-    <link rel="prev" title="Nodes" href="About-Nodes.html" /> 
+    <link rel="next" title="接口(Interfaces)" href="About-Interfaces.html" />
+    <link rel="prev" title="节点" href="About-Nodes.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -319,10 +319,10 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../Concepts.html">概念</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../Basic.html">Basic Concepts</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="About-Nodes.html">Nodes</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Discovery</a></li>
-<li class="toctree-l3"><a class="reference internal" href="About-Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Basic.html">基础概念</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="About-Nodes.html">节点</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">发现(Discovery)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="About-Interfaces.html">接口(Interfaces)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Topics.html">Topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Services.html">Services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Actions.html">Actions</a></li>
@@ -399,10 +399,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Concepts.html">概念</a></li>
-          <li class="breadcrumb-item"><a href="../Basic.html">Basic Concepts</a></li>
-      <li class="breadcrumb-item active">Discovery</li>
+          <li class="breadcrumb-item"><a href="../Basic.html">基础概念</a></li>
+      <li class="breadcrumb-item active">发现(Discovery)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Concepts/Basic/About-Discovery.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Concepts/Basic/About-Discovery.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -413,20 +413,20 @@
 
 
   <section id="discovery">
-<h1>Discovery<a class="headerlink" href="#discovery" title="Link to this heading"></a></h1>
-<p>Discovery of nodes happens automatically through the underlying middleware of ROS 2.
-It can be summarized as follows:</p>
+<h1>发现(Discovery)<a class="headerlink" href="#discovery" title="Link to this heading"></a></h1>
+<p>节点之间的发现(discovery)是通过 ROS 2 的底层中间件自动完成的。
+这个过程可以总结为如下：</p>
 <ol class="arabic simple">
-<li><p>When a node is started, it advertises its presence to other nodes on the network with the same ROS domain (set with the ROS_DOMAIN_ID environment variable).
-Nodes respond to this advertisement with information about themselves so that the appropriate connections can be made and the nodes can communicate.</p></li>
-<li><p>Nodes periodically advertise their presence so that connections can be made with new-found entities, even after the initial discovery period.</p></li>
-<li><p>Nodes advertise to other nodes when they go offline.</p></li>
+<li><p>当一个节点启动时，它会向具有相同 ROS domain （通过 ROS_DOMAIN_ID 环境变量设置）的网络上的其他节点广播自己的存在。
+其它节点会回复这个广播，提供关于自己的信息，以便建立合适的连接并进行通信。</p></li>
+<li><p>节点会定期广播自己的存在，以便在最开始初始化的搜索过程结束之后还能及时发现新实体，并且和新出现的实体建立连接。（译者注：如果你是初学者，为了方便理解，可以认为这里的实体指的就是节点，在后续的学习中你会意识到可以不只是节点。）</p></li>
+<li><p>在节点即将离线之前，它会向其他节点广播自己的离线状态。</p></li>
 </ol>
-<p>Nodes will only establish connections with other nodes if they have compatible <a class="reference internal" href="../../Tutorials/Demos/Quality-of-Service.html"><span class="doc">Quality of Service</span></a> settings.</p>
-<p>Take the <a class="reference internal" href="../../Installation/Alternatives/Ubuntu-Development-Setup.html#talker-listener"><span class="std std-ref">talker-listener demo</span></a> for example.
-Running the C++ talker node in one terminal will publish messages on a topic,
-and the Python listener node running in another terminal  will subscribe to messages on the same topic.</p>
-<p>You should see that these nodes discover each other automatically, and begin to exchange messages.</p>
+<p>节点只会与具有兼容 <a class="reference internal" href="../../Tutorials/Demos/Quality-of-Service.html"><span class="doc">Quality of Service</span></a> 配置的节点建立连接。</p>
+<p><a class="reference internal" href="../../Installation/Alternatives/Ubuntu-Development-Setup.html#talker-listener"><span class="std std-ref">talker-listener demo</span></a> 是一个很好的例子。
+在一个终端中运行 C++ talker 节点，它会在一个 topic 上发布消息。
+在另一个终端中运行 Python listener 节点，它会订阅相同的 topic 上的消息。</p>
+<p>你应该看到这两个节点会自动发现彼此，并开始交换消息。</p>
 </section>
 
 
@@ -434,8 +434,8 @@ and the Python listener node running in another terminal  will subscribe to mess
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="About-Nodes.html" class="btn btn-neutral float-left" title="Nodes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="About-Interfaces.html" class="btn btn-neutral float-right" title="Interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="About-Nodes.html" class="btn btn-neutral float-left" title="节点" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="About-Interfaces.html" class="btn btn-neutral float-right" title="接口(Interfaces)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

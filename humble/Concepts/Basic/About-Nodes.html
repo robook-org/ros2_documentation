@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nodes &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>节点 &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -28,8 +28,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Discovery" href="About-Discovery.html" />
-    <link rel="prev" title="Basic Concepts" href="../Basic.html" /> 
+    <link rel="next" title="发现(Discovery)" href="About-Discovery.html" />
+    <link rel="prev" title="基础概念" href="../Basic.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -319,10 +319,10 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../Concepts.html">概念</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../Basic.html">Basic Concepts</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="About-Discovery.html">Discovery</a></li>
-<li class="toctree-l3"><a class="reference internal" href="About-Interfaces.html">Interfaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Basic.html">基础概念</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="About-Discovery.html">发现(Discovery)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="About-Interfaces.html">接口(Interfaces)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Topics.html">Topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Services.html">Services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Actions.html">Actions</a></li>
@@ -399,10 +399,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Concepts.html">概念</a></li>
-          <li class="breadcrumb-item"><a href="../Basic.html">Basic Concepts</a></li>
-      <li class="breadcrumb-item active">Nodes</li>
+          <li class="breadcrumb-item"><a href="../Basic.html">基础概念</a></li>
+      <li class="breadcrumb-item active">节点</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Concepts/Basic/About-Nodes.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Concepts/Basic/About-Nodes.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -412,17 +412,17 @@
              
 
 
-  <section id="nodes">
-<h1>Nodes<a class="headerlink" href="#nodes" title="Link to this heading"></a></h1>
-<p>A node is a participant in the ROS 2 graph, which uses a <a class="reference internal" href="About-Client-Libraries.html"><span class="doc">client library</span></a> to communicate with other nodes.
-Nodes can communicate with other nodes within the same process, in a different process, or on a different machine.
-Nodes are typically the unit of computation in a ROS graph; each node should do one logical thing.</p>
-<p>Nodes can <a class="reference internal" href="About-Topics.html"><span class="doc">publish</span></a> to named topics to deliver data to other nodes, or <a class="reference internal" href="About-Topics.html"><span class="doc">subscribe</span></a> to named topics to get data from other nodes.
-They can also act as a <a class="reference internal" href="About-Services.html"><span class="doc">service client</span></a> to have another node perform a computation on their behalf, or as a <a class="reference internal" href="About-Services.html"><span class="doc">service server</span></a> to provide functionality to other nodes.
-For long-running computations, a node can act as an <a class="reference internal" href="About-Actions.html"><span class="doc">action client</span></a> to have another node perform it on their behalf, or as an <a class="reference internal" href="About-Actions.html"><span class="doc">action server</span></a> to provide functionality to other nodes.
-Nodes can provide configurable <a class="reference internal" href="About-Parameters.html"><span class="doc">parameters</span></a> to change behavior during run-time.</p>
-<p>Nodes are often a complex combination of publishers, subscribers, service servers, service clients, action servers, and action clients, all at the same time.</p>
-<p>Connections between nodes are established through a distributed <a class="reference internal" href="About-Discovery.html"><span class="doc">discovery</span></a> process.</p>
+  <section id="id1">
+<h1>节点<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>一个节点就是 ROS 2 graph 中的一个参与个体，它使用 <a class="reference internal" href="About-Client-Libraries.html"><span class="doc">客户端库</span></a> 与其他节点进行通信。
+节点可以与在同一个进程内、不同进程内或不同机器上的其它节点进行通信。
+节点通常是 ROS graph 中的计算单元；每个节点应该只做做一件逻辑上(独立的)事情。</p>
+<p>节点可以 <a class="reference internal" href="About-Topics.html"><span class="doc">发布</span></a> 数据到某个 topic ，以便将数据传递给其他节点，或者 <a class="reference internal" href="About-Topics.html"><span class="doc">订阅</span></a> 某个 topic 以从其他节点获取数据。
+它们也可以作为 <a class="reference internal" href="About-Services.html"><span class="doc">某个服务的客户端</span></a> 让另一个(作为服务器的)节点执行(它预设好应做的)计算，或者作为 <a class="reference internal" href="About-Services.html"><span class="doc">某个服务的服务器</span></a> 为其他节点提供一些功能。
+对于长时间运行的计算，一个节点可以作为 <a class="reference internal" href="About-Actions.html"><span class="doc">action 客户端</span></a> 让另一个节点执行计算，或者作为 <a class="reference internal" href="About-Actions.html"><span class="doc">action 服务器</span></a> 为其他节点提供功能。
+当然，节点也能提供一些可配置的 <a class="reference internal" href="About-Parameters.html"><span class="doc">参数</span></a> 以便在运行时改变行为。</p>
+<p>节点通常是一个复杂的发布者、订阅者、service 服务器、service 客户端、action 服务器和 action 客户端的组合。</p>
+<p>节点之间的连接是通过分布式的 <a class="reference internal" href="About-Discovery.html"><span class="doc">发现(discovery)</span></a> 过程建立的。</p>
 </section>
 
 
@@ -430,8 +430,8 @@ Nodes can provide configurable <a class="reference internal" href="About-Paramet
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Basic.html" class="btn btn-neutral float-left" title="Basic Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="About-Discovery.html" class="btn btn-neutral float-right" title="Discovery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Basic.html" class="btn btn-neutral float-left" title="基础概念" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="About-Discovery.html" class="btn btn-neutral float-right" title="发现(Discovery)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

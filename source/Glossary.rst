@@ -62,3 +62,12 @@ Glossary of terms used throughout this documentation:
 
     remap
         重映射。在 ROS 2 多数语境中，重映射是指将一个节点的某个话题或服务的名称映射到另一个节点的话题或服务的名称。这样可以在不修改源代码的情况下改变节点之间的通信方式。
+
+    request
+        请求。
+
+    response
+        响应，回复。
+
+    field
+        字段。

@@ -1,5 +1,5 @@
-发现
-=========
+发现(Discovery)
+================
 
 .. contents:: Table of Contents
    :local:

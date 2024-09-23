@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>服务(Services) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -320,11 +320,11 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../Concepts.html">概念</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../Basic.html">基础概念</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="About-Nodes.html">节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="About-Nodes.html">节点(Node)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Discovery.html">发现(Discovery)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Interfaces.html">接口(Interfaces)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Topics.html">Topics</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Services</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">服务(Services)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Actions.html">Actions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Parameters.html">Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Command-Line-Tools.html">Introspection with command line tools</a></li>
@@ -400,9 +400,9 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Concepts.html">概念</a></li>
           <li class="breadcrumb-item"><a href="../Basic.html">基础概念</a></li>
-      <li class="breadcrumb-item active">Services</li>
+      <li class="breadcrumb-item active">服务(Services)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Concepts/Basic/About-Services.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Concepts/Basic/About-Services.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -413,7 +413,7 @@
 
 
   <section id="services">
-<h1>Services<a class="headerlink" href="#services" title="Link to this heading"></a></h1>
+<h1>服务(Services)<a class="headerlink" href="#services" title="Link to this heading"></a></h1>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -421,9 +421,9 @@
 <li><p><a class="reference internal" href="#service-client" id="id2">Service client</a></p></li>
 </ul>
 </nav>
-<p>In ROS 2, a service refers to a remote procedure call.
-In other words, a node can make a remote procedure call to another node which will do a computation and return a result.</p>
-<p>This structure is reflected in how a service message definition looks:</p>
+<p>在 ROS 2 中，服务(service)指的是远程处理程序的调用。
+换句话说，一个节点可以远程调用另一个节点的处理程序，随后被调用的节点会运行计算然后把结果传递回来。</p>
+<p>这种结构也体现在 service message 的定义中：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uint32</span> <span class="n">request</span>
 <span class="o">---</span>
 <span class="n">uint32</span> <span class="n">response</span>

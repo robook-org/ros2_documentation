@@ -1,13 +1,13 @@
-Services
-========
+服务(Services)
+===============
 
 .. contents:: Table of Contents
    :local:
 
-In ROS 2, a service refers to a remote procedure call.
-In other words, a node can make a remote procedure call to another node which will do a computation and return a result.
+在 ROS 2 中，服务(service)指的是远程处理程序的调用。
+换句话说，一个节点可以远程调用另一个节点的处理程序，随后被调用的节点会运行计算然后把结果传递回来。
 
-This structure is reflected in how a service message definition looks:
+这种结构也体现在 service message 的定义中：
 
 .. code::
 

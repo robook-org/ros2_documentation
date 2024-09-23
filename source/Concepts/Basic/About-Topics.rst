@@ -4,48 +4,52 @@ Topics
 .. contents:: Table of Contents
    :local:
 
-Topics are one of the three primary styles of interfaces provided by ROS 2.
-Topics should be used for continuous data streams, like sensor data, robot state, etc.
+Topics 是 ROS 2 提供的三种主要接口形式之一。
+Topics 应该被用来传递连续的数据流，比如传感器数据、机器人状态等。
 
-As stated earlier, ROS 2 is a strongly-typed, anonymous publish/subscribe system.
-Let's break down that sentence and explain it a bit more.
+如之前提到的，ROS 2 是一个类型严格、匿名的发布/订阅系统。
+让我们把这句话拆开来仔细解释一下。
 
-Publish/Subscribe
+发布/订阅(Publish/Subscribe)
 -----------------
 
-A publish/subscribe system is one in which there are producers of data (publishers) and consumers of data (subscribers).
-The publishers and subscribers know how to contact each other through the concept of a "topic", which is a common name so that the entites can find each other.
-For instance, when you create a publisher, you must also give it a string that is the name of the topic; the same goes for the subscriber.
-Any publishers and subscribers that are on the same topic name can directly communicate with each other.
-There may be zero or more publishers and zero or more subscribers on any particular topic.
-When data is published to the topic by any of the publishers, all subscribers in the system will receive the data.
-This system is also known as a "bus", since it somewhat resembles a device bus from electrical engineering.
-This concept of a bus is part of what makes ROS 2 a powerful and flexible system.
-Publishers and subscribers can come and go as needed, meaning that debugging and introspection are natural extensions to the system.
-For instance, if you want to record data, you can use the ``ros2 bag record`` command.
-Under the hood, ``ros2 bag record`` creates a new subscriber to whatever topic you tell it, without interrupting the flow of data to the other parts of the system.
+发布/订阅系统是一个包含数据生产者（发布者）和数据消费者（订阅者）的系统。
+发布者和订阅者通过一个同名的“topic”来找到彼此。
+例如，当你创建一个发布者时，你必须给它的 topic 设置一个字符串组成的名字；订阅者也是一样。
+任何在同一个 topic 名字上的发布者和订阅者都可以直接相互通信。
+在同一个 topic 上的发布者和订阅者数量都有可能是零或者任意多。
+当任何一个发布者发布数据到 topic 时，系统中的所有订阅者都会接收到这个数据。
+这样的系统也被称为“总线”（bus），因为它有点像电气工程中的设备总线。
+这样的总线式概念使得 ROS 2 系统变得强大和灵活。
+发布者和订阅者可以随时连接或退出系统，这就意味着调试和 introspection （译者注：此处是想表达在运行时很容易查看 topic 有关的数据内容、类型、格式等）是系统的自然扩展。
+例如，如果你想记录数据，你可以使用 ``ros2 bag record`` 命令。
+``ros2 bag record`` 的实现就是在系统中创建一个新的订阅者来订阅你指定的 topic，而不会打断系统中各部分的数据流传递过程。
 
-Anonymous
----------
+匿名(Anonymous)
+----------------
 
-Another fact mentioned in the introduction is that ROS 2 is "anonymous".
-This means that when a subscriber gets a piece of data, it doesn't generally know or care which publisher originally sent it (though it can find out if it wants).
-The benefit to this architecture is that publishers and subscribers can be swapped out at will without affecting the rest of the system.
+在介绍中提到的另一个特征是 ROS 2 是“匿名”的。
+这意味着当一个订阅者接收到一条数据时，它通常不知道或者不关心这条数据是哪个发布者发送的（尽管如果它想知道的话是可以找到的）。
+这种匿名性使得发布者和订阅者之间的连接变得更加灵活。
 
-Strongly-typed
---------------
+类型严格(Strongly-typed)
+-----------------------
 
-Finally, the introduction also mentioned that the publish/subscribe system is "strongly-typed".
-That has two meanings in this context:
+简介中提到的发布/订阅系统的最后一个特征是“类型严格”的。
+在这里，“类型严格”有两个含义：
 
-1. The types of each field in a ROS message are typed, and that type is enforced at various levels.
-   For instance, if the ROS message contains:
+1. ROS 消息中的每个字段都是有类型的，并且这个类型在所有层面上都是严格要求的。
+   例如，如果 ROS 消息包含：
 
    .. code::
 
       uint32 field1
       string field2
 
-   Then the code will ensure that ``field1`` is always an unsigned integer and that ``field2`` is always a string.
+   那么代码将确保 ``field1`` 总是一个无符号整数，而 ``field2`` 总是一个字符串。
 
-2. The semantics of each field are well-defined.  There is no automated mechanism to ensure this, but all of the core ROS types have strong semantics associated with them.  For instance, the IMU message contains a 3-dimensional vector for the measured angular velocity, and each of the dimensions is specified to be in radians/second.  Other interpretations should not be placed into the message.
+2. 每个字段的语义都是明确的。
+   虽然没有自动化的机制来确保这一点，但是所有核心 ROS 类型都有与之相关的强耦合语义。
+
+   例如，IMU 消息包含一个用于测量角速度的三维向量，每个维度都被指定为弧度/秒。
+   其他的无关表述不应该放入此消息中。

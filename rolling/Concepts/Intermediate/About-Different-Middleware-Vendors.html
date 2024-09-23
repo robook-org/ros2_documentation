@@ -405,7 +405,7 @@
           <li class="breadcrumb-item"><a href="../Intermediate.html">Intermediate Concepts</a></li>
       <li class="breadcrumb-item active">Different ROS 2 middleware vendors</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/Concepts/Intermediate/About-Different-Middleware-Vendors.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/Concepts/Intermediate/About-Different-Middleware-Vendors.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -423,6 +423,7 @@
 <li><p><a class="reference internal" href="#supported-rmw-implementations" id="id1">Supported RMW implementations</a></p></li>
 <li><p><a class="reference internal" href="#multiple-rmw-implementations" id="id2">Multiple RMW implementations</a></p></li>
 <li><p><a class="reference internal" href="#default-rmw-implementation" id="id3">Default RMW implementation</a></p></li>
+<li><p><a class="reference internal" href="#cross-vendor-communication" id="id4">Cross-Vendor Communication</a></p></li>
 </ul>
 </nav>
 <p>ROS 2 is built on top of DDS/RTPS as its middleware, which provides discovery, serialization and transportation.
@@ -506,6 +507,11 @@ The implementation identifier is the name of the ROS package that provides the R
 For example, if both <code class="docutils literal notranslate"><span class="pre">rmw_cyclonedds_cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">rmw_connextdds</span></code> ROS packages are installed, <code class="docutils literal notranslate"><span class="pre">rmw_connextdds</span></code> would be the default.
 If <code class="docutils literal notranslate"><span class="pre">rmw_fastrtps_cpp</span></code> is ever installed, it would be the default.</p>
 <p>See the <a class="reference internal" href="../../How-To-Guides/Working-with-multiple-RMW-implementations.html"><span class="doc">guide</span></a> for how to specify which RMW implementation is to be used when running the ROS 2 examples.</p>
+</section>
+<section id="cross-vendor-communication">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Cross-Vendor Communication</a><a class="headerlink" href="#cross-vendor-communication" title="Link to this heading"></a></h2>
+<p>While different RMW implementations may be compatible in limited circumstances, this is not guaranteed.
+Thus it is suggested that users ensure that all parts of the distributed system are using the same ROS version and the same RMW implementation.</p>
 </section>
 </section>
 

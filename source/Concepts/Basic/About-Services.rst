@@ -15,19 +15,19 @@
    ---
    uint32 response
 
-In ROS 2, services are expected to return quickly, as the client is generally waiting on the result.
-Services should never be used for longer running processes, in particular processes that might need to be preempted for exceptional situations.
-If you have a service that will be doing a long-running computation, consider using an :doc:`action <About-Actions>` instead.
+在 ROS 2 中，因为客户端通常在等待结果，所以我们期望服务能够迅速返回处理结果。
+因此，服务不应该用于长时间运行的处理程序，特别是可能需要被异常情况中断的处理程序。
+如果你有一个需要长时间运行的处理程序，考虑使用 :doc:`action <About-Actions>`。
 
-Services are identified by a service name, which looks much like a topic name (but is in a different namespace).
+服务由服务名标识，它看起来很像一个 topic 名称（但在不同的命名空间(namespace)中）。
 
-A service consists of two parts: the service server and the service client.
+一个服务由两部分组成：服务器和客户端。
 
-Service server
---------------
+Service 服务器(server)
+-----------------------
 
-A service server is the entity that will accept a remote procedure request, and perform some computation on it.
-For instance, suppose the ROS 2 message contains the following:
+Service 服务器是接受远程处理程序的请求并对其进行计算的实体。
+举个例子，假设 ROS 2 消息包含以下内容：
 
 .. code::
 
@@ -36,17 +36,17 @@ For instance, suppose the ROS 2 message contains the following:
    ---
    uint32 sum
 
-The service server would be the entity that receives this message, adds ``a`` and ``b`` together, and returns the ``sum``.
+服务服务器是接收这个消息的实体，将 ``a`` 和 ``b`` 相加，然后返回 ``sum``。
 
 .. note::
 
-   There should only ever be one service server per service name.
-   It is undefined which service server will receive client requests in the case of multiple service servers on the same service name.
+   每个服务名称(service name)应该只有一个服务服务器。
+   如果有多个服务服务器使用相同的服务名称，那么在客户端请求时，无法确定哪个服务服务器会接收到请求。
 
-Service client
---------------
+Service 客户端(client)
+-----------------------
 
-A service client is an entity that will request a remote service server to perform a computation on its behalf.
-Following from the example above, the service client is the entity that creates the initial message containing ``a`` and ``b``, and waits for the service server to compute the sum and return the result.
+Service 客户端是一个实体，它会请求远程服务服务器，让服务器执行计算。
+继续上面的例子，服务客户端是创建包含 ``a`` 和 ``b`` 的初始消息，并等待服务服务器计算出和并返回结果的实体。
 
-Unlike the service server, there can be arbitrary numbers of service clients using the same service name.
+与服务服务器不同，可以有任意数量的服务客户端使用相同的服务名称。(译者注： 可以认为，service name 只表示要处理的事情的名称，只能有一个服务器处理这件事，而可以有很多客户端让服务器处理这件事。不同客户端拥有同样的 service name 只意味着他们想向同一个服务器请求同样/同类的事情。)

@@ -4,11 +4,11 @@ Actions
 .. contents:: Table of Contents
    :local:
 
-In ROS 2, an action refers to a long-running remote procedure call with feedback and the ability to cancel or preempt the goal.
-For instance, the high-level state machine running a robot may call an action to tell the navigation subsystem to travel to a waypoint, which may take several seconds (or minutes) to do.
-Along the way, the navigation subsystem can provide feedback on how far along it is, and the high-level state machine has the option to cancel or preempt the travel to that waypoint.
+在 ROS 2 中，action 指的是一个可远程调用的、可长时间运行的程序，它可以提供反馈并且可以取消运行。
+例如，一个机器人的上层状态机可能会调用一个 action 来告诉导航系统去某个航点(waypoint)，这个过程可能需要几秒钟（或几分钟）。
+在这个过程中，导航系统可以提供有关目标还有多远的反馈，而上层状态机可以在这个过程中选择取消或者中断到达那个航点。
 
-This structure is reflected in how an action message definition looks:
+action 的结构也体现在 action message 的定义中：
 
 .. code::
 
@@ -18,19 +18,19 @@ This structure is reflected in how an action message definition looks:
    ---
    int32 feedback
 
-In ROS 2, actions are expected to be long running procedures, as there is overhead in setting up and monitoring the connection.
-If you need a short running remote procedure call, consider using a :doc:`service <About-Services>` instead.
+在 ROS 2 中，action 通常被期望是一个长时间运行的程序，因为建立和监控连接会有一些开销。
+如果你需要一个短时间运行的远程调用程序，考虑使用 :doc:`service <About-Services>`。
 
-Actions are identified by an action name, which looks much like a topic name (but is in a different namespace).
+Actions 由 action 名称标识，它看起来很像一个 topic 名称（但在不同的命名空间中）。
 
-An action consists of two parts: the action server and the action client.
+Action 由两部分组成：action 服务器和 action 客户端。
 
-Action server
--------------
+Action 服务器(server)
+----------------------
 
-The action server is the entity that will accept the remote procedure request and perform some procedure on it.
-It is also responsible for sending out feedback as the action progresses and should react to cancellation/preemption requests.
-For instance, consider an action to calculate the Fibonacci sequence with the following interface:
+Action 服务器是接受请求并执行程序的实体。
+它还负责在运行过程中发送反馈，并且回应可能的对取消/中断请求。
+例如，考虑一个计算 Fibonacci 数列的 action，它的接口如下：
 
 .. code::
 
@@ -40,17 +40,17 @@ For instance, consider an action to calculate the Fibonacci sequence with the fo
    ---
    int32[] sequence
 
-The action server is the entity that receives this message, starts calculating the sequence up to ``order`` (providing feedback along the way), and finally returns a full result in ``sequence``.
+Action 服务器会接收一条包含 ``order`` 的消息，开始计算 Fibonacci 数列直到 ``order`` （并且在这计算过程中提供反馈），最后在 ``sequence`` 中返回一个完整的结果数列。
 
 .. note::
 
-   There should only ever be one action server per action name.
-   It is undefined which action server will receive client requests in the case of multiple action servers on the same action name.
+   每个 action 名称应该只有一个 action 服务器。
+   如果有多个服务服务器使用相同的服务名称，那么在客户端请求时，无法确定哪个服务服务器会接收到请求。
 
-Action client
--------------
+Action 客户端(client)
+-----------------------
 
-An action client is an entity that will request a remote action server to perform a procedure on its behalf.
-Following the example above, the action client is the entity that creates the initial message containing the ``order``, and waits for the action server to compute the sequence and return it (with feedback along the way).
+Action 客户端是向服服务器发起请求的实体。
+在上面的例子中，action 客户端是 创建包含 ``order`` 的初始消息，并等待 action 服务器计算序列并返回它（在这个过程中提供反馈） 的实体。
 
-Unlike the action server, there can be arbitrary numbers of action clients using the same action name.
+与 action 服务器不同，可以有任意数量的 action 客户端使用相同的 action 名称。

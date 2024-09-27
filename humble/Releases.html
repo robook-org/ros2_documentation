@@ -326,7 +326,7 @@
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Topics.html">Topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Services.html">服务(Services)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Actions.html">Actions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Parameters.html">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Parameters.html">参数(Parameters)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Command-Line-Tools.html">Introspection with command line tools</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Launch.html">Launch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Client-Libraries.html">Client libraries</a></li>
@@ -412,18 +412,18 @@
 
   <section id="releases">
 <span id="id1"></span><h1>发行版<a class="headerlink" href="#releases" title="Link to this heading"></a></h1>
-<section id="what-is-a-distribution">
-<h2>What is a Distribution?<a class="headerlink" href="#what-is-a-distribution" title="Link to this heading"></a></h2>
-<p>A ROS distribution is a versioned set of ROS packages.
-These are akin to Linux distributions (e.g. Ubuntu).
-The purpose of the ROS distributions is to let developers work against a relatively stable codebase until they are ready to roll everything forward.
-Therefore once a distribution is released, we try to limit changes to bug fixes and non-breaking improvements for the core packages (every thing under ros-desktop-full).
-That generally applies to the whole community, but for “higher” level packages, the rules are less strict, and so it falls to the maintainers of a given package to avoid breaking changes.</p>
+<section id="id2">
+<h2>什么是发行版?<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>一个 ROS 发行版是一个版本化的 ROS 包的集合。
+就像不同的 Linux 发行版（例如 Ubuntu）一样。
+ROS 发行版是为了让开发者能够在相对稳定的代码库上工作，直到他们准备好将所有东西升级/改版。
+因此，一旦一个发行版发布，我们会尽量限制对核心包（ros-desktop-full 下的所有内容）的更改，只进行 bug 修复和非破坏性的改进。
+这个原则通常适用于整个社区，但对于更上层的包，限制就不那么严格了，所以特定包对应的维护者会负责避免破坏性的更改。</p>
 </section>
 <section id="list-of-distributions">
-<span id="id2"></span><h2>List of Distributions<a class="headerlink" href="#list-of-distributions" title="Link to this heading"></a></h2>
-<p>Below is a list of current and historic ROS 2 distributions.
-Rows in the table marked in green are the currently supported distributions.</p>
+<span id="id3"></span><h2>List of Distributions<a class="headerlink" href="#list-of-distributions" title="Link to this heading"></a></h2>
+<p>以下是当前和历史 ROS 2 发行版的列表。
+表格中绿色的行是当前还受官方支持的发行版。</p>
 <div class="toctree-wrapper compound">
 </div>
 <!--
@@ -532,10 +532,10 @@ Rows in the table marked in green are the currently supported distributions.</p>
 </tbody>
 </table>
 </section>
-<section id="future-distributions">
-<h2>Future Distributions<a class="headerlink" href="#future-distributions" title="Link to this heading"></a></h2>
-<p>For details on upcoming features see the <a class="reference internal" href="The-ROS2-Project/Roadmap.html"><span class="doc">roadmap</span></a>.</p>
-<p>There is a new ROS 2 distribution released yearly on May 23rd (<a class="reference external" href="https://www.worldturtleday.org/">World Turtle Day</a>).</p>
+<section id="id4">
+<h2>未来发行版<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>有关即将推出的功能的详细信息，请参见 <a class="reference internal" href="The-ROS2-Project/Roadmap.html"><span class="doc">roadmap</span></a>。</p>
+<p>以下是 2025 年 5 月 23 日将会发布的新 ROS 2 发行版。</p>
 <table class="future-distros docutils align-default">
 <colgroup>
 <col style="width: 35.0%" />
@@ -559,19 +559,19 @@ Rows in the table marked in green are the currently supported distributions.</p>
 </tbody>
 </table>
 </section>
-<section id="rolling-distribution">
-<span id="id3"></span><h2>Rolling Distribution<a class="headerlink" href="#rolling-distribution" title="Link to this heading"></a></h2>
-<p><a class="reference internal" href="Releases/Release-Rolling-Ridley.html"><span class="doc">ROS 2 Rolling Ridley</span></a> is the rolling development distribution of ROS 2.
-It is described in <a class="reference external" href="https://www.ros.org/reps/rep-2002.html">REP 2002</a> and was first introduced in June 2020.</p>
-<p>The Rolling distribution of ROS 2 serves two purposes:</p>
+<section id="rolling">
+<span id="rolling-distribution"></span><h2>滚动更新(Rolling)版<a class="headerlink" href="#rolling" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="Releases/Release-Rolling-Ridley.html"><span class="doc">ROS 2 Rolling Ridley</span></a> 是 ROS 2 的滚动开发发行版。
+它在 <a class="reference external" href="https://www.ros.org/reps/rep-2002.html">REP 2002</a> 中有详细描述，于 2020 年 6 月首次推出。</p>
+<p>ROS 2 的滚动发行版有两个目的：</p>
 <ol class="arabic simple">
-<li><p>it is a staging area for future stable distributions of ROS 2, and</p></li>
-<li><p>it is a collection of the most recent development releases.</p></li>
+<li><p>它是 ROS 2 未来稳定发行版的一个暂存区，</p></li>
+<li><p>它是最新开发进展的集合。</p></li>
 </ol>
-<p>As the name implies, Rolling is continuously updated and <strong>can have in-place updates that include breaking changes</strong>.
-We recommend that most people use the most recent stable distribution instead (see <a class="reference internal" href="#list-of-distributions"><span class="std std-ref">List of Distributions</span></a>).</p>
-<p>Packages released into the Rolling distribution will be automatically released into future stable distributions of ROS 2.
-<a class="reference internal" href="How-To-Guides/Releasing/Releasing-a-Package.html"><span class="doc">Releasing a ROS 2 package</span></a> into the Rolling distribution follows the same procedures as all other ROS 2 distributions.</p>
+<p>正如其名称所示，Rolling 是持续更新的，<strong>可能会有包含破坏性更改的快速更新</strong>。
+因此我们建议大多数人使用最新的稳定发行版（参见 <a class="reference internal" href="#list-of-distributions"><span class="std std-ref">List of Distributions</span></a>）。</p>
+<p>Rolling 发行版中的包将自动发布到未来的 ROS 2 稳定发行版中。
+这样，开发者可以在 Rolling 发行版中尝试新功能，以确保它们在未来的稳定发行版中能够正常工作。</p>
 </section>
 </section>
 

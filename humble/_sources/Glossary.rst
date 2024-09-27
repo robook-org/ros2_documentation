@@ -71,3 +71,6 @@ Glossary of terms used throughout this documentation:
 
     field
         字段。
+
+    strong-typed
+        类型严格。也叫强类型。

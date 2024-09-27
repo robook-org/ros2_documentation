@@ -421,7 +421,7 @@
 <li><p><a class="reference internal" href="#service-client" id="id2">Service 客户端(client)</a></p></li>
 </ul>
 </nav>
-<p>在 ROS 2 中，服务(service)指的是远程处理程序的调用。
+<p>在 ROS 2 中，服务(service)指的是可远程调用的处理程序。
 换句话说，一个节点可以远程调用另一个节点的处理程序，随后被调用的节点会运行计算然后把结果传递回来。</p>
 <p>这种结构也体现在 service message 的定义中：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uint32</span> <span class="n">request</span>
@@ -436,7 +436,7 @@
 <p>一个服务由两部分组成：服务器和客户端。</p>
 <section id="service-server">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Service 服务器(server)</a><a class="headerlink" href="#service-server" title="Link to this heading"></a></h2>
-<p>Service 服务器是接受远程处理程序的请求并对其进行计算的实体。
+<p>Service 服务器是接受请求并运行程序进行计算的实体。
 举个例子，假设 ROS 2 消息包含以下内容：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uint32</span> <span class="n">a</span>
 <span class="n">uint32</span> <span class="n">b</span>
@@ -454,7 +454,7 @@
 <section id="service-client">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Service 客户端(client)</a><a class="headerlink" href="#service-client" title="Link to this heading"></a></h2>
 <p>Service 客户端是一个实体，它会请求远程服务服务器，让服务器执行计算。
-继续上面的例子，服务客户端是创建包含 <code class="docutils literal notranslate"><span class="pre">a</span></code> 和 <code class="docutils literal notranslate"><span class="pre">b</span></code> 的初始消息，并等待服务服务器计算出和并返回结果的实体。</p>
+继续上面的例子，服务客户端是 创建包含 <code class="docutils literal notranslate"><span class="pre">a</span></code> 和 <code class="docutils literal notranslate"><span class="pre">b</span></code> 的初始消息，并等待服务服务器计算出和并返回结果的 实体。</p>
 <p>与服务服务器不同，可以有任意数量的服务客户端使用相同的服务名称。(译者注： 可以认为，service name 只表示要处理的事情的名称，只能有一个服务器处理这件事，而可以有很多客户端让服务器处理这件事。不同客户端拥有同样的 service name 只意味着他们想向同一个服务器请求同样/同类的事情。)</p>
 </section>
 </section>

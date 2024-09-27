@@ -417,14 +417,14 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#action-server" id="id1">Action server</a></p></li>
-<li><p><a class="reference internal" href="#action-client" id="id2">Action client</a></p></li>
+<li><p><a class="reference internal" href="#action-server" id="id1">Action 服务器(server)</a></p></li>
+<li><p><a class="reference internal" href="#action-client" id="id2">Action 客户端(client)</a></p></li>
 </ul>
 </nav>
-<p>In ROS 2, an action refers to a long-running remote procedure call with feedback and the ability to cancel or preempt the goal.
-For instance, the high-level state machine running a robot may call an action to tell the navigation subsystem to travel to a waypoint, which may take several seconds (or minutes) to do.
-Along the way, the navigation subsystem can provide feedback on how far along it is, and the high-level state machine has the option to cancel or preempt the travel to that waypoint.</p>
-<p>This structure is reflected in how an action message definition looks:</p>
+<p>在 ROS 2 中，action 指的是一个可远程调用的、可长时间运行的程序，它可以提供反馈并且可以取消运行。
+例如，一个机器人的上层状态机可能会调用一个 action 来告诉导航系统去某个航点(waypoint)，这个过程可能需要几秒钟（或几分钟）。
+在这个过程中，导航系统可以提供有关目标还有多远的反馈，而上层状态机可以在这个过程中选择取消或者中断到达那个航点。</p>
+<p>action 的结构也体现在 action message 的定义中：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">int32</span> <span class="n">request</span>
 <span class="o">---</span>
 <span class="n">int32</span> <span class="n">response</span>
@@ -432,15 +432,15 @@ Along the way, the navigation subsystem can provide feedback on how far along it
 <span class="n">int32</span> <span class="n">feedback</span>
 </pre></div>
 </div>
-<p>In ROS 2, actions are expected to be long running procedures, as there is overhead in setting up and monitoring the connection.
-If you need a short running remote procedure call, consider using a <a class="reference internal" href="About-Services.html"><span class="doc">service</span></a> instead.</p>
-<p>Actions are identified by an action name, which looks much like a topic name (but is in a different namespace).</p>
-<p>An action consists of two parts: the action server and the action client.</p>
+<p>在 ROS 2 中，action 通常被期望是一个长时间运行的程序，因为建立和监控连接会有一些开销。
+如果你需要一个短时间运行的远程调用程序，考虑使用 <a class="reference internal" href="About-Services.html"><span class="doc">service</span></a>。</p>
+<p>Actions 由 action 名称标识，它看起来很像一个 topic 名称（但在不同的命名空间中）。</p>
+<p>Action 由两部分组成：action 服务器和 action 客户端。</p>
 <section id="action-server">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Action server</a><a class="headerlink" href="#action-server" title="Link to this heading"></a></h2>
-<p>The action server is the entity that will accept the remote procedure request and perform some procedure on it.
-It is also responsible for sending out feedback as the action progresses and should react to cancellation/preemption requests.
-For instance, consider an action to calculate the Fibonacci sequence with the following interface:</p>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Action 服务器(server)</a><a class="headerlink" href="#action-server" title="Link to this heading"></a></h2>
+<p>Action 服务器是接受请求并执行程序的实体。
+它还负责在运行过程中发送反馈，并且回应可能的对取消/中断请求。
+例如，考虑一个计算 Fibonacci 数列的 action，它的接口如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">int32</span> <span class="n">order</span>
 <span class="o">---</span>
 <span class="n">int32</span><span class="p">[]</span> <span class="n">sequence</span>
@@ -448,18 +448,18 @@ For instance, consider an action to calculate the Fibonacci sequence with the fo
 <span class="n">int32</span><span class="p">[]</span> <span class="n">sequence</span>
 </pre></div>
 </div>
-<p>The action server is the entity that receives this message, starts calculating the sequence up to <code class="docutils literal notranslate"><span class="pre">order</span></code> (providing feedback along the way), and finally returns a full result in <code class="docutils literal notranslate"><span class="pre">sequence</span></code>.</p>
+<p>Action 服务器会接收一条包含 <code class="docutils literal notranslate"><span class="pre">order</span></code> 的消息，开始计算 Fibonacci 数列直到 <code class="docutils literal notranslate"><span class="pre">order</span></code> （并且在这计算过程中提供反馈），最后在 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 中返回一个完整的结果数列。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There should only ever be one action server per action name.
-It is undefined which action server will receive client requests in the case of multiple action servers on the same action name.</p>
+<p>每个 action 名称应该只有一个 action 服务器。
+如果有多个服务服务器使用相同的服务名称，那么在客户端请求时，无法确定哪个服务服务器会接收到请求。</p>
 </div>
 </section>
 <section id="action-client">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Action client</a><a class="headerlink" href="#action-client" title="Link to this heading"></a></h2>
-<p>An action client is an entity that will request a remote action server to perform a procedure on its behalf.
-Following the example above, the action client is the entity that creates the initial message containing the <code class="docutils literal notranslate"><span class="pre">order</span></code>, and waits for the action server to compute the sequence and return it (with feedback along the way).</p>
-<p>Unlike the action server, there can be arbitrary numbers of action clients using the same action name.</p>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Action 客户端(client)</a><a class="headerlink" href="#action-client" title="Link to this heading"></a></h2>
+<p>Action 客户端是向服服务器发起请求的实体。
+在上面的例子中，action 客户端是 创建包含 <code class="docutils literal notranslate"><span class="pre">order</span></code> 的初始消息，并等待 action 服务器计算序列并返回它（在这个过程中提供反馈） 的实体。</p>
+<p>与 action 服务器不同，可以有任意数量的 action 客户端使用相同的 action 名称。</p>
 </section>
 </section>
 

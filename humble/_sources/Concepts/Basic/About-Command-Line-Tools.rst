@@ -4,53 +4,56 @@
     Tutorials/Introspection-with-command-line-tools
     Concepts/About-Command-Line-Tools
 
-Introspection with command line tools
-=====================================
+使用命令行工具解析数据(Introspection)
+===========================================
 
 .. contents:: Table of Contents
    :local:
 
-ROS 2 includes a suite of command-line tools for introspecting a ROS 2 system.
+ROS 2 包含一套用于与 ROS 2 系统交互的命令行工具。
 
-Usage
+译者注：此处“与 ROS 2 系统交互”翻译自“introspecting a ROS 2 system”。尽管“introspecting” 一词在某些领域中被翻译为“内省”，但是译者认为已有的翻译仅仅是使用中文汉字替代原词，并未传达出这个词汇的实际含义。至少对于译者而言，“自省某个系统”是一种完全不知所云的说法。
+考虑到本页面的内容和情景，译者认为“解析数据”、“与系统交互”更能表达这个词汇在中文中实际对应的操作。后续你将进一步理解“introspect”具体是在做什么。
+
+使用
 -----
 
-The main entry point for the tools is the command ``ros2``, which itself has various sub-commands for introspecting and working with nodes, topics, services, and more.
+工具的主要入口是 ``ros2`` 命令，它本身有各种子命令，用于解析和处理节点、topic、service等。
 
-To see all available sub-commands run:
+运行如下命令，可以看到所有可用的子命令：
 
 .. code-block:: bash
 
    ros2 --help
 
-Examples of sub-commands that are available include:
+一些可用的子命令包括：
 
-* ``action``: Introspect/interact with ROS actions
-* ``bag``: Record/play a rosbag
-* ``component``: Manage component containers
-* ``daemon``: Introspect/configure the ROS 2 daemon
-* ``doctor``: Check ROS setup for potential issues
-* ``interface``: Show information about ROS interfaces
-* ``launch``: Run/introspect a launch file
-* ``lifecycle``: Introspect/manage nodes with managed lifecycles
+* ``action``: 与 ROS actions 交互
+* ``bag``: 录制或播放 rosbag
+* ``component``: 管理 component containers
+* ``daemon``: 与 ROS 2 daemon 交互
+* ``doctor``: 检查 ROS 配置中潜在的问题
+* ``interface``: 列出 ROS interfaces 和相关信息
+* ``launch``: 运行/检查 launch file
+* ``lifecycle``: 通过 lifecycles 管理 nodes
 * ``multicast``: Multicast debugging commands
-* ``node``: Introspect ROS nodes
-* ``param``: Introspect/configure parameters on a node
-* ``pkg``: Introspect ROS packages
-* ``run``: Run ROS nodes
-* ``security``: Configure security settings
-* ``service``: Introspect/call ROS services
-* ``test``: Run a ROS launch test
-* ``topic``: Introspect/publish ROS topics
-* ``trace``: Tracing tools to get information on ROS nodes execution (only available on Linux)
-* ``wtf``: An alias for ``doctor``
+* ``node``: 与 ROS nodes 交互
+* ``param``: 配置 node 的参数
+* ``pkg``: 与 ROS packages 交互
+* ``run``: 运行 ROS nodes
+* ``security``: 配置 security 有关的参数
+* ``service``: 与 ROS services 交互
+* ``test``: 运行 ROS launch test
+* ``topic``: 与 ROS topics 交互
+* ``trace``: 在 ROS nodes 运行期间追踪运行情况的工具(tracing tool) (仅在 Linux 上可用)
+* ``wtf``: ``doctor`` 的别名
 
-Example
+样例
 -------
 
-To produce the typical talker-listener example using command-line tools, the ``topic`` sub-command can be used to publish and echo messages on a topic.
+使用``topic`` 子命令可以用于在一个 topic 上发布和显示消息，这样可以生成典型的 talker-listener 示例的 talker端。
 
-Publish messages in one terminal with:
+在一个终端中发布消息：
 
 .. code-block:: bash
 
@@ -60,7 +63,7 @@ Publish messages in one terminal with:
 
    publishing #2: std_msgs.msg.String(data='Hello world')
 
-Echo messages received in another terminal with:
+在另一个终端中显示消息，用来充当 listener 端：
 
 .. code-block:: bash
 
@@ -69,20 +72,20 @@ Echo messages received in another terminal with:
 
    data: Hello world
 
-Behind the scenes
+样例之下的细节
 -----------------
 
-ROS 2 uses a distributed discovery process for nodes to connect to each other.
-As this process purposefully does not use a centralized discovery mechanism, it can take time for ROS nodes to discover all other participants in the ROS graph.
-Because of this, there is a long-running daemon in the background that stores information about the ROS graph to provide faster responses to queries, e.g. the list of node names.
+ROS 2 使用分布式发现的方式(distributed discovery process)来使节点相互连接。
+这个过程特意不使用中心化的发现机制，因此 ROS 节点发现 ROS graph 中的其他参与者可能需要一些时间。
+因此，后台有一个长时间运行的守护进程(daemon)，用于存储有关 ROS graph 的信息，以提供更快的查询响应，例如节点名称列表。
 
-The daemon is automatically started when the relevant command-line tools are used for the first time.
-You can run ``ros2 daemon --help`` for more options for interacting with the daemon.
+当第一次使用相关命令行工具时，守护进程会自动启动。
+你可以运行 ``ros2 daemon --help`` 以获取与守护进程交互的更多选项。
 
-Implementation
---------------
+实现(Implementation)
+------------------------
 
-The source code for the ``ros2`` command is available at https://github.com/ros2/ros2cli.
+``ros2`` 命令的源码位于 https://github.com/ros2/ros2cli.
 
-The ``ros2`` tool has been implemented as a framework that can be extended via plugins.
-For example, the `sros2 <https://github.com/ros2/sros2>`__ package provides a ``security`` sub-command that is automatically detected by the ``ros2`` tool if the ``sros2`` package is installed.
+``ros2`` 命令已经实现为一个可以通过插件扩展的框架。
+例如，如果安装了 `sros2  <https://github.com/ros2/sros2>`__ 包，那么 ``ros2`` 工具会自动检测到 ``sros2`` 包提供的 ``security`` 子命令。

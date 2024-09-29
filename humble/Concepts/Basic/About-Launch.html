@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Launch &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>启动(Launch) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -28,8 +28,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Client libraries" href="About-Client-Libraries.html" />
-    <link rel="prev" title="Introspection with command line tools" href="About-Command-Line-Tools.html" /> 
+    <link rel="next" title="客户端库(Client libraries)" href="About-Client-Libraries.html" />
+    <link rel="prev" title="使用命令行工具解析数据(Introspection)" href="About-Command-Line-Tools.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -327,9 +327,9 @@
 <li class="toctree-l3"><a class="reference internal" href="About-Services.html">服务(Services)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Actions.html">Actions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="About-Parameters.html">参数(Parameters)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="About-Command-Line-Tools.html">Introspection with command line tools</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Launch</a></li>
-<li class="toctree-l3"><a class="reference internal" href="About-Client-Libraries.html">Client libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="About-Command-Line-Tools.html">使用命令行工具解析数据(Introspection)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">启动(Launch)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="About-Client-Libraries.html">客户端库(Client libraries)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Intermediate.html">Intermediate Concepts</a><ul>
@@ -400,7 +400,7 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Concepts.html">概念</a></li>
           <li class="breadcrumb-item"><a href="../Basic.html">基础概念</a></li>
-      <li class="breadcrumb-item active">Launch</li>
+      <li class="breadcrumb-item active">启动(Launch)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Concepts/Basic/About-Launch.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -413,16 +413,16 @@
 
 
   <section id="launch">
-<h1>Launch<a class="headerlink" href="#launch" title="Link to this heading"></a></h1>
-<p>A ROS 2 system typically consists of many nodes running across many different processes (and even different machines).
-While it is possible to run each of these nodes separately, it gets cumbersome quite quickly.</p>
-<p>The launch system in ROS 2 is meant to automate the running of many nodes with a single command.
-It helps the user describe the configuration of their system and then executes it as described.
-The configuration of the system includes what programs to run, where to run them, what arguments to pass them, and ROS-specific conventions which make it easy to reuse components throughout the system by giving them each a different configuration.
-It is also responsible for monitoring the state of the processes launched, and reporting and/or reacting to changes in the state of those processes.</p>
-<p>All of the above is specified in a launch file, which can be written in Python, XML, or YAML.
-This launch file can then be run using the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> command, and all of the nodes specified will be run.</p>
-<p>The <a class="reference external" href="https://design.ros2.org/articles/roslaunch.html">design document</a> details the goal of the design of ROS 2’s launch system (not all functionality is currently available).</p>
+<h1>启动(Launch)<a class="headerlink" href="#launch" title="Link to this heading"></a></h1>
+<p>一般来说，一个 ROS 2 系统通常由许多节点组成，这些节点运行在许多不同的进程中（甚至在不同的机器上）。
+虽然可以单独运行每个节点，但随着节点变多，启动操作很快就会变得繁琐起来。</p>
+<p>ROS 2 的启动 (launch) 系统旨在通过单个命令自动运行很多节点。
+它帮助用户描述系统的配置，然后按照描述的方式执行。
+系统的配置包括要运行的程序、在哪里运行它们、传递给它们的参数以及 ROS 特定的规则，这些规则使得通过为每个组件提供不同的配置来轻松地在整个系统中重用组件。
+当然，启动系统还负责监视启动的进程的状态，并报告或对这些进程状态的变动做出反应。</p>
+<p>以上这些特性都可以在一个启动文件(launch file)中描述，启动文件可以用 Python、XML 或 YAML 编写。
+当使用 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> 命令运行启动文件时，所有指定的节点都会运行。</p>
+<p><a class="reference external" href="https://design.ros2.org/articles/roslaunch.html">设计文档</a> 详细描述了 ROS 2 启动系统设计的目标（目前并非所有功能都可用）。</p>
 </section>
 
 
@@ -430,8 +430,8 @@ This launch file can then be run using the <code class="docutils literal notrans
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="About-Command-Line-Tools.html" class="btn btn-neutral float-left" title="Introspection with command line tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="About-Client-Libraries.html" class="btn btn-neutral float-right" title="Client libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="About-Command-Line-Tools.html" class="btn btn-neutral float-left" title="使用命令行工具解析数据(Introspection)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="About-Client-Libraries.html" class="btn btn-neutral float-right" title="客户端库(Client libraries)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

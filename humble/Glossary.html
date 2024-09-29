@@ -332,10 +332,10 @@
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Basic/About-Client-Libraries.html">客户端库(Client libraries)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Concepts/Intermediate.html">Intermediate Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Concepts/Intermediate.html">中级概念</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Intermediate/About-Domain-ID.html">The ROS_DOMAIN_ID</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Intermediate/About-Different-Middleware-Vendors.html">Different ROS 2 middleware vendors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Concepts/Intermediate/About-Logging.html">Logging and logger configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Concepts/Intermediate/About-Logging.html">日志系统配置</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Intermediate/About-Quality-of-Service-Settings.html">Quality of Service settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Intermediate/About-Executors.html">Executors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Intermediate/About-Topic-Statistics.html">Topic statistics</a></li>
@@ -346,7 +346,7 @@
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Intermediate/About-Tf2.html">Tf2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Concepts/Advanced.html">Advanced Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Concepts/Advanced.html">高级概念</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Advanced/About-Build-System.html">The build system</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Advanced/About-Internal-Interfaces.html">Internal ROS 2 interfaces</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Concepts/Advanced/About-Middleware-Implementations.html">ROS 2 middleware implementations</a></li>
@@ -435,21 +435,23 @@ In the context of this document, repositories usually contain one or more <a cla
 <section id="id2">
 <h2>翻译对照表<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <dl class="simple glossary">
-<dt id="term-workspace">workspace<a class="headerlink" href="#term-workspace" title="Link to this term"></a></dt><dd><p>工作空间, ROS 2 中的工作空间是一个包含需要使用的 ROS 2 包的目录。工作空间中的包可以被构建、安装和运行。它的存在是为了方便用户组织和管理 ROS 2 包，尤其是在一台设备上拥有多个ROS版本的包或者多个不用依赖的项目时。</p>
-</dd>
 <dt id="term-build">build<a class="headerlink" href="#term-build" title="Link to this term"></a></dt><dd><p>构建, 在 ROS 2 中，构建是指将源代码转换为可执行文件的过程。构建过程通常包括编译、链接和安装等。由于一些计算机学科的历史发展原因，或者在其他领域已经被广泛使用的用法的影响下，在交流中我们也有可能直接将这个过程称为编译。</p>
 </dd>
-<dt id="term-source">source<a class="headerlink" href="#term-source" title="Link to this term"></a></dt><dd><p>执行、运行，这是一个Linux指令，意味着运行一个文件。在 ROS2 中，这个指令通常用于运行配置工作空间的脚本。</p>
+<dt id="term-call">call<a class="headerlink" href="#term-call" title="Link to this term"></a></dt><dd><p>调用。当表达 call a service 时，意为调用一个服务。</p>
 </dd>
-<dt id="term-node">node<a class="headerlink" href="#term-node" title="Link to this term"></a></dt><dd><p>节点。</p>
-</dd>
-<dt id="term-service">service<a class="headerlink" href="#term-service" title="Link to this term"></a></dt><dd><p>服务。</p>
-</dd>
-<dt id="term-terminal">terminal<a class="headerlink" href="#term-terminal" title="Link to this term"></a></dt><dd><p>终端。</p>
+<dt id="term-callback-group">callback group<a class="headerlink" href="#term-callback-group" title="Link to this term"></a></dt><dd><p>回调函数组,回调组。</p>
 </dd>
 <dt id="term-command-line">command-line<a class="headerlink" href="#term-command-line" title="Link to this term"></a></dt><dd><p>命令行。</p>
 </dd>
-<dt id="term-call">call<a class="headerlink" href="#term-call" title="Link to this term"></a></dt><dd><p>调用。当表达 call a service 时，意为调用一个服务。</p>
+<dt id="term-concepts">concepts<a class="headerlink" href="#term-concepts" title="Link to this term"></a></dt><dd><p>概念。</p>
+</dd>
+<dt id="term-example">example<a class="headerlink" href="#term-example" title="Link to this term"></a></dt><dd><p>示例，样例，例子。</p>
+</dd>
+<dt id="term-executor">executor<a class="headerlink" href="#term-executor" title="Link to this term"></a></dt><dd><p>执行器。</p>
+</dd>
+<dt id="term-field">field<a class="headerlink" href="#term-field" title="Link to this term"></a></dt><dd><p>字段。</p>
+</dd>
+<dt id="term-node">node<a class="headerlink" href="#term-node" title="Link to this term"></a></dt><dd><p>节点。</p>
 </dd>
 <dt id="term-remap">remap<a class="headerlink" href="#term-remap" title="Link to this term"></a></dt><dd><p>重映射。在 ROS 2 多数语境中，重映射是指将一个节点的某个话题或服务的名称映射到另一个节点的话题或服务的名称。这样可以在不修改源代码的情况下改变节点之间的通信方式。</p>
 </dd>
@@ -457,9 +459,19 @@ In the context of this document, repositories usually contain one or more <a cla
 </dd>
 <dt id="term-response">response<a class="headerlink" href="#term-response" title="Link to this term"></a></dt><dd><p>响应，回复。</p>
 </dd>
-<dt id="term-field">field<a class="headerlink" href="#term-field" title="Link to this term"></a></dt><dd><p>字段。</p>
+<dt id="term-service">service<a class="headerlink" href="#term-service" title="Link to this term"></a></dt><dd><p>服务。</p>
+</dd>
+<dt id="term-source">source<a class="headerlink" href="#term-source" title="Link to this term"></a></dt><dd><p>执行、运行，这是一个Linux指令，意味着运行一个文件。在 ROS2 中，这个指令通常用于运行配置工作空间的脚本。</p>
 </dd>
 <dt id="term-strong-typed">strong-typed<a class="headerlink" href="#term-strong-typed" title="Link to this term"></a></dt><dd><p>类型严格。也叫强类型。</p>
+</dd>
+<dt id="term-subscription">subscription<a class="headerlink" href="#term-subscription" title="Link to this term"></a></dt><dd><p>订阅.。</p>
+</dd>
+<dt id="term-terminal">terminal<a class="headerlink" href="#term-terminal" title="Link to this term"></a></dt><dd><p>终端。</p>
+</dd>
+<dt id="term-timer">timer<a class="headerlink" href="#term-timer" title="Link to this term"></a></dt><dd><p>定时器。</p>
+</dd>
+<dt id="term-workspace">workspace<a class="headerlink" href="#term-workspace" title="Link to this term"></a></dt><dd><p>工作空间, ROS 2 中的工作空间是一个包含需要使用的 ROS 2 包的目录。工作空间中的包可以被构建、安装和运行。它的存在是为了方便用户组织和管理 ROS 2 包，尤其是在一台设备上拥有多个ROS版本的包或者多个不用依赖的项目时。</p>
 </dd>
 </dl>
 </section>

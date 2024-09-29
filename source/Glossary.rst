@@ -35,6 +35,7 @@ Glossary of terms used throughout this documentation:
 ------------
 
 .. glossary::
+    :sorted:
 
     workspace
         工作空间, ROS 2 中的工作空间是一个包含需要使用的 ROS 2 包的目录。工作空间中的包可以被构建、安装和运行。它的存在是为了方便用户组织和管理 ROS 2 包，尤其是在一台设备上拥有多个ROS版本的包或者多个不用依赖的项目时。
@@ -74,3 +75,21 @@ Glossary of terms used throughout this documentation:
 
     strong-typed
         类型严格。也叫强类型。
+
+    concepts
+        概念。
+
+    timer
+        定时器。
+
+    callback group
+        回调函数组,回调组。
+
+    subscription
+        订阅.。
+
+    executor
+        执行器。
+
+    example
+        示例，样例，例子。

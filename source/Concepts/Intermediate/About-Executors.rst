@@ -8,40 +8,40 @@ Executors
 .. contents:: Table of Contents
    :local:
 
-Overview
+概览
 --------
 
-Execution management in ROS 2 is handled by Executors.
-An Executor uses one or more threads of the underlying operating system to invoke the callbacks of subscriptions, timers, service servers, action servers, etc. on incoming messages and events.
-The explicit Executor class (in `executor.hpp <https://github.com/ros2/rclcpp/blob/{REPOS_FILE_BRANCH}/rclcpp/include/rclcpp/executor.hpp>`_ in rclcpp, in `executors.py <https://github.com/ros2/rclpy/blob/{REPOS_FILE_BRANCH}/rclpy/rclpy/executors.py>`_ in rclpy, or in `executor.h <https://github.com/ros2/rclc/blob/master/rclc/include/rclc/executor.h>`_ in rclc) provides more control over execution management than the spin mechanism in ROS 1, although the basic API is very similar.
+ROS 2 中的执行管理(Execution management)由 Executors 处理。
+Executors 使用底层操作系统的一个或多个线程来调用 subscriptions 、定时器(timer)、service 服务器、action 服务器等的回调函数，以处理传入的消息和事件。
+与 ROS 1 中的 spin 机制类似，显式的 Executor 类(在 rclcpp 中的 `executor.hpp <https://github.com/ros2/rclcpp/blob/{REPOS_FILE_BRANCH}/rclcpp/include/rclcpp/executor.hpp>`_ ,在 rclpy 中的 `executors.py <https://github.com/ros2/rclpy/blob/{REPOS_FILE_BRANCH}/rclpy/rclpy/executors.py>`_ 或是在 rclc 的 `executor.h <https://github.com/ros2/rclc/blob/master/rclc/include/rclc/executor.h>`_  ) 提供了更多的控制能力。
 
-In the following, we focus on the C++ Client Library *rclcpp*.
+在下文中，我们将重点关注 C++ 客户端库 *rclcpp*。
 
-Basic use
----------
+基本使用方式
+----------------
 
-In the simplest case, the main thread is used for processing the incoming messages and events of a Node by calling ``rclcpp::spin(..)`` as follows:
+在最简单的情况下，主线程用于通过调用 ``rclcpp::spin(..)`` 处理节点的传入消息和事件：
 
 .. code-block:: cpp
 
    int main(int argc, char* argv[])
    {
-      // Some initialization.
+      // 做一些初始化.
       rclcpp::init(argc, argv);
       ...
 
-      // Instantiate a node.
+      // 实例化一个 node.
       rclcpp::Node::SharedPtr node = ...
 
-      // Run the executor.
+      // 运行 executor.
       rclcpp::spin(node);
 
-      // Shutdown and exit.
+      // 关闭并退出.
       ...
       return 0;
    }
 
-The call to ``spin(node)`` basically expands to an instantiation and invocation of the Single-Threaded Executor, which is the simplest Executor:
+对 ``spin(node)`` 的调用基本上展开为一个单线程执行器的实例化和调用，这是最简单的执行器：
 
 .. code-block:: cpp
 
@@ -49,20 +49,20 @@ The call to ``spin(node)`` basically expands to an instantiation and invocation 
    executor.add_node(node);
    executor.spin();
 
-By invoking ``spin()`` of the Executor instance, the current thread starts querying the rcl and middleware layers for incoming messages and other events and calls the corresponding callback functions until the node shuts down.
-In order not to counteract the QoS settings of the middleware, an incoming message is not stored in a queue on the Client Library layer but kept in the middleware until it is taken for processing by a callback function.
-(This is a crucial difference to ROS 1.)
-A *wait set* is used to inform the Executor about available messages on the middleware layer, with one binary flag per queue.
-The *wait set* is also used to detect when timers expire.
+通过调用执行器实例的 ``spin()``，当前线程开始查询 rcl 和中间件层的传入消息和其他事件，并调用相应的回调函数，直到节点关闭。
+为了不与中间件的 QoS 设置相冲突，传入的消息不会在客户端库层的队列中存储，而是保留在中间件中，直到被回调函数取出进行处理。
+(这是与 ROS 1 的一个关键区别。)
+每个队列都有一个二进制标志，用于通知 executor 在中间件层的等候区(wait set)中有可用的消息。
+这个等候区还用于检测定时器是否到期。
 
 .. image:: ../images/executors_basic_principle.png
 
-The Single-Threaded Executor is also used by the container process for :doc:`components <./About-Composition>`, i.e. in all cases where nodes are created and executed without an explicit main function.
+单线程执行器也被容器进程用于 :doc:`components <./About-Composition>`，即在所有节点在没有显式地被主函数的创建和执行的情况下。
 
-Types of Executors
+Executors 类型
 ------------------
 
-Currently, rclcpp provides three Executor types, derived from a shared parent class:
+目前，rclcpp 提供了三种 Executor 类型，它们都是从一个共同的父类派生的：
 
 .. graphviz::
 
@@ -78,12 +78,13 @@ Currently, rclcpp provides three Executor types, derived from a shared parent cl
 
       }
 
-The *Multi-Threaded Executor* creates a configurable number of threads to allow for processing multiple messages or events in parallel.
-The *Static Single-Threaded Executor* optimizes the runtime costs for scanning the structure of a node in terms of subscriptions, timers, service servers, action servers, etc.
-It performs this scan only once when the node is added, while the other two executors regularly scan for such changes.
-Therefore, the Static Single-Threaded Executor should be used only with nodes that create all subscriptions, timers, etc. during initialization.
+*Single-Threaded Executor* 在一个线程中处理所有消息和事件。
+*Multi-Threaded Executor* 创建可配置数量的线程，以允许并行处理多个消息或事件。
+*Static Single-Threaded Executor* 通过扫描节点结构优化了运行时的开销，例如 subscriptions 、timers、service 服务器、action 服务器等。
+它只在节点添加时执行一次此扫描，而其他两个执行器会定期扫描这些变动。
+因此，Static Single-Threaded Executor 只能与在初始化期间创建所有 subscriptions 、timers 等的节点一起使用。
 
-All three executors can be used with multiple nodes by calling ``add_node(..)`` for each node.
+所有三个执行器都可以通过为每个节点调用 ``add_node(..)`` 来与多个节点一起使用。
 
 .. code-block:: cpp
 
@@ -97,17 +98,17 @@ All three executors can be used with multiple nodes by calling ``add_node(..)`` 
    executor.add_node(node3);
    executor.spin();
 
-In the above example, the one thread of a Static Single-Threaded Executor is used to serve three nodes together.
-In case of a Multi-Threaded Executor, the actual parallelism depends on the callback groups.
+在上面的示例中，Static Single-Threaded Executor 的一个线程用于一起服务三个节点。
+在 Multi-Threaded Executor 的情况下，实际的并行性取决于 callback groups。
 
-Callback groups
----------------
+回调函数组(Callback groups)
+-----------------------------------
 
-ROS 2 allows organizing the callbacks of a node in groups.
-In rclcpp, such a *callback group* can be created by the ``create_callback_group`` function of the Node class.
-In rclpy, the same is done by calling the constructor of the specific callback group type.
-The callback group must be stored throughout execution of the node (eg. as a class member), or otherwise the executor won't be able to trigger the callbacks.
-Then, this callback group can be specified when creating a subscription, timer, etc. - for example by the subscription options:
+ROS 2 允许将节点的回调函数组织成组。
+在 rclcpp 中，这样的 *callback group* 可以通过 Node 类的 ``create_callback_group`` 函数创建。
+在 rclpy 中，可以通过调用特定回调组类型的构造函数来完成相同的操作。
+回调组必须在节点的整个执行过程中存储在节点中（例如作为类成员），否则 executor 将无法触发回调。
+然后，可以在创建 subscription 、timer 等时指定此回调组 - 例如为 subscription 指定：
 
 .. tabs::
 
@@ -130,57 +131,58 @@ Then, this callback group can be specified when creating a subscription, timer, 
         my_subscription = self.create_subscription(Int32, "/topic", self.callback, qos_profile=1,
                                                    callback_group=my_callback_group)
 
-All subscriptions, timers, etc. that are created without the indication of a callback group are assigned to the *default callback group*.
-The default callback group can be queried via ``NodeBaseInterface::get_default_callback_group()`` in rclcpp
-and by ``Node.default_callback_group`` in rclpy.
+所有没有指定回调组的 subscriptions、定时器等都被分配给 *默认回调组(default callback group)* 。
+在 rclcpp 中，可以通过 ``NodeBaseInterface::get_default_callback_group()`` 查询默认回调组，在 rclpy 中可以通过 ``Node.default_callback_group`` 查询。
 
-There are two types of callback groups, where the type has to be specified at instantiation time:
+回调组有两种类型是必须在实例化时指定的：
 
-* *Mutually exclusive:* Callbacks of this group must not be executed in parallel.
-* *Reentrant:* Callbacks of this group may be executed in parallel.
+* *Mutually exclusive:* 此组的回调不能并行执行。
+* *Reentrant:* 此组的回调可以并行执行。
 
-Callbacks of different callback groups may always be executed in parallel.
-The Multi-Threaded Executor uses its threads as a pool to process as many callbacks as possible in parallel according to these conditions.
-For tips on how to use callback groups efficiently, see :doc:`Using Callback Groups <../../How-To-Guides/Using-callback-groups>`.
+不同回调组的回调函数可能总是在并行执行。
+Multi-Threaded Executor 使用其自身的许多线程作为一个线程池，以并行处理尽可能多的回调。
+了解如何高效使用回调组的提示，请参阅 :doc:`使用 Callback Groups <../../How-To-Guides/Using-callback-groups>`。
 
-The Executor base class in rclcpp also has the function ``add_callback_group(..)``, which allows distributing callback groups to different Executors.
-By configuring the underlying threads using the operating system scheduler, specific callbacks can be prioritized over other callbacks.
-For example, the subscriptions and timers of a control loop can be prioritized over all other subscriptions and standard services of a node.
-The `examples_rclcpp_cbg_executor package <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclcpp/executors/cbg_executor>`_ provides a demo of this mechanism.
+rclcpp 中的 Executor 基类还有函数 ``add_callback_group(..)``，它允许将回调组分发给不同的 Executors。
+这样，可以通过操作回调组的优先级来配置底层线程的调度。
+例如，控制循环的订阅和定时器可以优先于节点的所有其他订阅和标准服务。
+`examples_rclcpp_cbg_executor package <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclcpp/executors/cbg_executor>`_ 提供了一个示例。
 
-Scheduling semantics
---------------------
 
-If the processing time of the callbacks is shorter than the period with which messages and events occur, the Executor basically processes them in FIFO order.
-However, if the processing time of some callbacks is longer, messages and events will be queued on the lower layers of the stack.
-The wait set mechanism reports only very little information about these queues to the Executor.
-In detail, it only reports whether there are any messages for a certain topic or not.
-The Executor uses this information to process the messages (including services and actions) in a round-robin fashion - but not in FIFO order.
-The following flow diagram visualizes this scheduling semantics.
+调度策略(Scheduling semantics)
+--------------------------------
+
+(译者注： semantics 在某些领域会被翻译成“语义”，在这里这一词汇是表示一种符号所对应的结构和含义，也就是事实上的方式、方法或策略。)
+
+当回调函数的处理时间短于消息和事件发生的周期时，执行器基本上按照 FIFO 的顺序处理它们。（译者注：FIFO， first-in first-out，先进先出，一种处理数据的顺序，说白了就是先来的数据先处理。）
+然而，如果某些回调的处理时间较长，消息和事件将排队在栈的较低层。
+等候区机制只将非常少的有关队列的信息报告给 executor。
+具体来说，它只报告有没有某个 topic 的消息。
+executor 使用这些信息来以循环方式处理消息（包括 services 和 actions）- 但不是按照 FIFO 的顺序。
+下图展示了这种调度策略。
 
 .. image:: ../images/executors_scheduling_semantics.png
 
-This semantics was first described in a `paper by Casini et al. at ECRTS 2019 <https://drops.dagstuhl.de/opus/volltexte/2019/10743/pdf/LIPIcs-ECRTS-2019-6.pdf>`_.
-(Note: The paper also explains that timer events are prioritized over all other messages. `This prioritization was removed in Eloquent. <https://github.com/ros2/rclcpp/pull/841>`_)
+这种策略首次有 `Casini 等人在 ECRTS 2019 <https://drops.dagstuhl.de/opus/volltexte/2019/10743/pdf/LIPIcs-ECRTS-2019-6.pdf>`_ 中描述。
+(注：这篇论文也解释了定时器事件优先于所有其他消息。 `这种优先级在 Eloquent 中被移除了。 <https://github.com/ros2/rclcpp/pull/841>`_ )
 
-
-Outlook
+展望
 -------
 
-While the three Executors of rclcpp work well for most applications, there are some issues that make them not suitable for real-time applications, which require well-defined execution times, determinism, and custom control over the execution order.
-Here is a summary of some of these issues:
+尽管 rclcpp 的三种 Executor 对于大多数应用都能很好地工作，但有一些问题使它们不适合实时应用，这些应用需要恰当定义的执行时间、确定性和对执行顺序的自定义控制。
+以下是其中一些尚未解决问题的总结：
 
-1. Complex and mixed scheduling semantics.
-   Ideally you want well defined scheduling semantics to perform a formal timing analysis.
-2. Callbacks may suffer from priority inversion.
-   Higher priority callbacks may be blocked by lower priority callbacks.
-3. No explicit control over the callbacks execution order.
-4. No built-in control over triggering for specific topics.
+1. 复杂和混合的调度策略。
+   理想情况下，您希望有明确定义的调度语义来执行正式的时间分析。
+2. 回调可能受到优先级反转(priority inversion)的影响。
+   优先级较高的回调可能被优先级较低的回调阻塞。
+3. 无法显式控制回调的执行顺序。
+4. 没有针对特定 topic 触发的内置控制。
 
-Additionally, the executor overhead in terms of CPU and memory usage is considerable.
-The Static Single-Threaded Executor reduces this overhead greatly but it might not be enough for some applications.
+此外， executor 在 CPU 和内存使用方面的开销相当大。
+Static Single-Threaded Executor 大大减少了这种开销，但对于某些应用来说可能还不够。
 
-These issues have been partially addressed by the following developments:
+这些问题的处理已经有了一些进展：
 
 * `rclcpp WaitSet <https://github.com/ros2/rclcpp/blob/{REPOS_FILE_BRANCH}/rclcpp/include/rclcpp/wait_set.hpp>`_: The ``WaitSet`` class of rclcpp allows waiting directly on subscriptions, timers, service servers, action servers, etc. instead of using an Executor.
   It can be used to implement deterministic, user-defined processing sequences, possibly processing multiple messages from different subscriptions together.
@@ -188,7 +190,7 @@ These issues have been partially addressed by the following developments:
 * `rclc Executor <https://github.com/ros2/rclc/blob/master/rclc/include/rclc/executor.h>`_: This Executor from the C Client Library *rclc*, developed for micro-ROS, gives the user fine-grained control over the execution order of callbacks and allows for custom trigger conditions to activate callbacks.
   Furthermore, it implements ideas of the Logical Execution Time (LET) semantics.
 
-Further information
+更多信息
 -------------------
 
 * Michael Pöhnl et al.: `"ROS 2 Executor: How to make it efficient, real-time and deterministic?" <https://www.apex.ai/roscon-21>`_. Workshop at ROS World 2021. Virtual event. 19 October 2021.

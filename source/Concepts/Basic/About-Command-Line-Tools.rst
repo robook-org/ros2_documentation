@@ -51,7 +51,7 @@ ROS 2 包含一套用于与 ROS 2 系统交互的命令行工具。
 样例
 -------
 
-使用``topic`` 子命令可以用于在一个 topic 上发布和显示消息，这样可以生成典型的 talker-listener 示例的 talker端。
+使用 ``topic`` 子命令可以用于在一个 topic 上发布和显示消息，这样可以生成典型的 talker-listener 示例的 talker端。
 
 在一个终端中发布消息：
 

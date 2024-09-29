@@ -1,7 +1,7 @@
-Intermediate Concepts
+中级概念
 =====================
 
-These are the concepts that further your understanding of a basic ROS 2 system.
+这些是进一步了解基本 ROS 2 系统的概念。
 
 .. toctree::
    :maxdepth: 1

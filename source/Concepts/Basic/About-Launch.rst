@@ -1,18 +1,18 @@
-Launch
-======
+启动(Launch)
+==============
 
 .. contents:: Table of Contents
    :local:
 
-A ROS 2 system typically consists of many nodes running across many different processes (and even different machines).
-While it is possible to run each of these nodes separately, it gets cumbersome quite quickly.
+一般来说，一个 ROS 2 系统通常由许多节点组成，这些节点运行在许多不同的进程中（甚至在不同的机器上）。
+虽然可以单独运行每个节点，但随着节点变多，启动操作很快就会变得繁琐起来。
 
-The launch system in ROS 2 is meant to automate the running of many nodes with a single command.
-It helps the user describe the configuration of their system and then executes it as described.
-The configuration of the system includes what programs to run, where to run them, what arguments to pass them, and ROS-specific conventions which make it easy to reuse components throughout the system by giving them each a different configuration.
-It is also responsible for monitoring the state of the processes launched, and reporting and/or reacting to changes in the state of those processes.
+ROS 2 的启动 (launch) 系统旨在通过单个命令自动运行很多节点。
+它帮助用户描述系统的配置，然后按照描述的方式执行。
+系统的配置包括要运行的程序、在哪里运行它们、传递给它们的参数以及 ROS 特定的规则，这些规则使得通过为每个组件提供不同的配置来轻松地在整个系统中重用组件。
+当然，启动系统还负责监视启动的进程的状态，并报告或对这些进程状态的变动做出反应。
 
-All of the above is specified in a launch file, which can be written in Python, XML, or YAML.
-This launch file can then be run using the ``ros2 launch`` command, and all of the nodes specified will be run.
+以上这些特性都可以在一个启动文件(launch file)中描述，启动文件可以用 Python、XML 或 YAML 编写。
+当使用 ``ros2 launch`` 命令运行启动文件时，所有指定的节点都会运行。
 
-The `design document <https://design.ros2.org/articles/roslaunch.html>`__ details the goal of the design of ROS 2's launch system (not all functionality is currently available).
+`设计文档 <https://design.ros2.org/articles/roslaunch.html>`__ 详细描述了 ROS 2 启动系统设计的目标（目前并非所有功能都可用）。

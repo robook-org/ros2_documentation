@@ -8,95 +8,95 @@ The ROS_DOMAIN_ID
 .. contents:: Table of Contents
    :local:
 
-Overview
+概览
 --------
 
-As explained elsewhere, the default middleware that ROS 2 uses for communication is DDS.
-In DDS, the primary mechanism for having different logical networks share a physical network is known as the Domain ID.
-ROS 2 nodes on the same domain can freely discover and send messages to each other, while ROS 2 nodes on different domains cannot.
-All ROS 2 nodes use domain ID 0 by default.
-To avoid interference between different groups of computers running ROS 2 on the same network, a different domain ID should be set for each group.
+ROS 2 用于通信的默认中间件(middleware)是 DDS。
+在 DDS 中，让不同的逻辑网络共享一个物理网络的主要机制被称为 Domain ID。
+在同一个域中(译者注：也就是 Domain ID 一样)的 ROS 2 节点可以自由地发现彼此并向彼此发送消息，而在不同域中的 ROS 2 节点则不能。
+默认情况下，所有 ROS 2 节点都使用域 domain 0。
+为了避免在同一网络上运行 ROS 2 的不同设备之间的干扰，应为每组需要独立的设备设置不同的 domain ID。
 
-Choosing a domain ID (short version)
+选择 domain ID (简短版)
 ------------------------------------
 
-The text below explains the derivation of the range of domain IDs that should be used in ROS 2.
-To skip that background and just choose a safe number, simply choose a domain ID between 0 and 101, inclusive.
+下文解释了如何推导出在 ROS 2 中应该使用的 domain ID 范围。
+如果你对这些细节不感兴趣，只想选择一个安全可用的数字，那么只需要选择 0 到 101 之间的一个 domain ID 即可。
 
-
-Choosing a domain ID (long version)
+选择 domain ID (详细版)
 -----------------------------------
 
-The domain ID is used by DDS to compute the UDP ports that will be used for discovery and communication.
-See `this article <https://community.rti.com/content/forum-topic/statically-configure-firewall-let-omg-dds-traffic-through>`__ for details on how the ports are computed.
-Remembering our basic networking, the UDP port is an `unsigned 16-bit integer <https://en.wikipedia.org/wiki/User_Datagram_Protocol#Ports>`__.
-Thus, the highest port number that can be allocated is 65535.
-Doing some math with the formula in the article above, this means that the highest domain ID that can possibly be assigned is 232, while the lowest that can be assigned is 0.
+Domain ID 是 DDS 用来计算用于发现和通信的 UDP 端口号的。
+具体如何计算请参见 `这篇文章 <https://community.rti.com/content/forum-topic/statically-configure-firewall-let-omg-dds-traffic-through>`__。
+回顾一下基本网络知识，UDP 端口是一个 `16 位无符号整数 <https://en.wikipedia.org/wiki/User_Datagram_Protocol#Ports>`__。
+那么，可以分配的最高端口号是 65535。
+根据上面的公式，这意味着可以分配的最高 domain ID 是 232，而可以分配的最低 domain ID 是 0。
 
-Platform-specific constraints
+平台限制
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For maximum compatibility, some additional platform-specific constraints should be followed when choosing a domain ID.
-In particular, it is best to avoid allocating domain IDs in the operating system's `ephemeral port range <https://en.wikipedia.org/wiki/Ephemeral_port>`__.
-This avoids possible conflicts between the ports used by the ROS 2 nodes and other networking services on the computers.
+为了最大兼容性，选择 domain ID 时应满足一些额外的平台限制。
+首先是最好避免在操作系统的 `临时端口范围 <https://en.wikipedia.org/wiki/Ephemeral_port>`__ 中分配 domain ID。
+这样可以避免 ROS 2 节点使用的端口与计算机上的其他网络服务之间可能发生的冲突。
 
-Here are some platform-specific notes about ephemeral ports.
+以下是关于临时端口的一些特定平台的注意事项。
 
 .. tabs::
 
    .. group-tab:: Linux
 
-     By default, the Linux kernel uses ports 32768-60999 for ephemeral ports.
-     This means that domain IDs 0-101 and 215-232 can be safely used without colliding with ephemeral ports.
-     The ephemeral port range is configurable in Linux by setting custom values in ``/proc/sys/net/ipv4/ip_local_port_range``.
-     If a custom ephemeral port range is used, the above numbers may have to be adjusted accordingly.
+     默认情况下，Linux 内核使用端口 32768-60999 作为临时端口。
+     这意味着 domain ID 0-101 和 215-232 可以安全地使用，而不会与临时端口发生冲突。
+     临时端口范围可以在 ``/proc/sys/net/ipv4/ip_local_port_range`` 中配置。
+     如果使用自定义的临时端口范围，上面说的 domain ID 可用的范围可能需要相应调整。
 
    .. group-tab:: macOS
 
-     By default, the ephemeral port range on macOS is 49152-65535.
-     This means that domain IDs 0-166 can be safely used without colliding with ephemeral ports.
-     The ephemeral port range is configurable in macOS by setting custom sysctl values for ``net.inet.ip.portrange.first`` and ``net.inet.ip.portrange.last``.
-     If a custom ephemeral port range is used, the above numbers may have to be adjusted accordingly.
+     默认情况下，macOS 上的临时端口范围是 49152-65535。
+     这意味着 domain ID 0-166 可以安全地使用，而不会与临时端口发生冲突。
+     临时端口范围可以通过 ``net.inet.ip.portrange.first`` 和 ``net.inet.ip.portrange.last`` 的自定义 sysctl 值来配置。
+     如果使用自定义的临时端口范围，上面说的 domain ID 可用的范围可能需要相应调整。
 
    .. group-tab:: Windows
 
-     By default, the ephemeral port range on Windows is 49152-65535.
-     This means that domain IDs 0-166 can be safely used without colliding with ephemeral ports.
-     The ephemeral port range is configurable in Windows by `using netsh <https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang>`__.
-     If a custom ephemeral port range is used, the above numbers may have to be adjusted accordingly.
+     默认情况下，Windows 上的临时端口范围是 49152-65535。
+     这意味着 domain ID 0-166 可以安全地使用，而不会与临时端口发生冲突。
+     临时端口范围可以 `使用 netsh <https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang>`__ 来配置。
+     如果使用自定义的临时端口范围，上面说的 domain ID 可用的范围可能需要相应调整。
 
-Participant constraints
+参与者限制
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For each ROS 2 process running on a computer, one DDS "participant" is created.
-Since each DDS participant takes up two ports on the computer, running more than 120 ROS 2 processes on one computer may spill over into other domain IDs or the ephemeral ports.
+在计算机上运行的每个 ROS 2 进程都会创建一个 DDS “参与者(participant)”。
+由于每个 DDS 参与者占用计算机上的两个端口，因此在一台计算机上运行超过 120 个 ROS 2 进程可能会溢出到其他 domain ID 或临时端口。
 
-To see why, consider the domain IDs 1 and 2.
+为了理解为什么会发生这种情况，让我们考虑 domain ID 1 和 2的情况。
 
-- Domain ID 1 uses port 7650 and 7651 for multicast.
-- Domain ID 2 uses port 7900 and 7901 for multicast.
-- When creating the 1st process (zeroth participant) in domain ID 1, the ports 7660 and 7661 are used for unicast.
-- When creating the 120th process (119th participant) in domain ID 1, the ports 7898 and 7899 are used for unicast.
-- When creating the 121st process (120th participant) in domain ID 1, the ports 7900 and 7901 are used for unicast and overlap with domain ID 2.
+- domain ID 1 使用端口 7650 和 7651 用于 multicast 。
+- domain ID 2 使用端口 7900 和 7901 用于 multicast 。
+- 创建 domain ID 1 中的第一个进程(第零个参与者)时，使用端口 7660 和 7661 用于 unicast 。
+- 创建 domain ID 1 中的第120个进程(第119个参与者)时，使用端口 7898 和 7899 用于 unicast 。
+- 创建 domain ID 1 中的第121个进程(第120个参与者)时，使用端口 7900 和 7901 用于 unicast ，这就和与 domain ID 2 的端口重叠了。
 
-If it is known that the computer will only ever be on a single domain ID at a time, and the domain ID is low enough, it is safe to create more ROS 2 processes than this.
+如果可以确保设备只会在一个 domain ID 上运行，而且 domain ID 很小，那么可以创建比这个(译者注：指120个)更多的 ROS 2 进程。
 
-When choosing a domain ID that is near the top of the range of platform-specific domain IDs, one additional constraint should be considered.
+当选择的 domain ID 接近特定平台的 domain ID 范围的上限时，还应考虑一个额外的约束。
 
-For instance, assume a Linux computer with a domain ID of 101:
+假设一个 domain ID 为 101 的 Linux 设备：
 
-- The zero'th ROS 2 process on the computer will connect to ports 32650, 32651, 32660, and 32661.
-- The first ROS 2 process on the computer will connect to ports 32650, 32651, 32662, and 32663.
-- The 53rd ROS 2 process on the computer will connect to ports 32650, 32651, 32766, and 32767.
-- The 54th ROS 2 process on the computer will connect to ports 32650, 32651, 32768, and 32769, running into the ephemeral port range.
+- 该设备上的第零个 ROS 2 进程将连接到端口 32650、32651、32660 和 32661。
+- 该设备上的第一个 ROS 2 进程将连接到端口 32650、32651、32662 和 32663。
+- 该设备上的第二个 ROS 2 进程将连接到端口 32650、32651、32664 和 32665。
+- 该设备上的第五十三个 ROS 2 进程将连接到端口 32650、32651、32766 和 32767。
+- 该设备上的第五十四个 ROS 2 进程将连接到端口 32650、32651、32768 和 32769，这就溢出到了临时端口范围。
 
-Thus the maximum number of processes that should be created when using domain ID 101 on Linux is 54.
-Similarly, the maximum number of processes that should be created when using domain ID 232 on Linux is 63, as the maximum port number is 65535.
+因此，在 Linux 上使用 domain ID 101 时应创建的最大进程数是 54。
+同样可以推导出在 Linux 上使用 domain ID 232 时应创建的最大进程数是 63，因为最大端口号是 65535。
 
-The situation is similar on macOS and Windows, though the numbers are different.
-On macOS and Windows, when choosing a domain ID of 166 (the top of the range), the maximum number of ROS 2 processes that can be created on a computer before running into the ephemeral port range is 120.
+在 macOS 和 Windows 上情况类似，只是数字不同。
+在 macOS 和 Windows 上，选择 domain ID 为 166(范围的最大值) 时，在设备上创建的 ROS 2 进程的最大数量是 120。
 
-Domain ID to UDP Port Calculator
+Domain ID - UDP 端口映射计算器
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html

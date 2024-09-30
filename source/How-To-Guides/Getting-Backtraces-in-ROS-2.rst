@@ -4,11 +4,11 @@ Getting Backtraces in ROS 2
 .. contents:: Table of Contents
    :local:
 
-**Goal:** Show various methods for getting backtraces in ROS 2
+**目标:** Show various methods for getting backtraces in ROS 2
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 The following steps show ROS 2 users how to get backtraces when they encounter a problem.
 

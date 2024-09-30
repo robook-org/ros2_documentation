@@ -9,7 +9,7 @@ rmw_gurumdds is a implementation of the ROS middleware interface using GurumNetw
 More information about GurumDDS is available on our website: https://gurum.cc/index_eng
 
 
-Prerequisites
+前提条件
 -------------
 
 The following description assumes that you have completed the 'Environment setup' process

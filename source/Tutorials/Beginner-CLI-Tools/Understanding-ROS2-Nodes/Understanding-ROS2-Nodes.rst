@@ -4,20 +4,20 @@
 
 .. _ROS2Nodes:
 
-Understanding nodes
+理解 nodes
 ===================
 
-**Goal:** Learn about the function of nodes in ROS 2, and the tools to interact with them.
+**目标:** Learn about the function of nodes in ROS 2, and the tools to interact with them.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 1 The ROS 2 graph
@@ -39,7 +39,7 @@ Each node can send and receive data from other nodes via topics, services, actio
 A full robotic system is comprised of many nodes working in concert.
 In ROS 2, a single executable (C++ program, Python program, etc.) can contain one or more nodes.
 
-Prerequisites
+前提条件
 -------------
 
 The :doc:`previous tutorial <../Introducing-Turtlesim/Introducing-Turtlesim>` shows you how to install the ``turtlesim`` package used here.

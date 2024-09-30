@@ -1,18 +1,18 @@
 RViz User Guide
 ===============
 
-**Goal:** Understanding RViz
+**目标:** Understanding RViz
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 25 Minutes
+**预计时长:** 25 Minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
 
-Background
+背景
 ----------
 RViz is a 3D visualizer for the Robot Operating System (ROS) framework.
 

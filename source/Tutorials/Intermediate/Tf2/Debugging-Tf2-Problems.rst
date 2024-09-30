@@ -7,17 +7,17 @@
 Debugging
 =========
 
-**Goal:** Learn how to use a systematic approach for debugging tf2 related problems.
+**目标:** Learn how to use a systematic approach for debugging tf2 related problems.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 This tutorial walks you through the steps to debug a typical tf2 problem.

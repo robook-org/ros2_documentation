@@ -7,11 +7,11 @@
 Adding physical and collision properties
 ========================================
 
-**Goal:** Learn how to add collision and inertial properties to links, and how to add joint dynamics to joints.
+**目标:** Learn how to add collision and inertial properties to links, and how to add joint dynamics to joints.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2

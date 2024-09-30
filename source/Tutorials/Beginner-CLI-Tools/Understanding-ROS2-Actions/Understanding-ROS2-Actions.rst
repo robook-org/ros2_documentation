@@ -7,17 +7,17 @@
 Understanding actions
 =====================
 
-**Goal:** Introspect actions in ROS 2.
+**目标:** Introspect actions in ROS 2.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Actions are one of the communication types in ROS 2 and are intended for long running tasks.
@@ -32,7 +32,7 @@ An "action client" node sends a goal to an "action server" node that acknowledge
 
 .. image:: images/Action-SingleActionClient.gif
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial builds off concepts, like :doc:`nodes <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` and :doc:`topics <../Understanding-ROS2-Topics/Understanding-ROS2-Topics>`, covered in previous tutorials.

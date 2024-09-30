@@ -7,11 +7,11 @@
 Building a movable robot model
 ==============================
 
-**Goal:** Learn how to define movable joints in URDF.
+**目标:** Learn how to define movable joints in URDF.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2

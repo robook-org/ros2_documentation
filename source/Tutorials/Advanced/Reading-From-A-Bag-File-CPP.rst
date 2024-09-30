@@ -1,24 +1,24 @@
 Reading from a bag file (C++)
 =============================
 
-**Goal:** Read data from a bag without using the CLI.
+**目标:** Read data from a bag without using the CLI.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 ``rosbag2`` doesn't just provide the ``ros2 bag`` command line tool.
 It also provides a C++ API for reading from and writing to a bag from your own source code.
 This allows you to read the contents from a bag without having to play the bag, which can sometimes be useful.
 
-Prerequisites
+前提条件
 -------------
 
 You should have the ``rosbag2`` packages installed as part of your regular ROS 2 setup.

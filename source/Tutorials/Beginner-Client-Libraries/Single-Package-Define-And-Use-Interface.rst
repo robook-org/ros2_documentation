@@ -8,17 +8,17 @@
 Implementing custom interfaces
 ==============================
 
-**Goal:** Learn more ways to implement custom interfaces in ROS 2.
+**目标:** Learn more ways to implement custom interfaces in ROS 2.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In a :doc:`previous tutorial <./Custom-ROS2-Interfaces>`, you learned how to create custom msg and srv interfaces.
@@ -31,7 +31,7 @@ We'll use a CMake package and C++ nodes here for the sake of simplicity.
 
 This tutorial will focus on the msg interface type, but the steps here are applicable to all interface types.
 
-Prerequisites
+前提条件
 -------------
 
 We assume you've reviewed the basics in the :doc:`./Custom-ROS2-Interfaces` tutorial before working through this one.

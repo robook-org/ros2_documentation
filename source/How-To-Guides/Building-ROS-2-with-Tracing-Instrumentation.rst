@@ -16,7 +16,7 @@ To get the tracepoints, the LTTng tracer needs to be installed, and then part of
 
    This guide only applies to Linux systems and assumes that Ubuntu is used.
 
-Prerequisites
+前提条件
 -------------
 
 Set up your system to build ROS 2 from source.

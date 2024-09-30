@@ -5,24 +5,24 @@
 Writing a listener (Python)
 ===========================
 
-**Goal:** Learn how to use tf2 to get access to frame transformations.
+**目标:** Learn how to use tf2 to get access to frame transformations.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In previous tutorials we created a tf2 broadcaster to publish the pose of a turtle to tf2.
 
 In this tutorial we'll create a tf2 listener to start using tf2.
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial assumes you have completed the :doc:`tf2 static broadcaster tutorial (Python) <./Writing-A-Tf2-Static-Broadcaster-Py>` and :doc:`tf2 broadcaster tutorial (Python) <./Writing-A-Tf2-Broadcaster-Py>`.

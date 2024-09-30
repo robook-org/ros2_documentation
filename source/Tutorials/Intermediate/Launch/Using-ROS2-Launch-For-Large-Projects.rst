@@ -8,24 +8,24 @@
 Managing large projects
 =======================
 
-**Goal:** Learn best practices of managing large projects using ROS 2 launch files.
+**目标:** Learn best practices of managing large projects using ROS 2 launch files.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 3
    :local:
 
-Background
+背景
 ----------
 
 This tutorial describes some tips for writing launch files for large projects.
 The focus is on how to structure launch files so they may be reused as much as possible in different situations.
 Additionally, it covers usage examples of different ROS 2 launch tools, like parameters, YAML files, remappings, namespaces, default arguments, and RViz configs.
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial uses the :doc:`turtlesim <../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim>` and :doc:`turtle_tf2_py <../Tf2/Introduction-To-Tf2>` packages.

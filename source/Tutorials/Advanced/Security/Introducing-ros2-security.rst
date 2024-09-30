@@ -8,18 +8,18 @@
 Setting up security
 ===================
 
-**Goal:** Set up security with ``sros2``.
+**目标:** Set up security with ``sros2``.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
 
-Background
+背景
 ----------
 
 The ``sros2`` package provides the tools and instructions to use ROS 2 on top of DDS-Security.

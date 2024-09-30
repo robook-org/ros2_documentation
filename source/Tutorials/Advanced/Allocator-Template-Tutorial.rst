@@ -6,11 +6,11 @@
 Implementing a custom memory allocator
 ======================================
 
-**Goal:** This tutorial will show how to use a custom memory allocator when writing ROS 2 C++ code.
+**目标:** This tutorial will show how to use a custom memory allocator when writing ROS 2 C++ code.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Table of Contents
    :depth: 2
@@ -19,7 +19,7 @@ Implementing a custom memory allocator
 This tutorial will teach you how to integrate a custom allocator for publishers and subscribers so that the default heap allocator is never called while your ROS nodes are executing.
 The code for this tutorial is available `here <https://github.com/ros2/demos/blob/{REPOS_FILE_BRANCH}/demo_nodes_cpp/src/topics/allocator_tutorial.cpp>`__.
 
-Background
+背景
 ----------
 
 Suppose you want to write real-time safe code, and you've heard about the many dangers of calling "new" during the real-time critical section, because the default heap allocator on most platforms is nondeterministic.

@@ -10,7 +10,7 @@ Cyclone DDS is developed completely in the open as an Eclipse IoT project.
 See also: https://projects.eclipse.org/projects/iot.cyclonedds
 
 
-Prerequisites
+前提条件
 -------------
 
 Have :doc:`rosdep installed <../../Tutorials/Intermediate/Rosdep>`.

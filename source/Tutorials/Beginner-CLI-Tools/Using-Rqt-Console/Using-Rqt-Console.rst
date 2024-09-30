@@ -7,17 +7,17 @@
 Using ``rqt_console`` to view logs
 ==================================
 
-**Goal:** Get to know ``rqt_console``, a tool for introspecting log messages.
+**目标:** Get to know ``rqt_console``, a tool for introspecting log messages.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 5 minutes
+**预计时长:** 5 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 ``rqt_console`` is a GUI tool used to introspect log messages in ROS 2.
@@ -27,7 +27,7 @@ With ``rqt_console``, you can collect those messages over time, view them closel
 Nodes use logs to output messages concerning events and status in a variety of ways.
 Their content is usually informational, for the sake of the user.
 
-Prerequisites
+前提条件
 -------------
 
 You will need :doc:`rqt_console and turtlesim <../Introducing-Turtlesim/Introducing-Turtlesim>` installed.

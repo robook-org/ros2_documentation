@@ -6,16 +6,16 @@
 Enabling topic statistics (C++)
 ===============================
 
-**Goal:** Enable ROS 2 Topic Statistics and view the output statistics data.
+**目标:** Enable ROS 2 Topic Statistics and view the output statistics data.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Table of Contents
    :local:
 
-Background
+背景
 ----------
 
 This is a short tutorial on how to enable topic statistics in ROS 2 and view the published statistics output using command line tools (:doc:`ros2topic <../../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics>`).
@@ -27,7 +27,7 @@ system or use the data to help diagnose any present issues.
 
 For more details please see the :doc:`Topic Statistics Concepts Page <../../../Concepts/Intermediate/About-Topic-Statistics>`.
 
-Prerequisites
+前提条件
 -------------
 
 An installation from either binaries or source.

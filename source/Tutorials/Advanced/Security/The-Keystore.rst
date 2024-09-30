@@ -7,18 +7,18 @@
 Understanding the security keystore
 ===================================
 
-**Goal:** Explore files located in the ROS 2 security keystore.
+**目标:** Explore files located in the ROS 2 security keystore.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
 
-Background
+背景
 ----------
 
 The ``sros2`` package can be used to create keys, certificates and policies necessary to enable ROS 2 security.

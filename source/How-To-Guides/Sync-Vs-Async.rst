@@ -10,7 +10,7 @@ Synchronous vs. asynchronous service clients
 
 **Level:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2

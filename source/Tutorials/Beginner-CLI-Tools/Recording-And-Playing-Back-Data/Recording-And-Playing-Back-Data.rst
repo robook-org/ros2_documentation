@@ -7,17 +7,17 @@
 Recording and playing back data
 ===============================
 
-**Goal:** Record data published on a topic so you can replay and examine it any time.
+**目标:** Record data published on a topic so you can replay and examine it any time.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 ``ros2 bag`` is a command line tool for recording data published on topics in your system.
@@ -26,7 +26,7 @@ You can then replay the data to reproduce the results of your tests and experime
 Recording topics is also a great way to share your work and allow others to recreate it.
 
 
-Prerequisites
+前提条件
 -------------
 
 You should have ``ros2 bag`` installed as a part of your regular ROS 2 setup.

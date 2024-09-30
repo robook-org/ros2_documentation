@@ -6,17 +6,17 @@
 Using Fast DDS Discovery Server as discovery protocol [community-contributed]
 =============================================================================
 
-**Goal:** This tutorial will show how to launch ROS 2 Nodes using the **Fast DDS Discovery Server** discovery protocol.
+**目标:** This tutorial will show how to launch ROS 2 Nodes using the **Fast DDS Discovery Server** discovery protocol.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Table of Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Starting from ROS 2 Eloquent Elusor, the **Fast DDS Discovery Server** protocol is a feature that offers a centralized dynamic discovery mechanism, as opposed to the distributed mechanism used in DDS by default.
@@ -62,7 +62,7 @@ It is also possible to configure the discovery server using the ``fastdds`` `too
 For a more detailed explanation about the configuration of the discovery server, visit `the Fast DDS Discovery Server documentation <https://fast-dds.docs.eprosima.com/en/v2.1.0/fastdds/discovery/discovery_server.html#discovery-server>`__.
 
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial assumes you have a ROS 2 Foxy (or newer) :doc:`installation <../../../Installation>`.

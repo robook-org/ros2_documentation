@@ -7,17 +7,17 @@
 Setting up a robot simulation (Gazebo)
 ======================================
 
-**Goal:** Launch a Simulation with Gazebo and ROS 2
+**目标:** Launch a Simulation with Gazebo and ROS 2
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Prerequisites
+前提条件
 -------------
 
 First of all you should install ROS 2 and Gazebo.

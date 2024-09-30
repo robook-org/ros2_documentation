@@ -1,24 +1,24 @@
 The Ros2Supervisor Node
 =======================
 
-**Goal:** Extend the interface with a default Supervisor robot, named ``Ros2Supervisor``.
+**目标:** Extend the interface with a default Supervisor robot, named ``Ros2Supervisor``.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In this tutorial, you will learn how to enable the ``Ros2Supervisor`` node which enhances the interface by creating additional services and topics to interact with the simulation.
 You can, for example, record animations or spawn Webots nodes directly from the ROS 2 interface while the simulation is running.
 These instructions list in details the current implemented features and how to use them.
 
-Prerequisites
+前提条件
 -------------
 
 Before proceeding with this tutorial, make sure you have completed the following:

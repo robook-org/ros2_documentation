@@ -6,17 +6,17 @@
 Creating a launch file
 ======================
 
-**Goal:** Create a launch file to run a complex ROS 2 system.
+**目标:** Create a launch file to run a complex ROS 2 system.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial uses the :doc:`rqt_graph and turtlesim <../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim>` packages.
@@ -25,7 +25,7 @@ You will also need to use a text editor of your preference.
 
 As always, don’t forget to source ROS 2 in :doc:`every new terminal you open <../../Beginner-CLI-Tools/Configuring-ROS2-Environment>`.
 
-Background
+背景
 ----------
 
 The launch system in ROS 2 is responsible for helping the user describe the configuration of their system and then execute it as described.

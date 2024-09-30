@@ -7,17 +7,17 @@
 Understanding services
 ======================
 
-**Goal:** Learn about services in ROS 2 using command line tools.
+**目标:** Learn about services in ROS 2 using command line tools.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Services are another method of communication for nodes in the ROS graph.
@@ -28,7 +28,7 @@ While topics allow nodes to subscribe to data streams and get continual updates,
 
 .. image:: images/Service-MultipleServiceClient.gif
 
-Prerequisites
+前提条件
 -------------
 
 Some concepts mentioned in this tutorial, like :doc:`Nodes <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` and :doc:`Topics <../Understanding-ROS2-Topics/Understanding-ROS2-Topics>`, were covered in previous tutorials in the series.

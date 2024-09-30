@@ -5,11 +5,11 @@
 Creating a content filtering subscription
 =========================================
 
-**Goal:** Create a content filtering subscription.
+**目标:** Create a content filtering subscription.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Table of Contents
    :depth: 1

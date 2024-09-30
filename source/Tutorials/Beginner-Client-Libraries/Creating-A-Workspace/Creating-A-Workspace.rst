@@ -7,17 +7,17 @@
 Creating a workspace
 ====================
 
-**Goal:** Create a workspace and learn how to set up an overlay for development and testing.
+**目标:** Create a workspace and learn how to set up an overlay for development and testing.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 A workspace is a directory containing ROS 2 packages.
@@ -30,7 +30,7 @@ Packages in your overlay will override packages in the underlay.
 It's also possible to have several layers of underlays and overlays, with each successive overlay using the packages of its parent underlays.
 
 
-Prerequisites
+前提条件
 -------------
 
 * :doc:`ROS 2 installation <../../../Installation>`

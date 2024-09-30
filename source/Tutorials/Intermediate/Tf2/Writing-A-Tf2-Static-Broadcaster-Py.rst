@@ -5,17 +5,17 @@
 Writing a static broadcaster (Python)
 =====================================
 
-**Goal:** Learn how to broadcast static coordinate frames to tf2.
+**目标:** Learn how to broadcast static coordinate frames to tf2.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Publishing static transforms is useful to define the relationship between a robot base and its sensors or non-moving parts.
@@ -28,7 +28,7 @@ In the second part we will explain how to use the commandline ``static_transform
 In the next two tutorials we will write the code to reproduce the demo from the :doc:`Introduction to tf2 <./Introduction-To-Tf2>` tutorial.
 After that, the following tutorials focus on extending the demo with more advanced tf2 features.
 
-Prerequisites
+前提条件
 -------------
 
 In previous tutorials, you learned how to :doc:`create a workspace <../../Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace>` and :doc:`create a package <../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package>`.

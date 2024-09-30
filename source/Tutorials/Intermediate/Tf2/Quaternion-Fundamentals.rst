@@ -7,17 +7,17 @@
 Quaternion fundamentals
 =======================
 
-**Goal:** Learn the basics of quaternion usage in ROS 2.
+**目标:** Learn the basics of quaternion usage in ROS 2.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 A quaternion is a 4-tuple representation of orientation, which is more concise than a rotation matrix.
@@ -29,7 +29,7 @@ You can also take a look at an explorable video series `Visualizing quaternions 
 
 In this tutorial, you will learn how quaternions and conversion methods work in ROS 2.
 
-Prerequisites
+前提条件
 -------------
 
 However, this is not a hard requirement and you can stick to any other geometric transfromation library that suit you best.

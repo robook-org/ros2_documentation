@@ -5,11 +5,11 @@
 Monitoring for parameter changes (C++)
 ======================================
 
-**Goal:** Learn to use the ParameterEventHandler class to monitor and respond to parameter changes.
+**目标:** Learn to use the ParameterEventHandler class to monitor and respond to parameter changes.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 **Minimum Platform:** Galactic
 
@@ -17,14 +17,14 @@ Monitoring for parameter changes (C++)
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Often a node needs to respond to changes to its own parameters or another node's parameters.
 The ParameterEventHandler class makes it easy to listen for parameter changes so that your code can respond to them.
 This tutorial will show you how to use the C++ version of the ParameterEventHandler class to monitor for changes to a node's own parameters as well as changes to another node's parameters.
 
-Prerequisites
+前提条件
 -------------
 
 Before starting this tutorial, you should first complete the following tutorials:
@@ -353,5 +353,3 @@ Related content
 ---------------
 
 To learn how to adapt ROS 1 parameter files for ROS 2, see the :doc:`Migrating YAML parameter files from ROS 1 to ROS2 <../../How-To-Guides/Migrating-from-ROS1/Migrating-Parameters>` tutorial.
-
-

@@ -1,24 +1,24 @@
 Setting up a robot simulation (Advanced)
 ========================================
 
-**Goal:** Extend a robot simulation with an obstacle avoider node.
+**目标:** Extend a robot simulation with an obstacle avoider node.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In this tutorial you will extend the package created in the first part of the tutorial: :doc:`./Setting-Up-Simulation-Webots-Basic`.
 The aim is to implement a ROS 2 node that avoids obstacles using the robot's distance sensors.
 This tutorial focuses on using robot devices with the ``webots_ros2_driver`` interface.
 
-Prerequisites
+前提条件
 -------------
 
 This is a continuation of the first part of the tutorial: :doc:`./Setting-Up-Simulation-Webots-Basic`.

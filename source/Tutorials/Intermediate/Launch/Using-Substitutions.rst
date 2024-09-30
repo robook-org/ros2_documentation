@@ -6,17 +6,17 @@
 Using substitutions
 ===================
 
-**Goal:** Learn about substitutions in ROS 2 launch files.
+**目标:** Learn about substitutions in ROS 2 launch files.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Table of Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Launch files are used to start nodes, services and execute processes.
@@ -26,7 +26,7 @@ Substitutions are variables that are only evaluated during execution of the laun
 
 This tutorial shows usage examples of substitutions in ROS 2 launch files.
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial uses the :doc:`turtlesim <../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim>` package.

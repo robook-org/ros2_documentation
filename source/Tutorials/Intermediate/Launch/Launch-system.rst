@@ -7,24 +7,24 @@
 Integrating launch files into ROS 2 packages
 ============================================
 
-**Goal:** Add a launch file to a ROS 2 package
+**目标:** Add a launch file to a ROS 2 package
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Prerequisites
+前提条件
 -------------
 
 You should have gone through the tutorial on how to :doc:`create a ROS 2 package <../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package>`.
 
 As always, don’t forget to source ROS 2 in :doc:`every new terminal you open <../../Beginner-CLI-Tools/Configuring-ROS2-Environment>`.
 
-Background
+背景
 ----------
 
 In the :doc:`previous tutorial <Creating-Launch-Files>`, we saw how to write a standalone launch file.

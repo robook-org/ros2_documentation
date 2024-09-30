@@ -7,17 +7,17 @@
 Writing a simple publisher and subscriber (C++)
 ===============================================
 
-**Goal:** Create and run a publisher and subscriber node using C++.
+**目标:** Create and run a publisher and subscriber node using C++.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 :doc:`Nodes <../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` are executable processes that communicate over the ROS graph.
@@ -26,7 +26,7 @@ The example used here is a simple "talker" and "listener" system; one node publi
 
 The code used in these examples can be found `here <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclcpp/topics>`__.
 
-Prerequisites
+前提条件
 -------------
 
 In previous tutorials, you learned how to :doc:`create a workspace <./Creating-A-Workspace/Creating-A-Workspace>` and :doc:`create a package <./Creating-Your-First-ROS2-Package>`.

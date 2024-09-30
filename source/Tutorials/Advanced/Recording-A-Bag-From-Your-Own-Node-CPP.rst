@@ -7,24 +7,24 @@
 Recording a bag from a node (C++)
 =================================
 
-**Goal:** Record data from your own C++ node to a bag.
+**目标:** Record data from your own C++ node to a bag.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 ``rosbag2`` doesn't just provide the ``ros2 bag`` command line tool.
 It also provides a C++ API for reading from and writing to a bag from your own source code.
 This allows you to subscribe to a topic and save the received data to a bag at the same time as performing any other processing of your choice on that data.
 
-Prerequisites
+前提条件
 -------------
 
 You should have the ``rosbag2`` packages installed as part of your regular ROS 2 setup.

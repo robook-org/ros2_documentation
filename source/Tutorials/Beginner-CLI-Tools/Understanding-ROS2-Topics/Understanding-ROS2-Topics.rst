@@ -7,17 +7,17 @@
 Understanding topics
 ====================
 
-**Goal:** Use rqt_graph and command line tools to introspect ROS 2 topics.
+**目标:** Use rqt_graph and command line tools to introspect ROS 2 topics.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 ROS 2 breaks complex systems down into many modular nodes.
@@ -32,7 +32,7 @@ A node may publish data to any number of topics and simultaneously have subscrip
 Topics are one of the main ways in which data is moved between nodes and therefore between different parts of the system.
 
 
-Prerequisites
+前提条件
 -------------
 
 The :doc:`previous tutorial <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` provides some useful background information on nodes that is built upon here.

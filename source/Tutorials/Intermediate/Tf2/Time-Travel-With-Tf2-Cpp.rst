@@ -7,17 +7,17 @@
 Traveling in time (C++)
 =======================
 
-**Goal:** Learn about advanced time travel features of tf2.
+**目标:** Learn about advanced time travel features of tf2.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In the previous tutorial, we discussed the :doc:`basics of tf2 and time <./Learning-About-Tf2-And-Time-Cpp>`.

@@ -5,17 +5,17 @@
 Adding a frame (Python)
 =======================
 
-**Goal:** Learn how to to add an extra frame to tf2.
+**目标:** Learn how to to add an extra frame to tf2.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 3
    :local:
 
-Background
+背景
 ----------
 
 In previous tutorials, we recreated the turtle demo by writing a :doc:`tf2 broadcaster <./Writing-A-Tf2-Broadcaster-Py>` and a :doc:`tf2 listener <./Writing-A-Tf2-Listener-Py>`.

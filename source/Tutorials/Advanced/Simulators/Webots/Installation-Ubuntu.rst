@@ -1,17 +1,17 @@
 Installation (Ubuntu)
 ======================================
 
-**Goal:** Install the ``webots_ros2`` package and run simulation examples on Ubuntu.
+**目标:** Install the ``webots_ros2`` package and run simulation examples on Ubuntu.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 The ``webots_ros2`` package provides an interface between ROS 2 and Webots.
@@ -20,7 +20,7 @@ This interface is used in most of the following tutorials, so it is required to 
 Other sub-packages are mainly examples that show multiple possible implementations using the interface.
 In this tutorial, you are going to install the package and learn how to run one of these examples.
 
-Prerequisites
+前提条件
 -------------
 
 It is recommended to understand basic ROS principles covered in the beginner :doc:`../../../../Tutorials`.

@@ -7,7 +7,7 @@ GurumNetworks GurumDDS
 ``rmw_gurumdds`` is an implementation of the ROS middleware interface using GurumNetworks GurumDDS. For more information about GurumDDS, visit the `GurumNetworks website <https://gurum.cc/index_eng>`_.
 
 
-Prerequisites
+前提条件
 -------------
 This guide assumes you have completed the ROS 2 environment setup process, either by :doc:`Installing ROS 2 via Deb Packages <../Ubuntu-Install-Debs>` or :doc:`Building ROS 2 from source on Ubuntu <../Alternatives/Ubuntu-Development-Setup>`.
 

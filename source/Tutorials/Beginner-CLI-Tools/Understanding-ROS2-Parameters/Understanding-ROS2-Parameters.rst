@@ -7,17 +7,17 @@
 Understanding parameters
 ========================
 
-**Goal:** Learn how to get, set, save and reload parameters in ROS 2.
+**目标:** Learn how to get, set, save and reload parameters in ROS 2.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 5 minutes
+**预计时长:** 5 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 A parameter is a configuration value of a node.
@@ -26,7 +26,7 @@ A node can store parameters as integers, floats, booleans, strings, and lists.
 In ROS 2, each node maintains its own parameters.
 For more background on parameters, please see :doc:`the concept document <../../../Concepts/Basic/About-Parameters>`.
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial uses the :doc:`turtlesim package <../Introducing-Turtlesim/Introducing-Turtlesim>`.

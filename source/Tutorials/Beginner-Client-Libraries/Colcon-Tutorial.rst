@@ -12,16 +12,16 @@ Using ``colcon`` to build packages
    :depth: 2
    :local:
 
-**Goal:** Build a ROS 2 workspace with ``colcon``.
+**目标:** Build a ROS 2 workspace with ``colcon``.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 This is a brief tutorial on how to create and build a ROS 2 workspace with ``colcon``.
 It is a practical tutorial and not designed to replace the core documentation.
 
-Background
+背景
 ----------
 
 ``colcon`` is an iteration on the ROS build tools ``catkin_make``, ``catkin_make_isolated``, ``catkin_tools`` and ``ament_tools``.
@@ -29,7 +29,7 @@ For more information on the design of colcon see `this document <https://design.
 
 The source code can be found in the `colcon GitHub organization <https://github.com/colcon>`__.
 
-Prerequisites
+前提条件
 -------------
 
 Install colcon

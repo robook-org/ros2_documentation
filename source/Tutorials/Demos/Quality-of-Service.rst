@@ -10,7 +10,7 @@ Using quality-of-service settings for lossy networks
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Please read the documentation page `about QoS settings <../../Concepts/Intermediate/About-Quality-of-Service-Settings>` for background information on available support in ROS 2.
@@ -19,7 +19,7 @@ In this demo, we will spawn a node that publishes a camera image and another tha
 We will then simulate a lossy network connection between them and show how different quality of service settings handle the bad link.
 
 
-Prerequisites
+前提条件
 -------------
 This tutorial assumes you have a :doc:`working ROS 2 installation <../../Installation>` and OpenCV.
 See the `OpenCV documentation <http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction>`__ for its installation instructions.

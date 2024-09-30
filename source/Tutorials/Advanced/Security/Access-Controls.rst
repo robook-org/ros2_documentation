@@ -7,18 +7,18 @@
 Setting access controls
 =======================
 
-**Goal:** Limit the topics a node can use.
+**目标:** Limit the topics a node can use.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
 
-Background
+背景
 ----------
 
 Permissions are quite flexible and can be used to control many behaviors within the ROS graph.

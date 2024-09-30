@@ -7,17 +7,17 @@
 Using URDF with ``robot_state_publisher``
 =========================================
 
-**Goal:** Simulate a walking robot modeled in URDF and view it in Rviz.
+**目标:** Simulate a walking robot modeled in URDF and view it in Rviz.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 This tutorial will show you how to model a walking robot, publish the state as a `tf2 <https://wiki.ros.org/tf2>`__ message and view the simulation in Rviz.
@@ -27,7 +27,7 @@ We then use ``robot_state_publisher`` to publish the entire robot state to ``/tf
 
 .. image:: images/r2d2_rviz_demo.gif
 
-Prerequisites
+前提条件
 -------------
 
 - `rviz2 <https://index.ros.org/p/rviz2/>`__

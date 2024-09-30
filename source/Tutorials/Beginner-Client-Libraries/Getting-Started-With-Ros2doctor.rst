@@ -7,24 +7,24 @@
 Using ``ros2doctor`` to identify issues
 =======================================
 
-**Goal:** Identify issues in your ROS 2 setup using the ``ros2doctor`` tool.
+**目标:** Identify issues in your ROS 2 setup using the ``ros2doctor`` tool.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 When your ROS 2 setup is not running as expected, you can check its settings with the ``ros2doctor`` tool.
 
 ``ros2doctor`` checks all aspects of ROS 2, including platform, version, network, environment, running systems and more, and warns you about possible errors and reasons for issues.
 
-Prerequisites
+前提条件
 -------------
 
 ``ros2doctor`` is part of the ``ros2cli`` package.

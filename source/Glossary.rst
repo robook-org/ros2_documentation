@@ -93,3 +93,6 @@ Glossary of terms used throughout this documentation:
 
     example
         示例，样例，例子。
+
+    deadlock
+        死锁。

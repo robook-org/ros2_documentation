@@ -1,48 +1,37 @@
-Using Callback Groups
+使用 Callback Groups
 =====================
 
-When running a node in a Multi-Threaded Executor, ROS 2 offers callback
-groups as a tool for controlling the execution of different callbacks.
-This page is meant as a guide on how to use callback groups efficiently.
-It is assumed that the reader has a basic understanding
-about the concept of :doc:`executors <../Concepts/Intermediate/About-Executors>`.
+在 Multi-Threaded Executor 中运行节点时，ROS 2 提供了回调函数组作为控制不同回调执行的工具。
+本页面旨在指导如何高效使用回调函数组(callback groups)。
+
+
+本页面假设读者对 :doc:`executors <../Concepts/Intermediate/About-Executors>` 的概念有基本了解。
+
 
 .. contents:: Table of Contents
    :local:
 
-Basics of callback groups
+callback groups 基础
 -------------------------
 
-When running a node in a Multi-Threaded Executor,
-ROS 2 offers two different types of callback groups for controlling
-execution of callbacks:
+在 Multi-Threaded Executor 中运行节点时，ROS 2 提供了两种不同类型的回调函数组(callback groups)来控制回调的执行：
 
 * Mutually Exclusive Callback Group
 * Reentrant Callback Group
 
-These callback groups restrict the execution of their callbacks in
-different ways.
-In short:
+这些回调组以不同的方式限制其回调的执行。
+简单来说：
 
-* Mutually Exclusive Callback Group prevents its callbacks from being
-  executed in parallel - essentially making it as if the callbacks in the group
-  were executed by a SingleThreadedExecutor.
-* Reentrant Callback Group allows the executor to schedule and execute
-  the group's callbacks in any way it sees fit, without restrictions.
-  This means that, in addition to different callbacks being run parallel
-  to each other, different instances of the same callback may also be
-  executed concurrently.
-* Callbacks belonging to different callback groups (of any type) can always
-  be executed parallel to each other.
+* Mutually Exclusive Callback Group 会阻止其回调并行执行 - 本质上使得组中的回调像由 SingleThreadedExecutor 执行的一样。
+* Reentrant Callback Group 允许执行器以任何方式安排和执行 组的回调，没有限制。
+  这意味着，除了不同回调函数之间并行执行外，同一回调函数的不同实例也可以并发执行(译者注：比如说某个 subscription 的回调函数被快速的调用了好几次，这几次调用也可能是并行的)。
+* 属于不同回调组的回调（任何类型的）总是可以并行执行。
 
-It is also important to keep in mind that different ROS 2 entities relay
-their callback group to all callbacks they spawn.
-For example, if one assigns a callback group to an action client,
-all callbacks created by the client will be assigned to that callback group.
+要始终记住的是，不同的 ROS 2 实体会将其回调组传递给它们生成的所有回调。
+例如，如果给一个 action client 分配了一个回调组，那么由这个 client 创建的所有回调都将分配给该回调组。
 
-Callback groups can be created by a node's ``create_callback_group``
-function in rclcpp and by calling the constructor of the group in rclpy.
-The callback group can then be passed as argument/option when creating a subscription, timer, etc.
+Callback groups 可以通过 rclcpp 的 ``create_callback_group`` 函数或是 rclpy 的对应组的构造函数创建。
+然后，回调组可以作为参数/选项在创建 subscription、timer 等时传递进去。
 
 .. tabs::
 
@@ -66,130 +55,94 @@ The callback group can then be passed as argument/option when creating a subscri
       my_subscription = self.create_subscription(Int32, "/topic", self.callback, qos_profile=1,
                                                   callback_group=my_callback_group)
 
-If the user does not specify any callback group when creating a subscription,
-timer, etc., this entity will be assigned to the node's default callback group.
-The default callback group is a Mutually Exclusive Callback Group and it can be
-queried via ``NodeBaseInterface::get_default_callback_group()`` in rclcpp and
-via ``Node.default_callback_group`` in rclpy.
+所有没有指定回调组的 subscriptions、timer 等都被分配给 *默认回调组(default callback group)* 。
+默认回调组是一个 Mutually Exclusive Callback Group，在 rclcpp 中可以通过 ``NodeBaseInterface::get_default_callback_group()`` 查询，在 rclpy 中可以通过 ``Node.default_callback_group`` 查询。
 
-About callbacks
+关于 callbacks
 ^^^^^^^^^^^^^^^
 
-In the context of ROS 2 and executors, a callback means a function whose
-scheduling and execution is handled by an executor.
-Examples of callbacks in this context are
+在 ROS 2 和执行器(executors)的 context 中，回调(callback)指的是一个由执行器调度和执行的函数。
+例如：
 
-* subscription callbacks (receiving and handling data from a topic),
+* subscription callbacks (从 topic 接收并处理消息),
 * timer callbacks,
-* service callbacks (for executing service requests in a server),
-* different callbacks in action servers and clients,
-* done-callbacks of Futures.
+* service callbacks (用于在服务端处理 service requests),
+* action 服务端和客户端的不同 callbacks,
+* Futures 的 done-callbacks. (译者注： “Future” 是异步编程中的一个概念，并非ROS 2特有，若需要了解这个例子的含义请先学习异步编程有关的知识)
 
-Below are a couple important points about callbacks that should be kept
-in mind when working with callback groups.
+在处理回调组时，有几个关于回调的重要信息应该牢记在心。
 
-* Almost everything in ROS 2 is a callback!
-  Every function that is run by an executor is, by definition, a callback.
-  The non-callback functions in a ROS 2 system are found mainly at
-  the edge of the system (user and sensor inputs etc).
-* Sometimes the callbacks are hidden and their presence may not be obvious
-  from the user/developer API.
-  This is the case especially with any kind of “synchronous” call to a
-  service or an action (in rclpy).
-  For example, the synchronous call ``Client.call(request)`` to a service
-  adds a Future's done-callback that needs to be executed during the
-  execution of the function call, but this callback is not directly
-  visible to the user.
+* 在 ROS 2 中几乎所有东西都是回调！
+  由执行器执行的每个函数都是回调。
+  ROS 2 系统中的非回调函数主要位于系统的边缘（用户和传感器输入等）。
+* 有些时候从用户/开发者 API 中可能看不到回调的存在。
+  这种情况尤其出现在任何类型的“同步”调用(“synchronous” call) service 或 action 时（在 rclpy 中）。
+  例如，对服务的同步调用 ``Client.call(request)`` 会添加一个 Future 的 done-callback，这个 callback 需要在函数调用期间执行，但这个回调对用户来说并不直接可见。
+  (译者注：也就是说即使在用户看来， ``call()`` 这个过程是同步发生的，但其实背后也是用回调实现的，只是这个回调会阻塞 ``call()`` 到结果返回，而一般这个回调消耗的时间并不多，所以看起来也像是一个同步执行的函数。)
 
 
-Controlling execution
----------------------
+控制执行(Controlling execution)
+----------------------------------------
 
-In order to control execution with callback groups, one can consider the
-following guidelines.
+为了使用回调组控制执行，可以考虑遵循以下指导。
 
-For the interaction of an individual callback with itself:
+考虑一个回调函数与自身的交互关系：
 
-* Register it to a Reentrant Callback Group if it should be executed in parallel to itself.
-  An example case could be an action/service server that needs to be able to
-  process several action calls in parallel to each other.
+* 如果一个回调函数可能与自身并行执行，将其注册到 Reentrant Callback Group。
+  一个例子是一个需要能够并行处理多个 action 调用的 action/service server。
 
-* Register it to a Mutually Exclusive Callback Group if it should **never** be executed in parallel to itself.
-  An example case could be a timer callback that runs a control loop that publishes control commands.
+* 如果一个回调函数 **永远** 不应该与自身并行执行，将其注册到 Mutually Exclusive Callback Group。
 
-For the interaction of different callbacks with each other:
+考虑不同回调之间的交互关系：
 
-* Register them to the same Mutually Exclusive Callback Group if they should **never** be executed in parallel.
-  An example case could be that the callbacks are accessing shared critical and non-thread-safe resources.
+* 如果它们 **永远** 不应该并行执行，将它们注册到同一个 Mutually Exclusive Callback Group。
+  一个例子是回调访问共享的关键资源和非线程安全资源。
 
-If they should be executed in parallel, you have two options,
-depending on whether the individual callbacks should be able to overlap themselves or not:
+如果它们应该并行执行，有两种选择，取决于个别回调是否应该能够与自身重叠：
 
-* Register them to different Mutually Exclusive Callback Groups (no overlap of the individual callbacks)
+* 将它们注册到不同的 Mutually Exclusive Callback Group（各自的回调自身不会重叠）
 
-* Register them to a Reentrant Callback Group (overlap of the individual callbacks)
+* 将它们注册到 Reentrant Callback Group（各自的回调自身可能重叠）
 
-An example case of running different callbacks in parallel is a Node that has
-a synchronous service client and a timer calling this service.
-See the detailed example below.
+一个例子是一个节点有一个同步的 service 客户端和一个定时调用这个服务的 timer 。
+查看下面的详细示例。
 
-Avoiding deadlocks
-------------------
+避免死锁(Avoiding deadlocks)
+----------------------------------
 
-Setting up callback groups of a node incorrectly can lead to deadlocks (or
-other unwanted behavior), especially if one desires to use synchronous calls to
-services or actions.
-Indeed, even the API documentation of ROS 2 mentions that
-synchronous calls to actions or services should not be done in callbacks,
-because it can lead to deadlocks.
-While using asynchronous calls is indeed safer in this regard, synchronous
-calls can also be made to work.
-On the other hand, synchronous calls also have their advantages, such as
-making the code simpler and easier to understand.
-Hence, this section provides some guidelines on how to set up a node's
-callback groups correctly in order to avoid deadlocks.
+错误地设置节点的回调组可能导致死锁（或其他不希望的行为），尤其是如果希望对 service 或 action 使用同步调用。
+事实上，ROS 2 的 API 文档中提到，不应该在回调中进行同步调用，因为这可能导致死锁。
+虽然使用异步调用(asynchronous calls)确实在这方面更安全，但也有办法让同步调用可以正常工作。
+另一方面，同步调用也有其优点，例如使代码更简单易懂。
+因此，本节提供了一些关于如何正确设置节点的回调组以避免死锁的指导。
 
-First thing to note here is that every node's default callback group is a
-Mutually Exclusive Callback Group.
-If the user does not specify any other callback group when creating a timer,
-subscription, client etc., any callbacks created then or later by these
-entities will use the node's default callback group.
-Furthermore, if everything in a node uses the same Mutually Exclusive
-Callback Group, that node essentially acts as if it was handled
-by a Single-Threaded Executor, even if a multi-threaded one is specified!
-Thus, whenever one decides to use a Multi-Threaded Executor,
-some callback group(s) should always be specified in order for the
-executor choice to make sense.
+首先要注意的是，每个节点的默认回调组是一个 Mutually Exclusive Callback Group。
+如果用户在创建 timer、subscription、客户端等时没有指定回调组，那么这些实体创建的所有回调都将使用节点的默认回调组。
+此外，如果节点的所有回调都使用相同的 Mutually Exclusive Callback Group，那么该节点实际上就像是由 Single-Threaded Executor 处理的一样，即使指定了 Multi-Threaded Executor！
+因此，每当决定使用 Multi-Threaded Executor 时，应始终在节点的回调中指定一个或多个回调组。
+记住上面这些信息，以下是一些指导，帮助你避免死锁：
 
-With the above in mind, here are a couple guidelines to help avoid deadlocks:
+* 如果在任何类型的回调中进行同步调用，这个回调和进行发起请求的客户端需要属于
 
-* If you make a synchronous call in any type of a callback, this callback and
-  the client making the call need to belong to
+  * 不同类型的回调组（任何类型），或
+  * 一个 Reentrant Callback Group。
 
-  * different callback groups (of any type), or
-  * a Reentrant Callback Group.
+* 如果上述配置由于其他要求（例如线程安全和/或在等待结果时阻止其他回调）而无法实现，请使用异步调用。
 
-* If the above configuration is not possible due to other requirements - such
-  as thread-safety and/or blocking of other callbacks while waiting for the
-  result (or if you want to make absolutely sure that there is never a
-  possibility of a deadlock), use asynchronous calls.
-
-Failing the first point will always cause a deadlock.
-An example of such a case would be making a synchronous service call
-in a timer callback (see the next section for an example).
+如果不能满足上述第一点的要求，那么一定会导致死锁。
+这种情况的一个例子是在 timer 的回调中进行同步服务调用（请参见下一节的示例）。
 
 
-Examples
+示例
 --------
 
-Let us look at some simple examples of different callback group setups.
-The following demo code considers calling a service synchronously in a timer
-callback.
+让我们看一些不同回调组设置的简单示例。
+以下代码演示在 timer 回调中同步地调用服务。
 
 Demo code
 ^^^^^^^^^
 
-We have two nodes - one providing a simple service:
+我们需要两个节点，其中一个包含一个简单的 service 服务端:
 
 .. tabs::
 
@@ -274,17 +227,14 @@ We have two nodes - one providing a simple service:
             node.destroy_node()
             rclpy.shutdown()
 
-and another containing a client to the service along with a timer for making
-service calls:
+另一个节点包含一个 service 客户端和一个 timer 用于向服务器发出请求：
 
 .. tabs::
 
   .. group-tab:: C++
 
-    *Note:* The API of service client in rclcpp does not offer a
-    synchronous call method similar to the one in rclpy, so we
-    wait on the future object to simulate the effect of a
-    synchronous call.
+    *注意:* service 客户端在 rclcpp 中没有提供类似 rclpy 中的同步调用方法，
+    所以我们通过等待 future 对象来模拟同步调用的效果。
 
     .. code-block:: cpp
 
@@ -384,20 +334,15 @@ service calls:
           node.destroy_node()
           rclpy.shutdown()
 
-The client node's constructor contains options for setting the
-callback groups of the service client and the timer.
-With the default setting above (both being ``nullptr`` / ``None``),
-both the timer and the client will use the node's default
-Mutually Exclusive Callback Group.
+在上面的代码中，客户端节点的构造函数包含对 service 客户端和 timer 回调组的配置。
+默认设置如上（都为 ``nullptr`` / ``None``）。
+此时 timer 和客户端都将使用节点的默认 Mutually Exclusive Callback Group。
 
-The problem
+问题所在
 ^^^^^^^^^^^
 
-Since we are making service calls with a 1 second timer, the
-expected outcome is that the service gets called once a second,
-the client always gets a response and prints ``Received response``.
-If we try running the server and client nodes
-in terminals, we get the following outputs.
+我们使用 1 秒的定时器进行服务调用，预期结果是服务每秒被调用一次，客户端会收到响应并打印 ``Received response``。
+但是，如果我们在终端中运行服务器和客户端节点，我们会得到以下输出。
 
 .. tabs::
 
@@ -417,31 +362,30 @@ in terminals, we get the following outputs.
       [INFO] [1653034372.758197320] [service_node]: Received request, responding...
       ^C[INFO] [1653034416.021962246] [service_node]: Keyboard interrupt, shutting down.
 
-So, it turns out that instead of the service being called repeatedly,
-the response of the first call is never received, after which the
-client node seemingly gets stuck and does not make further calls.
-That is, the execution stopped at a deadlock!
+可以看到，service 并没有如期每秒被调用一次，而是在第一次调用后就没有再次调用。
+看起来似乎客户端节点卡住了，不再发出调用。这就是说，回调在执行中死锁了！
 
-The reason for this is that the timer callback and the client are
-using the same Mutually Exclusive Callback Group (the node's default).
-When the service call is made, the client then passes its callback
-group to the Future object (hidden inside the call-method in the
-Python version) whose done-callback needs to execute for the result
-of the service call to be available.
-But because this done-callback and the timer callback are in the
-same Mutually Exclusive group and the timer callback is still
-executing (waiting for the result of the service call),
-the done-callback never gets to execute.
-The stuck timer callback also blocks any other executions of itself, so the
-timer does not fire for a second time.
+这个现象的原因是，定时器回调和客户端都使用了相同的 Mutually Exclusive Callback Group（节点的默认回调组）。
+当发出请求时，客户端将给 Future 对象（Python 版本中的 call 方法内部隐藏的 Future 对象）的回调组设置为自己的回调组，
+这个 Future 的 done-callback 需要在调用的结果返回时执行。
+但是因为这个 done-callback 和定时器回调在同一个 Mutually Exclusive 组中，而定时器回调仍没有返回（等待服务调用的结果），
+所以 done-callback 永远不会执行。
+这个卡住的定时器回调也会导致回调组里面的其他操作也不能执行，所以定时器不会被第二次触发。
 
-Solution
+译者注：Mutually Exclusive Callback Group 中的回调函数是一个一个挨着执行的，只有前一个回调函数执行完了，下一个回调函数才能执行。
+那么让我们考虑上面的例子。最开始 gruop 需要运行的回调函数列表里面是空的。一开始，我们往里面添加了一个 timer 的回调函数，称之为 timer_callback。
+在 timer_callback 中，我们运行了一个发出请求的函数，叫它 request_call, quest_call 会向 group 内添加一个需要执行的回调函数,叫它 response_callback.
+此时 group 里面有两个回调函数，前面的是 timer_callback，后面的是 response_callback。
+quest_call 只有得到 response_callback 的结果才会返回。
+但是要想执行到 response_callback，需要先执行完 timer_callback。可是 timer_callback 里面的 request_call 又在等待 response_callback 的结果。
+这样就形成了一个死锁(deadlock)。
+
+
+解决方法
 ^^^^^^^^
 
-We can fix this easily - for example - by assigning the timer and client
-to different callback groups.
-Thus, let us change the first two lines of the client node's constructor
-to be as follows (everything else shall stay the same):
+所幸这个问题很容易解决 - 例如 - 通过将定时器和客户端分配给不同的回调组。
+那么让我们把客户端节点的构造函数的前两行改成这样（其他内容保持不变）：
 
 .. tabs::
 
@@ -459,8 +403,7 @@ to be as follows (everything else shall stay the same):
       client_cb_group = MutuallyExclusiveCallbackGroup()
       timer_cb_group = MutuallyExclusiveCallbackGroup()
 
-Now we get the expected result, i.e. the timer fires repeatedly and
-each service call gets the result as it should:
+现在我们得到了预期的结果，即定时器会重复触发，每次请求也都会得到结果：
 
 .. tabs::
 
@@ -490,12 +433,9 @@ each service call gets the result as it should:
       [INFO] [1653067527.432272441] [service_node]: Received request, responding...
       ^C[INFO] [1653034416.021962246] [service_node]: KeyboardInterrupt, shutting down.
 
-One might consider if just avoiding the node's default callback group
-is enough.
-This is not the case: replacing the default group by a
-different Mutually Exclusive group changes nothing.
-Thus, the following configuration also leads to the previously
-discovered deadlock.
+这时候你可能会想：“那是不是只要不是使用节点默认的回调函数组就行了？”
+其实并不是这样，如果你尝试把默认的回调组替换成其他的 Mutually Exclusive group ，问题也依然存在。
+以下这样的配置也会导致之前发现的死锁。
 
 .. tabs::
 
@@ -513,12 +453,8 @@ discovered deadlock.
       client_cb_group = MutuallyExclusiveCallbackGroup()
       timer_cb_group = client_cb_group
 
-In fact, the exact condition with which everything works in this case
-is that the timer and client must not belong to the same
-Mutually Exclusive group.
-Hence, all of the following configurations (and some others as well)
-produce the desired outcome where the timer fires
-repeatedly and service calls are completed.
+这是因为在这种情况下，定时器和客户端还是属于同一个 Mutually Exclusive group。
+如下的这些配置组合才能让 timer 和 service 的表现如我们预期一般。
 
 .. tabs::
 

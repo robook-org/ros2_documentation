@@ -405,7 +405,7 @@
           <li class="breadcrumb-item"><a href="../Migrating-from-ROS1.html">Migrating from ROS 1 to ROS 2</a></li>
       <li class="breadcrumb-item active">Migrating C++ Packages</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/How-To-Guides/Migrating-from-ROS1/Migrating-CPP-Packages.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/How-To-Guides/Migrating-from-ROS1/Migrating-CPP-Packages.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -421,26 +421,33 @@
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#build-tool" id="id1">Build tool</a></p></li>
-<li><p><a class="reference internal" href="#build-system" id="id2">Build system</a></p>
+<li><p><a class="reference internal" href="#update-your-cmakelists-txt-to-use-ament-cmake" id="id2">Update your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> to use <em>ament_cmake</em></a></p>
 <ul>
-<li><p><a class="reference internal" href="#update-the-cmakelists-txt-to-use-ament-cmake" id="id3">Update the <em>CMakeLists.txt</em> to use <em>ament_cmake</em></a></p></li>
-<li><p><a class="reference internal" href="#unit-tests" id="id4">Unit tests</a></p></li>
-<li><p><a class="reference internal" href="#linters" id="id5">Linters</a></p></li>
+<li><p><a class="reference internal" href="#require-a-newer-version-of-cmake" id="id3">Require a newer version of CMake</a></p></li>
+<li><p><a class="reference internal" href="#set-the-build-type-to-ament-cmake" id="id4">Set the build type to ament_cmake</a></p></li>
+<li><p><a class="reference internal" href="#add-a-call-to-ament-package" id="id5">Add a call to <code class="docutils literal notranslate"><span class="pre">ament_package()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#update-find-package-calls" id="id6">Update <code class="docutils literal notranslate"><span class="pre">find_package()</span></code> calls</a></p></li>
+<li><p><a class="reference internal" href="#use-modern-cmake-targets" id="id7">Use modern CMake targets</a></p></li>
+<li><p><a class="reference internal" href="#replace-catkin-package-with-various-ament-cmake-calls" id="id8">Replace <code class="docutils literal notranslate"><span class="pre">catkin_package()</span></code> with various ament_cmake calls</a></p></li>
+<li><p><a class="reference internal" href="#generate-messages" id="id9">Generate messages</a></p></li>
+<li><p><a class="reference internal" href="#remove-references-to-the-devel-space" id="id10">Remove references to the devel space</a></p></li>
+<li><p><a class="reference internal" href="#unit-tests" id="id11">Unit tests</a></p></li>
+<li><p><a class="reference internal" href="#linters" id="id12">Linters</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#update-source-code" id="id6">Update source code</a></p>
+<li><p><a class="reference internal" href="#update-source-code" id="id13">Update source code</a></p>
 <ul>
-<li><p><a class="reference internal" href="#messages-services-and-actions" id="id7">Messages, services, and actions</a></p></li>
-<li><p><a class="reference internal" href="#use-of-service-objects" id="id8">Use of service objects</a></p></li>
-<li><p><a class="reference internal" href="#usages-of-ros-time" id="id9">Usages of ros::Time</a></p></li>
-<li><p><a class="reference internal" href="#usages-of-ros-rate" id="id10">Usages of ros::Rate</a></p></li>
-<li><p><a class="reference internal" href="#boost" id="id11">Boost</a></p></li>
+<li><p><a class="reference internal" href="#messages-services-and-actions" id="id14">Messages, services, and actions</a></p></li>
+<li><p><a class="reference internal" href="#use-of-service-objects" id="id15">Use of service objects</a></p></li>
+<li><p><a class="reference internal" href="#usages-of-ros-time" id="id16">Usages of ros::Time</a></p></li>
+<li><p><a class="reference internal" href="#usages-of-ros-rate" id="id17">Usages of ros::Rate</a></p></li>
+<li><p><a class="reference internal" href="#boost" id="id18">Boost</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#example-converting-an-existing-ros-1-package-to-ros-2" id="id12">Example: Converting an existing ROS 1 package to ROS 2</a></p>
+<li><p><a class="reference internal" href="#example-converting-an-existing-ros-1-package-to-ros-2" id="id19">Example: Converting an existing ROS 1 package to ROS 2</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-ros-1-code" id="id13">The ROS 1 code</a></p></li>
-<li><p><a class="reference internal" href="#migrating-to-ros-2" id="id14">Migrating to ROS 2</a></p></li>
+<li><p><a class="reference internal" href="#the-ros-1-code" id="id20">The ROS 1 code</a></p></li>
+<li><p><a class="reference internal" href="#migrating-to-ros-2" id="id21">Migrating to ROS 2</a></p></li>
 </ul>
 </li>
 </ul>
@@ -450,119 +457,283 @@
 <p>Instead of using <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code>, <code class="docutils literal notranslate"><span class="pre">catkin_make_isolated</span></code> or <code class="docutils literal notranslate"><span class="pre">catkin</span> <span class="pre">build</span></code> ROS 2 uses the command line tool <a class="reference external" href="https://design.ros2.org/articles/build_tool.html">colcon</a> to build and install a set of packages.
 See the <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html"><span class="doc">beginner tutorial</span></a> to get started with <code class="docutils literal notranslate"><span class="pre">colcon</span></code>.</p>
 </section>
-<section id="build-system">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Build system</a><a class="headerlink" href="#build-system" title="Link to this heading"></a></h2>
-<p>The build system in ROS 2 is called <a class="reference external" href="https://design.ros2.org/articles/ament.html">ament</a>.
-Ament is built on CMake: <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> provides CMake functions to make writing <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> files easier.</p>
-<section id="update-the-cmakelists-txt-to-use-ament-cmake">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Update the <em>CMakeLists.txt</em> to use <em>ament_cmake</em></a><a class="headerlink" href="#update-the-cmakelists-txt-to-use-ament-cmake" title="Link to this heading"></a></h3>
-<p>Apply the following changes to use <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> instead of <code class="docutils literal notranslate"><span class="pre">catkin</span></code>:</p>
-<ul>
-<li><p>Set the build type in the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> file export section:</p>
+<section id="update-your-cmakelists-txt-to-use-ament-cmake">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Update your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> to use <em>ament_cmake</em></a><a class="headerlink" href="#update-your-cmakelists-txt-to-use-ament-cmake" title="Link to this heading"></a></h2>
+<p>ROS 2 C++ packages use <a class="reference external" href="https://cmake.org/">CMake</a> with convenience functions provided by <a class="reference external" href="https://index.ros.org/p/ament_cmake/">ament_cmake</a>.
+Apply the following changes to use <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> instead of <code class="docutils literal notranslate"><span class="pre">catkin</span></code>.</p>
+<section id="require-a-newer-version-of-cmake">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Require a newer version of CMake</a><a class="headerlink" href="#require-a-newer-version-of-cmake" title="Link to this heading"></a></h3>
+<p>ROS 2 relies on newer versions of CMake than used by ROS 1.
+Find the minimum version of CMake used by the ROS distribution you want to support in <a class="reference external" href="https://www.ros.org/reps/rep-2000.html">REP 2000</a>, and use that version at the top of your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>.
+For example, <a class="reference external" href="https://www.ros.org/reps/rep-2000.html#humble-hawksbill-may-2022-may-2027">3.14.4 is the minimum recommended support for ROS Humble</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake_minimum_required</span><span class="p">(</span><span class="n">VERSION</span> <span class="mf">3.14.4</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="set-the-build-type-to-ament-cmake">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Set the build type to ament_cmake</a><a class="headerlink" href="#set-the-build-type-to-ament-cmake" title="Link to this heading"></a></h3>
+<p>Remove any dependencies on <code class="docutils literal notranslate"><span class="pre">catkin</span></code> from your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove this!</span>
+<span class="o">&lt;</span><span class="n">buildtool_depend</span><span class="o">&gt;</span><span class="n">catkin</span><span class="o">&lt;/</span><span class="n">buildtool_depend</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Add a new dependency on <code class="docutils literal notranslate"><span class="pre">ament_cmake_ros</span></code> (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/package.xml#L25">example</a>):</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;buildtool_depend&gt;</span>ament_cmake_ros<span class="nt">&lt;/buildtool_depend&gt;</span>
+</pre></div>
+</div>
+<p>Add an <code class="docutils literal notranslate"><span class="pre">&lt;export&gt;</span></code> section to your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> if it does not have one already.
+Set the <code class="docutils literal notranslate"><span class="pre">&lt;build_type&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/package.xml#L43-L45">example</a>)</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;export&gt;</span>
-<span class="w">  </span><span class="nt">&lt;build_type&gt;</span>ament_cmake<span class="nt">&lt;/build_type&gt;</span>
+<span class="w">   </span><span class="nt">&lt;build_type&gt;</span>ament_cmake<span class="nt">&lt;/build_type&gt;</span>
 <span class="nt">&lt;/export&gt;</span>
 </pre></div>
 </div>
-</li>
-<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">find_package</span></code> invocation with <code class="docutils literal notranslate"><span class="pre">catkin</span></code> and the <code class="docutils literal notranslate"><span class="pre">COMPONENTS</span></code> with:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">find_package</span><span class="p">(</span><span class="s">component1</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-<span class="c"># ...</span>
-<span class="nb">find_package</span><span class="p">(</span><span class="s">componentN</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+</section>
+<section id="add-a-call-to-ament-package">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Add a call to <code class="docutils literal notranslate"><span class="pre">ament_package()</span></code></a><a class="headerlink" href="#add-a-call-to-ament-package" title="Link to this heading"></a></h3>
+<p>Insert a call to <code class="docutils literal notranslate"><span class="pre">ament_package()</span></code> at the bottom of your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/CMakeLists.txt#L127">example</a>)</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Add this to the bottom of your CMakeLists.txt</span>
+<span class="nb">ament_package</span><span class="p">()</span>
 </pre></div>
 </div>
-</li>
-<li><p>Move and update the <code class="docutils literal notranslate"><span class="pre">catkin_package</span></code> invocation with:</p>
+</section>
+<section id="update-find-package-calls">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Update <code class="docutils literal notranslate"><span class="pre">find_package()</span></code> calls</a><a class="headerlink" href="#update-find-package-calls" title="Link to this heading"></a></h3>
+<p>Replace the <code class="docutils literal notranslate"><span class="pre">find_package(catkin</span> <span class="pre">COMPONENTS</span> <span class="pre">...)</span></code>  call with individual <code class="docutils literal notranslate"><span class="pre">find_package()</span></code> calls (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/CMakeLists.txt#L14-L18">example</a>):</p>
+<p>For example, change this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">find_package</span><span class="p">(</span><span class="n">catkin</span> <span class="n">REQUIRED</span> <span class="n">COMPONENTS</span> <span class="n">foo</span> <span class="n">bar</span> <span class="n">std_msgs</span><span class="p">)</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">baz</span> <span class="n">REQUIRED</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To this:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake_ros</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">foo</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">bar</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">std_msgs</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">baz</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="use-modern-cmake-targets">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Use modern CMake targets</a><a class="headerlink" href="#use-modern-cmake-targets" title="Link to this heading"></a></h3>
+<p>Prefer to use per-target CMake functions so that your package can export modern CMake targets.</p>
+<p>If your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> uses <code class="docutils literal notranslate"><span class="pre">include_directories()</span></code>, then delete those calls.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Delete calls to include_directories like this one!
+include_directories(include ${catkin_INCLUDE_DIRS})
+</pre></div>
+</div>
+<p>Add a call <code class="docutils literal notranslate"><span class="pre">target_include_directories()</span></code> for every library in your pacakage (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/CMakeLists.txt#L24-L26">example</a>).</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_include_directories</span><span class="p">(</span><span class="s">my_library</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">   </span><span class="s2">&quot;$&lt;BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include&gt;&quot;</span>
+<span class="w">   </span><span class="s2">&quot;$&lt;INSTALL_INTERFACE:include/${PROJECT_NAME}&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Change all <code class="docutils literal notranslate"><span class="pre">target_link_libraries()</span></code> calls to use modern CMake targets.
+For example, if your package in ROS 1 uses old-style standard CMake variables like this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>target_link_libraries(my_library ${catkin_LIBRARIES} ${baz_LIBRARIES})
+</pre></div>
+</div>
+<p>Then change it to use specific modern CMake targets instead.
+Use <code class="docutils literal notranslate"><span class="pre">${package_name_TARGETS}</span></code> if the package you’re depending on is a message package such as <code class="docutils literal notranslate"><span class="pre">std_msgs</span></code>.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_library</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">foo::foo</span><span class="w"> </span><span class="s">bar::bar</span><span class="w"> </span><span class="o">${</span><span class="nv">std_msgs_TARGETS</span><span class="o">}</span><span class="w"> </span><span class="s">baz::baz</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Choose <code class="docutils literal notranslate"><span class="pre">PUBLIC</span></code> or <code class="docutils literal notranslate"><span class="pre">PRIVATE</span></code> based on how the dependency is used by your library (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/CMakeLists.txt#L27-L31">example</a>).</p>
 <ul class="simple">
-<li><p>Invoke <code class="docutils literal notranslate"><span class="pre">ament_package</span></code> instead but <strong>after</strong> all targets have been registered.</p></li>
-<li><p>The only valid argument for <a class="reference external" href="https://github.com/ament/ament_cmake/blob/rolling/ament_cmake_core/cmake/core/ament_package.cmake">ament_package</a> is <code class="docutils literal notranslate"><span class="pre">CONFIG_EXTRAS</span></code>.
-All other arguments are covered by separate functions which all need to be invoked <em>before</em> <code class="docutils literal notranslate"><span class="pre">ament_package</span></code>:</p>
-<ul>
-<li><p>Instead of passing <code class="docutils literal notranslate"><span class="pre">CATKIN_DEPENDS</span> <span class="pre">...</span></code> call <code class="docutils literal notranslate"><span class="pre">ament_export_dependencies(...)</span></code> before.</p></li>
-<li><p>Instead of passing <code class="docutils literal notranslate"><span class="pre">INCLUDE_DIRS</span> <span class="pre">...</span></code> call <code class="docutils literal notranslate"><span class="pre">ament_export_include_directories(...)</span></code> before.</p></li>
-<li><p>Instead of passing <code class="docutils literal notranslate"><span class="pre">LIBRARIES</span> <span class="pre">...</span></code> call <code class="docutils literal notranslate"><span class="pre">ament_export_libraries(...)</span></code> before.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">PUBLIC</span></code> if the dependency is needed by downstream users, for example, your library’s public API uses it.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">PRIVATE</span></code> if the dependency is only used internally by your library.</p></li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>Replace the invocation of <code class="docutils literal notranslate"><span class="pre">add_message_files</span></code>, <code class="docutils literal notranslate"><span class="pre">add_service_files</span></code> and <code class="docutils literal notranslate"><span class="pre">generate_messages</span></code> with <a class="reference external" href="https://github.com/ros2/rosidl/blob/rolling/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake">rosidl_generate_interfaces</a>.</p>
-<ul>
-<li><p>The first argument is the <code class="docutils literal notranslate"><span class="pre">target_name</span></code>.
-If you’re building just one library it’s <code class="docutils literal notranslate"><span class="pre">${PROJECT_NAME}</span></code></p></li>
-<li><p>Followed by the list of message filenames, relative to the package root.</p>
-<ul class="simple">
-<li><p>If you will be using the list of filenames multiple times, it is recommended to compose a list of message files and pass the list to the function for clarity.</p></li>
-</ul>
-</li>
-<li><p>The final multi-value-keyword argument fpr <code class="docutils literal notranslate"><span class="pre">generate_messages</span></code> is <code class="docutils literal notranslate"><span class="pre">DEPENDENCIES</span></code> which requires the list of dependent message packages.</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">rosidl_generate_interfaces</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
-<span class="w">  </span><span class="o">${</span><span class="nv">msg_files</span><span class="o">}</span>
-<span class="w">  </span><span class="s">DEPENDENCIES</span><span class="w"> </span><span class="s">std_msgs</span>
+</section>
+<section id="replace-catkin-package-with-various-ament-cmake-calls">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Replace <code class="docutils literal notranslate"><span class="pre">catkin_package()</span></code> with various ament_cmake calls</a><a class="headerlink" href="#replace-catkin-package-with-various-ament-cmake-calls" title="Link to this heading"></a></h3>
+<p>Imagine your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> has a call to <code class="docutils literal notranslate"><span class="pre">catkin_package</span></code> like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>catkin_package(
+    INCLUDE_DIRS include
+    LIBRARIES my_library
+    CATKIN_DEPENDS foo bar std_msgs
+    DEPENDS baz
+)
+
+install(TARGETS my_library
+   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+</pre></div>
+</div>
+<section id="replacing-catkin-package-include-dirs">
+<h4>Replacing <code class="docutils literal notranslate"><span class="pre">catkin_package(INCLUDE_DIRS</span> <span class="pre">...)</span></code><a class="headerlink" href="#replacing-catkin-package-include-dirs" title="Link to this heading"></a></h4>
+<p>If you’ve used modern CMake targets and <code class="docutils literal notranslate"><span class="pre">target_include_directories()</span></code>, you don’t need to do anything further.
+Downstream users will get the include directories by depending on your modern CMake targets.</p>
+</section>
+<section id="replacing-catkin-package-libraries">
+<h4>Replacing <code class="docutils literal notranslate"><span class="pre">catkin_package(LIBRARIES</span> <span class="pre">...)</span></code><a class="headerlink" href="#replacing-catkin-package-libraries" title="Link to this heading"></a></h4>
+<p>Use <code class="docutils literal notranslate"><span class="pre">ament_export_targets()</span></code> and <code class="docutils literal notranslate"><span class="pre">install(TARGETS</span> <span class="pre">...</span> <span class="pre">EXPORT</span> <span class="pre">...)</span></code> to replace the <code class="docutils literal notranslate"><span class="pre">LIBRARIES</span></code> argument.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">EXPORT</span></code> keyword when installing your <code class="docutils literal notranslate"><span class="pre">my_library</span></code> target (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/CMakeLists.txt#L37-L41">example</a>).</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="s">my_library</span><span class="w"> </span><span class="s">EXPORT</span><span class="w"> </span><span class="s">export_my_package</span>
+<span class="w">   </span><span class="s">ARCHIVE</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib</span>
+<span class="w">   </span><span class="s">LIBRARY</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib</span>
+<span class="w">   </span><span class="s">RUNTIME</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">bin</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-</li>
-</ul>
-</li>
-<li><p>Remove any occurrences of the <em>devel space</em>.
-Related CMake variables like <code class="docutils literal notranslate"><span class="pre">CATKIN_DEVEL_PREFIX</span></code> do not exist anymore.</p>
-<ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">CATKIN_DEPENDS</span></code> and <code class="docutils literal notranslate"><span class="pre">DEPENDS</span></code> arguments are passed to the new function <a class="reference external" href="https://github.com/ament/ament_cmake/blob/rolling/ament_cmake_export_dependencies/cmake/ament_export_dependencies.cmake">ament_export_dependencies</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_GLOBAL_BIN_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">bin</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_GLOBAL_INCLUDE_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">include</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_GLOBAL_LIB_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">lib</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_GLOBAL_LIBEXEC_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">lib</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_GLOBAL_SHARE_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">share</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_PACKAGE_BIN_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">lib/${PROJECT_NAME}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_PACKAGE_INCLUDE_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">include/${PROJECT_NAME}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_PACKAGE_LIB_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">lib</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CATKIN_PACKAGE_SHARE_DESTINATION</span></code>: <code class="docutils literal notranslate"><span class="pre">share/${PROJECT_NAME}</span></code></p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="unit-tests">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Unit tests</a><a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h3>
-<p>If you are using gtest:</p>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">CATKIN_ENABLE_TESTING</span></code> with <code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code>.
-Replace <code class="docutils literal notranslate"><span class="pre">catkin_add_gtest</span></code> with <code class="docutils literal notranslate"><span class="pre">ament_add_gtest</span></code>.</p>
-<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">-   if (CATKIN_ENABLE_TESTING)</span>
-<span class="gd">-     find_package(GTest REQUIRED)  # or rostest</span>
-<span class="gd">-     include_directories(${GTEST_INCLUDE_DIRS})</span>
-<span class="gd">-     catkin_add_gtest(${PROJECT_NAME}-some-test src/test/some_test.cpp)</span>
-<span class="gd">-     target_link_libraries(${PROJECT_NAME}-some-test</span>
-<span class="gd">-       ${PROJECT_NAME}_some_dependency</span>
-<span class="gd">-       ${catkin_LIBRARIES}</span>
-<span class="gd">-       ${GTEST_LIBRARIES})</span>
-<span class="gd">-   endif()</span>
-<span class="gi">+   if (BUILD_TESTING)</span>
-<span class="gi">+     find_package(ament_cmake_gtest REQUIRED)</span>
-<span class="gi">+     ament_add_gtest(${PROJECT_NAME}-some-test src/test/test_something.cpp)</span>
-<span class="gi">+     ament_target_dependencies(${PROJECT_NAME)-some-test</span>
-<span class="gi">+       &quot;rclcpp&quot;</span>
-<span class="gi">+       &quot;std_msgs&quot;)</span>
-<span class="gi">+     target_link_libraries(${PROJECT_NAME}-some-test</span>
-<span class="gi">+       ${PROJECT_NAME}_some_dependency)</span>
-<span class="gi">+   endif()</span>
+<p>The above is a good default for library targets.
+If your package used different <code class="docutils literal notranslate"><span class="pre">CATKIN_*_DESTINATION</span></code> variables, convert them as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>catkin</strong></p></th>
+<th class="head"><p><strong>ament_cmake</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CATKIN_GLOBAL_BIN_DESTINATION</p></td>
+<td><p>bin</p></td>
+</tr>
+<tr class="row-odd"><td><p>CATKIN_GLOBAL_INCLUDE_DESTINATION</p></td>
+<td><p>include</p></td>
+</tr>
+<tr class="row-even"><td><p>CATKIN_GLOBAL_LIB_DESTINATION</p></td>
+<td><p>lib</p></td>
+</tr>
+<tr class="row-odd"><td><p>CATKIN_GLOBAL_LIBEXEC_DESTINATION</p></td>
+<td><p>lib</p></td>
+</tr>
+<tr class="row-even"><td><p>CATKIN_GLOBAL_SHARE_DESTINATION</p></td>
+<td><p>share</p></td>
+</tr>
+<tr class="row-odd"><td><p>CATKIN_PACKAGE_BIN_DESTINATION</p></td>
+<td><p>lib/${PROJECT_NAME}</p></td>
+</tr>
+<tr class="row-even"><td><p>CATKIN_PACKAGE_INCLUDE_DESTINATION</p></td>
+<td><p>include/${PROJECT_NAME}</p></td>
+</tr>
+<tr class="row-odd"><td><p>CATKIN_PACKAGE_LIB_DESTINATION</p></td>
+<td><p>lib</p></td>
+</tr>
+<tr class="row-even"><td><p>CATKIN_PACKAGE_SHARE_DESTINATION</p></td>
+<td><p>share/${PROJECT_NAME}</p></td>
+</tr>
+</tbody>
+</table>
+<p>Add a call to <code class="docutils literal notranslate"><span class="pre">ament_export_targets()</span></code> with the same name you gave to the <code class="docutils literal notranslate"><span class="pre">EXPORT</span></code> keyword (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/CMakeLists.txt#L124-L125">example</a>).</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_export_targets</span><span class="p">(</span><span class="s">export_my_package</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Add <code class="docutils literal notranslate"><span class="pre">&lt;test_depend&gt;ament_cmake_gtest&lt;/test_depend&gt;</span></code> to your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>.</p>
-<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">-   &lt;test_depend&gt;rostest&lt;/test_depend&gt;</span>
-<span class="gi">+   &lt;test_depend&gt;ament_cmake_gtest&lt;/test_depend&gt;</span>
+</section>
+<section id="replacing-catkin-package-catkin-depends-depends">
+<h4>Replacing <code class="docutils literal notranslate"><span class="pre">catkin_package(CATKIN_DEPENDS</span> <span class="pre">..</span> <span class="pre">DEPENDS</span> <span class="pre">..)</span></code><a class="headerlink" href="#replacing-catkin-package-catkin-depends-depends" title="Link to this heading"></a></h4>
+<p>Your package’s users must <code class="docutils literal notranslate"><span class="pre">find_package()</span></code> dependencies used by your package’s public API.
+In ROS 1 this was done for downstream users with the <code class="docutils literal notranslate"><span class="pre">CATKIN_DEPENDS</span></code> and <code class="docutils literal notranslate"><span class="pre">DEPENDS</span></code> arguments.
+Use <a class="reference external" href="https://github.com/ament/ament_cmake/blob/rolling/ament_cmake_export_dependencies/cmake/ament_export_dependencies.cmake">ament_export_dependencies</a> to do this in ROS 2.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_export_dependencies</span><span class="p">(</span>
+<span class="w">   </span><span class="s">foo</span>
+<span class="w">   </span><span class="s">bar</span>
+<span class="w">   </span><span class="s">std_msgs</span>
+<span class="w">   </span><span class="s">baz</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="generate-messages">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Generate messages</a><a class="headerlink" href="#generate-messages" title="Link to this heading"></a></h3>
+<p>If your package contains both C++ code and ROS message, service, or action definitions, then consider splitting it into two packages:</p>
+<ul class="simple">
+<li><p>A package with only the ROS message, service, and/or action definitions</p></li>
+<li><p>A package with the C++ code</p></li>
+</ul>
+<p>Add the following dependencies to the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> of the package that contains ROS messages:</p>
+<ol class="arabic">
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">&lt;buildtool_depend&gt;</span></code> on <code class="docutils literal notranslate"><span class="pre">rosidl_default_generators</span></code> (<a class="reference external" href="https://github.com/ros2/common_interfaces/blob/d685509e9cb9f80bd320a347f2db954a73397ae7/std_msgs/package.xml#L19">example</a>)</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;buildtool_depend&gt;</span>rosidl_default_generators<span class="nt">&lt;/buildtool_depend&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add an <code class="docutils literal notranslate"><span class="pre">&lt;exec_depend&gt;</span></code> on <code class="docutils literal notranslate"><span class="pre">rosidl_default_runtime</span></code> (<a class="reference external" href="https://github.com/ros2/common_interfaces/blob/d685509e9cb9f80bd320a347f2db954a73397ae7/std_msgs/package.xml#L22">example</a>)</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;exec_depend&gt;</span>rosidl_default_runtime<span class="nt">&lt;/exec_depend&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">&lt;member_of_group&gt;</span></code> tag with the group name <code class="docutils literal notranslate"><span class="pre">rosidl_interface_packages</span></code> (<a class="reference external" href="https://github.com/ros2/common_interfaces/blob/d685509e9cb9f80bd320a347f2db954a73397ae7/std_msgs/package.xml#L26">example</a>)</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;member_of_group&gt;</span>rosidl_interface_packages<span class="nt">&lt;/member_of_group&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>In your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>, replace the invocation of <code class="docutils literal notranslate"><span class="pre">add_message_files</span></code>, <code class="docutils literal notranslate"><span class="pre">add_service_files</span></code> and <code class="docutils literal notranslate"><span class="pre">generate_messages</span></code> with <a class="reference external" href="https://github.com/ros2/rosidl/blob/rolling/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake">rosidl_generate_interfaces</a>.
+The first argument must be <code class="docutils literal notranslate"><span class="pre">${PROJECT_NAME}</span></code> due to <a class="reference external" href="https://github.com/ros2/rosidl_typesupport/issues/120">this bug</a>.</p>
+<p>For example, if your ROS 1 package looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_message_files</span><span class="p">(</span><span class="n">DIRECTORY</span> <span class="n">msg</span> <span class="n">FILES</span> <span class="n">FooBar</span><span class="o">.</span><span class="n">msg</span> <span class="n">Baz</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">add_service_files</span><span class="p">(</span><span class="n">DIRECTORY</span> <span class="n">srv</span> <span class="n">FILES</span> <span class="n">Ping</span><span class="o">.</span><span class="n">srv</span><span class="p">)</span>
+
+<span class="n">add_action_files</span><span class="p">(</span><span class="n">DIRECTORY</span> <span class="n">action</span> <span class="n">FILES</span> <span class="n">DoPong</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+<span class="n">generate_messages</span><span class="p">(</span>
+   <span class="n">DEPENDENCIES</span> <span class="n">actionlib_msgs</span> <span class="n">std_msgs</span> <span class="n">geometry_msgs</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Then change it to this (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2_msgs/CMakeLists.txt#L18-L25">example</a>)</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">rosidl_generate_interfaces</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">  </span><span class="s2">&quot;msg/FooBar.msg&quot;</span>
+<span class="w">  </span><span class="s2">&quot;msg/Baz.msg&quot;</span>
+<span class="w">  </span><span class="s2">&quot;srv/Ping.srv&quot;</span>
+<span class="w">  </span><span class="s2">&quot;action/DoPong.action&quot;</span>
+<span class="w">  </span><span class="s">DEPENDENCIES</span><span class="w"> </span><span class="s">actionlib_msgs</span><span class="w"> </span><span class="s">std_msgs</span><span class="w"> </span><span class="s">geometry_msgs</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="remove-references-to-the-devel-space">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Remove references to the devel space</a><a class="headerlink" href="#remove-references-to-the-devel-space" title="Link to this heading"></a></h3>
+<p>Remove any references to the <em>devel space</em> such as <code class="docutils literal notranslate"><span class="pre">CATKIN_DEVEL_PREFIX</span></code>.
+There is no equivalent to the <em>devel space</em> in ROS 2.</p>
+</section>
+<section id="unit-tests">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Unit tests</a><a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h3>
+<p>If your package uses <a class="reference external" href="https://github.com/google/googletest">gtest</a> then:</p>
+<ul class="simple">
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">CATKIN_ENABLE_TESTING</span></code> with <code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code>.</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">catkin_add_gtest</span></code> with <code class="docutils literal notranslate"><span class="pre">ament_add_gtest</span></code>.</p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">find_package()</span></code> for <code class="docutils literal notranslate"><span class="pre">ament_cmake_gtest</span></code> instead of <code class="docutils literal notranslate"><span class="pre">GTest</span></code></p></li>
+</ul>
+<p>For example, if your ROS 1 package adds tests like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (CATKIN_ENABLE_TESTING)
+  find_package(GTest REQUIRED)
+  include_directories(${GTEST_INCLUDE_DIRS})
+  catkin_add_gtest(my_test src/test/some_test.cpp)
+  target_link_libraries(my_test
+    # ...
+    ${GTEST_LIBRARIES})
+endif()
+</pre></div>
+</div>
+<p>Then change it to this:</p>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake_gtest</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">ament_add_gtest</span><span class="p">(</span><span class="s">my_test</span><span class="w"> </span><span class="s">src/test/test_something.cpp</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_test</span>
+<span class="w">    </span><span class="c">#...</span>
+<span class="w">   </span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Add <code class="docutils literal notranslate"><span class="pre">&lt;test_depend&gt;ament_cmake_gtest&lt;/test_depend&gt;</span></code> to your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/package.xml#L35">example</a>).</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;test_depend&gt;</span>ament_cmake_gtest<span class="nt">&lt;/test_depend&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="linters">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Linters</a><a class="headerlink" href="#linters" title="Link to this heading"></a></h3>
-<p>In ROS 2 we are working to maintain clean code using linters.
-The styles for different languages are defined in our <a class="reference internal" href="../../The-ROS2-Project/Contributing/Developer-Guide.html"><span class="doc">Developer Guide</span></a>.</p>
-<p>If you are starting a project from scratch it is recommended to follow the style guide and turn on the automatic linter unit tests by adding these lines just below <code class="docutils literal notranslate"><span class="pre">if(BUILD_TESTING)</span></code>:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_lint_auto</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">ament_lint_auto_find_test_dependencies</span><span class="p">()</span>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Linters</a><a class="headerlink" href="#linters" title="Link to this heading"></a></h3>
+<p>The ROS 2 code <a class="reference internal" href="../../The-ROS2-Project/Contributing/Developer-Guide.html"><span class="doc">style guide</span></a> differs from ROS 1.</p>
+<p>If you choose to follow the ROS 2 style guide, then turn on automatic linter tests by adding these lines in a <code class="docutils literal notranslate"><span class="pre">if(BUILD_TESTING)</span></code> block:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
+<span class="w">   </span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_lint_auto</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="w">   </span><span class="nb">ament_lint_auto_find_test_dependencies</span><span class="p">()</span>
+<span class="w">   </span><span class="c"># ...</span>
+<span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>You will also need to add the following dependencies to your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>:</p>
+<p>Add the following dependencies to your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;test_depend&gt;</span>ament_lint_auto<span class="nt">&lt;/test_depend&gt;</span>
 <span class="nt">&lt;test_depend&gt;</span>ament_lint_common<span class="nt">&lt;/test_depend&gt;</span>
 </pre></div>
@@ -570,9 +741,9 @@ The styles for different languages are defined in our <a class="reference intern
 </section>
 </section>
 <section id="update-source-code">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Update source code</a><a class="headerlink" href="#update-source-code" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Update source code</a><a class="headerlink" href="#update-source-code" title="Link to this heading"></a></h2>
 <section id="messages-services-and-actions">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Messages, services, and actions</a><a class="headerlink" href="#messages-services-and-actions" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Messages, services, and actions</a><a class="headerlink" href="#messages-services-and-actions" title="Link to this heading"></a></h3>
 <p>The namespace of ROS 2 messages, services, and actions use a subnamespace (<code class="docutils literal notranslate"><span class="pre">msg</span></code>, <code class="docutils literal notranslate"><span class="pre">srv</span></code>, or <code class="docutils literal notranslate"><span class="pre">action</span></code>, respectively) after the package name.
 Therefore an include looks like: <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;my_interfaces/msg/my_message.hpp&gt;</span></code>.
 The C++ type is then named: <code class="docutils literal notranslate"><span class="pre">my_interfaces::msg::MyMessage</span></code>.</p>
@@ -595,7 +766,7 @@ The C++ type is then named: <code class="docutils literal notranslate"><span cla
 <p>The migration requires code to insert the <code class="docutils literal notranslate"><span class="pre">msg</span></code> namespace into all instances.</p>
 </section>
 <section id="use-of-service-objects">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Use of service objects</a><a class="headerlink" href="#use-of-service-objects" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Use of service objects</a><a class="headerlink" href="#use-of-service-objects" title="Link to this heading"></a></h3>
 <p>Service callbacks in ROS 2 do not have boolean return values.
 Instead of returning false on failures, throwing exceptions is recommended.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// ROS 1 style is in comments, ROS 2 follows, uncommented.</span>
@@ -616,7 +787,7 @@ Instead of returning false on failures, throwing exceptions is recommended.</p>
 </div>
 </section>
 <section id="usages-of-ros-time">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Usages of ros::Time</a><a class="headerlink" href="#usages-of-ros-time" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Usages of ros::Time</a><a class="headerlink" href="#usages-of-ros-time" title="Link to this heading"></a></h3>
 <p>For usages of <code class="docutils literal notranslate"><span class="pre">ros::Time</span></code>:</p>
 <ul class="simple">
 <li><p>Replace all instances of <code class="docutils literal notranslate"><span class="pre">ros::Time</span></code> with <code class="docutils literal notranslate"><span class="pre">rclcpp::Time</span></code></p></li>
@@ -630,11 +801,11 @@ Instead of returning false on failures, throwing exceptions is recommended.</p>
 </ul>
 </section>
 <section id="usages-of-ros-rate">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Usages of ros::Rate</a><a class="headerlink" href="#usages-of-ros-rate" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Usages of ros::Rate</a><a class="headerlink" href="#usages-of-ros-rate" title="Link to this heading"></a></h3>
 <p>There is an equivalent type <code class="docutils literal notranslate"><span class="pre">rclcpp::Rate</span></code> object which is basically a drop in replacement for <code class="docutils literal notranslate"><span class="pre">ros::Rate</span></code>.</p>
 </section>
 <section id="boost">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Boost</a><a class="headerlink" href="#boost" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Boost</a><a class="headerlink" href="#boost" title="Link to this heading"></a></h3>
 <p>Much of the functionality previously provided by Boost has been integrated into the C++ standard library.
 As such we would like to take advantage of the new core features and avoid the dependency on boost where possible.</p>
 <section id="shared-pointers">
@@ -677,12 +848,12 @@ For details <a class="reference external" href="https://stackoverflow.com/questi
 </section>
 </section>
 <section id="example-converting-an-existing-ros-1-package-to-ros-2">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Example: Converting an existing ROS 1 package to ROS 2</a><a class="headerlink" href="#example-converting-an-existing-ros-1-package-to-ros-2" title="Link to this heading"></a></h2>
-<p>Let’s say that we have simple ROS 1 package called <code class="docutils literal notranslate"><span class="pre">talker</span></code> that uses <code class="docutils literal notranslate"><span class="pre">roscpp</span></code> in one node, called <code class="docutils literal notranslate"><span class="pre">talker</span></code>.
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Example: Converting an existing ROS 1 package to ROS 2</a><a class="headerlink" href="#example-converting-an-existing-ros-1-package-to-ros-2" title="Link to this heading"></a></h2>
+<p>Say you have a ROS 1 package called <code class="docutils literal notranslate"><span class="pre">talker</span></code> that uses <code class="docutils literal notranslate"><span class="pre">roscpp</span></code> in one node, called <code class="docutils literal notranslate"><span class="pre">talker</span></code>.
 This package is in a catkin workspace, located at <code class="docutils literal notranslate"><span class="pre">~/ros1_talker</span></code>.</p>
 <section id="the-ros-1-code">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">The ROS 1 code</a><a class="headerlink" href="#the-ros-1-code" title="Link to this heading"></a></h3>
-<p>Here’s the directory layout of our catkin workspace:</p>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">The ROS 1 code</a><a class="headerlink" href="#the-ros-1-code" title="Link to this heading"></a></h3>
+<p>Your ROS 1 workspace has the following directory layout:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/ros1_talker
 $<span class="w"> </span>find<span class="w"> </span>.
 .
@@ -693,19 +864,19 @@ $<span class="w"> </span>find<span class="w"> </span>.
 ./src/talker/talker.cpp
 </pre></div>
 </div>
-<p>Here is the content of those three files:</p>
+<p>The files have the following content:</p>
 <p><code class="docutils literal notranslate"><span class="pre">src/talker/package.xml</span></code>:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;package&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="cp">&lt;?xml-model href=&quot;http://download.ros.org/schema/package_format2.xsd&quot; schematypens=&quot;http://www.w3.org/2001/XMLSchema&quot;?&gt;</span>
+<span class="nt">&lt;package</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;name&gt;</span>talker<span class="nt">&lt;/name&gt;</span>
 <span class="w">  </span><span class="nt">&lt;version&gt;</span>0.0.0<span class="nt">&lt;/version&gt;</span>
 <span class="w">  </span><span class="nt">&lt;description&gt;</span>talker<span class="nt">&lt;/description&gt;</span>
 <span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;gerkey@osrfoundation.org&quot;</span><span class="nt">&gt;</span>Brian<span class="w"> </span>Gerkey<span class="nt">&lt;/maintainer&gt;</span>
 <span class="w">  </span><span class="nt">&lt;license&gt;</span>Apache-2.0<span class="nt">&lt;/license&gt;</span>
 <span class="w">  </span><span class="nt">&lt;buildtool_depend&gt;</span>catkin<span class="nt">&lt;/buildtool_depend&gt;</span>
-<span class="w">  </span><span class="nt">&lt;build_depend&gt;</span>roscpp<span class="nt">&lt;/build_depend&gt;</span>
-<span class="w">  </span><span class="nt">&lt;build_depend&gt;</span>std_msgs<span class="nt">&lt;/build_depend&gt;</span>
-<span class="w">  </span><span class="nt">&lt;run_depend&gt;</span>roscpp<span class="nt">&lt;/run_depend&gt;</span>
-<span class="w">  </span><span class="nt">&lt;run_depend&gt;</span>std_msgs<span class="nt">&lt;/run_depend&gt;</span>
+<span class="w">  </span><span class="nt">&lt;depend&gt;</span>roscpp<span class="nt">&lt;/depend&gt;</span>
+<span class="w">  </span><span class="nt">&lt;depend&gt;</span>std_msgs<span class="nt">&lt;/depend&gt;</span>
 <span class="nt">&lt;/package&gt;</span>
 </pre></div>
 </div>
@@ -776,7 +947,7 @@ rosrun<span class="w"> </span>talker<span class="w"> </span>talker
 </section>
 </section>
 <section id="migrating-to-ros-2">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Migrating to ROS 2</a><a class="headerlink" href="#migrating-to-ros-2" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Migrating to ROS 2</a><a class="headerlink" href="#migrating-to-ros-2" title="Link to this heading"></a></h3>
 <p>Let’s start by creating a new workspace in which to work:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>~/ros2_talker
 <span class="nb">cd</span><span class="w"> </span>~/ros2_talker
@@ -855,8 +1026,9 @@ argument.</p>
 <span class="w">    </span><span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
 </pre></div>
 </div>
-<p>Publishing the message is the same as before:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">chatter_pub</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<p>Change the publish call to use the <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> operator instead of <code class="docutils literal notranslate"><span class="pre">.</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//    chatter_pub.publish(msg);</span>
+<span class="w">    </span><span class="n">chatter_pub</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Spinning (i.e., letting the communications system process any pending
@@ -894,6 +1066,7 @@ an argument:</p>
 <span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
 <span class="c1">//    ROS_INFO(&quot;%s&quot;, msg.data.c_str());</span>
 <span class="w">    </span><span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="c1">//    chatter_pub.publish(msg);</span>
 <span class="w">    </span><span class="n">chatter_pub</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
 <span class="c1">//    ros::spinOnce();</span>
 <span class="w">    </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">spin_some</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
@@ -904,56 +1077,44 @@ an argument:</p>
 </pre></div>
 </div>
 </section>
-<section id="changing-the-package-xml">
-<h4>Changing the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code><a class="headerlink" href="#changing-the-package-xml" title="Link to this heading"></a></h4>
-<p>ROS 2 uses a newer version of <code class="docutils literal notranslate"><span class="pre">catkin</span></code>, called <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code>, which we specify in the
-<code class="docutils literal notranslate"><span class="pre">buildtool_depend</span></code> tag:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!--  &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt; --&gt;</span>
-<span class="w">  </span><span class="nt">&lt;buildtool_depend&gt;</span>ament_cmake<span class="nt">&lt;/buildtool_depend&gt;</span>
+<section id="change-the-package-xml">
+<h4>Change the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code><a class="headerlink" href="#change-the-package-xml" title="Link to this heading"></a></h4>
+<p>ROS 2 packages use CMake functions and macros from <code class="docutils literal notranslate"><span class="pre">ament_cmake_ros</span></code> instead of <code class="docutils literal notranslate"><span class="pre">catkin</span></code>.
+Delete the dependency on <code class="docutils literal notranslate"><span class="pre">catkin</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- delete this --&gt;
+&lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;`
 </pre></div>
 </div>
-<p>In our build dependencies, instead of <code class="docutils literal notranslate"><span class="pre">roscpp</span></code> we use <code class="docutils literal notranslate"><span class="pre">rclcpp</span></code>, which provides the C++ API that we use.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!--  &lt;build_depend&gt;roscpp&lt;/build_depend&gt; --&gt;</span>
-<span class="w">  </span><span class="nt">&lt;build_depend&gt;</span>rclcpp<span class="nt">&lt;/build_depend&gt;</span>
+<p>Add a new dependency on <code class="docutils literal notranslate"><span class="pre">ament_cmake_ros</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;buildtool_depend&gt;</span>ament_cmake_ros<span class="nt">&lt;/buildtool_depend&gt;</span>
 </pre></div>
 </div>
-<p>We make the same addition in the run dependencies and also update from the
-<code class="docutils literal notranslate"><span class="pre">run_depend</span></code> tag to the <code class="docutils literal notranslate"><span class="pre">exec_depend</span></code> tag (part of the upgrade to version 2 of the package format):</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!--  &lt;run_depend&gt;roscpp&lt;/run_depend&gt; --&gt;</span>
-<span class="w">  </span><span class="nt">&lt;exec_depend&gt;</span>rclcpp<span class="nt">&lt;/exec_depend&gt;</span>
-<span class="cm">&lt;!--  &lt;run_depend&gt;std_msgs&lt;/run_depend&gt; --&gt;</span>
-<span class="w">  </span><span class="nt">&lt;exec_depend&gt;</span>std_msgs<span class="nt">&lt;/exec_depend&gt;</span>
+<p>ROS 2 C++ libraries use <a class="reference external" href="https://index.ros.org/p/roscpp/#noetic">rclcpp</a> instead of <a class="reference external" href="https://index.ros.org/p/roscpp/#noetic">roscpp</a>.</p>
+<p>Delete the dependency on <code class="docutils literal notranslate"><span class="pre">roscpp</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- delete this --&gt;
+&lt;depend&gt;roscpp&lt;/depend&gt;
 </pre></div>
 </div>
-<p>In ROS 1, we use <code class="docutils literal notranslate"><span class="pre">&lt;depend&gt;</span></code> to simplify specifying dependencies for both
-compile-time and runtime.
-We can do the same in ROS 2:</p>
+<p>Add a dependency on <code class="docutils literal notranslate"><span class="pre">rclcpp</span></code>:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;depend&gt;</span>rclcpp<span class="nt">&lt;/depend&gt;</span>
-<span class="nt">&lt;depend&gt;</span>std_msgs<span class="nt">&lt;/depend&gt;</span>
 </pre></div>
 </div>
-<p>We also need to tell the build tool what <em>kind</em> of package we are, so that it knows how
-to build us.
-Because we’re using <code class="docutils literal notranslate"><span class="pre">ament</span></code> and CMake, we add the following lines to declare our
-build type to be <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code>:</p>
+<p>Add an <code class="docutils literal notranslate"><span class="pre">&lt;export&gt;</span></code> section to tell colcon the package is an <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> package instead of a <code class="docutils literal notranslate"><span class="pre">catkin</span></code> package.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;export&gt;</span>
 <span class="w">  </span><span class="nt">&lt;build_type&gt;</span>ament_cmake<span class="nt">&lt;/build_type&gt;</span>
 <span class="nt">&lt;/export&gt;</span>
 </pre></div>
 </div>
-<p>Putting it all together, our <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> now looks like this:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- &lt;package&gt; --&gt;</span>
+<p>Your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> now looks like this:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="cp">&lt;?xml-model href=&quot;http://download.ros.org/schema/package_format2.xsd&quot; schematypens=&quot;http://www.w3.org/2001/XMLSchema&quot;?&gt;</span>
 <span class="nt">&lt;package</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;name&gt;</span>talker<span class="nt">&lt;/name&gt;</span>
 <span class="w">  </span><span class="nt">&lt;version&gt;</span>0.0.0<span class="nt">&lt;/version&gt;</span>
 <span class="w">  </span><span class="nt">&lt;description&gt;</span>talker<span class="nt">&lt;/description&gt;</span>
 <span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;gerkey@osrfoundation.org&quot;</span><span class="nt">&gt;</span>Brian<span class="w"> </span>Gerkey<span class="nt">&lt;/maintainer&gt;</span>
 <span class="w">  </span><span class="nt">&lt;license&gt;</span>Apache-2.0<span class="nt">&lt;/license&gt;</span>
-<span class="cm">&lt;!--  &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt; --&gt;</span>
 <span class="w">  </span><span class="nt">&lt;buildtool_depend&gt;</span>ament_cmake<span class="nt">&lt;/buildtool_depend&gt;</span>
-<span class="cm">&lt;!--  &lt;build_depend&gt;roscpp&lt;/build_depend&gt; --&gt;</span>
-<span class="cm">&lt;!--  &lt;run_depend&gt;roscpp&lt;/run_depend&gt; --&gt;</span>
-<span class="cm">&lt;!--  &lt;run_depend&gt;std_msgs&lt;/run_depend&gt; --&gt;</span>
 <span class="w">  </span><span class="nt">&lt;depend&gt;</span>rclcpp<span class="nt">&lt;/depend&gt;</span>
 <span class="w">  </span><span class="nt">&lt;depend&gt;</span>std_msgs<span class="nt">&lt;/depend&gt;</span>
 <span class="w">  </span><span class="nt">&lt;export&gt;</span>
@@ -965,18 +1126,13 @@ build type to be <code class="docutils literal notranslate"><span class="pre">am
 </section>
 <section id="changing-the-cmake-code">
 <h4>Changing the CMake code<a class="headerlink" href="#changing-the-cmake-code" title="Link to this heading"></a></h4>
-<p>ROS 2 relies on a higher version of CMake:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cmake_minimum_required(VERSION 2.8.3)</span>
-cmake_minimum_required<span class="o">(</span>VERSION<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>
+<p>Require a newer version of CMake so that <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> functions work correctly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake_minimum_required</span><span class="p">(</span><span class="n">VERSION</span> <span class="mf">3.14.4</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>ROS 2 relies on the C++17 standard.
-Depending on what compiler you’re using, support for C++17 might not be enabled by default.
-Enable C++17 support explicitly by adding this line near the top of the file:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">17</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The preferred way to work on all platforms is this:</p>
+<p>Use a newer C++ standard matching the version used by your target ROS distro in <a class="reference external" href="https://www.ros.org/reps/rep-2000.html">REP 2000</a>.
+If you are using C++17, then set that version with the following snippet after the <code class="docutils literal notranslate"><span class="pre">project(talker)</span></code> call.
+Add extra compiler checks too because it is a good practice.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="p">(</span><span class="s">NOT</span><span class="w"> </span><span class="s">CMAKE_CXX_STANDARD</span><span class="p">)</span>
 <span class="w">  </span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">17</span><span class="p">)</span>
 <span class="nb">endif</span><span class="p">()</span>
@@ -985,79 +1141,39 @@ Enable C++17 support explicitly by adding this line near the top of the file:</p
 <span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Using <code class="docutils literal notranslate"><span class="pre">catkin</span></code>, we specify the packages we want to build against by passing them
-as <code class="docutils literal notranslate"><span class="pre">COMPONENTS</span></code> arguments when initially finding <code class="docutils literal notranslate"><span class="pre">catkin</span></code> itself.
-With <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code>, we find each package individually, starting with <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code>:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c">#find_package(catkin REQUIRED COMPONENTS roscpp std_msgs)</span>
-<span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<p>Replace the <code class="docutils literal notranslate"><span class="pre">find_package(catkin</span> <span class="pre">...)</span></code> call with individual calls for each dependency.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 <span class="nb">find_package</span><span class="p">(</span><span class="s">rclcpp</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 <span class="nb">find_package</span><span class="p">(</span><span class="s">std_msgs</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>System dependencies can be found as before:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">Boost</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">COMPONENTS</span><span class="w"> </span><span class="s">system</span><span class="w"> </span><span class="s">filesystem</span><span class="w"> </span><span class="s">thread</span><span class="p">)</span>
+<p>Delete the call to <code class="docutils literal notranslate"><span class="pre">catkin_package()</span></code>.
+Add a call to <code class="docutils literal notranslate"><span class="pre">ament_package()</span></code> at the bottom of the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_package</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>We call <code class="docutils literal notranslate"><span class="pre">catkin_package()</span></code> to auto-generate things like CMake configuration
-files for other packages that use our package.
-Whereas that call happens <em>before</em> specifying targets to build, we now call the
-analogous <code class="docutils literal notranslate"><span class="pre">ament_package()</span></code> <em>after</em> the targets:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># catkin_package()</span>
-<span class="c"># At the bottom of the file:</span>
-<span class="nb">ament_package</span><span class="p">()</span>
+<p>Make the <code class="docutils literal notranslate"><span class="pre">target_link_libraries</span></code> call modern CMake targets provided by <code class="docutils literal notranslate"><span class="pre">rclcpp</span></code> and <code class="docutils literal notranslate"><span class="pre">std_msgs</span></code>.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">  </span><span class="s">rclcpp::rclcpp</span>
+<span class="w">  </span><span class="o">${</span><span class="nv">std_msgs_TARGETS</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The only directories that need to be manually included are local directories
-and dependencies that are not ament packages:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c">#include_directories(${catkin_INCLUDE_DIRS})</span>
-<span class="nb">include_directories</span><span class="p">(</span><span class="s">include</span><span class="w"> </span><span class="o">${</span><span class="nv">Boost_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
+<p>Delete the call to <code class="docutils literal notranslate"><span class="pre">include_directories()</span></code>.
+Add a call to <code class="docutils literal notranslate"><span class="pre">target_include_directories()</span></code> below <code class="docutils literal notranslate"><span class="pre">add_executable(talker</span> <span class="pre">talker.cpp)</span></code>.
+Don’t pass variables like <code class="docutils literal notranslate"><span class="pre">rclcpp_INCLUDE_DIRS</span></code> into <code class="docutils literal notranslate"><span class="pre">target_include_directories()</span></code>.
+The include directories are already handled by calling <code class="docutils literal notranslate"><span class="pre">target_link_libraries()</span></code> with modern CMake targets.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_include_directories</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">   </span><span class="s2">&quot;$&lt;BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include&gt;&quot;</span>
+<span class="w">   </span><span class="s2">&quot;$&lt;INSTALL_INTERFACE:include/${PROJECT_NAME}&gt;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>A better alternative is to specify include directories for each target
-individually, rather than including all the directories for all targets:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_include_directories</span><span class="p">(</span><span class="s">target</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">include</span><span class="w"> </span><span class="o">${</span><span class="nv">Boost_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Similar to how we found each dependent package separately, we need to link
-each one to the build target.
-To link with dependent packages that are ament packages, instead of using
-<code class="docutils literal notranslate"><span class="pre">target_link_libraries()</span></code>, <code class="docutils literal notranslate"><span class="pre">ament_target_dependencies()</span></code> is a more
-concise and more thorough way of handling build flags.
-It automatically handles both the include directories defined in
-<code class="docutils literal notranslate"><span class="pre">_INCLUDE_DIRS</span></code> and linking libraries defined in <code class="docutils literal notranslate"><span class="pre">_LIBRARIES</span></code>.</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c">#target_link_libraries(talker ${catkin_LIBRARIES})</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">talker</span>
-<span class="w">  </span><span class="s">rclcpp</span>
-<span class="w">  </span><span class="s">std_msgs</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>To link with packages that are not ament packages, such as system dependencies
-like <code class="docutils literal notranslate"><span class="pre">Boost</span></code>, or a library being built in the same <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>, use
-<code class="docutils literal notranslate"><span class="pre">target_link_libraries()</span></code>:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">target</span><span class="w"> </span><span class="o">${</span><span class="nv">Boost_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>For installation, <code class="docutils literal notranslate"><span class="pre">catkin</span></code> defines variables like <code class="docutils literal notranslate"><span class="pre">CATKIN_PACKAGE_BIN_DESTINATION</span></code>.
-With <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code>, we just give a path relative to the installation root:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c">#install(TARGETS talker</span>
-<span class="c">#  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})</span>
-<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="s">talker</span>
+<p>Change the call to <code class="docutils literal notranslate"><span class="pre">install()</span></code> so that the <code class="docutils literal notranslate"><span class="pre">talker</span></code> executable is installed into a project specific directory.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="s">talker</span>
 <span class="w">  </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Optionally, we can install and export the included directories for downstream packages:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span><span class="w"> </span><span class="s">include/</span>
-<span class="w">  </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">include</span><span class="p">)</span>
-<span class="nb">ament_export_include_directories</span><span class="p">(</span><span class="s">include</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Optionally, we can export dependencies for downstream packages:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_export_dependencies</span><span class="p">(</span><span class="s">std_msgs</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Putting it all together, the new <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> looks like this:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c">#cmake_minimum_required(VERSION 2.8.3)</span>
-<span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.5</span><span class="p">)</span>
+<p>The new <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> looks like this:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.14.4</span><span class="p">)</span>
 <span class="nb">project</span><span class="p">(</span><span class="s">talker</span><span class="p">)</span>
 <span class="nb">if</span><span class="p">(</span><span class="s">NOT</span><span class="w"> </span><span class="s">CMAKE_CXX_STANDARD</span><span class="p">)</span>
 <span class="w">  </span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">17</span><span class="p">)</span>
@@ -1065,26 +1181,18 @@ With <code class="docutils literal notranslate"><span class="pre">ament_cmake</s
 <span class="nb">if</span><span class="p">(</span><span class="s">CMAKE_COMPILER_IS_GNUCXX</span><span class="w"> </span><span class="s">OR</span><span class="w"> </span><span class="s">CMAKE_CXX_COMPILER_ID</span><span class="w"> </span><span class="s">MATCHES</span><span class="w"> </span><span class="s2">&quot;Clang&quot;</span><span class="p">)</span>
 <span class="w">  </span><span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-Wall</span><span class="w"> </span><span class="s">-Wextra</span><span class="w"> </span><span class="s">-Wpedantic</span><span class="p">)</span>
 <span class="nb">endif</span><span class="p">()</span>
-<span class="c">#find_package(catkin REQUIRED COMPONENTS roscpp std_msgs)</span>
 <span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 <span class="nb">find_package</span><span class="p">(</span><span class="s">rclcpp</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 <span class="nb">find_package</span><span class="p">(</span><span class="s">std_msgs</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-<span class="c">#catkin_package()</span>
-<span class="c">#include_directories(${catkin_INCLUDE_DIRS})</span>
-<span class="nb">include_directories</span><span class="p">(</span><span class="s">include</span><span class="p">)</span>
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">talker.cpp</span><span class="p">)</span>
-<span class="c">#target_link_libraries(talker ${catkin_LIBRARIES})</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">talker</span>
-<span class="w">  </span><span class="s">rclcpp</span>
-<span class="w">  </span><span class="s">std_msgs</span><span class="p">)</span>
-<span class="c">#install(TARGETS talker</span>
-<span class="c">#  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">   </span><span class="s2">&quot;$&lt;BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include&gt;&quot;</span>
+<span class="w">   </span><span class="s2">&quot;$&lt;INSTALL_INTERFACE:include/${PROJECT_NAME}&gt;&quot;</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">  </span><span class="s">rclcpp::rclcpp</span>
+<span class="w">  </span><span class="o">${</span><span class="nv">std_msgs_TARGETS</span><span class="o">}</span><span class="p">)</span>
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="s">talker</span>
 <span class="w">  </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="p">)</span>
-<span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span><span class="w"> </span><span class="s">include/</span>
-<span class="w">  </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">include</span><span class="p">)</span>
-<span class="nb">ament_export_include_directories</span><span class="p">(</span><span class="s">include</span><span class="p">)</span>
-<span class="nb">ament_export_dependencies</span><span class="p">(</span><span class="s">std_msgs</span><span class="p">)</span>
 <span class="nb">ament_package</span><span class="p">()</span>
 </pre></div>
 </div>

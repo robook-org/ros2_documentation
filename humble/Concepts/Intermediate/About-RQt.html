@@ -296,7 +296,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Using-Python-Packages.html">Using Python Packages with ROS 2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/RQt-Port-Plugin-Windows.html">Porting RQt plugins to Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html">Running ROS 2 nodes in Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Visualizing-ROS-2-Data-With-Foxglove-Studio.html">Visualizing ROS 2 data with Foxglove Studio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Core-maintainer-guide.html">ROS 2 Core Maintainer Guide</a></li>
@@ -313,11 +312,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/ROS-2-IDEs.html">IDEs and Debugging [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html">Setup ROS 2 with VSCode and Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Using-Custom-Rosdistro.html">Using Custom Rosdistro Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/RQt-Source-Install.html">Building RQt from source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../How-To-Guides/RQt-Source-Install-MacOS.html">Building RQt from source on macOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../How-To-Guides/RQt-Source-Install-Windows10.html">Building RQt from source on Windows 10</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../Concepts.html">概念</a><ul class="current">
@@ -404,7 +398,7 @@
           <li class="breadcrumb-item"><a href="../Intermediate.html">中级概念</a></li>
       <li class="breadcrumb-item active">Overview and usage of RQt</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Concepts/Intermediate/About-RQt.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Concepts/Intermediate/About-RQt.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -423,12 +417,11 @@
 <li><p><a class="reference internal" href="#system-setup" id="id2">System setup</a></p>
 <ul>
 <li><p><a class="reference internal" href="#installing-from-debs" id="id3">Installing From debs</a></p></li>
-<li><p><a class="reference internal" href="#building-from-source" id="id4">Building From Source</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#rqt-components-structure" id="id5">RQt Components Structure</a></p></li>
-<li><p><a class="reference internal" href="#advantage-of-rqt-framework" id="id6">Advantage of RQt framework</a></p></li>
-<li><p><a class="reference internal" href="#further-reading" id="id7">Further Reading</a></p></li>
+<li><p><a class="reference internal" href="#rqt-components-structure" id="id4">RQt Components Structure</a></p></li>
+<li><p><a class="reference internal" href="#advantage-of-rqt-framework" id="id5">Advantage of RQt framework</a></p></li>
+<li><p><a class="reference internal" href="#further-reading" id="id6">Further Reading</a></p></li>
 </ul>
 </nav>
 <section id="overview">
@@ -461,13 +454,9 @@ To see what RQt plugins are available for your system, run:</p>
 </pre></div>
 </div>
 </section>
-<section id="building-from-source">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Building From Source</a><a class="headerlink" href="#building-from-source" title="Link to this heading"></a></h3>
-<p>See <a class="reference internal" href="../../How-To-Guides/RQt-Source-Install.html"><span class="doc">Building RQt from Source</span></a>.</p>
-</section>
 </section>
 <section id="rqt-components-structure">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">RQt Components Structure</a><a class="headerlink" href="#rqt-components-structure" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">RQt Components Structure</a><a class="headerlink" href="#rqt-components-structure" title="Link to this heading"></a></h2>
 <p>RQt consists of two metapackages:</p>
 <ul class="simple">
 <li><p><em>rqt</em> - core infrastucture modules.</p></li>
@@ -475,7 +464,7 @@ To see what RQt plugins are available for your system, run:</p>
 </ul>
 </section>
 <section id="advantage-of-rqt-framework">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Advantage of RQt framework</a><a class="headerlink" href="#advantage-of-rqt-framework" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Advantage of RQt framework</a><a class="headerlink" href="#advantage-of-rqt-framework" title="Link to this heading"></a></h2>
 <p>Compared to building your own GUIs from scratch:</p>
 <ul class="simple">
 <li><p>Standardized common procedures for GUI (start-shutdown hook, restore previous states).</p></li>
@@ -490,7 +479,7 @@ To see what RQt plugins are available for your system, run:</p>
 </ul>
 </section>
 <section id="further-reading">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Further Reading</a><a class="headerlink" href="#further-reading" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Further Reading</a><a class="headerlink" href="#further-reading" title="Link to this heading"></a></h2>
 <ul>
 <li><p>ROS 2 Discourse <a class="reference external" href="https://discourse.ros.org/t/rqt-in-ros2/6428">announcement of porting to ROS 2</a>)</p></li>
 <li><p><a class="reference external" href="https://wiki.ros.org/rqt">RQt for ROS 1 documentation</a></p></li>

@@ -296,7 +296,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Using-Python-Packages.html">Using Python Packages with ROS 2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/RQt-Port-Plugin-Windows.html">Porting RQt plugins to Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html">Running ROS 2 nodes in Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Visualizing-ROS-2-Data-With-Foxglove-Studio.html">Visualizing ROS 2 data with Foxglove Studio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Core-maintainer-guide.html">ROS 2 Core Maintainer Guide</a></li>
@@ -313,11 +312,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/ROS-2-IDEs.html">IDEs and Debugging [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html">Setup ROS 2 with VSCode and Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Using-Custom-Rosdistro.html">Using Custom Rosdistro Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/RQt-Source-Install.html">Building RQt from source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../How-To-Guides/RQt-Source-Install-MacOS.html">Building RQt from source on macOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../How-To-Guides/RQt-Source-Install-Windows10.html">Building RQt from source on Windows 10</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Concepts.html">概念</a><ul>
@@ -404,7 +398,7 @@
           <li class="breadcrumb-item"><a href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a></li>
       <li class="breadcrumb-item active">Understanding topics</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -604,26 +598,31 @@ If you recall the data we saw <code class="docutils literal notranslate"><span c
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">'&lt;args&gt;'</span></code> argument is the actual data you’ll pass to the topic, in the structure you just discovered in the previous section.</p>
-<p>It’s important to note that this argument needs to be input in YAML syntax.
+<p>The turtle (and commonly the real robots which it is meant to emulate) require a steady stream of commands to operate continuously.
+So, to get the turtle moving, and keep it moving, you can use the following command.
+It’s important to note that this argument needs to be input in YAML syntax.
 Input the full command like so:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}&quot;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}&quot;</span>
+</pre></div>
+</div>
+<p>With no command-line options, <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">pub</span></code> publishes the command in a steady stream at 1 Hz.</p>
+<img alt="../../../_images/pub_stream.png" src="../../../_images/pub_stream.png" />
+<p>At times you may want to publish data to your topic only once (rather than continuously).
+To publish your command just once add the <code class="docutils literal notranslate"><span class="pre">--once</span></code> option.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub --once -w 2 /turtle1/cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}&quot;</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">--once</span></code> is an optional argument meaning “publish one message then exit”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">2</span></code> is an optional argument meaning “wait for two matching subscriptions”.
+This is needed because we have both turtlesim and the topic echo subscribed.</p>
 <p>You will see the following output in the terminal:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">publisher: beginning loop</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Waiting for at least 2 matching subscription(s)...</span>
+<span class="go">publisher: beginning loop</span>
 <span class="go">publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=2.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=1.8))</span>
 </pre></div>
 </div>
 <p>And you will see your turtle move like so:</p>
 <img alt="../../../_images/pub_once.png" src="../../../_images/pub_once.png" />
-<p>The turtle (and commonly the real robots which it is meant to emulate) require a steady stream of commands to operate continuously.
-So, to get the turtle to keep moving, you can run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}&quot;</span>
-</pre></div>
-</div>
-<p>The difference here is the removal of the <code class="docutils literal notranslate"><span class="pre">--once</span></code> option and the addition of the <code class="docutils literal notranslate"><span class="pre">--rate</span> <span class="pre">1</span></code> option, which tells <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">pub</span></code> to publish the command in a steady stream at 1 Hz.</p>
-<img alt="../../../_images/pub_stream.png" src="../../../_images/pub_stream.png" />
 <p>You can refresh rqt_graph to see what’s happening graphically.
 You will see that the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">pub</span> <span class="pre">...</span></code> node (<code class="docutils literal notranslate"><span class="pre">/_ros2cli_30358</span></code>) is publishing over the <code class="docutils literal notranslate"><span class="pre">/turtle1/cmd_vel</span></code> topic, which is being received by both the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">echo</span> <span class="pre">...</span></code> node (<code class="docutils literal notranslate"><span class="pre">/_ros2cli_26646</span></code>) and the <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> node now.</p>
 <img alt="../../../_images/rqt_graph2.png" src="../../../_images/rqt_graph2.png" />

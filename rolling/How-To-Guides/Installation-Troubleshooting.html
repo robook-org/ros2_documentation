@@ -299,7 +299,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Using-Python-Packages.html">Using Python Packages with ROS 2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RQt-Port-Plugin-Windows.html">Porting RQt plugins to Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Run-2-nodes-in-single-or-separate-docker-containers.html">Running ROS 2 nodes in Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Visualizing-ROS-2-Data-With-Foxglove-Studio.html">Visualizing ROS 2 data with Foxglove Studio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Core-maintainer-guide.html">ROS 2 Core Maintainer Guide</a></li>
@@ -316,11 +315,6 @@
 <li class="toctree-l2"><a class="reference internal" href="ROS-2-IDEs.html">IDEs and Debugging [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Setup-ROS-2-with-VSCode-and-Docker-Container.html">Setup ROS 2 with VSCode and Docker [community-contributed]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Using-Custom-Rosdistro.html">Using Custom Rosdistro Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RQt-Source-Install.html">Building RQt from source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="RQt-Source-Install-MacOS.html">Building RQt from source on macOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="RQt-Source-Install-Windows10.html">Building RQt from source on Windows 10</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Concepts.html">Concepts</a><ul>
@@ -406,7 +400,7 @@
           <li class="breadcrumb-item"><a href="../How-To-Guides.html">How-to Guides</a></li>
       <li class="breadcrumb-item active">Installation troubleshooting</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/How-To-Guides/Installation-Troubleshooting.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/How-To-Guides/Installation-Troubleshooting.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -602,20 +596,6 @@ but<span class="w"> </span>active<span class="w"> </span>developer<span class="w
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>xcode-select<span class="w"> </span>-s<span class="w"> </span>/Applications/Xcode.app/Contents/Developer
 </pre></div>
 </div>
-</section>
-<section id="qt-gui-cpp-error-sip-binding-generator-not-available">
-<h3>qt_gui_cpp error: SIP binding generator NOT available<a class="headerlink" href="#qt-gui-cpp-error-sip-binding-generator-not-available" title="Link to this heading"></a></h3>
-<p>When building qt_gui_cpp there may be errors look like the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>---<span class="w"> </span>stderr:<span class="w"> </span>qt_gui_cpp
-
-CMake<span class="w"> </span>Error<span class="w"> </span>at<span class="w"> </span>src/CMakeLists.txt:10<span class="w"> </span><span class="o">(</span>message<span class="o">)</span>:
-<span class="w">  </span>No<span class="w"> </span>Python<span class="w"> </span>binding<span class="w"> </span>generator<span class="w"> </span>found.
-
----
-Failed<span class="w">   </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span>qt_gui_cpp<span class="w"> </span><span class="o">[</span><span class="w"> </span>Exited<span class="w"> </span>with<span class="w"> </span>code<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span>
-</pre></div>
-</div>
-<p>To fix this issue, follow <a class="reference internal" href="RQt-Source-Install-MacOS.html"><span class="doc">these steps</span></a> to install dependencies for RQt.</p>
 </section>
 <section id="rosdep-install-error-homebrew-failed-to-detect-successful-installation-of-qt5">
 <h3>rosdep install error <code class="docutils literal notranslate"><span class="pre">homebrew:</span> <span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">detect</span> <span class="pre">successful</span> <span class="pre">installation</span> <span class="pre">of</span> <span class="pre">[qt5]</span></code><a class="headerlink" href="#rosdep-install-error-homebrew-failed-to-detect-successful-installation-of-qt5" title="Link to this heading"></a></h3>

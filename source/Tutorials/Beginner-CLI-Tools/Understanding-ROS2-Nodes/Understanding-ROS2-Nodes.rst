@@ -7,11 +7,11 @@
 理解节点
 ===================
 
-**目标:** Learn about the function of nodes in ROS 2, and the tools to interact with them.
+**目标:** 学习 ROS 2 中节点的功能，以及与之交互的工具。
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -26,100 +26,99 @@
 接下来的几节教程中，你将学习到一系列 ROS 2 核心概念，这些概念构成了的 "ROS (2) graph"。
 ROS graph 是一个同时处理数据的 ROS 2 组件构成的网络。
 它包含了所有可执行文件以及它们之间的连接，如果你把它们全部映射出来并可视化，那么它就是一个 ROS 2 图。
-It encompasses all executables and the connections between them if you were to map them all out and visualize them.
 
-2 Nodes in ROS 2
-^^^^^^^^^^^^^^^^
+2 ROS 2 中的节点
+^^^^^^^^^^^^^^^^^^^^
 
-Each node in ROS should be responsible for a single, modular purpose, e.g. controlling the wheel motors or publishing the sensor data from a laser range-finder.
-Each node can send and receive data from other nodes via topics, services, actions, or parameters.
+ROS 中的每个节点应该只为一个单一、独立和模块化的目的负责，例如控制轮子的电机或者发布激光测距仪的传感器数据。
+每个节点都可以通过 topic 、服务、action 或 parameters 与其他节点进行数据交换。
 
 .. image:: images/Nodes-TopicandService.gif
 
-A full robotic system is comprised of many nodes working in concert.
-In ROS 2, a single executable (C++ program, Python program, etc.) can contain one or more nodes.
+一个完整的机器人系统由许多协同工作的节点组成。
+在 ROS 2 中，一个可执行文件（C++ 程序、Python 程序等）可以包含一个或多个节点。
 
 前提条件
 -------------
 
-The :doc:`previous tutorial <../Introducing-Turtlesim/Introducing-Turtlesim>` shows you how to install the ``turtlesim`` package used here.
+:doc:`之前的教程中 <../Introducing-Turtlesim/Introducing-Turtlesim>` 中描述了将要使用的 ``turtlesim`` 包的安装方法。
 
-As always, don't forget to source ROS 2 in :doc:`every new terminal you open <../Configuring-ROS2-Environment>`.
+如往常一样，不要忘记在 :doc:`每次打开新终端 <../Configuring-ROS2-Environment>` 时都要 source ROS 2。
 
-Tasks
+任务
 -----
 
 1 ros2 run
 ^^^^^^^^^^
 
-The command ``ros2 run`` launches an executable from a package.
+``ros2 run`` 命令从一个包中启动一个可执行文件。
 
 .. code-block:: console
 
     ros2 run <package_name> <executable_name>
 
-To run turtlesim, open a new terminal, and enter the following command:
+为了运行 turtlesim，打开一个新终端，输入以下命令：
 
 .. code-block:: console
 
     ros2 run turtlesim turtlesim_node
 
-The turtlesim window will open, as you saw in the :doc:`previous tutorial <../Introducing-Turtlesim/Introducing-Turtlesim>`.
+turtlesim 窗口会打开，就像你在 :doc:`之前的教程 <../Introducing-Turtlesim/Introducing-Turtlesim>` 中看到的那样。
 
-Here, the package name is ``turtlesim`` and the executable name is ``turtlesim_node``.
+在上面指令中，包名是 ``turtlesim``，可执行文件名是 ``turtlesim_node``。
 
-We still don't know the node name, however.
-You can find node names by using ``ros2 node list``
+不过我们还是不知道节点的名字
+你可以使用 ``ros2 node list`` 来查看节点的名字
 
 2 ros2 node list
 ^^^^^^^^^^^^^^^^
 
-``ros2 node list`` will show you the names of all running nodes.
-This is especially useful when you want to interact with a node, or when you have a system running many nodes and need to keep track of them.
+``ros2 node list`` 命令会显示所有正在运行的节点的名字。
+在你想和一个节点交互时，或者需要追踪运行着许多节点的系统时，这个指令特别有用。
 
-Open a new terminal while turtlesim is still running in the other one, and enter the following command:
+在 turtlesim 仍在运行的终端中打开一个新终端，输入以下命令：
 
 .. code-block:: console
 
     ros2 node list
 
-The terminal will return the node name:
+终端会显示节点的名字：
 
 .. code-block:: console
 
   /turtlesim
 
-Open another new terminal and start the teleop node with the command:
+打开一个新终端，用如下指令运行小乌龟的控制节点
 
 .. code-block:: console
 
     ros2 run turtlesim turtle_teleop_key
 
-Here, we are referring to the ``turtlesim`` package again, but this time we target the executable named ``turtle_teleop_key``.
+这次我们又从 ``turtlesim`` 包里面启动代码，只不过启动的可执行文件换成了 ``turtle_teleop_key``.
 
-Return to the terminal where you ran ``ros2 node list`` and run it again.
-You will now see the names of two active nodes:
+现在回到刚刚运行 ``ros2 node list`` 的终端再运行一次。
+你能看到有两个节点名字显示出来：
 
 .. code-block:: console
 
   /turtlesim
   /teleop_turtle
 
-2.1 Remapping
-~~~~~~~~~~~~~
+2.1 重映射(Remapping)
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Remapping <https://design.ros2.org/articles/ros_command_line_arguments.html#name-remapping-rules>`__ allows you to reassign default node properties, like node name, topic names, service names, etc., to custom values.
-In the last tutorial, you used remapping on ``turtle_teleop_key`` to change the cmd_vel topic and target **turtle2**.
+`重映射 <https://design.ros2.org/articles/ros_command_line_arguments.html#name-remapping-rules>`__ 使你能够重新分配默认节点属性，比如节点名、topic 名、服务名等等。
+在上一个教程中，你使用重映射在 ``turtle_teleop_key`` 上更改了 ``cmd_vel`` topic 使它用来控制 **turtle2**。
 
-Now, let's reassign the name of our ``/turtlesim`` node.
-In a new terminal, run the following command:
+现在，让我们重新分配 ``/turtlesim`` 节点的名字。
+在一个新终端中，运行以下指令：
 
 .. code-block:: console
 
   ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle
 
-Since you're calling ``ros2 run`` on turtlesim again, another turtlesim window will open.
-However, now if you return to the terminal where you ran ``ros2 node list``, and run it again, you will see three node names:
+再次运行 ``ros2 run`` 时会打开一个新的 turtlesim 窗口。
+不过，现在如果你回到运行 ``ros2 node list`` 的终端再运行一次，你会看到三个节点名字：
 
 .. code-block:: console
 
@@ -130,20 +129,20 @@ However, now if you return to the terminal where you ran ``ros2 node list``, and
 3 ros2 node info
 ^^^^^^^^^^^^^^^^
 
-Now that you know the names of your nodes, you can access more information about them with:
+现在你知道了节点的名字，你可以使用以下指令查看更多关于它们的信息：
 
 .. code-block:: console
 
     ros2 node info <node_name>
 
-To examine your latest node, ``my_turtle``, run the following command:
+为了查看你最新的 ``my_turtle`` 节点，运行以下指令：
 
 .. code-block:: console
 
     ros2 node info /my_turtle
 
-``ros2 node info`` returns a list of subscribers, publishers, services, and actions. i.e. the ROS graph connections that interact with that node.
-The output should look like this:
+``ros2 node info`` 会返回一个订阅者、发布者、服务和 action 的列表，即在 ROS graph 中 与该节点有交互的连接。
+输出应该是这样的：
 
 .. code-block:: console
 
@@ -176,27 +175,27 @@ The output should look like this:
       /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
     Action Clients:
 
-Now try running the same command on the ``/teleop_turtle`` node, and see how its connections differ from ``my_turtle``.
+现在尝试对 ``/teleop_turtle`` 节点运行同样的指令，看看它的连接与 ``my_turtle`` 有什么不同。
 
-You will learn more about the ROS graph connection concepts including the message types in the upcoming tutorials.
+在接下来的教程中，你会学到更多关于 ROS graph 中不同连接概念，包括消息类型。
 
-Summary
+总结
 -------
 
-A node is a fundamental ROS 2 element that serves a single, modular purpose in a robotics system.
+节点是 ROS 2 中的基本元素，它们在机器人系统中服务于单一、模块化的目的。
 
-In this tutorial, you utilized nodes created in the ``turtlesim`` package by running the executables ``turtlesim_node`` and ``turtle_teleop_key``.
+在这个教程中，你通过运行 ``turtlesim`` 包中的 ``turtlesim_node`` 和 ``turtle_teleop_key`` 可执行文件来使用节点。
 
-You learned how to use ``ros2 node list`` to discover active node names and ``ros2 node info`` to introspect a single node.
-These tools are vital to understanding the flow of data in a complex, real-world robot system.
+你学会了如何使用 ``ros2 node list`` 来发现正在运行的节点名字，以及用 ``ros2 node info`` 来检查与单个节点有关的信息。
+这些工具对于理解复杂的真实机器人系统中的数据流是至关重要的。
 
-Next steps
+下一步
 ----------
 
-Now that you understand nodes in ROS 2, you can move on to the :doc:`topics tutorial <../Understanding-ROS2-Topics/Understanding-ROS2-Topics>`.
-Topics are one of the communication types that connects nodes.
+现在你了解了 ROS 2 中的节点，你可以继续学习 :doc:`topics 教程 <../Understanding-ROS2-Topics/Understanding-ROS2-Topics>`。
+Topics 是节点间通信的方式之一。
 
-Related content
+相关内容
 ---------------
 
-The :doc:`../../../Concepts` page adds some more detail to the concept of nodes.
+:doc:`../../../Concepts` 页面对节点的概念介绍了更多细节。

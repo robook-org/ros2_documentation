@@ -179,19 +179,19 @@ We can check that our action built successfully with the command line tool:
 
 You should see the Fibonacci action definition printed to the screen.
 
-Summary
+总结
 -------
 
 In this tutorial, you learned the structure of an action definition.
 You also learned how to correctly build a new action interface using ``CMakeLists.txt`` and ``package.xml``,
 and how to verify a successful build.
 
-Next steps
+下一步
 ----------
 
 Next, let's utilize your newly defined action interface by creating an action service and client (in :doc:`Python <Writing-an-Action-Server-Client/Py>` or :doc:`C++ <Writing-an-Action-Server-Client/Cpp>`).
 
-Related content
+相关内容
 ---------------
 
 For more detailed information about ROS actions, please refer to the `design article <http://design.ros2.org/articles/actions.html>`__.

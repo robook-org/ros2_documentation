@@ -459,7 +459,7 @@ In your console output you will see something similar to this:
 If you run ``tf2_echo`` for the transform between the ``world`` and ``turtle2``, you should not see a transform, because the second turtle is not there yet.
 However, as soon as we add the second turtle in the next tutorial, the pose of ``turtle2`` will be broadcast to tf2.
 
-Summary
+总结
 -------
 
 In this tutorial you learned how to broadcast the pose of the robot (position and orientation of the turtle) to tf2 and how to use the ``tf2_echo`` tool.

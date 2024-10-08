@@ -114,7 +114,7 @@ You should respond to the prompts as following:
 
 Bloom will automatically create a pull request for you against `rosdistro <https://github.com/ros/rosdistro>`_.
 
-Next Steps
+下一步
 ----------
 
 .. include:: _Next-Steps.rst

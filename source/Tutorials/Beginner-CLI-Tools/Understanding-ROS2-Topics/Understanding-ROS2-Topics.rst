@@ -339,14 +339,14 @@ If you run the above command with ``turtle1/cmd_vel`` instead of ``turtle1/pose`
 At this point you'll have a lot of nodes running.
 Don't forget to stop them by entering ``Ctrl+C`` in each terminal.
 
-Summary
+总结
 -------
 
 Nodes publish information over topics, which allows any number of other nodes to subscribe to and access that information.
 In this tutorial you examined the connections between several nodes over topics using rqt_graph and command line tools.
 You should now have a good idea of how data moves around a ROS 2 system.
 
-Next steps
+下一步
 ----------
 
 Next you'll learn about another communication type in the ROS graph with the tutorial :doc:`../Understanding-ROS2-Services/Understanding-ROS2-Services`.

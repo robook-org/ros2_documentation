@@ -347,7 +347,7 @@ Run the command:
 A hidden node (the ``ros2 topic pub`` command you ran) is publishing data to the ``/turtlesim1/turtle1/cmd_vel`` topic on the left, which the ``/turtlesim1/sim`` node is subscribed to.
 The rest of the graph shows what was described earlier: ``mimic`` is subscribed to ``/turtlesim1/sim``'s pose topic, and publishes to ``/turtlesim2/sim``'s velocity command topic.
 
-Summary
+总结
 -------
 
 Launch files simplify running complex systems with many nodes and specific configuration details.

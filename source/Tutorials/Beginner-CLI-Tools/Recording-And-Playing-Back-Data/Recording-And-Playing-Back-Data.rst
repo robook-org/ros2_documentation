@@ -263,19 +263,19 @@ To get an idea of how often position data is published, you can run the command:
 
     ros2 topic hz /turtle1/pose
 
-Summary
+总结
 -------
 
 You can record data passed on topics in your ROS 2 system using the ``ros2 bag`` command.
 Whether you're sharing your work with others or introspecting your own experiments, it's a great tool to know about.
 
-Next steps
+下一步
 ----------
 
 You've completed the "Beginner: CLI Tools" tutorials!
 The next step is tackling the "Beginner: Client Libraries" tutorials, starting with :doc:`../../Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace`.
 
-Related content
+相关内容
 ---------------
 
 A more thorough explanation of ``ros2 bag`` can be found in the README `here <https://github.com/ros2/rosbag2>`__.

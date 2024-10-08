@@ -115,7 +115,7 @@ You can now run the launch file.
 You should notice that ``lookupTransform()`` will actually block until the transform between the two turtles becomes available (this will usually take a few milliseconds).
 Once the timeout has been reached (fifty milliseconds in this case), an exception will be raised only if the transform is still not available.
 
-Summary
+总结
 -------
 
 In this tutorial, you learned how to acquire a transform at a specific timestamp and how to wait for a transform to be available on the tf2 tree when using the ``lookupTransform()`` function.

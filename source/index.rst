@@ -24,14 +24,14 @@ ROS 2 文档
 
 
 **机器人操作系统(The Robot Operating System / ROS) 是一系列用于构建机器人应用的软件库和工具包的集合**
-从驱动和算法最佳实现到强大的开发者工具，ROS 提供了您下一个机器人项目所需的开源工具。
+从驱动和算法最佳实现到强大的开发者工具，ROS 提供了你下一个机器人项目所需的开源工具。
 
 自从 ROS 于 2007 年启动以来，机器人领域和 ROS 社区发生了很多变化。
 ROS2 的目标是适应这些变、保留 ROS1 的优势并改进不足之处。
 
-**您是否在寻找特定 ROS 包的文档，如 MoveIt、image_proc 或 octomap？** 请查看 `ROS Index <https://index.ros.org/packages/#{DISTRO}>`__ 或查看 `所有包的文档目录 <https://docs.ros.org/en/{DISTRO}/p/>`__。
+**你是否在寻找特定 ROS 包的文档，如 MoveIt、image_proc 或 octomap？** 请查看 `ROS Index <https://index.ros.org/packages/#{DISTRO}>`__ 或查看 `所有包的文档目录 <https://docs.ros.org/en/{DISTRO}/p/>`__。
 
-本站点包含 ROS 2 的文档，如果您正在寻找 ROS 1 的文档，请查看 `ROS wiki <https://wiki.ros.org>`__。
+本站点包含 ROS 2 的文档，如果你正在寻找 ROS 1 的文档，请查看 `ROS wiki <https://wiki.ros.org>`__。
 
 如果你的工作中用到了 ROS 2，请参考 :doc:`引用 <Citations>` 来引用 ROS 2。
 
@@ -68,7 +68,7 @@ ROS2 的目标是适应这些变、保留 ROS1 的优势并改进不足之处。
 ROS 2 项目
 ------------
 
-如果您对 ROS 2 项目的进展感兴趣：
+如果你对 ROS 2 项目的进展感兴趣：
 
 * :doc:`贡献 <The-ROS2-Project/Contributing>`
 
@@ -106,7 +106,7 @@ ROS 2 项目
 ROS 社区资源
 -----------------------
 
-如果您需要帮助、有想法或想为项目做出贡献，请访问我们的 ROS 社区资源。
+如果你需要帮助、有想法或想为项目做出贡献，请访问我们的 ROS 社区资源。
 
 * `Official ROS Discord Channel for discussion and support <https://discord.com/servers/open-robotics-1077825543698927656>`__ (ROS 1, ROS 2)
 

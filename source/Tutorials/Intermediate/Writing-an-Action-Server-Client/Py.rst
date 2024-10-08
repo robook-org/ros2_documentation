@@ -348,12 +348,12 @@ This is achieved by additionally passing the callback to the action client when 
 
 We're all set. If we run our action client, you should see feedback being printed to the screen.
 
-Summary
+总结
 -------
 
 In this tutorial, you put together a Python action server and action client line by line, and configured them to exchange goals, feedback, and results.
 
-Related content
+相关内容
 ---------------
 
 * There are several ways you could write an action server and client in Python; check out the ``minimal_action_server`` and ``minimal_action_client`` packages in the `ros2/examples <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclpy/actions>`_ repo.

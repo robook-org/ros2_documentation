@@ -513,19 +513,19 @@ The listener will start printing messages to the console, starting at whatever m
 
 Enter ``Ctrl+C`` in each terminal to stop the nodes from spinning.
 
-Summary
+总结
 -------
 
 You created two nodes to publish and subscribe to data over a topic.
 Before running them, you added their dependencies and entry points to the package configuration files.
 
-Next steps
+下一步
 ----------
 
 Next you'll create another simple ROS 2 package using the service/client model.
 Again, you can choose to write it in either :doc:`C++ <./Writing-A-Simple-Cpp-Service-And-Client>` or :doc:`Python <./Writing-A-Simple-Py-Service-And-Client>`.
 
-Related content
+相关内容
 ---------------
 
 There are several ways you could write a publisher and subscriber in Python; check out the ``minimal_publisher`` and ``minimal_subscriber`` packages in the `ros2/examples <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclpy/topics>`_ repo.

@@ -372,19 +372,19 @@ You will see that it published log messages when it received the request:
 Enter ``Ctrl+C`` in the server terminal to stop the node from spinning.
 
 
-Summary
+总结
 -------
 
 You created two nodes to request and respond to data over a service.
 You added their dependencies and executables to the package configuration files so that you could build and run them, allowing you to see a service/client system at work.
 
-Next steps
+下一步
 ----------
 
 In the last few tutorials you've been utilizing interfaces to pass data across topics and services.
 Next, you'll learn how to :doc:`create custom interfaces <./Custom-ROS2-Interfaces>`.
 
-Related content
+相关内容
 ---------------
 
 * There are several ways you could write a service and client in Python; check out the ``minimal_client`` and ``minimal_service`` packages in the `ros2/examples <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclpy/services>`_ repo.

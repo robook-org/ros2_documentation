@@ -418,16 +418,16 @@
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id3">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id4">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#reset-handler-for-simple-cases-controllers-only" id="id5">Reset Handler for Simple Cases (Controllers Only)</a></p></li>
-<li><p><a class="reference internal" href="#reset-handler-for-multiple-nodes-no-shutdown-required" id="id6">Reset Handler for Multiple Nodes (No Shutdown Required)</a></p></li>
-<li><p><a class="reference internal" href="#reset-handler-requiring-node-shutdown" id="id7">Reset Handler Requiring Node Shutdown</a></p></li>
-<li><p><a class="reference internal" href="#summary" id="id8">Summary</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id4">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id5">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#reset-handler-for-simple-cases-controllers-only" id="id6">Reset Handler for Simple Cases (Controllers Only)</a></p></li>
+<li><p><a class="reference internal" href="#reset-handler-for-multiple-nodes-no-shutdown-required" id="id7">Reset Handler for Multiple Nodes (No Shutdown Required)</a></p></li>
+<li><p><a class="reference internal" href="#reset-handler-requiring-node-shutdown" id="id8">Reset Handler Requiring Node Shutdown</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id9">总结</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>In this tutorial, you will learn how to implement a reset handler in a robot simulation using Webots.
 The Webots reset button reverts the world to the initial state and restarts controllers.
 It is convenient as it quickly resets the simulation, but in the context of ROS 2, robot controllers are not started again making the simulation stop.
@@ -435,7 +435,7 @@ The reset handler allows you to restart specific nodes or perform additional act
 This can be useful for scenarios where you need to reset the state of your simulation or restart specific components without completely restarting the complete ROS system.</p>
 </section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>Before proceeding with this tutorial, make sure you have completed the following:</p>
 <ul class="simple">
 <li><p>Understanding of ROS 2 nodes and topics covered in the beginner <a class="reference internal" href="../../../../Tutorials.html"><span class="doc">教程</span></a>.</p></li>
@@ -444,7 +444,7 @@ This can be useful for scenarios where you need to reset the state of your simul
 </ul>
 </section>
 <section id="reset-handler-for-simple-cases-controllers-only">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Reset Handler for Simple Cases (Controllers Only)</a><a class="headerlink" href="#reset-handler-for-simple-cases-controllers-only" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Reset Handler for Simple Cases (Controllers Only)</a><a class="headerlink" href="#reset-handler-for-simple-cases-controllers-only" title="Link to this heading"></a></h2>
 <p>In the launch file of your package, add the <code class="docutils literal notranslate"><span class="pre">respawn</span></code> parameter.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
     <span class="n">robot_driver</span> <span class="o">=</span> <span class="n">WebotsController</span><span class="p">(</span>
@@ -471,7 +471,7 @@ Therefore, to start them again after reset, you should set the <code class="docu
 It will ensure driver nodes are up and running after the reset.</p>
 </section>
 <section id="reset-handler-for-multiple-nodes-no-shutdown-required">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Reset Handler for Multiple Nodes (No Shutdown Required)</a><a class="headerlink" href="#reset-handler-for-multiple-nodes-no-shutdown-required" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Reset Handler for Multiple Nodes (No Shutdown Required)</a><a class="headerlink" href="#reset-handler-for-multiple-nodes-no-shutdown-required" title="Link to this heading"></a></h2>
 <p>If you have some other nodes that have to be started along with the driver node (e.g. <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> nodes), then you can use the <code class="docutils literal notranslate"><span class="pre">OnProcessExit</span></code> event handler:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_ros2_control_spawners</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="c1"># Declare here all nodes that must be restarted at simulation reset</span>
@@ -520,7 +520,7 @@ With the <code class="docutils literal notranslate"><span class="pre">reset_hand
 The <code class="docutils literal notranslate"><span class="pre">robot_driver</span></code> node still has the <code class="docutils literal notranslate"><span class="pre">respawn</span></code> property set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, so that it gets restarted along with <code class="docutils literal notranslate"><span class="pre">ros2_control</span></code> nodes.</p>
 </section>
 <section id="reset-handler-requiring-node-shutdown">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Reset Handler Requiring Node Shutdown</a><a class="headerlink" href="#reset-handler-requiring-node-shutdown" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Reset Handler Requiring Node Shutdown</a><a class="headerlink" href="#reset-handler-requiring-node-shutdown" title="Link to this heading"></a></h2>
 <p>With the current ROS 2 launch API, there is no way to make the reset work in launch files where nodes need to be shutdown before the restart (e.g. <code class="docutils literal notranslate"><span class="pre">Nav2</span></code> or <code class="docutils literal notranslate"><span class="pre">RViz</span></code>).
 The reason is that currently, ROS 2 doesn’t allow to shutdown specific nodes from a launch file.
 There is a solution, but it requires to manually restart nodes after pushing the reset button.</p>
@@ -585,8 +585,8 @@ This launch file contains all other nodes, including robot controllers/plugins, 
 <p>The second launch file contains a handler that triggers a shutdown event when the driver node exits (which is the case when the simulation is reset).
 This second launch file must be manually restarted from the command line after pressing the reset button.</p>
 </section>
-<section id="summary">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<section id="id3">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">总结</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>In this tutorial, you learned how to implement a reset handler in a robot simulation using Webots.
 The reset handler allows you to restart specific nodes or perform additional actions when the reset button in Webots is pressed.
 You explored different approaches based on the complexity of your simulation and the requirements of your nodes.</p>

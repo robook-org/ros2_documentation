@@ -416,27 +416,27 @@
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id3">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id4">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id5">Tasks</a></p>
+<li><p><a class="reference internal" href="#id1" id="id5">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id6">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#tasks" id="id7">Tasks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#setup" id="id6">1 Setup</a></p></li>
-<li><p><a class="reference internal" href="#rqt-graph" id="id7">2 rqt_graph</a></p></li>
-<li><p><a class="reference internal" href="#ros2-topic-list" id="id8">3 ros2 topic list</a></p></li>
-<li><p><a class="reference internal" href="#ros2-topic-echo" id="id9">4 ros2 topic echo</a></p></li>
-<li><p><a class="reference internal" href="#ros2-topic-info" id="id10">5 ros2 topic info</a></p></li>
-<li><p><a class="reference internal" href="#ros2-interface-show" id="id11">6 ros2 interface show</a></p></li>
-<li><p><a class="reference internal" href="#ros2-topic-pub" id="id12">7 ros2 topic pub</a></p></li>
-<li><p><a class="reference internal" href="#ros2-topic-hz" id="id13">8 ros2 topic hz</a></p></li>
-<li><p><a class="reference internal" href="#clean-up" id="id14">9 Clean up</a></p></li>
+<li><p><a class="reference internal" href="#setup" id="id8">1 Setup</a></p></li>
+<li><p><a class="reference internal" href="#rqt-graph" id="id9">2 rqt_graph</a></p></li>
+<li><p><a class="reference internal" href="#ros2-topic-list" id="id10">3 ros2 topic list</a></p></li>
+<li><p><a class="reference internal" href="#ros2-topic-echo" id="id11">4 ros2 topic echo</a></p></li>
+<li><p><a class="reference internal" href="#ros2-topic-info" id="id12">5 ros2 topic info</a></p></li>
+<li><p><a class="reference internal" href="#ros2-interface-show" id="id13">6 ros2 interface show</a></p></li>
+<li><p><a class="reference internal" href="#ros2-topic-pub" id="id14">7 ros2 topic pub</a></p></li>
+<li><p><a class="reference internal" href="#ros2-topic-hz" id="id15">8 ros2 topic hz</a></p></li>
+<li><p><a class="reference internal" href="#clean-up" id="id16">9 Clean up</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary" id="id15">Summary</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id16">Next steps</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id17">总结</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id18">下一步</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>ROS 2 breaks complex systems down into many modular nodes.
 Topics are a vital element of the ROS graph that act as a bus for nodes to exchange messages.</p>
 <img alt="../../../_images/Topic-SinglePublisherandSingleSubscriber.gif" src="../../../_images/Topic-SinglePublisherandSingleSubscriber.gif" />
@@ -445,14 +445,14 @@ Topics are a vital element of the ROS graph that act as a bus for nodes to excha
 <p>Topics are one of the main ways in which data is moved between nodes and therefore between different parts of the system.</p>
 </section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>The <a class="reference internal" href="../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html"><span class="doc">previous tutorial</span></a> provides some useful background information on nodes that is built upon here.</p>
 <p>As always, don’t forget to source ROS 2 in <a class="reference internal" href="../Configuring-ROS2-Environment.html"><span class="doc">every new terminal you open</span></a>.</p>
 </section>
 <section id="tasks">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
 <section id="setup">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
 <p>By now you should be comfortable starting up turtlesim.</p>
 <p>Open a new terminal and run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node</span>
@@ -465,7 +465,7 @@ Topics are a vital element of the ROS graph that act as a bus for nodes to excha
 <p>Recall from the <a class="reference internal" href="../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html"><span class="doc">previous tutorial</span></a> that the names of these nodes are <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> and <code class="docutils literal notranslate"><span class="pre">/teleop_turtle</span></code> by default.</p>
 </section>
 <section id="rqt-graph">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">2 rqt_graph</a><a class="headerlink" href="#rqt-graph" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">2 rqt_graph</a><a class="headerlink" href="#rqt-graph" title="Link to this heading"></a></h3>
 <p>Throughout this tutorial, we will use <code class="docutils literal notranslate"><span class="pre">rqt_graph</span></code> to visualize the changing nodes and topics, as well as the connections between them.</p>
 <p>The <a class="reference internal" href="../Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">turtlesim tutorial</span></a> tells you how to install rqt and all its plugins, including <code class="docutils literal notranslate"><span class="pre">rqt_graph</span></code>.</p>
 <p>To run rqt_graph, open a new terminal and enter the command:</p>
@@ -483,7 +483,7 @@ The <code class="docutils literal notranslate"><span class="pre">/teleop_turtle<
 Now we’ll look at some command line tools for introspecting topics.</p>
 </section>
 <section id="ros2-topic-list">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">3 ros2 topic list</a><a class="headerlink" href="#ros2-topic-list" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">3 ros2 topic list</a><a class="headerlink" href="#ros2-topic-list" title="Link to this heading"></a></h3>
 <p>Running the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code> command in a new terminal will return a list of all the topics currently active in the system:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">/parameter_events</span>
 <span class="go">/rosout</span>
@@ -506,7 +506,7 @@ Now we’ll look at some command line tools for introspecting topics.</p>
 <p>For now, though, leave those options checked to avoid confusion.</p>
 </section>
 <section id="ros2-topic-echo">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">4 ros2 topic echo</a><a class="headerlink" href="#ros2-topic-echo" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">4 ros2 topic echo</a><a class="headerlink" href="#ros2-topic-echo" title="Link to this heading"></a></h3>
 <p>To see the data being published on a topic, use:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic echo &lt;topic_name&gt;</span>
 </pre></div>
@@ -536,7 +536,7 @@ Watch the terminal where your <code class="docutils literal notranslate"><span c
 Now you can see that the publisher is publishing data over the <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> topic, and two subscribers are subscribed to it.</p>
 </section>
 <section id="ros2-topic-info">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">5 ros2 topic info</a><a class="headerlink" href="#ros2-topic-info" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">5 ros2 topic info</a><a class="headerlink" href="#ros2-topic-info" title="Link to this heading"></a></h3>
 <p>Topics don’t have to only be one-to-one communication; they can be one-to-many, many-to-one, or many-to-many.</p>
 <p>Another way to look at this is running:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic info /turtle1/cmd_vel</span>
@@ -550,7 +550,7 @@ Now you can see that the publisher is publishing data over the <code class="docu
 </div>
 </section>
 <section id="ros2-interface-show">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">6 ros2 interface show</a><a class="headerlink" href="#ros2-interface-show" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">6 ros2 interface show</a><a class="headerlink" href="#ros2-interface-show" title="Link to this heading"></a></h3>
 <p>Nodes send data over topics using messages.
 Publishers and subscribers must send and receive the same type of message to communicate.</p>
 <p>The topic types we saw earlier after running <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span> <span class="pre">-t</span></code> let us know what message type is used on each topic.
@@ -592,7 +592,7 @@ If you recall the data we saw <code class="docutils literal notranslate"><span c
 </div>
 </section>
 <section id="ros2-topic-pub">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">7 ros2 topic pub</a><a class="headerlink" href="#ros2-topic-pub" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">7 ros2 topic pub</a><a class="headerlink" href="#ros2-topic-pub" title="Link to this heading"></a></h3>
 <p>Now that you have the message structure, you can publish data to a topic directly from the command line using:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub &lt;topic_name&gt; &lt;msg_type&gt; &#39;&lt;args&gt;&#39;</span>
 </pre></div>
@@ -643,7 +643,7 @@ For messages with a <code class="docutils literal notranslate"><span class="pre"
 </div>
 </section>
 <section id="ros2-topic-hz">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">8 ros2 topic hz</a><a class="headerlink" href="#ros2-topic-hz" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">8 ros2 topic hz</a><a class="headerlink" href="#ros2-topic-hz" title="Link to this heading"></a></h3>
 <p>For one last introspection on this process, you can view the rate at which data is published using:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic hz /turtle1/pose</span>
 </pre></div>
@@ -657,19 +657,19 @@ For messages with a <code class="docutils literal notranslate"><span class="pre"
 If you run the above command with <code class="docutils literal notranslate"><span class="pre">turtle1/cmd_vel</span></code> instead of <code class="docutils literal notranslate"><span class="pre">turtle1/pose</span></code>, you will see an average reflecting that rate.</p>
 </section>
 <section id="clean-up">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">9 Clean up</a><a class="headerlink" href="#clean-up" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">9 Clean up</a><a class="headerlink" href="#clean-up" title="Link to this heading"></a></h3>
 <p>At this point you’ll have a lot of nodes running.
 Don’t forget to stop them by entering <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in each terminal.</p>
 </section>
 </section>
-<section id="summary">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<section id="id3">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">总结</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>Nodes publish information over topics, which allows any number of other nodes to subscribe to and access that information.
 In this tutorial you examined the connections between several nodes over topics using rqt_graph and command line tools.
 You should now have a good idea of how data moves around a ROS 2 system.</p>
 </section>
-<section id="next-steps">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<section id="id4">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">下一步</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>Next you’ll learn about another communication type in the ROS graph with the tutorial <a class="reference internal" href="../Understanding-ROS2-Services/Understanding-ROS2-Services.html"><span class="doc">Understanding services</span></a>.</p>
 </section>
 </section>

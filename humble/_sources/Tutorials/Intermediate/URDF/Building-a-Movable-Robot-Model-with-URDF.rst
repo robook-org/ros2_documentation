@@ -114,7 +114,7 @@ Then, it uses the values of the sliders to publish `sensor_msgs/msg/JointState <
 Those are then used by `robot_state_publisher <https://index.ros.org/p/robot_state_publisher>`_ to calculate all of transforms between the different parts.
 The resulting transform tree is then used to display all of the shapes in Rviz.
 
-Next steps
+下一步
 ----------
 
 Now that you have a visibly functional model, you can :doc:`add in some physical properties <./Adding-Physical-and-Collision-Properties-to-a-URDF-Model>`, or :doc:`start using xacro to simplify your code <./Using-Xacro-to-Clean-Up-a-URDF-File>`.

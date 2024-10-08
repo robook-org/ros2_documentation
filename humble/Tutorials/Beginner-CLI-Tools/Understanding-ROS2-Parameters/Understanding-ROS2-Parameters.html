@@ -416,25 +416,25 @@
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id3">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id4">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id5">Tasks</a></p>
+<li><p><a class="reference internal" href="#id1" id="id5">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id6">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#tasks" id="id7">Tasks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#setup" id="id6">1 Setup</a></p></li>
-<li><p><a class="reference internal" href="#ros2-param-list" id="id7">2 ros2 param list</a></p></li>
-<li><p><a class="reference internal" href="#ros2-param-get" id="id8">3 ros2 param get</a></p></li>
-<li><p><a class="reference internal" href="#ros2-param-set" id="id9">4 ros2 param set</a></p></li>
-<li><p><a class="reference internal" href="#ros2-param-dump" id="id10">5 ros2 param dump</a></p></li>
-<li><p><a class="reference internal" href="#ros2-param-load" id="id11">6 ros2 param load</a></p></li>
-<li><p><a class="reference internal" href="#load-parameter-file-on-node-startup" id="id12">7 Load parameter file on node startup</a></p></li>
+<li><p><a class="reference internal" href="#setup" id="id8">1 Setup</a></p></li>
+<li><p><a class="reference internal" href="#ros2-param-list" id="id9">2 ros2 param list</a></p></li>
+<li><p><a class="reference internal" href="#ros2-param-get" id="id10">3 ros2 param get</a></p></li>
+<li><p><a class="reference internal" href="#ros2-param-set" id="id11">4 ros2 param set</a></p></li>
+<li><p><a class="reference internal" href="#ros2-param-dump" id="id12">5 ros2 param dump</a></p></li>
+<li><p><a class="reference internal" href="#ros2-param-load" id="id13">6 ros2 param load</a></p></li>
+<li><p><a class="reference internal" href="#load-parameter-file-on-node-startup" id="id14">7 Load parameter file on node startup</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary" id="id13">Summary</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id14">Next steps</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id15">总结</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id16">下一步</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>A parameter is a configuration value of a node.
 You can think of parameters as node settings.
 A node can store parameters as integers, floats, booleans, strings, and lists.
@@ -442,14 +442,14 @@ In ROS 2, each node maintains its own parameters.
 For more background on parameters, please see <a class="reference internal" href="../../../Concepts/Basic/About-Parameters.html"><span class="doc">the concept document</span></a>.</p>
 </section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>This tutorial uses the <a class="reference internal" href="../Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">turtlesim package</span></a>.</p>
 <p>As always, don’t forget to source ROS 2 in <a class="reference internal" href="../Configuring-ROS2-Environment.html"><span class="doc">every new terminal you open</span></a>.</p>
 </section>
 <section id="tasks">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
 <section id="setup">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
 <p>Start up the two turtlesim nodes, <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> and <code class="docutils literal notranslate"><span class="pre">/teleop_turtle</span></code>.</p>
 <p>Open a new terminal and run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node</span>
@@ -461,7 +461,7 @@ For more background on parameters, please see <a class="reference internal" href
 </div>
 </section>
 <section id="ros2-param-list">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">2 ros2 param list</a><a class="headerlink" href="#ros2-param-list" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">2 ros2 param list</a><a class="headerlink" href="#ros2-param-list" title="Link to this heading"></a></h3>
 <p>To see the parameters belonging to your nodes, open a new terminal and enter the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 param list</span>
 </pre></div>
@@ -491,7 +491,7 @@ For more background on parameters, please see <a class="reference internal" href
 <p>To determine a parameter’s type, you can use <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">param</span> <span class="pre">get</span></code>.</p>
 </section>
 <section id="ros2-param-get">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">3 ros2 param get</a><a class="headerlink" href="#ros2-param-get" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">3 ros2 param get</a><a class="headerlink" href="#ros2-param-get" title="Link to this heading"></a></h3>
 <p>To display the type and current value of a parameter, use the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 param get &lt;node_name&gt; &lt;parameter_name&gt;</span>
 </pre></div>
@@ -508,7 +508,7 @@ For more background on parameters, please see <a class="reference internal" href
 <p>If you run the same command on <code class="docutils literal notranslate"><span class="pre">background_r</span></code> and <code class="docutils literal notranslate"><span class="pre">background_b</span></code>, you will get the values <code class="docutils literal notranslate"><span class="pre">69</span></code> and <code class="docutils literal notranslate"><span class="pre">255</span></code>, respectively.</p>
 </section>
 <section id="ros2-param-set">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">4 ros2 param set</a><a class="headerlink" href="#ros2-param-set" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">4 ros2 param set</a><a class="headerlink" href="#ros2-param-set" title="Link to this heading"></a></h3>
 <p>To change a parameter’s value at runtime, use the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 param set &lt;node_name&gt; &lt;parameter_name&gt; &lt;value&gt;</span>
 </pre></div>
@@ -527,7 +527,7 @@ For more background on parameters, please see <a class="reference internal" href
 However, you can save your settings and reload them the next time you start a node.</p>
 </section>
 <section id="ros2-param-dump">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">5 ros2 param dump</a><a class="headerlink" href="#ros2-param-dump" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">5 ros2 param dump</a><a class="headerlink" href="#ros2-param-dump" title="Link to this heading"></a></h3>
 <p>You can view all of a node’s current parameter values by using the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 param dump &lt;node_name&gt;</span>
 </pre></div>
@@ -557,7 +557,7 @@ If you open this file, you’ll see the following content:</p>
 <p>Dumping parameters comes in handy if you want to reload the node with the same parameters in the future.</p>
 </section>
 <section id="ros2-param-load">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">6 ros2 param load</a><a class="headerlink" href="#ros2-param-load" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">6 ros2 param load</a><a class="headerlink" href="#ros2-param-load" title="Link to this heading"></a></h3>
 <p>You can load parameters from a file to a currently running node using the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 param load &lt;node_name&gt; &lt;parameter_file&gt;</span>
 </pre></div>
@@ -583,7 +583,7 @@ If you open this file, you’ll see the following content:</p>
 </div>
 </section>
 <section id="load-parameter-file-on-node-startup">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">7 Load parameter file on node startup</a><a class="headerlink" href="#load-parameter-file-on-node-startup" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">7 Load parameter file on node startup</a><a class="headerlink" href="#load-parameter-file-on-node-startup" title="Link to this heading"></a></h3>
 <p>To start the same node using your saved parameter values, use:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run &lt;package_name&gt; &lt;executable_name&gt; --ros-args --params-file &lt;file_name&gt;</span>
 </pre></div>
@@ -600,14 +600,14 @@ If you open this file, you’ll see the following content:</p>
 </div>
 </section>
 </section>
-<section id="summary">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<section id="id3">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">总结</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>Nodes have parameters to define their default configuration values.
 You can <code class="docutils literal notranslate"><span class="pre">get</span></code> and <code class="docutils literal notranslate"><span class="pre">set</span></code> parameter values from the command line.
 You can also save the parameter settings to a file to reload them in a future session.</p>
 </section>
-<section id="next-steps">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<section id="id4">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">下一步</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>Jumping back to ROS 2 communication methods, in the next tutorial you’ll learn about <a class="reference internal" href="../Understanding-ROS2-Actions/Understanding-ROS2-Actions.html"><span class="doc">actions</span></a>.</p>
 </section>
 </section>

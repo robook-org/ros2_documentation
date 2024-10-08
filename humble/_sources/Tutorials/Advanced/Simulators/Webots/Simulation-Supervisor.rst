@@ -137,7 +137,7 @@ The ``/Ros2Supervisor/animation_stop_recording`` service is of type ``webots_ros
     ros2 service call /Ros2Supervisor/animation_stop_recording webots_ros2_msgs/srv/GetBool "{ask: True}"
 
 
-Summary
+总结
 -------
 
 In this tutorial, you learned how to enable the ``Ros2Supervisor`` and how to extend the interface with the Webots simulation.

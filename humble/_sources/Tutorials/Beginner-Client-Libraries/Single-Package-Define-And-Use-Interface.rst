@@ -452,20 +452,20 @@ We won't create a subscriber in this tutorial, but you can try to write one your
 
   Building and running these changes would show the msg defined as expected, as well as the array of msgs defined above.
 
-Summary
+总结
 -------
 
 In this tutorial, you tried out different field types for defining interfaces, then built an interface in the same package where it's being used.
 
 You also learned how to use another interface as a field type, as well as the ``package.xml``, ``CMakeLists.txt``, and ``#include`` statements necessary for utilizing that feature.
 
-Next steps
+下一步
 ----------
 
 Next you will create a simple ROS 2 package with a custom parameter that you will learn to set from a launch file.
 Again, you can choose to write it in either :doc:`C++ <./Using-Parameters-In-A-Class-CPP>` or :doc:`Python <./Using-Parameters-In-A-Class-Python>`.
 
-Related content
+相关内容
 ---------------
 
 There are `several design articles <https://design.ros2.org/#interfaces>`_ on ROS 2 interfaces and the IDL (interface definition language).

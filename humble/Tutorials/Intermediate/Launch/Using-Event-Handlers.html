@@ -417,21 +417,21 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id4">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id5">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id6">Using event handlers</a></p>
+<li><p><a class="reference internal" href="#id1" id="id5">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id6">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id7">Using event handlers</a></p>
 <ul>
-<li><p><a class="reference internal" href="#event-handlers-example-launch-file" id="id7">1 Event handlers example launch file</a></p></li>
+<li><p><a class="reference internal" href="#event-handlers-example-launch-file" id="id8">1 Event handlers example launch file</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#build-the-package" id="id8">Build the package</a></p></li>
-<li><p><a class="reference internal" href="#launching-example" id="id9">Launching example</a></p></li>
-<li><p><a class="reference internal" href="#documentation" id="id10">Documentation</a></p></li>
-<li><p><a class="reference internal" href="#summary" id="id11">Summary</a></p></li>
+<li><p><a class="reference internal" href="#build-the-package" id="id9">Build the package</a></p></li>
+<li><p><a class="reference internal" href="#launching-example" id="id10">Launching example</a></p></li>
+<li><p><a class="reference internal" href="#documentation" id="id11">Documentation</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id12">总结</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>Launch in ROS 2 is a system that executes and manages user-defined processes.
 It is responsible for monitoring the state of processes it launched, as well as reporting and reacting to changes in the state of those processes.
 These changes are called events and can be handled by registering an event handler with the launch system.
@@ -440,15 +440,15 @@ Additionally, they can be used to define a complex set of rules which can be use
 <p>This tutorial shows usage examples of event handlers in ROS 2 launch files.</p>
 </section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>This tutorial uses the <a class="reference internal" href="../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">turtlesim</span></a> package.
 This tutorial also assumes you have <a class="reference internal" href="../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html"><span class="doc">created a new package</span></a> of build type <code class="docutils literal notranslate"><span class="pre">ament_python</span></code> called <code class="docutils literal notranslate"><span class="pre">launch_tutorial</span></code>.</p>
 <p>This tutorial extends the code shown in the <a class="reference internal" href="Using-Substitutions.html"><span class="doc">Using substitutions in launch files</span></a> tutorial.</p>
 </section>
 <section id="id3">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Using event handlers</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Using event handlers</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <section id="event-handlers-example-launch-file">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">1 Event handlers example launch file</a><a class="headerlink" href="#event-handlers-example-launch-file" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">1 Event handlers example launch file</a><a class="headerlink" href="#event-handlers-example-launch-file" title="Link to this heading"></a></h3>
 <p>Create a new file called <code class="docutils literal notranslate"><span class="pre">example_event_handlers.launch.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">launch</span></code> folder of the <code class="docutils literal notranslate"><span class="pre">launch_tutorial</span></code> package.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
 
@@ -662,7 +662,7 @@ It logs the message with a reason for shutdown like the closure of turtlesim win
 </section>
 </section>
 <section id="build-the-package">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Build the package</a><a class="headerlink" href="#build-the-package" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Build the package</a><a class="headerlink" href="#build-the-package" title="Link to this heading"></a></h2>
 <p>Go to the root of the workspace, and build the package:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">colcon build</span>
 </pre></div>
@@ -670,7 +670,7 @@ It logs the message with a reason for shutdown like the closure of turtlesim win
 <p>Also remember to source the workspace after building.</p>
 </section>
 <section id="launching-example">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Launching example</a><a class="headerlink" href="#launching-example" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Launching example</a><a class="headerlink" href="#launching-example" title="Link to this heading"></a></h2>
 <p>Now you can launch the <code class="docutils literal notranslate"><span class="pre">example_event_handlers.launch.py</span></code> file using the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> command.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch launch_tutorial example_event_handlers.launch.py turtlesim_ns:=&#39;turtlesim3&#39; use_provided_red:=&#39;True&#39; new_background_r:=200</span>
 </pre></div>
@@ -694,11 +694,11 @@ It logs the message with a reason for shutdown like the closure of turtlesim win
 </ol>
 </section>
 <section id="documentation">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Documentation</a><a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Documentation</a><a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://github.com/ros2/launch/blob/humble/launch/doc/source/architecture.rst">The launch documentation</a> provides detailed information about available event handlers.</p>
 </section>
-<section id="summary">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<section id="id4">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">总结</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>In this tutorial, you learned about using event handlers in launch files.
 You learned about their syntax and usage examples to define a complex set of rules to dynamically modify launch files.</p>
 </section>

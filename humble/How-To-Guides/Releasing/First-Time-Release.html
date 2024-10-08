@@ -416,19 +416,19 @@ Due to numerous options available when releasing ROS packages, this guide intend
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#be-part-of-a-release-team" id="id1">Be part of a release team</a></p></li>
-<li><p><a class="reference internal" href="#create-a-new-release-repository" id="id2">Create a new release repository</a></p></li>
-<li><p><a class="reference internal" href="#install-dependencies" id="id3">Install dependencies</a></p></li>
-<li><p><a class="reference internal" href="#set-up-a-personal-access-token" id="id4">Set Up a Personal Access Token</a></p></li>
-<li><p><a class="reference internal" href="#ensure-repositories-are-up-to-date" id="id5">Ensure repositories are up-to-date</a></p></li>
-<li><p><a class="reference internal" href="#generate-changelog" id="id6">Generate Changelog</a></p></li>
-<li><p><a class="reference internal" href="#bump-the-package-version" id="id7">Bump the package version</a></p></li>
-<li><p><a class="reference internal" href="#bloom-release" id="id8">Bloom Release</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id9">Next Steps</a></p></li>
+<li><p><a class="reference internal" href="#be-part-of-a-release-team" id="id2">Be part of a release team</a></p></li>
+<li><p><a class="reference internal" href="#create-a-new-release-repository" id="id3">Create a new release repository</a></p></li>
+<li><p><a class="reference internal" href="#install-dependencies" id="id4">Install dependencies</a></p></li>
+<li><p><a class="reference internal" href="#set-up-a-personal-access-token" id="id5">Set Up a Personal Access Token</a></p></li>
+<li><p><a class="reference internal" href="#ensure-repositories-are-up-to-date" id="id6">Ensure repositories are up-to-date</a></p></li>
+<li><p><a class="reference internal" href="#generate-changelog" id="id7">Generate Changelog</a></p></li>
+<li><p><a class="reference internal" href="#bump-the-package-version" id="id8">Bump the package version</a></p></li>
+<li><p><a class="reference internal" href="#bloom-release" id="id9">Bloom Release</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id10">下一步</a></p></li>
 </ul>
 </nav>
 <section id="be-part-of-a-release-team">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Be part of a release team</a><a class="headerlink" href="#be-part-of-a-release-team" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Be part of a release team</a><a class="headerlink" href="#be-part-of-a-release-team" title="Link to this heading"></a></h2>
 <p>You must be part of a <a class="reference internal" href="Release-Team-Repository.html#what-is-a-release-team"><span class="std std-ref">release team</span></a>.
 If you are not part of a release team yet, follow either:</p>
 <ul class="simple">
@@ -437,12 +437,12 @@ If you are not part of a release team yet, follow either:</p>
 </ul>
 </section>
 <section id="create-a-new-release-repository">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Create a new release repository</a><a class="headerlink" href="#create-a-new-release-repository" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Create a new release repository</a><a class="headerlink" href="#create-a-new-release-repository" title="Link to this heading"></a></h2>
 <p>You need a <a class="reference internal" href="Release-Team-Repository.html#what-is-a-release-repository"><span class="std std-ref">release repository</span></a> to release a package.
 Follow <a class="reference internal" href="Release-Team-Repository.html#create-a-new-release-repository"><span class="std std-ref">Create a new release repository</span></a>.</p>
 </section>
 <section id="install-dependencies">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Install dependencies</a><a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Install dependencies</a><a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h2>
 <p>Install tools that you will use in the upcoming steps according to your platform:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-ZGViIChlZy4gVWJ1bnR1KQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-ZGViIChlZy4gVWJ1bnR1KQ==" name="ZGViIChlZy4gVWJ1bnR1KQ==" role="tab" tabindex="0">deb (eg. Ubuntu)</button><button aria-controls="panel-0-UlBNIChlZy4gUkhFTCk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UlBNIChlZy4gUkhFTCk=" name="UlBNIChlZy4gUkhFTCk=" role="tab" tabindex="-1">RPM (eg. RHEL)</button><button aria-controls="panel-0-T3RoZXI=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-T3RoZXI=" name="T3RoZXI=" role="tab" tabindex="-1">Other</button></div><div aria-labelledby="tab-0-ZGViIChlZy4gVWJ1bnR1KQ==" class="sphinx-tabs-panel group-tab" id="panel-0-ZGViIChlZy4gVWJ1bnR1KQ==" name="ZGViIChlZy4gVWJ1bnR1KQ==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-bloom<span class="w"> </span>python3-catkin-pkg
@@ -463,7 +463,7 @@ rosdep<span class="w"> </span>update
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">rosdep</span> <span class="pre">init</span></code> command may fail if it has already been initialized in the past; this can safely be ignored.</p>
 </section>
 <section id="set-up-a-personal-access-token">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Set Up a Personal Access Token</a><a class="headerlink" href="#set-up-a-personal-access-token" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Set Up a Personal Access Token</a><a class="headerlink" href="#set-up-a-personal-access-token" title="Link to this heading"></a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If the file <code class="docutils literal notranslate"><span class="pre">~/.config/bloom</span></code> exists on your computer, it is likely that you have done this before so you should skip this section.</p>
@@ -492,7 +492,7 @@ If you have multi-factor authentication setup on your GitHub account, you <stron
 </div>
 </section>
 <section id="ensure-repositories-are-up-to-date">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Ensure repositories are up-to-date</a><a class="headerlink" href="#ensure-repositories-are-up-to-date" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Ensure repositories are up-to-date</a><a class="headerlink" href="#ensure-repositories-are-up-to-date" title="Link to this heading"></a></h2>
 <p>Make sure that:</p>
 <ul class="simple">
 <li><p>Your repository is hosted on a remote such as GitHub.</p></li>
@@ -501,7 +501,7 @@ If you have multi-factor authentication setup on your GitHub account, you <stron
 </ul>
 </section>
 <section id="generate-changelog">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Generate Changelog</a><a class="headerlink" href="#generate-changelog" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Generate Changelog</a><a class="headerlink" href="#generate-changelog" title="Link to this heading"></a></h2>
 <p>Generate a <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file per package in your repo using the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_generate_changelog<span class="w"> </span>--all
 </pre></div>
@@ -522,7 +522,7 @@ You will see that <code class="docutils literal notranslate"><span class="pre">c
 Do not modify the <code class="docutils literal notranslate"><span class="pre">Forthcoming</span></code> header.</p>
 </section>
 <section id="bump-the-package-version">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Bump the package version</a><a class="headerlink" href="#bump-the-package-version" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Bump the package version</a><a class="headerlink" href="#bump-the-package-version" title="Link to this heading"></a></h2>
 <p>Every release of the package must have a unique version number higher than the previous release.
 Run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_prepare_release
@@ -544,7 +544,7 @@ For more details, see <code class="docutils literal notranslate"><span class="pr
 </div>
 </section>
 <section id="bloom-release">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Bloom Release</a><a class="headerlink" href="#bloom-release" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Bloom Release</a><a class="headerlink" href="#bloom-release" title="Link to this heading"></a></h2>
 <p>Run the following command, replacing <code class="docutils literal notranslate"><span class="pre">my_repo</span></code> with the name of your repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bloom-release<span class="w"> </span>--new-track<span class="w"> </span>--rosdistro<span class="w"> </span>humble<span class="w"> </span>--track<span class="w"> </span>humble<span class="w"> </span>my_repo
 </pre></div>
@@ -616,8 +616,8 @@ Simply respond to the prompt by pressing Enter.</p>
 </div>
 <p>Bloom will automatically create a pull request for you against <a class="reference external" href="https://github.com/ros/rosdistro">rosdistro</a>.</p>
 </section>
-<section id="next-steps">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Next Steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">下一步</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>Once your pull request has been submitted, usually within one or two days, one of the maintainers of rosdistro will review and merge your Pull Request.
 If your package build is successful, in 24-48 hours your packages will become available in the <strong>ros-testing</strong> repository, where you can <a class="reference internal" href="../../Installation/Testing.html"><span class="doc">test your pre-release binaries</span></a>.</p>
 <p>Approximately every two to four weeks, the distribution’s release manager manually synchronizes the contents of ros-testing into the main ROS repository.

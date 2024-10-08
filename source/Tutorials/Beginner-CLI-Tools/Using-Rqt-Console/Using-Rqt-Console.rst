@@ -122,13 +122,13 @@ Enter the following command in your terminal:
 Now you won't see the initial ``Info`` level messages that came up in the console last time you started ``turtlesim``.
 That's because ``Info`` messages are lower priority than the new default severity, ``Warn``.
 
-Summary
+总结
 -------
 
 ``rqt_console`` can be very helpful if you need to closely examine the log messages from your system.
 You might want to examine log messages for any number of reasons, usually to find out where something went wrong and the series of events leading up to that.
 
-Next steps
+下一步
 ----------
 
 The next tutorial will teach you about starting multiple nodes at once with :doc:`ROS 2 Launch <../Launching-Multiple-Nodes/Launching-Multiple-Nodes>`.

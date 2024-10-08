@@ -342,14 +342,14 @@ Upon executing this command, you should see output in the parameter_event_handle
 
     [INFO] [1606952588.237531933] [node_with_parameters]: cb2: Received an update to parameter "a_double_param" of type: double: "3.45"
 
-Summary
+总结
 -------
 
 You created a node with a parameter and used the ParameterEventHandler class to set a callback to monitor changes to that parameter.
 You also used the same class to monitor changes to a remote node.
 The ParameterEventHandler is a convenient way to monitor for parameter changes so that you can then respond to the updated values.
 
-Related content
+相关内容
 ---------------
 
 To learn how to adapt ROS 1 parameter files for ROS 2, see the :doc:`Migrating YAML parameter files from ROS 1 to ROS2 <../../How-To-Guides/Migrating-from-ROS1/Migrating-Parameters>` tutorial.

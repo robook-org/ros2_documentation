@@ -310,7 +310,7 @@ It should print:
     Triangle area: 43.30
     Square area: 100.00
 
-Summary
+总结
 -------
 
 Congratulations! You've just written and used your first plugins.

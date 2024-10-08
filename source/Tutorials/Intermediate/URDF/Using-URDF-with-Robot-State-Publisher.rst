@@ -327,7 +327,7 @@ Open a new terminal, the run Rviz using
 
 See the `User Guide <http://wiki.ros.org/rviz/UserGuide>`__ for details on how to use Rviz.
 
-Summary
+总结
 -------
 
 You created a ``JointState`` publisher node and coupled it with ``robot_state_publisher`` to simulate a walking robot.

@@ -342,7 +342,7 @@ Your terminal will return the message:
 
 You will continue to receive feedback, the remaining radians, until the goal is complete.
 
-Summary
+总结
 -------
 
 Actions are like services that allow you to execute long running tasks, provide regular feedback, and are cancelable.
@@ -354,13 +354,13 @@ While the robot navigates to the position, it can send updates along the way (i.
 Turtlesim has an action server that action clients can send goals to for rotating turtles.
 In this tutorial, you introspected that action, ``/turtle1/rotate_absolute``, to get a better idea of what actions are and how they work.
 
-Next steps
+下一步
 ----------
 
 Now you've covered all of the core ROS 2 concepts.
 The last few tutorials in this set will introduce you to some tools and techniques that will make using ROS 2 easier, starting with :doc:`../Using-Rqt-Console/Using-Rqt-Console`.
 
-Related content
+相关内容
 ---------------
 
 You can read more about the design decisions behind actions in ROS 2 `here <https://design.ros2.org/articles/actions.html>`__.

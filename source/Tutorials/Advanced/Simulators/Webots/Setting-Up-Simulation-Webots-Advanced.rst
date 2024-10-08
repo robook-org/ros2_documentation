@@ -213,12 +213,12 @@ You can press ``Ctrl+F10`` in Webots or go to the ``View`` menu, ``Optional Rend
 
 .. image:: Image/Robot_turning_clockwise.png
 
-Summary
+总结
 -------
 
 In this tutorial, you extended the basic simulation with a obstacle avoider ROS 2 node that publishes velocity commands based on the distance sensor values of the robot.
 
-Next steps
+下一步
 ----------
 
 You might want to improve the plugin or create new nodes to change the behavior of the robot.

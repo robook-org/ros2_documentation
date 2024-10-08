@@ -532,7 +532,7 @@ It will show all turtle frames relative to the ``world`` frame, whose origin is 
 
 .. image:: images/turtlesim_rviz.png
 
-Summary
+总结
 -------
 
 In this tutorial, you learned about various tips and practices of managing large projects using ROS 2 launch files.

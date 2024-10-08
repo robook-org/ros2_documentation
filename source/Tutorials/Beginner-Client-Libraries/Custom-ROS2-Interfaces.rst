@@ -818,7 +818,7 @@ Then open two new terminals, source ``ros2_ws`` in each, and run:
         ros2 run py_srvcli client 2 3 1
 
 
-Summary
+总结
 -------
 
 In this tutorial, you learned how to create custom interfaces in their own package and how to utilize those interfaces in other packages.
@@ -826,7 +826,7 @@ In this tutorial, you learned how to create custom interfaces in their own packa
 This tutorial only scratches the surface about defining custom interfaces.
 You can learn more about it in :doc:`About ROS 2 interfaces <../../Concepts/Basic/About-Interfaces>`.
 
-Next steps
+下一步
 ----------
 
 The :doc:`next tutorial <./Single-Package-Define-And-Use-Interface>` covers more ways to use interfaces in ROS 2.

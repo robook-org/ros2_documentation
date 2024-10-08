@@ -237,14 +237,14 @@ The turtlesim window should appear as usual, but with the purple background you 
 
   When a parameter file is used at node startup, all parameters, including the read-only ones, will be updated.
 
-Summary
+总结
 -------
 
 Nodes have parameters to define their default configuration values.
 You can ``get`` and ``set`` parameter values from the command line.
 You can also save the parameter settings to a file to reload them in a future session.
 
-Next steps
+下一步
 ----------
 
 Jumping back to ROS 2 communication methods, in the next tutorial you'll learn about :doc:`actions <../Understanding-ROS2-Actions/Understanding-ROS2-Actions>`.

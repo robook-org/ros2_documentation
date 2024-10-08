@@ -306,7 +306,7 @@ You can learn more about timeouts in the :doc:`Using time <./Learning-About-Tf2-
         rclcpp::Duration::from_seconds(0.05));
    } catch (tf2::TransformException & ex) {
 
-Summary
+总结
 -------
 
 In this tutorial you learned how to use a systematic approach for debugging tf2 related problems.

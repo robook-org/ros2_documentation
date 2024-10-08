@@ -426,13 +426,13 @@ The terminal should return the following message every second:
     [INFO] [custom_minimal_param_node]: Hello earth!
 
 
-Summary
+总结
 -------
 
 You created a node with a custom parameter that can be set either from a launch file or the command line.
 You added the dependencies, executables, and a launch file to the package configuration files so that you could build and run them, and see the parameter in action.
 
-Next steps
+下一步
 ----------
 
 Now that you have some packages and ROS 2 systems of your own, the :doc:`next tutorial <./Getting-Started-With-Ros2doctor>` will show you how to examine issues in your environment and systems in case you have problems.

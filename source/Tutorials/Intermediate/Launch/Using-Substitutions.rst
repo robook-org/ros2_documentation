@@ -598,7 +598,7 @@ Documentation
 
 `The launch documentation <https://github.com/ros2/launch/blob/{REPOS_FILE_BRANCH}/launch/doc/source/architecture.rst>`_ provides detailed information about available substitutions.
 
-Summary
+总结
 -------
 
 In this tutorial, you learned about using substitutions in launch files.

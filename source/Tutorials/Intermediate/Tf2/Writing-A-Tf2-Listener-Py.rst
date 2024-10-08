@@ -366,7 +366,7 @@ In the second terminal window type the following command:
 
 To see if things work, simply drive around the first turtle using the arrow keys (make sure your terminal window is active, not your simulator window), and you'll see the second turtle following the first one!
 
-Summary
+总结
 -------
 
 In this tutorial you learned how to use tf2 to get access to frame transformations.

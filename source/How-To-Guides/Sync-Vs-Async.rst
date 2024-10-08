@@ -141,7 +141,7 @@ The :doc:`Simple Service and Client <../Tutorials/Beginner-Client-Libraries/Writ
 The ``future`` can also be retrieved using a timer or callback, like in `this example <https://github.com/ros2/examples/blob/{REPOS_FILE_BRANCH}/rclpy/services/minimal_client/examples_rclpy_minimal_client/client_async_callback.py>`_, a dedicated thread, or by another method.
 It is up to you, as the caller, to decide how to store ``future``, check on its status, and retrieve your response.
 
-Summary
+总结
 -------
 
 It is not recommended to implement a synchronous service client.

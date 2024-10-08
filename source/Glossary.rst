@@ -86,7 +86,7 @@ Glossary of terms used throughout this documentation:
         回调函数组,回调组。
 
     subscription
-        订阅.。
+        订阅。
 
     executor
         执行器。

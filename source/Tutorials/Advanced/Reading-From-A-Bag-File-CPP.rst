@@ -312,7 +312,7 @@ Make sure to replace ``/path/to/subset`` with the path to your ``subset`` bag.
 
 You should see the (x, y) coordinates of the turtle printed to the console.
 
-Summary
+总结
 -------
 
 You created a C++ executable that reads data from a bag.

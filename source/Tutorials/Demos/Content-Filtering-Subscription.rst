@@ -301,7 +301,7 @@ We can try that by executing ``RMW_IMPLEMENTATION=rmw_cyclonedds_cpp ros2 run de
 
 You can see the message ``Content filter is not enabled`` because underlying RMW implementation does not support the feature, but the demo still successfully creates the normal subscription to receive all temperature data.
 
-Related content
+相关内容
 ---------------
 
 - `content filtering examples <https://github.com/ros2/examples/blob/{REPOS_FILE_BRANCH}/rclcpp/topics/minimal_subscriber/content_filtering.cpp>`__ that covers all interfaces for content filtering subscription.

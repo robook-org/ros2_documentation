@@ -256,7 +256,7 @@ Your turtlesim window will update with the newly spawned turtle right away:
 
 .. image:: images/spawn.png
 
-Summary
+总结
 -------
 
 Nodes can communicate using services in ROS 2.
@@ -266,12 +266,12 @@ You generally don't want to use a service for continuous calls; topics or even a
 
 In this tutorial you used command line tools to identify, introspect, and call services.
 
-Next steps
+下一步
 ----------
 
 In the next tutorial, :doc:`../Understanding-ROS2-Parameters/Understanding-ROS2-Parameters`, you will learn about configuring node settings.
 
-Related content
+相关内容
 ---------------
 
 Check out `this tutorial <https://discourse.ubuntu.com/t/call-services-in-ros-2/15261>`_; it's an excellent realistic application of ROS services using a Robotis robot arm.

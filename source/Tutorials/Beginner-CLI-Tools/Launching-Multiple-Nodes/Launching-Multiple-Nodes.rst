@@ -101,7 +101,7 @@ After running these commands, you should see something like the following:
 
 .. image:: images/turtlesim_multisim_spin.png
 
-Summary
+总结
 -------
 
 The significance of what you've done so far is that you've run two turtlesim nodes with one command.
@@ -109,7 +109,7 @@ Once you learn to write your own launch files, you'll be able to run multiple no
 
 For more tutorials on ROS 2 launch files, see the :doc:`main launch file tutorial page<../../Intermediate/Launch/Launch-Main>`.
 
-Next steps
+下一步
 ----------
 
 In the next tutorial, :doc:`../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data`, you'll learn about another helpful tool, ``ros2 bag``.

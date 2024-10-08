@@ -111,7 +111,7 @@ Let's run the simulation again, this time with the advanced time-travel API:
 
 And yes, the second turtle is directed to where the first carrot was 5 seconds ago!
 
-Summary
+总结
 -------
 
 In this tutorial, you have seen one of the advanced features of tf2.

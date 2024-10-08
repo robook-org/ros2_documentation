@@ -381,12 +381,12 @@ Now source the workspace we just built (``ros2_ws``), and try to run the action 
 
 You should see logged messages for the goal being accepted, feedback being printed, and the final result.
 
-Summary
+总结
 -------
 
 In this tutorial, you put together a C++ action server and action client line by line, and configured them to exchange goals, feedback, and results.
 
-Related content
+相关内容
 ---------------
 
 * There are several ways you could write an action server and client in C++; check out the ``minimal_action_server`` and ``minimal_action_client`` packages in the `ros2/examples <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclcpp>`_ repo.

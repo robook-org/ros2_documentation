@@ -233,7 +233,7 @@ Now you should see the data from the lidar in Rviz2:
 
 .. image:: Image/rviz2.png
 
-Summary
+总结
 -------
 
 In this tutorial, you launched a robot simulation with Gazebo, launched

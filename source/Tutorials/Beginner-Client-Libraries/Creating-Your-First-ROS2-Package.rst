@@ -520,14 +520,14 @@ This is where your ``package.xml`` would list its dependencies on other packages
       Don't forget to save the file.
 
 
-Summary
+总结
 -------
 
 You've created a package to organize your code and make it easy to use for others.
 
 Your package was automatically populated with the necessary files, and then you used colcon to build it so you can use its executables in your local environment.
 
-Next steps
+下一步
 ----------
 
 Next, let's add something meaningful to a package.

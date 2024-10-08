@@ -735,7 +735,7 @@ If it's running correctly you should see streaming data like this:
     [INFO] [1630016162.006355644] [turtle_tf2_pose_drawer]: Point of turtle3 in frame of turtle1: x:-6.486441 y:-2.976102 z:0.000000
 
 
-Summary
+总结
 -------
 
 In this tutorial you learned how to use sensor data/messages in tf2.

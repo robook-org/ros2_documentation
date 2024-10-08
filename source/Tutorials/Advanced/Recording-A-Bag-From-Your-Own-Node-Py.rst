@@ -655,7 +655,7 @@ Open a second terminal and echo the ``/synthetic`` topic.
 You will see the data that was generated and stored in the bag printed to the console at a rate of one message per second.
 Even though the bag was generated rapidly it is still played back at the rate the time stamps indicate.
 
-Summary
+总结
 -------
 
 You created a node that records data it receives on a topic into a bag.

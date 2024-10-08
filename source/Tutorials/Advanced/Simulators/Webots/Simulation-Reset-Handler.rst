@@ -185,7 +185,7 @@ This launch file contains all other nodes, including robot controllers/plugins, 
 The second launch file contains a handler that triggers a shutdown event when the driver node exits (which is the case when the simulation is reset).
 This second launch file must be manually restarted from the command line after pressing the reset button.
 
-Summary
+总结
 -------
 
 In this tutorial, you learned how to implement a reset handler in a robot simulation using Webots.

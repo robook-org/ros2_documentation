@@ -511,12 +511,12 @@ But it will eventually bump into the wall as you order it to move forwards.
 Close the Webots window, this should also shutdown your ROS nodes started from the launcher.
 Close also the topic command with ``Ctrl+C`` in the second terminal.
 
-Summary
+总结
 -------
 
 In this tutorial, you set-up a realistic robot simulation with Webots and implemented a custom plugin to control the motors of the robot.
 
-Next steps
+下一步
 ----------
 
 To improve the simulation, the robot's sensors can be used to detect obstacles and avoid them.

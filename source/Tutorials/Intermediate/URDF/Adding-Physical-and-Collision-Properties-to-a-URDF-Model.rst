@@ -142,6 +142,6 @@ Other Tags
 In the realm of pure URDF (i.e. excluding Gazebo-specific tags), there are two remaining tags to help define the joints: calibration and safety controller.
 Check out the `spec <https://wiki.ros.org/urdf/XML/joint>`_, as they are not included in this tutorial.
 
-Next Steps
+下一步
 ----------
 Reduce the amount of code and annoying math you have to do by :doc:`using xacro <./Using-Xacro-to-Clean-Up-a-URDF-File>`.

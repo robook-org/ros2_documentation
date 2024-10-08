@@ -9,9 +9,9 @@ Recording and playing back data
 
 **目标:** Record data published on a topic so you can replay and examine it any time.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -39,7 +39,7 @@ It also uses the :doc:`turtlesim package <../Introducing-Turtlesim/Introducing-T
 As always, don't forget to source ROS 2 in :doc:`every new terminal you open <../Configuring-ROS2-Environment>`.
 
 
-Tasks
+任务
 -----
 
 1 Setup

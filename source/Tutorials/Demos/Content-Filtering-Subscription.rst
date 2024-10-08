@@ -9,7 +9,7 @@ Creating a content filtering subscription
 
 **教程等级:** Advanced
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Table of Contents
    :depth: 1

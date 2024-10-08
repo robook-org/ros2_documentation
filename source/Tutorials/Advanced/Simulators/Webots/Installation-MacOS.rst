@@ -5,7 +5,7 @@ Installation (macOS)
 
 **教程等级:** Advanced
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -28,7 +28,7 @@ In particular, :doc:`../../../Beginner-Client-Libraries/Creating-A-Workspace/Cre
 It is necessary to install Webots natively on the mac in order to use the ``webots_ros2`` package in the virtual machine as explained below.
 You can follow the `installation procedure <https://cyberbotics.com/doc/guide/installation-procedure>`_ or `build it from sources <https://github.com/cyberbotics/webots/wiki/macOS-installation/>`_.
 
-Tasks
+任务
 -----
 
 On macOS, a solution based on UTM virtual machines provides an improved user experience with ROS 2 compared to native macOS installation, as it runs ROS in a Linux environment.

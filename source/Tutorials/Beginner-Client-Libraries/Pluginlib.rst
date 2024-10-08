@@ -7,9 +7,9 @@ Creating and using plugins (C++)
 
 **目标:** Learn to create and load a simple plugin using ``pluginlib``.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 3
@@ -30,7 +30,7 @@ Plugins are useful for extending/modifying application behavior without needing 
 
 This tutorial assumes basic C++ knowledge and that you have successfully :doc:`installed ROS 2 <../../Installation>`.
 
-Tasks
+任务
 -----
 
 In this tutorial, you will create two new packages, one that defines the base class, and another that provides the plugins.

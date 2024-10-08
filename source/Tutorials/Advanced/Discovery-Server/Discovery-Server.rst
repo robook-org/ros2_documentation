@@ -10,7 +10,7 @@ Using Fast DDS Discovery Server as discovery protocol [community-contributed]
 
 **教程等级:** Advanced
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Table of Contents
    :depth: 2

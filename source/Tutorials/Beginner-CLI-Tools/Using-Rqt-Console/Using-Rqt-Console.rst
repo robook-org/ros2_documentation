@@ -9,9 +9,9 @@ Using ``rqt_console`` to view logs
 
 **目标:** Get to know ``rqt_console``, a tool for introspecting log messages.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 5 minutes
+**预计时长:** 5 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -35,7 +35,7 @@ You will need :doc:`rqt_console and turtlesim <../Introducing-Turtlesim/Introduc
 As always, don't forget to source ROS 2 in :doc:`every new terminal you open <../Configuring-ROS2-Environment>`.
 
 
-Tasks
+任务
 -----
 
 1 Setup

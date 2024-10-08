@@ -9,9 +9,9 @@ Using ``ros2doctor`` to identify issues
 
 **目标:** Identify issues in your ROS 2 setup using the ``ros2doctor`` tool.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -32,7 +32,7 @@ As long as you have ``ros2cli`` installed (which any normal install should have)
 
 This tutorial uses :doc:`turtlesim <../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim>` to illustrate some of the examples.
 
-Tasks
+任务
 -----
 
 1 Check your setup

@@ -9,9 +9,9 @@ Using stamped datatypes with ``tf2_ros::MessageFilter``
 
 **目标:** Learn how to use ``tf2_ros::MessageFilter`` to process stamped datatypes.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 3
@@ -35,7 +35,7 @@ To do this ``turtle1`` must listen to the topic where ``turtle3``'s pose is bein
 To make this easier the ``tf2_ros::MessageFilter`` is very useful.
 The ``tf2_ros::MessageFilter`` will take a subscription to any ROS 2 message with a header and cache it until it is possible to transform it into the target frame.
 
-Tasks
+任务
 -----
 
 1 Write the broadcaster node of PointStamped messages

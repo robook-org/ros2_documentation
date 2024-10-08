@@ -12,7 +12,7 @@ Setting up security
 
 **教程等级:** Advanced
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 2

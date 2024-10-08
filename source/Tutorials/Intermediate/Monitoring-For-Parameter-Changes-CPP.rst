@@ -7,9 +7,9 @@ Monitoring for parameter changes (C++)
 
 **目标:** Learn to use the ParameterEventHandler class to monitor and respond to parameter changes.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 **Minimum Platform:** Galactic
 
@@ -34,7 +34,7 @@ Before starting this tutorial, you should first complete the following tutorials
 
 In addition, you must be running the Galactic distribution of ROS 2.
 
-Tasks
+任务
 -----
 
 In this tutorial, you will create a new package to contain some sample code, write some C++ code to use the ParameterEventHandler class, and test the resulting code.

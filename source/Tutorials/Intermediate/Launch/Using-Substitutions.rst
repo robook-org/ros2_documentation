@@ -8,9 +8,9 @@ Using substitutions
 
 **目标:** Learn about substitutions in ROS 2 launch files.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Table of Contents
    :depth: 2

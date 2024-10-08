@@ -11,7 +11,7 @@ Setting access controls
 
 **教程等级:** Advanced
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2

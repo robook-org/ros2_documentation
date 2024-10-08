@@ -7,9 +7,9 @@ Writing a static broadcaster (Python)
 
 **目标:** Learn how to broadcast static coordinate frames to tf2.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -33,7 +33,7 @@ After that, the following tutorials focus on extending the demo with more advanc
 
 In previous tutorials, you learned how to :doc:`create a workspace <../../Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace>` and :doc:`create a package <../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package>`.
 
-Tasks
+任务
 -----
 
 1 Create a package

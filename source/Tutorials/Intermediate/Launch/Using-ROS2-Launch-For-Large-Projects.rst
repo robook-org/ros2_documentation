@@ -10,9 +10,9 @@ Managing large projects
 
 **目标:** Learn best practices of managing large projects using ROS 2 launch files.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 3

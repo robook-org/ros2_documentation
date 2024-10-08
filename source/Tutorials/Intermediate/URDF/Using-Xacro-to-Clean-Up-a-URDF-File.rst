@@ -9,9 +9,9 @@ Using Xacro to clean up your code
 
 **目标:** Learn some tricks to reduce the amount of code in a URDF file using Xacro
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2

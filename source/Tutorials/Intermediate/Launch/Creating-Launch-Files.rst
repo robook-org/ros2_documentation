@@ -8,9 +8,9 @@ Creating a launch file
 
 **目标:** Create a launch file to run a complex ROS 2 system.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -38,7 +38,7 @@ The package providing this framework is ``launch_ros``, which uses the non-ROS-s
 
 The `design document <https://design.ros2.org/articles/roslaunch.html>`__ details the goal of the design of ROS 2's launch system (not all functionality is currently available).
 
-Tasks
+任务
 -----
 
 1 Setup

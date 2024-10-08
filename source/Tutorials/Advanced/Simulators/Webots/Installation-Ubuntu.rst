@@ -5,7 +5,7 @@ Installation (Ubuntu)
 
 **教程等级:** Advanced
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -42,7 +42,7 @@ If you have installed different versions of Webots on your computer, ``webots_ro
 3. If none of these variables is set, ``webots_ros2`` will look for Webots in the default installation paths for a compatible version: ``/usr/local/webots`` and ``/snap/webots/current/usr/share/webots``.
 4. If Webots couldn't be found, ``webots_ros2`` will show a window offering the automatic installation of the latest compatible version of Webots.
 
-Tasks
+任务
 -----
 
 1 Install ``webots_ros2``

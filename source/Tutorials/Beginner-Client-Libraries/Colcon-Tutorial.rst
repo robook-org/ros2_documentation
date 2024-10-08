@@ -14,9 +14,9 @@ Using ``colcon`` to build packages
 
 **目标:** Build a ROS 2 workspace with ``colcon``.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 This is a brief tutorial on how to create and build a ROS 2 workspace with ``colcon``.
 It is a practical tutorial and not designed to replace the core documentation.

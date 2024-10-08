@@ -10,7 +10,7 @@ Unlocking the potential of Fast DDS middleware [community-contributed]
 
 **教程等级:** Advanced
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Table of Contents
    :depth: 2

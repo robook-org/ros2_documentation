@@ -9,9 +9,9 @@ Using time (C++)
 
 **目标:** Learn how to get a transform at a specific time and wait for a transform to be available on the tf2 tree using ``lookupTransform()`` function.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -26,7 +26,7 @@ This tree changes over time, and tf2 stores a time snapshot for every transform 
 Until now we used the ``lookupTransform()`` function to get access to the latest available transforms in that tf2 tree, without knowing at what time that transform was recorded.
 This tutorial will teach you how to get a transform at a specific time.
 
-Tasks
+任务
 -----
 
 1 Update the listener node

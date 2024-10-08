@@ -9,9 +9,9 @@ Understanding topics
 
 **目标:** Use rqt_graph and command line tools to introspect ROS 2 topics.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -39,7 +39,7 @@ The :doc:`previous tutorial <../Understanding-ROS2-Nodes/Understanding-ROS2-Node
 
 As always, don't forget to source ROS 2 in :doc:`every new terminal you open <../Configuring-ROS2-Environment>`.
 
-Tasks
+任务
 -----
 
 1 Setup

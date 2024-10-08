@@ -9,9 +9,9 @@ Using URDF with ``robot_state_publisher``
 
 **目标:** Simulate a walking robot modeled in URDF and view it in Rviz.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -34,7 +34,7 @@ We then use ``robot_state_publisher`` to publish the entire robot state to ``/tf
 
 As always, don’t forget to source ROS 2 in :doc:`every new terminal you open <../../Beginner-CLI-Tools/Configuring-ROS2-Environment>`.
 
-Tasks
+任务
 -----
 
 1 Create a package

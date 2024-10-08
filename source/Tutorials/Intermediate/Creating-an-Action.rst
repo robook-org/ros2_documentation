@@ -9,9 +9,9 @@ Creating an action
 
 **目标:** Define an action in a ROS 2 package.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 5 minutes
+**预计时长:** 5 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -61,7 +61,7 @@ Set up a :doc:`workspace <../Beginner-Client-Libraries/Creating-A-Workspace/Crea
       cd ros2_ws\src
       ros2 pkg create action_tutorials_interfaces
 
-Tasks
+任务
 -----
 
 1 Defining an action

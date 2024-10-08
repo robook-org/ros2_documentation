@@ -9,9 +9,9 @@ Introducing ``tf2``
 
 **目标:** Run a turtlesim demo and see some of the power of tf2 in a multi-robot example using turtlesim.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2

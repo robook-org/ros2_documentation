@@ -9,9 +9,9 @@ Launching nodes
 
 **目标:** Use a command line tool to launch multiple nodes at once.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 5 minutes
+**预计时长:** 5 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -38,7 +38,7 @@ You also won't be able to use the ``sudo apt install ros-<distro>-<package>`` co
 
 If you are using Linux and are not already familiar with the shell, `this tutorial <https://www.linux.com/training-tutorials/bash-101-working-cli/>`__ will help.
 
-Tasks
+任务
 -----
 
 Running a Launch File

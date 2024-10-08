@@ -9,9 +9,9 @@ Creating a workspace
 
 **目标:** Create a workspace and learn how to set up an overlay for development and testing.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -41,7 +41,7 @@ It's also possible to have several layers of underlays and overlays, with each s
 * Understanding of basic terminal commands (`here's a guide for Linux <https://www2.cs.sfu.ca/~ggbaker/reference/unix/>`__)
 * Text editor of your choice
 
-Tasks
+任务
 -----
 
 1 Source ROS 2 environment

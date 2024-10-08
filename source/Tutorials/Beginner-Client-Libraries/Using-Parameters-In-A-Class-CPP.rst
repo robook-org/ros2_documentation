@@ -9,9 +9,9 @@ Using parameters in a class (C++)
 
 **目标:** Create and run a class with ROS parameters using C++.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -30,7 +30,7 @@ This tutorial will show you how to create those parameters in a C++ class, and h
 In previous tutorials, you learned how to :doc:`create a workspace <./Creating-A-Workspace/Creating-A-Workspace>` and :doc:`create a package <./Creating-Your-First-ROS2-Package>`.
 You have also learned about :doc:`parameters <../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters>` and their function in a ROS 2 system.
 
-Tasks
+任务
 -----
 
 1 Create a package

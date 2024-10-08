@@ -11,7 +11,7 @@ Recording a bag from a node (Python)
 
 **教程等级:** Advanced
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -42,7 +42,7 @@ If it is not, you can install it using this command.
 This tutorial discusses using ROS 2 bags, including from the terminal.
 You should have already completed the :doc:`basic ROS 2 bag tutorial <../Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data>`.
 
-Tasks
+任务
 -----
 
 1 Create a package

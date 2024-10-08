@@ -10,7 +10,7 @@ Enabling topic statistics (C++)
 
 **教程等级:** Advanced
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Table of Contents
    :local:
@@ -37,7 +37,7 @@ In previous tutorials, you learned how to :doc:`create a workspace <../../Beginn
 
 This tutorial assumes that you still have your ``cpp_pubsub`` package from the :doc:`C++ <../../Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber>` tutorial.
 
-Tasks
+任务
 -----
 
 1 Write the subscriber node with statistics enabled

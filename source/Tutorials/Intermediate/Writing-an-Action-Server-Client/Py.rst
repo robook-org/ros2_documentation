@@ -9,9 +9,9 @@ Writing an action server and client (Python)
 
 **目标:** Implement an action server and client in Python.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -30,7 +30,7 @@ Actions are a form of asynchronous communication in ROS 2.
 You will need the ``action_tutorials_interfaces`` package and the ``Fibonacci.action``
 interface defined in the previous tutorial, :doc:`../Creating-an-Action`.
 
-Tasks
+任务
 -----
 
 1 Writing an action server

@@ -7,9 +7,9 @@ Adding a frame (C++)
 
 **目标:** Learn how to to add an extra frame to tf2.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 3
@@ -38,7 +38,7 @@ If we want to add a new frame to tf2, one of the three existing frames needs to 
 
 .. image:: images/turtlesim_frames.png
 
-Tasks
+任务
 -----
 
 1 Write the fixed frame broadcaster

@@ -9,9 +9,9 @@ Creating custom msg and srv files
 
 **目标:** Define custom interface files (``.msg`` and ``.srv``) and use them with Python and C++ nodes.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -33,7 +33,7 @@ You should have a :doc:`ROS 2 workspace <./Creating-A-Workspace/Creating-A-Works
 
 This tutorial also uses the packages created in the publisher/subscriber (:doc:`C++ <./Writing-A-Simple-Cpp-Publisher-And-Subscriber>` and :doc:`Python<./Writing-A-Simple-Py-Publisher-And-Subscriber>`) and service/client  (:doc:`C++ <./Writing-A-Simple-Cpp-Service-And-Client>` and :doc:`Python<./Writing-A-Simple-Py-Service-And-Client>`) tutorials to try out the new custom messages.
 
-Tasks
+任务
 -----
 
 1 Create a new package

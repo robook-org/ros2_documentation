@@ -12,9 +12,9 @@ Composing multiple nodes in a single process
 
 **目标:** Compose multiple nodes into a single process.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 背景
 ----------

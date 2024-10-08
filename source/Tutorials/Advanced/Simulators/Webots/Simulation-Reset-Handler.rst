@@ -5,7 +5,7 @@ Setting up a Reset Handler
 
 **教程等级:** Advanced
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2

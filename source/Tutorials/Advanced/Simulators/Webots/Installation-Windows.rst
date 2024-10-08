@@ -5,7 +5,7 @@ Installation (Windows)
 
 **教程等级:** Advanced
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -41,7 +41,7 @@ If you have more than one installation of Webots, ROS 2 will look for Webots at 
 3. If none of the previous points is set/installed ROS 2 will look for Webots in the default installation paths for a compatible version: ``C:\Program Files\Webots``.
 4. If Webots couldn't be found, ``webots_ros2`` will show a window and offer automatic Webots installation of the last compatible version.
 
-Tasks
+任务
 -----
 
 1 Install WSL2

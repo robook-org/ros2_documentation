@@ -1,7 +1,7 @@
 Building a Custom RViz Display
 ==============================
 
-Background
+背景
 ----------
 There are many types of data that have existing visualizations in RViz. However, if there is a message type that does
 not yet have a plugin to display it, there are two choices to see it in RViz.

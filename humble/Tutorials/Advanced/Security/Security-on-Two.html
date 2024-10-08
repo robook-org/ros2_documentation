@@ -123,7 +123,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -400,7 +400,7 @@
           <li class="breadcrumb-item"><a href="Security-Main.html">Security</a></li>
       <li class="breadcrumb-item active">Ensuring security across machines</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Advanced/Security/Security-on-Two.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Advanced/Security/Security-on-Two.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -412,27 +412,27 @@
 
   <section id="ensuring-security-across-machines">
 <span id="security-on-two"></span><h1>Ensuring security across machines<a class="headerlink" href="#ensuring-security-across-machines" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> Make two different machines communicate securely.</p>
-<p><strong>Tutorial level:</strong> Advanced</p>
-<p><strong>Time:</strong> 5 minutes</p>
+<p><strong>目标:</strong> Make two different machines communicate securely.</p>
+<p><strong>教程等级:</strong> Advanced</p>
+<p><strong>预计时长:</strong> 5 minutes</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id1">Background</a></p></li>
-<li><p><a class="reference internal" href="#create-the-second-keystore" id="id2">Create the second keystore</a></p></li>
-<li><p><a class="reference internal" href="#copy-files" id="id3">Copy files</a></p></li>
-<li><p><a class="reference internal" href="#launch-the-nodes" id="id4">Launch the nodes</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id2">背景</a></p></li>
+<li><p><a class="reference internal" href="#create-the-second-keystore" id="id3">Create the second keystore</a></p></li>
+<li><p><a class="reference internal" href="#copy-files" id="id4">Copy files</a></p></li>
+<li><p><a class="reference internal" href="#launch-the-nodes" id="id5">Launch the nodes</a></p></li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>The previous tutorials have used two ROS nodes on the same machine sending all network communications over the localhost interface.
 Let’s extend that scenario to involve multiple machines, since the benefits of authentication and encryption then become more obvious.</p>
 <p>Suppose that the machine with the keystore created in the previous demo has a hostname <code class="docutils literal notranslate"><span class="pre">Alice</span></code>, and that we want to also use another machine with hostname <code class="docutils literal notranslate"><span class="pre">Bob</span></code> for our multi-machine <code class="docutils literal notranslate"><span class="pre">talker/listener</span></code> demo.
 We need to move some keys from <code class="docutils literal notranslate"><span class="pre">Alice</span></code> to <code class="docutils literal notranslate"><span class="pre">Bob</span></code> to allow SROS 2 to authenticate and encrypt the transmissions.</p>
 </section>
 <section id="create-the-second-keystore">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Create the second keystore</a><a class="headerlink" href="#create-the-second-keystore" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Create the second keystore</a><a class="headerlink" href="#create-the-second-keystore" title="Link to this heading"></a></h2>
 <p>Begin by creating an empty keystore on <code class="docutils literal notranslate"><span class="pre">Bob</span></code>; the keystore is actually just an empty directory:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-TWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-TWFjT1M=" name="TWFjT1M=" role="tab" tabindex="-1">MacOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>Bob
@@ -453,7 +453,7 @@ mkdir<span class="w"> </span>~/sros2_demo
 </div></div>
 </section>
 <section id="copy-files">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Copy files</a><a class="headerlink" href="#copy-files" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Copy files</a><a class="headerlink" href="#copy-files" title="Link to this heading"></a></h2>
 <p>Next copy the keys and certificates for the <code class="docutils literal notranslate"><span class="pre">talker</span></code> program from <code class="docutils literal notranslate"><span class="pre">Alice</span></code> to <code class="docutils literal notranslate"><span class="pre">Bob</span></code>.
 Since the keys are just text files, we can use <code class="docutils literal notranslate"><span class="pre">scp</span></code> to copy them.</p>
 <div class="sphinx-tabs docutils container">
@@ -479,7 +479,7 @@ Please refer to <a class="reference internal" href="Deployment-Guidelines.html">
 Now, we’re ready to run a multi-machine talker/listener demo!</p>
 </section>
 <section id="launch-the-nodes">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Launch the nodes</a><a class="headerlink" href="#launch-the-nodes" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Launch the nodes</a><a class="headerlink" href="#launch-the-nodes" title="Link to this heading"></a></h2>
 <p>Once the environment is set up, run the talker on <code class="docutils literal notranslate"><span class="pre">Bob</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker<span class="w"> </span>--ros-args<span class="w"> </span>--enclave<span class="w"> </span>/talker_listener/talker
 </pre></div>

@@ -123,7 +123,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -401,7 +401,7 @@
           <li class="breadcrumb-item"><a href="Simulation-Webots.html">Webots</a></li>
       <li class="breadcrumb-item active">Installation (Windows)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Advanced/Simulators/Webots/Installation-Windows.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Advanced/Simulators/Webots/Installation-Windows.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -413,38 +413,38 @@
 
   <section id="installation-windows">
 <h1>Installation (Windows)<a class="headerlink" href="#installation-windows" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> Install the <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code> package and run simulation examples on Windows.</p>
-<p><strong>Tutorial level:</strong> Advanced</p>
-<p><strong>Time:</strong> 10 minutes</p>
+<p><strong>目标:</strong> Install the <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code> package and run simulation examples on Windows.</p>
+<p><strong>教程等级:</strong> Advanced</p>
+<p><strong>预计时长:</strong> 10 minutes</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id1">Background</a></p></li>
-<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p>
+<li><p><a class="reference internal" href="#id1" id="id3">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id4">前提条件</a></p>
 <ul>
-<li><p><a class="reference internal" href="#multiple-installations-of-webots" id="id3">Multiple Installations of Webots</a></p></li>
+<li><p><a class="reference internal" href="#multiple-installations-of-webots" id="id5">Multiple Installations of Webots</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#tasks" id="id4">Tasks</a></p>
+<li><p><a class="reference internal" href="#tasks" id="id6">Tasks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#install-wsl2" id="id5">1 Install WSL2</a></p></li>
-<li><p><a class="reference internal" href="#install-ros-2-in-wsl" id="id6">2 Install ROS 2 in WSL</a></p></li>
-<li><p><a class="reference internal" href="#install-webots-ros2" id="id7">3 Install <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code></a></p></li>
-<li><p><a class="reference internal" href="#launch-the-webots-ros2-universal-robot-example" id="id8">4 Launch the <code class="docutils literal notranslate"><span class="pre">webots_ros2_universal_robot</span></code> example</a></p></li>
-<li><p><a class="reference internal" href="#rviz-troubleshooting" id="id9">5 RViz troubleshooting</a></p></li>
+<li><p><a class="reference internal" href="#install-wsl2" id="id7">1 Install WSL2</a></p></li>
+<li><p><a class="reference internal" href="#install-ros-2-in-wsl" id="id8">2 Install ROS 2 in WSL</a></p></li>
+<li><p><a class="reference internal" href="#install-webots-ros2" id="id9">3 Install <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code></a></p></li>
+<li><p><a class="reference internal" href="#launch-the-webots-ros2-universal-robot-example" id="id10">4 Launch the <code class="docutils literal notranslate"><span class="pre">webots_ros2_universal_robot</span></code> example</a></p></li>
+<li><p><a class="reference internal" href="#rviz-troubleshooting" id="id11">5 RViz troubleshooting</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code> package provides an interface between ROS 2 and Webots.
 It includes several sub-packages, including <code class="docutils literal notranslate"><span class="pre">webots_ros2_driver</span></code>, which allows ROS nodes to communicate with Webots.
 Other sub-packages are mainly examples that show multiple possible implementations using the interface.
 In this tutorial, you are going to install the package and learn how to run one of these examples.</p>
 </section>
-<section id="prerequisites">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<section id="id2">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>It is recommended to understand basic ROS principles covered in the beginner <a class="reference internal" href="../../../../Tutorials.html"><span class="doc">教程</span></a>.
 In particular, <a class="reference internal" href="../../../Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">Creating a workspace</span></a> and <a class="reference internal" href="../../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html"><span class="doc">Creating a package</span></a> are useful prerequisites.</p>
 <p>Webots is a prerequisite to use the <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code> package.
@@ -452,7 +452,7 @@ You can follow the <a class="reference external" href="https://cyberbotics.com/d
 <p>Alternatively, you can also let <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code> download Webots automatically.
 This option appears when you launch an example of the package and no Webots installation is found.</p>
 <section id="multiple-installations-of-webots">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Multiple Installations of Webots</a><a class="headerlink" href="#multiple-installations-of-webots" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Multiple Installations of Webots</a><a class="headerlink" href="#multiple-installations-of-webots" title="Link to this heading"></a></h3>
 <p>If you have more than one installation of Webots, ROS 2 will look for Webots at the following locations (in this order):</p>
 <ol class="arabic simple">
 <li><p>If the <code class="docutils literal notranslate"><span class="pre">ROS2_WEBOTS_HOME</span></code> environment variable is set, ROS 2 will use the Webots in this folder, regardless of its version.</p></li>
@@ -463,18 +463,18 @@ This option appears when you launch an example of the package and no Webots inst
 </section>
 </section>
 <section id="tasks">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
 <section id="install-wsl2">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">1 Install WSL2</a><a class="headerlink" href="#install-wsl2" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">1 Install WSL2</a><a class="headerlink" href="#install-wsl2" title="Link to this heading"></a></h3>
 <p>On Windows, WSL (Windows Subsystem for Linux) improves the user experience with ROS 2 compared to native Windows installation, as it runs on a Linux platform.
 Install WSL with an Ubuntu version which is compatible with your ROS distribution and upgrade to WSL2 following the <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">official Microsoft tutorial</a>.</p>
 </section>
 <section id="install-ros-2-in-wsl">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">2 Install ROS 2 in WSL</a><a class="headerlink" href="#install-ros-2-in-wsl" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">2 Install ROS 2 in WSL</a><a class="headerlink" href="#install-ros-2-in-wsl" title="Link to this heading"></a></h3>
 <p>Install ROS 2 inside Ubuntu WSL, following <a class="reference internal" href="../../../../Installation/Ubuntu-Install-Debs.html"><span class="doc">Ubuntu (deb packages)</span></a>.</p>
 </section>
 <section id="install-webots-ros2">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">3 Install <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code></a><a class="headerlink" href="#install-webots-ros2" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">3 Install <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code></a><a class="headerlink" href="#install-webots-ros2" title="Link to this heading"></a></h3>
 <p>You can then either install <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code> from the official released package, or install it from the latest up-to-date sources from <a class="reference external" href="https://github.com/cyberbotics/webots_ros2">Github</a>.</p>
 <p>The following commands must be run inside the WSL environment.</p>
 <div class="sphinx-tabs docutils container">
@@ -512,7 +512,7 @@ Install WSL with an Ubuntu version which is compatible with your ROS distributio
 </div></div>
 </section>
 <section id="launch-the-webots-ros2-universal-robot-example">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">4 Launch the <code class="docutils literal notranslate"><span class="pre">webots_ros2_universal_robot</span></code> example</a><a class="headerlink" href="#launch-the-webots-ros2-universal-robot-example" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">4 Launch the <code class="docutils literal notranslate"><span class="pre">webots_ros2_universal_robot</span></code> example</a><a class="headerlink" href="#launch-the-webots-ros2-universal-robot-example" title="Link to this heading"></a></h3>
 <p>WSL doesn’t support hardware acceleration (yet).
 Therefore, Webots should be started on Windows, while the ROS part is running inside WSL.
 To do so, the following commands must be run inside the WSL environment.</p>
@@ -536,7 +536,7 @@ Use the mount point “/mnt” to refer to a path on native Windows.</p>
 </div>
 </section>
 <section id="rviz-troubleshooting">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">5 RViz troubleshooting</a><a class="headerlink" href="#rviz-troubleshooting" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">5 RViz troubleshooting</a><a class="headerlink" href="#rviz-troubleshooting" title="Link to this heading"></a></h3>
 <p>With recent versions of WSL2, RViz should work out of the box.</p>
 <p>You can check if it works correctly by running any example that uses RViz, for example:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt install ros-humble-slam-toolbox</span>

@@ -122,7 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -399,7 +399,7 @@
           <li class="breadcrumb-item"><a href="Launch-Main.html">Launch</a></li>
       <li class="breadcrumb-item active">Managing large projects</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -411,55 +411,55 @@
 
   <section id="managing-large-projects">
 <span id="usingros2launchforlargeprojects"></span><h1>Managing large projects<a class="headerlink" href="#managing-large-projects" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> Learn best practices of managing large projects using ROS 2 launch files.</p>
-<p><strong>Tutorial level:</strong> Intermediate</p>
-<p><strong>Time:</strong> 20 minutes</p>
+<p><strong>目标:</strong> Learn best practices of managing large projects using ROS 2 launch files.</p>
+<p><strong>教程等级:</strong> Intermediate</p>
+<p><strong>预计时长:</strong> 20 minutes</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id1">Background</a></p></li>
-<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#writing-launch-files" id="id4">Writing launch files</a></p>
+<li><p><a class="reference internal" href="#id1" id="id3">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id4">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id5">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#writing-launch-files" id="id6">Writing launch files</a></p>
 <ul>
-<li><p><a class="reference internal" href="#top-level-organization" id="id5">1 Top-level organization</a></p></li>
-<li><p><a class="reference internal" href="#parameters" id="id6">2 Parameters</a></p>
+<li><p><a class="reference internal" href="#top-level-organization" id="id7">1 Top-level organization</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id8">2 Parameters</a></p>
 <ul>
-<li><p><a class="reference internal" href="#setting-parameters-in-the-launch-file" id="id7">2.1 Setting parameters in the launch file</a></p></li>
-<li><p><a class="reference internal" href="#loading-parameters-from-yaml-file" id="id8">2.2 Loading parameters from YAML file</a></p></li>
-<li><p><a class="reference internal" href="#using-wildcards-in-yaml-files" id="id9">2.3 Using wildcards in YAML files</a></p></li>
+<li><p><a class="reference internal" href="#setting-parameters-in-the-launch-file" id="id9">2.1 Setting parameters in the launch file</a></p></li>
+<li><p><a class="reference internal" href="#loading-parameters-from-yaml-file" id="id10">2.2 Loading parameters from YAML file</a></p></li>
+<li><p><a class="reference internal" href="#using-wildcards-in-yaml-files" id="id11">2.3 Using wildcards in YAML files</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#namespaces" id="id10">3 Namespaces</a></p></li>
-<li><p><a class="reference internal" href="#reusing-nodes" id="id11">4 Reusing nodes</a></p></li>
-<li><p><a class="reference internal" href="#parameter-overrides" id="id12">5 Parameter overrides</a></p></li>
-<li><p><a class="reference internal" href="#remapping" id="id13">6 Remapping</a></p></li>
-<li><p><a class="reference internal" href="#config-files" id="id14">7 Config files</a></p></li>
-<li><p><a class="reference internal" href="#environment-variables" id="id15">8 Environment Variables</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id12">3 Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#reusing-nodes" id="id13">4 Reusing nodes</a></p></li>
+<li><p><a class="reference internal" href="#parameter-overrides" id="id14">5 Parameter overrides</a></p></li>
+<li><p><a class="reference internal" href="#remapping" id="id15">6 Remapping</a></p></li>
+<li><p><a class="reference internal" href="#config-files" id="id16">7 Config files</a></p></li>
+<li><p><a class="reference internal" href="#environment-variables" id="id17">8 Environment Variables</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#running-launch-files" id="id16">Running launch files</a></p>
+<li><p><a class="reference internal" href="#running-launch-files" id="id18">Running launch files</a></p>
 <ul>
-<li><p><a class="reference internal" href="#update-setup-py" id="id17">1 Update setup.py</a></p></li>
-<li><p><a class="reference internal" href="#build-and-run" id="id18">2 Build and run</a></p></li>
+<li><p><a class="reference internal" href="#update-setup-py" id="id19">1 Update setup.py</a></p></li>
+<li><p><a class="reference internal" href="#build-and-run" id="id20">2 Build and run</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary" id="id19">Summary</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id21">Summary</a></p></li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>This tutorial describes some tips for writing launch files for large projects.
 The focus is on how to structure launch files so they may be reused as much as possible in different situations.
 Additionally, it covers usage examples of different ROS 2 launch tools, like parameters, YAML files, remappings, namespaces, default arguments, and RViz configs.</p>
 </section>
-<section id="prerequisites">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<section id="id2">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>This tutorial uses the <a class="reference internal" href="../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">turtlesim</span></a> and <a class="reference internal" href="../Tf2/Introduction-To-Tf2.html"><span class="doc">turtle_tf2_py</span></a> packages.
 This tutorial also assumes you have <a class="reference internal" href="../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html"><span class="doc">created a new package</span></a> of build type <code class="docutils literal notranslate"><span class="pre">ament_python</span></code> called <code class="docutils literal notranslate"><span class="pre">launch_tutorial</span></code>.</p>
 </section>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>Large applications on a robot typically involve several interconnected nodes, each of which can have many parameters.
 Simulation of multiple turtles in the turtle simulator can serve as a good example.
 The turtle simulation consists of multiple turtle nodes, the world configuration, and the TF broadcaster and listener nodes.
@@ -470,9 +470,9 @@ This launch file will bring up different nodes responsible for the simulation of
 In this tutorial, we’ll go over this launch file and all related features used.</p>
 </section>
 <section id="writing-launch-files">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Writing launch files</a><a class="headerlink" href="#writing-launch-files" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Writing launch files</a><a class="headerlink" href="#writing-launch-files" title="Link to this heading"></a></h2>
 <section id="top-level-organization">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">1 Top-level organization</a><a class="headerlink" href="#top-level-organization" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">1 Top-level organization</a><a class="headerlink" href="#top-level-organization" title="Link to this heading"></a></h3>
 <p>One of the aims in the process of writing launch files should be making them as reusable as possible.
 This could be done by clustering related nodes and configurations into separate launch files.
 Afterwards, a top-level launch file dedicated to a specific configuration could be written.
@@ -548,9 +548,9 @@ However, there are cases when some nodes or launch files have to be launched sep
 </div>
 </section>
 <section id="parameters">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">2 Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">2 Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
 <section id="setting-parameters-in-the-launch-file">
-<h4><a class="toc-backref" href="#id7" role="doc-backlink">2.1 Setting parameters in the launch file</a><a class="headerlink" href="#setting-parameters-in-the-launch-file" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">2.1 Setting parameters in the launch file</a><a class="headerlink" href="#setting-parameters-in-the-launch-file" title="Link to this heading"></a></h4>
 <p>We will begin by writing a launch file that will start our first turtlesim simulation.
 First, create a new file called <code class="docutils literal notranslate"><span class="pre">turtlesim_world_1.launch.py</span></code>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
@@ -591,7 +591,7 @@ First, create a new file called <code class="docutils literal notranslate"><span
 <p>This launch file starts the <code class="docutils literal notranslate"><span class="pre">turtlesim_node</span></code> node, which starts the turtlesim simulation, with simulation configuration parameters that are defined and passed to the nodes.</p>
 </section>
 <section id="loading-parameters-from-yaml-file">
-<h4><a class="toc-backref" href="#id8" role="doc-backlink">2.2 Loading parameters from YAML file</a><a class="headerlink" href="#loading-parameters-from-yaml-file" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">2.2 Loading parameters from YAML file</a><a class="headerlink" href="#loading-parameters-from-yaml-file" title="Link to this heading"></a></h4>
 <p>In the second launch, we will start a second turtlesim simulation with a different configuration.
 Now create a <code class="docutils literal notranslate"><span class="pre">turtlesim_world_2.launch.py</span></code> file.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -635,7 +635,7 @@ To learn how to do that, refer to the <a class="reference internal" href="../../
 <p>To learn more about using parameters and using YAML files, take a look at the <a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html"><span class="doc">Understand parameters</span></a> tutorial.</p>
 </section>
 <section id="using-wildcards-in-yaml-files">
-<h4><a class="toc-backref" href="#id9" role="doc-backlink">2.3 Using wildcards in YAML files</a><a class="headerlink" href="#using-wildcards-in-yaml-files" title="Link to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">2.3 Using wildcards in YAML files</a><a class="headerlink" href="#using-wildcards-in-yaml-files" title="Link to this heading"></a></h4>
 <p>There are cases when we want to set the same parameters in more than one node.
 These nodes could have different namespaces or names but still have the same parameters.
 Defining separate YAML files that explicitly define namespaces and node names is not efficient.
@@ -674,7 +674,7 @@ Using that configuration file in our launch descriptions will assign <code class
 </section>
 </section>
 <section id="namespaces">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">3 Namespaces</a><a class="headerlink" href="#namespaces" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">3 Namespaces</a><a class="headerlink" href="#namespaces" title="Link to this heading"></a></h3>
 <p>As you may have noticed, we have defined the namespace for the turlesim world in the <code class="docutils literal notranslate"><span class="pre">turtlesim_world_2.launch.py</span></code> file.
 Unique namespaces allow the system to start two similar nodes without node name or topic name conflicts.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;turtlesim2&#39;</span><span class="p">,</span>
@@ -706,7 +706,7 @@ Afterwards, we need to update the <code class="docutils literal notranslate"><sp
 As a result, each node in the <code class="docutils literal notranslate"><span class="pre">turtlesim_world_2.launch.py</span></code> launch description will have a <code class="docutils literal notranslate"><span class="pre">turtlesim2</span></code> namespace.</p>
 </section>
 <section id="reusing-nodes">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">4 Reusing nodes</a><a class="headerlink" href="#reusing-nodes" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">4 Reusing nodes</a><a class="headerlink" href="#reusing-nodes" title="Link to this heading"></a></h3>
 <p>Now create a <code class="docutils literal notranslate"><span class="pre">broadcaster_listener.launch.py</span></code> file.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
 <span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">DeclareLaunchArgument</span>
@@ -755,7 +755,7 @@ This allows us to duplicate the same node without conflicts.</p>
 <p>We also start a <code class="docutils literal notranslate"><span class="pre">turtle_tf2_listener</span></code> node and set its <code class="docutils literal notranslate"><span class="pre">target_frame</span></code> parameter that we declared and acquired above.</p>
 </section>
 <section id="parameter-overrides">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">5 Parameter overrides</a><a class="headerlink" href="#parameter-overrides" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">5 Parameter overrides</a><a class="headerlink" href="#parameter-overrides" title="Link to this heading"></a></h3>
 <p>Recall that we called the <code class="docutils literal notranslate"><span class="pre">broadcaster_listener.launch.py</span></code> file in our top-level launch file.
 In addition to that, we have passed it <code class="docutils literal notranslate"><span class="pre">target_frame</span></code> launch argument as shown below:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">broadcaster_listener_nodes</span> <span class="o">=</span> <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
@@ -771,7 +771,7 @@ If you would like <code class="docutils literal notranslate"><span class="pre">t
 This will assign <code class="docutils literal notranslate"><span class="pre">target_frame</span></code> its default value, which is <code class="docutils literal notranslate"><span class="pre">turtle1</span></code>.</p>
 </section>
 <section id="remapping">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">6 Remapping</a><a class="headerlink" href="#remapping" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">6 Remapping</a><a class="headerlink" href="#remapping" title="Link to this heading"></a></h3>
 <p>Now create a <code class="docutils literal notranslate"><span class="pre">mimic.launch.py</span></code> file.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
 <span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">Node</span>
@@ -798,7 +798,7 @@ Finally, we remap the <code class="docutils literal notranslate"><span class="pr
 This way <code class="docutils literal notranslate"><span class="pre">turtle1</span></code> in our <code class="docutils literal notranslate"><span class="pre">turtlesim2</span></code> simulation world will follow <code class="docutils literal notranslate"><span class="pre">turtle2</span></code> in our initial turtlesim world.</p>
 </section>
 <section id="config-files">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">7 Config files</a><a class="headerlink" href="#config-files" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">7 Config files</a><a class="headerlink" href="#config-files" title="Link to this heading"></a></h3>
 <p>Let’s now create a file called <code class="docutils literal notranslate"><span class="pre">turtlesim_rviz.launch.py</span></code>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
@@ -829,7 +829,7 @@ This way <code class="docutils literal notranslate"><span class="pre">turtle1</s
 This RViz configuration will set the world frame, enable TF visualization, and start RViz with a top-down view.</p>
 </section>
 <section id="environment-variables">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">8 Environment Variables</a><a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">8 Environment Variables</a><a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h3>
 <p>Let’s now create the last launch file called <code class="docutils literal notranslate"><span class="pre">fixed_broadcaster.launch.py</span></code> in our package.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
 <span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">DeclareLaunchArgument</span>
@@ -861,9 +861,9 @@ Environment variables can be used to define or push namespaces for distinguishin
 </section>
 </section>
 <section id="running-launch-files">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">Running launch files</a><a class="headerlink" href="#running-launch-files" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Running launch files</a><a class="headerlink" href="#running-launch-files" title="Link to this heading"></a></h2>
 <section id="update-setup-py">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">1 Update setup.py</a><a class="headerlink" href="#update-setup-py" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">1 Update setup.py</a><a class="headerlink" href="#update-setup-py" title="Link to this heading"></a></h3>
 <p>Open <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and add the following lines so that the launch files from the <code class="docutils literal notranslate"><span class="pre">launch/</span></code> folder and configuration file from the <code class="docutils literal notranslate"><span class="pre">config/</span></code> would be installed.
 The <code class="docutils literal notranslate"><span class="pre">data_files</span></code> field should now look like this:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -884,7 +884,7 @@ The <code class="docutils literal notranslate"><span class="pre">data_files</spa
 </div>
 </section>
 <section id="build-and-run">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">2 Build and run</a><a class="headerlink" href="#build-and-run" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">2 Build and run</a><a class="headerlink" href="#build-and-run" title="Link to this heading"></a></h3>
 <p>To finally see the result of our code, build the package and launch the top-level launch file using the following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch launch_tutorial launch_turtlesim.launch.py</span>
 </pre></div>
@@ -906,7 +906,7 @@ It will show all turtle frames relative to the <code class="docutils literal not
 </section>
 </section>
 <section id="summary">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>In this tutorial, you learned about various tips and practices of managing large projects using ROS 2 launch files.</p>
 </section>
 </section>

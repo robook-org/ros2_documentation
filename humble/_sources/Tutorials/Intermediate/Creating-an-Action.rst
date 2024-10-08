@@ -7,17 +7,17 @@
 Creating an action
 ==================
 
-**Goal:** Define an action in a ROS 2 package.
+**目标:** Define an action in a ROS 2 package.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 5 minutes
+**预计时长:** 5 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 You learned about actions previously in the :doc:`../Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions` tutorial.
@@ -26,7 +26,7 @@ you can also custom-define actions in your packages.
 This tutorial shows you how to define and build an action that you can use
 with the action server and action client you will write in the next tutorial.
 
-Prerequisites
+前提条件
 -------------
 
 You should have :doc:`ROS 2 <../../Installation>` and `colcon <https://colcon.readthedocs.org>`__ installed.

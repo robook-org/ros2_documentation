@@ -1,18 +1,18 @@
 Deployment Guidelines
 =====================
 
-**Goal:** Understand the best practices when deploying security artifacts into production systems.
+**目标:** Understand the best practices when deploying security artifacts into production systems.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
 
-Background
+背景
 ----------
 
 Typical deployment scenarios often involve shipping containerized applications, or packages, into remote systems.
@@ -24,7 +24,7 @@ the ``sros2`` package provides a collection of utilities for managing security u
 Basic core guidelines on how to organize the different certificates, keys and directories remains a critical factor to avoid compromising the security of the system.
 This includes protection-awareness and criteria for selecting the minimum set of necessary files to be deployed upon remote production systems for minimizing security exposure.
 
-Prerequisites
+前提条件
 -------------
 
 * A docker installation with the compose plugin.

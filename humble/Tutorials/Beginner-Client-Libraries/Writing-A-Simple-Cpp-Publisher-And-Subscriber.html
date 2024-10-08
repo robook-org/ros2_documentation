@@ -123,7 +123,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../Beginner-CLI-Tools/Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -399,7 +399,7 @@
           <li class="breadcrumb-item"><a href="../Beginner-Client-Libraries.html">初级: 客户端库</a></li>
       <li class="breadcrumb-item active">Writing a simple publisher and subscriber (C++)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -411,42 +411,42 @@
 
   <section id="writing-a-simple-publisher-and-subscriber-c">
 <span id="cpppubsub"></span><h1>Writing a simple publisher and subscriber (C++)<a class="headerlink" href="#writing-a-simple-publisher-and-subscriber-c" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> Create and run a publisher and subscriber node using C++.</p>
-<p><strong>Tutorial level:</strong> Beginner</p>
-<p><strong>Time:</strong> 20 minutes</p>
+<p><strong>目标:</strong> Create and run a publisher and subscriber node using C++.</p>
+<p><strong>教程等级:</strong> Beginner</p>
+<p><strong>预计时长:</strong> 20 minutes</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id3">Background</a></p></li>
-<li><p><a class="reference internal" href="#prerequisites" id="id4">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id5">Tasks</a></p>
+<li><p><a class="reference internal" href="#id1" id="id5">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id6">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#tasks" id="id7">Tasks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#create-a-package" id="id6">1 Create a package</a></p></li>
-<li><p><a class="reference internal" href="#write-the-publisher-node" id="id7">2 Write the publisher node</a></p></li>
-<li><p><a class="reference internal" href="#write-the-subscriber-node" id="id8">3 Write the subscriber node</a></p></li>
-<li><p><a class="reference internal" href="#build-and-run" id="id9">4 Build and run</a></p></li>
+<li><p><a class="reference internal" href="#create-a-package" id="id8">1 Create a package</a></p></li>
+<li><p><a class="reference internal" href="#write-the-publisher-node" id="id9">2 Write the publisher node</a></p></li>
+<li><p><a class="reference internal" href="#write-the-subscriber-node" id="id10">3 Write the subscriber node</a></p></li>
+<li><p><a class="reference internal" href="#build-and-run" id="id11">4 Build and run</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary" id="id10">Summary</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id11">Next steps</a></p></li>
-<li><p><a class="reference internal" href="#related-content" id="id12">Related content</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id12">Summary</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id13">Next steps</a></p></li>
+<li><p><a class="reference internal" href="#related-content" id="id14">Related content</a></p></li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p><a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html"><span class="doc">Nodes</span></a> are executable processes that communicate over the ROS graph.
 In this tutorial, the nodes will pass information in the form of string messages to each other over a <a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">topic</span></a>.
 The example used here is a simple “talker” and “listener” system; one node publishes data and the other subscribes to the topic so it can receive that data.</p>
 <p>The code used in these examples can be found <a class="reference external" href="https://github.com/ros2/examples/tree/humble/rclcpp/topics">here</a>.</p>
 </section>
-<section id="prerequisites">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<section id="id2">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>In previous tutorials, you learned how to <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">create a workspace</span></a> and <a class="reference internal" href="Creating-Your-First-ROS2-Package.html"><span class="doc">create a package</span></a>.</p>
 </section>
 <section id="tasks">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
 <section id="create-a-package">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">1 Create a package</a><a class="headerlink" href="#create-a-package" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">1 Create a package</a><a class="headerlink" href="#create-a-package" title="Link to this heading"></a></h3>
 <p>Open a new terminal and <a class="reference internal" href="../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">source your ROS 2 installation</span></a> so that <code class="docutils literal notranslate"><span class="pre">ros2</span></code> commands will work.</p>
 <p>Navigate into the <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> directory created in a <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html#new-directory"><span class="std std-ref">previous tutorial</span></a>.</p>
 <p>Recall that packages should be created in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory, not the root of the workspace.
@@ -459,7 +459,7 @@ So, navigate into <code class="docutils literal notranslate"><span class="pre">r
 Recall that this is the directory in any CMake package where the source files containing executables belong.</p>
 </section>
 <section id="write-the-publisher-node">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">2 Write the publisher node</a><a class="headerlink" href="#write-the-publisher-node" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">2 Write the publisher node</a><a class="headerlink" href="#write-the-publisher-node" title="Link to this heading"></a></h3>
 <p>Download the example talker code by entering the following command:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wget -O publisher_member_function.cpp https://raw.githubusercontent.com/ros2/examples/humble/rclcpp/topics/minimal_publisher/member_function.cpp</span>
@@ -659,7 +659,7 @@ Below the existing dependency <code class="docutils literal notranslate"><span c
 </section>
 </section>
 <section id="write-the-subscriber-node">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">3 Write the subscriber node</a><a class="headerlink" href="#write-the-subscriber-node" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">3 Write the subscriber node</a><a class="headerlink" href="#write-the-subscriber-node" title="Link to this heading"></a></h3>
 <p>Return to <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/cpp_pubsub/src</span></code> to create the next node.
 Enter the following code in your terminal:</p>
 <div class="sphinx-tabs docutils container">
@@ -716,8 +716,8 @@ Enter the following code in your terminal:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<section id="id1">
-<h4>3.1 Examine the code<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<section id="id3">
+<h4>3.1 Examine the code<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
 <p>The subscriber node’s code is nearly identical to the publisher’s.
 Now the node is named <code class="docutils literal notranslate"><span class="pre">minimal_subscriber</span></code>, and the constructor uses the node’s <code class="docutils literal notranslate"><span class="pre">create_subscription</span></code> class to execute the callback.</p>
 <p>There is no timer because the subscriber simply responds whenever data is published to the <code class="docutils literal notranslate"><span class="pre">topic</span></code> topic.</p>
@@ -745,8 +745,8 @@ Now the node is named <code class="docutils literal notranslate"><span class="pr
 For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come.</p>
 <p>Since this node has the same dependencies as the publisher node, there’s nothing new to add to <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>.</p>
 </section>
-<section id="id2">
-<h4>3.2 CMakeLists.txt<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<section id="id4">
+<h4>3.2 CMakeLists.txt<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
 <p>Reopen <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> and add the executable and target for the subscriber node below the publisher’s entries.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">listener</span><span class="w"> </span><span class="s">src/subscriber_member_function.cpp</span><span class="p">)</span>
 <span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">listener</span><span class="w"> </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">std_msgs</span><span class="p">)</span>
@@ -761,7 +761,7 @@ For the publisher node, spinning meant starting the timer, but for the subscribe
 </section>
 </section>
 <section id="build-and-run">
-<span id="cpppubsub-build-and-run"></span><h3><a class="toc-backref" href="#id9" role="doc-backlink">4 Build and run</a><a class="headerlink" href="#build-and-run" title="Link to this heading"></a></h3>
+<span id="cpppubsub-build-and-run"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">4 Build and run</a><a class="headerlink" href="#build-and-run" title="Link to this heading"></a></h3>
 <p>You likely already have the <code class="docutils literal notranslate"><span class="pre">rclcpp</span></code> and <code class="docutils literal notranslate"><span class="pre">std_msgs</span></code> packages installed as part of your ROS 2 system.
 It’s good practice to run <code class="docutils literal notranslate"><span class="pre">rosdep</span></code> in the root of your workspace (<code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>) to check for missing dependencies before building:</p>
 <div class="sphinx-tabs docutils container">
@@ -823,17 +823,17 @@ It’s good practice to run <code class="docutils literal notranslate"><span cla
 </section>
 </section>
 <section id="summary">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>You created two nodes to publish and subscribe to data over a topic.
 Before compiling and running them, you added their dependencies and executables to the package configuration files.</p>
 </section>
 <section id="next-steps">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
 <p>Next you’ll create another simple ROS 2 package using the service/client model.
 Again, you can choose to write it in either <a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html"><span class="doc">C++</span></a> or <a class="reference internal" href="Writing-A-Simple-Py-Service-And-Client.html"><span class="doc">Python</span></a>.</p>
 </section>
 <section id="related-content">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Related content</a><a class="headerlink" href="#related-content" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Related content</a><a class="headerlink" href="#related-content" title="Link to this heading"></a></h2>
 <p>There are several ways you could write a publisher and subscriber in C++; check out the <code class="docutils literal notranslate"><span class="pre">minimal_publisher</span></code> and <code class="docutils literal notranslate"><span class="pre">minimal_subscriber</span></code> packages in the <a class="reference external" href="https://github.com/ros2/examples/tree/humble/rclcpp/topics">ros2/examples</a> repo.</p>
 </section>
 </section>

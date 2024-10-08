@@ -7,17 +7,17 @@
 Launching nodes
 ===============
 
-**Goal:** Use a command line tool to launch multiple nodes at once.
+**目标:** Use a command line tool to launch multiple nodes at once.
 
-**Tutorial Level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 5 minutes
+**预计时长:** 5 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In most of the introductory tutorials, you have been opening new terminals for every new node you run.
@@ -27,7 +27,7 @@ Launch files allow you to start up and configure a number of executables contain
 
 Running a single launch file with the ``ros2 launch`` command will start up your entire system - all nodes and their configurations - at once.
 
-Prerequisites
+前提条件
 -------------
 
 Before starting these tutorials, install ROS 2 by following the instructions on the ROS 2 :doc:`../../../Installation/` page.

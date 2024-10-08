@@ -122,7 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -399,7 +399,7 @@
           <li class="breadcrumb-item"><a href="Security-Main.html">Security</a></li>
       <li class="breadcrumb-item active">Deployment Guidelines</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Advanced/Security/Deployment-Guidelines.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Advanced/Security/Deployment-Guidelines.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -411,30 +411,30 @@
 
   <section id="deployment-guidelines">
 <h1>Deployment Guidelines<a class="headerlink" href="#deployment-guidelines" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> Understand the best practices when deploying security artifacts into production systems.</p>
-<p><strong>Tutorial level:</strong> Advanced</p>
-<p><strong>Time:</strong> 20 minutes</p>
+<p><strong>目标:</strong> Understand the best practices when deploying security artifacts into production systems.</p>
+<p><strong>教程等级:</strong> Advanced</p>
+<p><strong>预计时长:</strong> 20 minutes</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id1">Background</a></p></li>
-<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#general-guidelines" id="id3">General Guidelines</a></p></li>
-<li><p><a class="reference internal" href="#building-a-deployment-scenario" id="id4">Building a deployment scenario</a></p>
+<li><p><a class="reference internal" href="#id1" id="id3">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id4">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#general-guidelines" id="id5">General Guidelines</a></p></li>
+<li><p><a class="reference internal" href="#building-a-deployment-scenario" id="id6">Building a deployment scenario</a></p>
 <ul>
-<li><p><a class="reference internal" href="#generating-the-docker-image" id="id5">Generating the Docker Image</a></p></li>
-<li><p><a class="reference internal" href="#understanding-the-compose-file" id="id6">Understanding the compose file</a></p></li>
+<li><p><a class="reference internal" href="#generating-the-docker-image" id="id7">Generating the Docker Image</a></p></li>
+<li><p><a class="reference internal" href="#understanding-the-compose-file" id="id8">Understanding the compose file</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#running-the-example" id="id7">Running the example</a></p>
+<li><p><a class="reference internal" href="#running-the-example" id="id9">Running the example</a></p>
 <ul>
-<li><p><a class="reference internal" href="#examining-the-containers" id="id8">Examining the containers</a></p></li>
+<li><p><a class="reference internal" href="#examining-the-containers" id="id10">Examining the containers</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>Typical deployment scenarios often involve shipping containerized applications, or packages, into remote systems.
 Special attention should be payed when deploying security enabled applications, requiring users to reason about the sensitivity of packaged files.</p>
 <p>Complying with the <a class="reference external" href="https://www.omg.org/spec/DDS-SECURITY/1.1/About-DDS-SECURITY/">DDS Security standard</a>,
@@ -442,8 +442,8 @@ the <code class="docutils literal notranslate"><span class="pre">sros2</span></c
 <p>Basic core guidelines on how to organize the different certificates, keys and directories remains a critical factor to avoid compromising the security of the system.
 This includes protection-awareness and criteria for selecting the minimum set of necessary files to be deployed upon remote production systems for minimizing security exposure.</p>
 </section>
-<section id="prerequisites">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<section id="id2">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <ul>
 <li><p>A docker installation with the compose plugin.
 Please refer to the installation steps detailed in <a class="reference external" href="https://docs.docker.com/engine/install/">Docker installation</a> and <a class="reference external" href="https://docs.docker.com/compose/install">Compose Plugin</a>.</p></li>
@@ -460,7 +460,7 @@ Please refer to the installation steps detailed in <a class="reference external"
 </ul>
 </section>
 <section id="general-guidelines">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">General Guidelines</a><a class="headerlink" href="#general-guidelines" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">General Guidelines</a><a class="headerlink" href="#general-guidelines" title="Link to this heading"></a></h2>
 <p>ROS 2 leverages DDS Security extensions to ensure security on message exchanges within the same enclave.
 The different signed files and certificates within an enclave are generated from the private keys and certificates of a <a class="reference external" href="https://en.wikipedia.org/wiki/Certificate_authority">Certificate Authority (CA)</a> trusted entity.
 In fact, two different CA’s can be selected for identity and permissions, per enclave.
@@ -524,7 +524,7 @@ Those CA artifacts are stored inside <code class="docutils literal notranslate">
 </table>
 </section>
 <section id="building-a-deployment-scenario">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Building a deployment scenario</a><a class="headerlink" href="#building-a-deployment-scenario" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Building a deployment scenario</a><a class="headerlink" href="#building-a-deployment-scenario" title="Link to this heading"></a></h2>
 <p>To illustrate a simple deployment scenario, a new docker image will be built on top of the one provided by <code class="docutils literal notranslate"><span class="pre">ros:&lt;DISTRO&gt;</span></code>.
 Starting from the image, three containers will be created with the aim of:</p>
 <ul class="simple">
@@ -538,7 +538,7 @@ Let us start by creating a workspace folder:</p>
 </pre></div>
 </div>
 <section id="generating-the-docker-image">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Generating the Docker Image</a><a class="headerlink" href="#generating-the-docker-image" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Generating the Docker Image</a><a class="headerlink" href="#generating-the-docker-image" title="Link to this heading"></a></h3>
 <p>In order to build a new docker image, a Dockerfile is required.
 The one proposed for this tutorial can be retrieved with the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the Dockerfile</span>
@@ -552,7 +552,7 @@ docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </
 </div>
 </section>
 <section id="understanding-the-compose-file">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Understanding the compose file</a><a class="headerlink" href="#understanding-the-compose-file" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Understanding the compose file</a><a class="headerlink" href="#understanding-the-compose-file" title="Link to this heading"></a></h3>
 <p>A compose configration file takes an image to create containers as services.
 In this tutorial, three services are defined within the configuration:</p>
 <ul class="simple">
@@ -570,7 +570,7 @@ wget<span class="w"> </span>https://raw.githubusercontent.com/ros2/ros2_document
 </section>
 </section>
 <section id="running-the-example">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Running the example</a><a class="headerlink" href="#running-the-example" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Running the example</a><a class="headerlink" href="#running-the-example" title="Link to this heading"></a></h2>
 <p>In the same working directory <code class="docutils literal notranslate"><span class="pre">~/security_gd_tutorial</span></code>, run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start the example</span>
 docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>compose.deployment.yaml<span class="w"> </span>up
@@ -584,7 +584,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 <li><p><em>tutorial-talker-1</em>: <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">heard:</span> <span class="pre">[Hello</span> <span class="pre">World:</span> <span class="pre">&lt;number&gt;]</span></code></p></li>
 </ul>
 <section id="examining-the-containers">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Examining the containers</a><a class="headerlink" href="#examining-the-containers" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Examining the containers</a><a class="headerlink" href="#examining-the-containers" title="Link to this heading"></a></h3>
 <p>While having the containers running that simulate the two remote devices for this tutorial, attach to each of them by opening two different terminals and enter:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Terminal 1</span>
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>tutorial-listener-1<span class="w"> </span>bash

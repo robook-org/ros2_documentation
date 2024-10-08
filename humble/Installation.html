@@ -122,7 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Tutorials/Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -396,7 +396,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">安装</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Installation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Installation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -414,7 +414,7 @@
 <section id="id2">
 <h2>从二进制包安装<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>只有在 Tier 1 系统上才会为 ROS 2 提供二进制包，这些系统列在 <a class="reference external" href="https://www.ros.org/reps/rep-2000.html#rolling-ridley-june-2020-ongoing">REP-2000</a> 中。
-如果您的操作系统中不在下述列表中，您可能需要从源码构建或使用 <a class="reference internal" href="How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html"><span class="doc">容器解决方案</span></a> 在您的平台上运行 ROS 2。</p>
+如果你的操作系统中不在下述列表中，你可能需要从源码构建或使用 <a class="reference internal" href="How-To-Guides/Run-2-nodes-in-single-or-separate-docker-containers.html"><span class="doc">容器解决方案</span></a> 在你的平台上运行 ROS 2。</p>
 <p>我们为以下平台提供 ROS 2 二进制包:</p>
 <ul class="simple">
 <li><p>Ubuntu Linux - Jammy Jellyfish (22.04)</p>
@@ -449,7 +449,7 @@
 <section id="id4">
 <h2>我应该选择哪种安装方式?<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>从二进制包或从源码安装都是完全可用的 ROS 2 安装方式。
-这两种方式的区别取决于您打算如何使用 ROS 2。</p>
+这两种方式的区别取决于你打算如何使用 ROS 2。</p>
 <p><strong>二进制包</strong>适用于一般用户，提供了 ROS 2 的已构建安装。
 这对于想要立即开始使用 ROS 2 的人来说非常方便。</p>
 <p>Linux 用户有两种安装二进制包的方式:</p>
@@ -458,16 +458,16 @@
 <li><p>binary archive</p></li>
 </ul>
 <p>从包(Packages)安装是推荐的方法，因为它会自动安装必要的依赖项，并且还会随着常规系统更新一起更新。
-但是，您需要 root 权限才能安装 Debian 包。
-如果您没有 root 权限，二进制存档(binary archive)则是最佳选择。</p>
+但是，你需要 root 权限才能安装 Debian 包。
+如果你没有 root 权限，二进制存档(binary archive)则是最佳选择。</p>
 <p>Windows 用户只能选择二进制存档。
 (deb 包仅适用于 Ubuntu/Debian)</p>
 <p><strong>从源码构建</strong>适用于想要更改或屏蔽部分 ROS 2 核心的开发人员。
 它还适用于不支持二进制的平台。
-从源码构建还可以让您安装 ROS 2 的最新版本。</p>
+从源码构建还可以让你安装 ROS 2 的最新版本。</p>
 <section id="ros-2-core">
 <h3>向 ROS 2 core 贡献代码?<a class="headerlink" href="#ros-2-core" title="Link to this heading"></a></h3>
-<p>如果您计划直接向 ROS 2 核心包贡献代码，您可以安装 <a class="reference internal" href="Installation/Alternatives/Latest-Development-Setup.html"><span class="doc">最新的开发源码</span></a>，这与 <a class="reference internal" href="Releases.html#rolling-distribution"><span class="std std-ref">Rolling 发行版</span></a> 共享安装说明。</p>
+<p>如果你计划直接向 ROS 2 核心包贡献代码，你可以安装 <a class="reference internal" href="Installation/Alternatives/Latest-Development-Setup.html"><span class="doc">最新的开发源码</span></a>，这与 <a class="reference internal" href="Releases.html#rolling-distribution"><span class="std std-ref">Rolling 发行版</span></a> 共享安装说明。</p>
 </section>
 </section>
 </section>

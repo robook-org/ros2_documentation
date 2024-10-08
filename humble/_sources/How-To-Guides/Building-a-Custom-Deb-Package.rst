@@ -12,7 +12,7 @@ This guide gives a short set of instructions to build local, custom deb packages
 .. contents:: Table of Contents
    :local:
 
-Prerequisites
+前提条件
 -------------
 
 To successfully build a custom package, all of the dependencies of the package to be built must be available locally or in rosdep.

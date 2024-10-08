@@ -7,17 +7,17 @@
 Using stamped datatypes with ``tf2_ros::MessageFilter``
 =======================================================
 
-**Goal:** Learn how to use ``tf2_ros::MessageFilter`` to process stamped datatypes.
+**目标:** Learn how to use ``tf2_ros::MessageFilter`` to process stamped datatypes.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 10 minutes
+**预计时长:** 10 minutes
 
 .. contents:: Contents
    :depth: 3
    :local:
 
-Background
+背景
 ----------
 
 This tutorial explains how to use sensor data with tf2.

@@ -5,7 +5,7 @@ eProsima Fast DDS is a complete open-source DDS implementation for real time emb
 See also: https://www.eprosima.com/index.php/products-all/eprosima-fast-dds
 
 
-Prerequisites
+前提条件
 -------------
 
 Have :doc:`rosdep installed <../../Tutorials/Intermediate/Rosdep>`.
@@ -68,4 +68,3 @@ Now run ``talker`` and ``listener`` to test Fast DDS.
 .. code-block:: bash
 
    ros2 run demo_nodes_cpp listener
-

@@ -13,7 +13,7 @@ This tutorial covers:
 2. running and tracing a ``performance_test`` run
 3. analyzing the trace data using `tracetools_analysis <https://github.com/ros-tracing/tracetools_analysis>`_ to plot the callback durations
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial is aimed at real-time Linux systems.

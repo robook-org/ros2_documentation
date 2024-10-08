@@ -122,7 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -399,7 +399,7 @@
           <li class="breadcrumb-item"><a href="Tf2-Main.html"><code class="docutils literal notranslate"><span class="pre">tf2</span></code></a></li>
       <li class="breadcrumb-item active">Using time (C++)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Tf2/Learning-About-Tf2-And-Time-Cpp.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Tf2/Learning-About-Tf2-And-Time-Cpp.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -411,25 +411,25 @@
 
   <section id="using-time-c">
 <span id="learningabouttf2andtimecpp"></span><h1>Using time (C++)<a class="headerlink" href="#using-time-c" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> Learn how to get a transform at a specific time and wait for a transform to be available on the tf2 tree using <code class="docutils literal notranslate"><span class="pre">lookupTransform()</span></code> function.</p>
-<p><strong>Tutorial level:</strong> Intermediate</p>
-<p><strong>Time:</strong> 10 minutes</p>
+<p><strong>目标:</strong> Learn how to get a transform at a specific time and wait for a transform to be available on the tf2 tree using <code class="docutils literal notranslate"><span class="pre">lookupTransform()</span></code> function.</p>
+<p><strong>教程等级:</strong> Intermediate</p>
+<p><strong>预计时长:</strong> 10 minutes</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id1">Background</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id2">Tasks</a></p>
+<li><p><a class="reference internal" href="#id1" id="id2">背景</a></p></li>
+<li><p><a class="reference internal" href="#tasks" id="id3">Tasks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#update-the-listener-node" id="id3">1 Update the listener node</a></p></li>
-<li><p><a class="reference internal" href="#fix-the-listener-node" id="id4">2 Fix the listener node</a></p></li>
-<li><p><a class="reference internal" href="#check-the-results" id="id5">3 Check the results</a></p></li>
+<li><p><a class="reference internal" href="#update-the-listener-node" id="id4">1 Update the listener node</a></p></li>
+<li><p><a class="reference internal" href="#fix-the-listener-node" id="id5">2 Fix the listener node</a></p></li>
+<li><p><a class="reference internal" href="#check-the-results" id="id6">3 Check the results</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary" id="id6">Summary</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id7">Summary</a></p></li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>In previous tutorials, we recreated the turtle demo by writing a <a class="reference internal" href="Writing-A-Tf2-Broadcaster-Cpp.html"><span class="doc">tf2 broadcaster</span></a> and a <a class="reference internal" href="Writing-A-Tf2-Listener-Cpp.html"><span class="doc">tf2 listener</span></a>.
 We also learned how to <a class="reference internal" href="Adding-A-Frame-Cpp.html"><span class="doc">add a new frame to the transformation tree</span></a> and learned how tf2 keeps track of a tree of coordinate frames.
 This tree changes over time, and tf2 stores a time snapshot for every transform (for up to 10 seconds by default).
@@ -437,9 +437,9 @@ Until now we used the <code class="docutils literal notranslate"><span class="pr
 This tutorial will teach you how to get a transform at a specific time.</p>
 </section>
 <section id="tasks">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
 <section id="update-the-listener-node">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">1 Update the listener node</a><a class="headerlink" href="#update-the-listener-node" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">1 Update the listener node</a><a class="headerlink" href="#update-the-listener-node" title="Link to this heading"></a></h3>
 <p>Let’s go back to where we ended in the <a class="reference internal" href="Adding-A-Frame-Cpp.html"><span class="doc">adding a frame tutorial</span></a>.
 Go to the <code class="docutils literal notranslate"><span class="pre">learning_tf2_cpp</span></code> package.
 Open <code class="docutils literal notranslate"><span class="pre">turtle_tf2_listener.cpp</span></code> and take a look at the <code class="docutils literal notranslate"><span class="pre">lookupTransform()</span></code> call:</p>
@@ -482,7 +482,7 @@ Secondly, when a broadcaster sends out a transform, it takes some time before th
 As a result, when you request a frame transform at time “now”, you should wait a few milliseconds for that information to arrive.</p>
 </section>
 <section id="fix-the-listener-node">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">2 Fix the listener node</a><a class="headerlink" href="#fix-the-listener-node" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">2 Fix the listener node</a><a class="headerlink" href="#fix-the-listener-node" title="Link to this heading"></a></h3>
 <p>tf2 provides a nice tool that will wait until a transform becomes available.
 You use this by adding a timeout parameter to <code class="docutils literal notranslate"><span class="pre">lookupTransform()</span></code>.
 To fix this, edit your code as shown below (add the last timeout parameter):</p>
@@ -498,7 +498,7 @@ To fix this, edit your code as shown below (add the last timeout parameter):</p>
 It will block for up to that duration waiting for it to timeout.</p>
 </section>
 <section id="check-the-results">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">3 Check the results</a><a class="headerlink" href="#check-the-results" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">3 Check the results</a><a class="headerlink" href="#check-the-results" title="Link to this heading"></a></h3>
 <p>You can now run the launch file.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch learning_tf2_cpp turtle_tf2_demo.launch.py</span>
 </pre></div>
@@ -508,7 +508,7 @@ Once the timeout has been reached (fifty milliseconds in this case), an exceptio
 </section>
 </section>
 <section id="summary">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>In this tutorial, you learned how to acquire a transform at a specific timestamp and how to wait for a transform to be available on the tf2 tree when using the <code class="docutils literal notranslate"><span class="pre">lookupTransform()</span></code> function.</p>
 </section>
 </section>

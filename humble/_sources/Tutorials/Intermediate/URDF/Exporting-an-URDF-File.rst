@@ -1,11 +1,11 @@
 Generating an URDF File
 =======================
 
-**Goal:** Learn how to Export and URDF File
+**目标:** Learn how to Export and URDF File
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 5 minutes
+**预计时长:** 5 minutes
 
 .. contents:: Contents
    :depth: 2

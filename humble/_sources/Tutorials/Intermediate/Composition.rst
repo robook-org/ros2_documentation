@@ -10,20 +10,20 @@ Composing multiple nodes in a single process
    :depth: 2
    :local:
 
-**Goal:** Compose multiple nodes into a single process.
+**目标:** Compose multiple nodes into a single process.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
-Background
+背景
 ----------
 
 See the :doc:`conceptual article <../../Concepts/Intermediate/About-Composition>`.
 
 For information on how to write a composable node, :doc:`check out this tutorial <Writing-a-Composable-Node>`.
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial uses executables from the `rclcpp_components <https://github.com/ros2/rclcpp/tree/{REPOS_FILE_BRANCH}/rclcpp_components>`__, `ros2component <https://github.com/ros2/ros2cli/tree/{REPOS_FILE_BRANCH}/ros2component>`__, `composition <https://github.com/ros2/demos/tree/{REPOS_FILE_BRANCH}/composition>`__, and `image_tools <https://github.com/ros2/demos/tree/{REPOS_FILE_BRANCH}/image_tools>`__ packages. If you've followed the :doc:`installation instructions <../../Installation>` for your platform, these should already be installed.

@@ -122,7 +122,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -398,7 +398,7 @@
           <li class="breadcrumb-item"><a href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a></li>
       <li class="breadcrumb-item active">Understanding actions</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -410,32 +410,32 @@
 
   <section id="understanding-actions">
 <span id="ros2actions"></span><h1>Understanding actions<a class="headerlink" href="#understanding-actions" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> Introspect actions in ROS 2.</p>
-<p><strong>Tutorial level:</strong> Beginner</p>
-<p><strong>Time:</strong> 15 minutes</p>
+<p><strong>目标:</strong> Introspect actions in ROS 2.</p>
+<p><strong>教程等级:</strong> Beginner</p>
+<p><strong>预计时长:</strong> 15 minutes</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id1">Background</a></p></li>
-<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id3">Tasks</a></p>
+<li><p><a class="reference internal" href="#id1" id="id3">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id4">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#tasks" id="id5">Tasks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#setup" id="id4">1 Setup</a></p></li>
-<li><p><a class="reference internal" href="#use-actions" id="id5">2 Use actions</a></p></li>
-<li><p><a class="reference internal" href="#ros2-node-info" id="id6">3 ros2 node info</a></p></li>
-<li><p><a class="reference internal" href="#ros2-action-list" id="id7">4 ros2 action list</a></p></li>
-<li><p><a class="reference internal" href="#ros2-action-info" id="id8">5 ros2 action info</a></p></li>
-<li><p><a class="reference internal" href="#ros2-interface-show" id="id9">6 ros2 interface show</a></p></li>
-<li><p><a class="reference internal" href="#ros2-action-send-goal" id="id10">7 ros2 action send_goal</a></p></li>
+<li><p><a class="reference internal" href="#setup" id="id6">1 Setup</a></p></li>
+<li><p><a class="reference internal" href="#use-actions" id="id7">2 Use actions</a></p></li>
+<li><p><a class="reference internal" href="#ros2-node-info" id="id8">3 ros2 node info</a></p></li>
+<li><p><a class="reference internal" href="#ros2-action-list" id="id9">4 ros2 action list</a></p></li>
+<li><p><a class="reference internal" href="#ros2-action-info" id="id10">5 ros2 action info</a></p></li>
+<li><p><a class="reference internal" href="#ros2-interface-show" id="id11">6 ros2 interface show</a></p></li>
+<li><p><a class="reference internal" href="#ros2-action-send-goal" id="id12">7 ros2 action send_goal</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary" id="id11">Summary</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id12">Next steps</a></p></li>
-<li><p><a class="reference internal" href="#related-content" id="id13">Related content</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id13">Summary</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id14">Next steps</a></p></li>
+<li><p><a class="reference internal" href="#related-content" id="id15">Related content</a></p></li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>Actions are one of the communication types in ROS 2 and are intended for long running tasks.
 They consist of three parts: a goal, feedback, and a result.</p>
 <p>Actions are built on topics and services.
@@ -445,16 +445,16 @@ They also provide steady feedback, as opposed to services which return a single 
 An “action client” node sends a goal to an “action server” node that acknowledges the goal and returns a stream of feedback and a result.</p>
 <img alt="../../../_images/Action-SingleActionClient.gif" src="../../../_images/Action-SingleActionClient.gif" />
 </section>
-<section id="prerequisites">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<section id="id2">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>This tutorial builds off concepts, like <a class="reference internal" href="../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html"><span class="doc">nodes</span></a> and <a class="reference internal" href="../Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">topics</span></a>, covered in previous tutorials.</p>
 <p>This tutorial uses the <a class="reference internal" href="../Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">turtlesim package</span></a>.</p>
 <p>As always, don’t forget to source ROS 2 in <a class="reference internal" href="../Configuring-ROS2-Environment.html"><span class="doc">every new terminal you open</span></a>.</p>
 </section>
 <section id="tasks">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
 <section id="setup">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
 <p>Start up the two turtlesim nodes, <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> and <code class="docutils literal notranslate"><span class="pre">/teleop_turtle</span></code>.</p>
 <p>Open a new terminal and run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node</span>
@@ -466,7 +466,7 @@ An “action client” node sends a goal to an “action server” node that ack
 </div>
 </section>
 <section id="use-actions">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">2 Use actions</a><a class="headerlink" href="#use-actions" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">2 Use actions</a><a class="headerlink" href="#use-actions" title="Link to this heading"></a></h3>
 <p>When you launch the <code class="docutils literal notranslate"><span class="pre">/teleop_turtle</span></code> node, you will see the following message in your terminal:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Use arrow keys to move the turtle.</span>
 <span class="go">Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. &#39;F&#39; to cancel a rotation.</span>
@@ -502,7 +502,7 @@ It could have chosen something else, like reject the new goal or execute the sec
 Don’t assume every action server will choose to abort the current goal when it gets a new one.</p>
 </section>
 <section id="ros2-node-info">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">3 ros2 node info</a><a class="headerlink" href="#ros2-node-info" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">3 ros2 node info</a><a class="headerlink" href="#ros2-node-info" title="Link to this heading"></a></h3>
 <p>To see the list of actions a node provides, <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> in this case, open a new terminal and run the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 node info /turtlesim</span>
 </pre></div>
@@ -570,7 +570,7 @@ To see that, run:</p>
 </div>
 </section>
 <section id="ros2-action-list">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">4 ros2 action list</a><a class="headerlink" href="#ros2-action-list" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">4 ros2 action list</a><a class="headerlink" href="#ros2-action-list" title="Link to this heading"></a></h3>
 <p>To identify all the actions in the ROS graph, run the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 action list</span>
 </pre></div>
@@ -598,7 +598,7 @@ You will need this when you want to execute an action from the command line or f
 </section>
 </section>
 <section id="ros2-action-info">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">5 ros2 action info</a><a class="headerlink" href="#ros2-action-info" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">5 ros2 action info</a><a class="headerlink" href="#ros2-action-info" title="Link to this heading"></a></h3>
 <p>You can further introspect the <code class="docutils literal notranslate"><span class="pre">/turtle1/rotate_absolute</span></code> action with the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 action info /turtle1/rotate_absolute</span>
 </pre></div>
@@ -615,7 +615,7 @@ You will need this when you want to execute an action from the command line or f
 The <code class="docutils literal notranslate"><span class="pre">/teleop_turtle</span></code> node has an action client and the <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> node has an action server for the <code class="docutils literal notranslate"><span class="pre">/turtle1/rotate_absolute</span></code> action.</p>
 </section>
 <section id="ros2-interface-show">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">6 ros2 interface show</a><a class="headerlink" href="#ros2-interface-show" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">6 ros2 interface show</a><a class="headerlink" href="#ros2-interface-show" title="Link to this heading"></a></h3>
 <p>One more piece of information you will need before sending or executing an action goal yourself is the structure of the action type.</p>
 <p>Recall that you identified <code class="docutils literal notranslate"><span class="pre">/turtle1/rotate_absolute</span></code>’s type when running the command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">action</span> <span class="pre">list</span> <span class="pre">-t</span></code>.
 Enter the following command with the action type in your terminal:</p>
@@ -638,7 +638,7 @@ The next section is the structure of the result.
 The last section is the structure of the feedback.</p>
 </section>
 <section id="ros2-action-send-goal">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">7 ros2 action send_goal</a><a class="headerlink" href="#ros2-action-send-goal" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">7 ros2 action send_goal</a><a class="headerlink" href="#ros2-action-send-goal" title="Link to this heading"></a></h3>
 <p>Now let’s send an action goal from the command line with the following syntax:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 action send_goal &lt;action_name&gt; &lt;action_type&gt; &lt;values&gt;</span>
 </pre></div>
@@ -691,7 +691,7 @@ You can also see the result, a field with the name <code class="docutils literal
 </section>
 </section>
 <section id="summary">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>Actions are like services that allow you to execute long running tasks, provide regular feedback, and are cancelable.</p>
 <p>A robot system would likely use actions for navigation.
 An action goal could tell a robot to travel to a position.
@@ -700,12 +700,12 @@ While the robot navigates to the position, it can send updates along the way (i.
 In this tutorial, you introspected that action, <code class="docutils literal notranslate"><span class="pre">/turtle1/rotate_absolute</span></code>, to get a better idea of what actions are and how they work.</p>
 </section>
 <section id="next-steps">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
 <p>Now you’ve covered all of the core ROS 2 concepts.
 The last few tutorials in this set will introduce you to some tools and techniques that will make using ROS 2 easier, starting with <a class="reference internal" href="../Using-Rqt-Console/Using-Rqt-Console.html"><span class="doc">Using rqt_console to view logs</span></a>.</p>
 </section>
 <section id="related-content">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Related content</a><a class="headerlink" href="#related-content" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Related content</a><a class="headerlink" href="#related-content" title="Link to this heading"></a></h2>
 <p>You can read more about the design decisions behind actions in ROS 2 <a class="reference external" href="https://design.ros2.org/articles/actions.html">here</a>.</p>
 </section>
 </section>

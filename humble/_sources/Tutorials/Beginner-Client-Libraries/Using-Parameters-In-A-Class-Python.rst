@@ -7,24 +7,24 @@
 Using parameters in a class (Python)
 ====================================
 
-**Goal:** Create and run a class with ROS parameters using Python.
+**目标:** Create and run a class with ROS parameters using Python.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 When making your own :doc:`nodes <../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` you will sometimes need to add parameters that can be set from the launch file.
 
 This tutorial will show you how to create those parameters in a Python class, and how to set them in a launch file.
 
-Prerequisites
+前提条件
 -------------
 
 In previous tutorials, you learned how to :doc:`create a workspace <./Creating-A-Workspace/Creating-A-Workspace>` and :doc:`create a package <./Creating-Your-First-ROS2-Package>`.

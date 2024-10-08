@@ -122,7 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Configuring-ROS2-Environment.html">配置环境</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">理解节点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
@@ -399,7 +399,7 @@
           <li class="breadcrumb-item"><a href="../RViz-Main.html">RViz</a></li>
       <li class="breadcrumb-item active">RViz User Guide</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -411,65 +411,65 @@
 
   <section id="rviz-user-guide">
 <h1>RViz User Guide<a class="headerlink" href="#rviz-user-guide" title="Link to this heading"></a></h1>
-<p><strong>Goal:</strong> Understanding RViz</p>
-<p><strong>Tutorial level:</strong> Intermediate</p>
-<p><strong>Time:</strong> 25 Minutes</p>
+<p><strong>目标:</strong> Understanding RViz</p>
+<p><strong>教程等级:</strong> Intermediate</p>
+<p><strong>预计时长:</strong> 25 Minutes</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#background" id="id1">Background</a></p></li>
-<li><p><a class="reference internal" href="#install-or-build-rviz" id="id2">Install or build rviz</a></p></li>
-<li><p><a class="reference internal" href="#startup" id="id3">Startup</a></p></li>
-<li><p><a class="reference internal" href="#displays" id="id4">Displays</a></p>
+<li><p><a class="reference internal" href="#id1" id="id2">背景</a></p></li>
+<li><p><a class="reference internal" href="#install-or-build-rviz" id="id3">Install or build rviz</a></p></li>
+<li><p><a class="reference internal" href="#startup" id="id4">Startup</a></p></li>
+<li><p><a class="reference internal" href="#displays" id="id5">Displays</a></p>
 <ul>
-<li><p><a class="reference internal" href="#adding-a-new-display" id="id5">Adding a new display</a></p></li>
-<li><p><a class="reference internal" href="#display-properties" id="id6">Display Properties</a></p></li>
-<li><p><a class="reference internal" href="#display-status" id="id7">Display Status</a></p></li>
-<li><p><a class="reference internal" href="#built-in-display-types" id="id8">Built-in Display Types</a></p></li>
+<li><p><a class="reference internal" href="#adding-a-new-display" id="id6">Adding a new display</a></p></li>
+<li><p><a class="reference internal" href="#display-properties" id="id7">Display Properties</a></p></li>
+<li><p><a class="reference internal" href="#display-status" id="id8">Display Status</a></p></li>
+<li><p><a class="reference internal" href="#built-in-display-types" id="id9">Built-in Display Types</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#configurations" id="id9">Configurations</a></p></li>
-<li><p><a class="reference internal" href="#views-panel" id="id10">Views Panel</a></p>
+<li><p><a class="reference internal" href="#configurations" id="id10">Configurations</a></p></li>
+<li><p><a class="reference internal" href="#views-panel" id="id11">Views Panel</a></p>
 <ul>
-<li><p><a class="reference internal" href="#orbital-camera-default" id="id11">Orbital Camera (default)</a></p></li>
-<li><p><a class="reference internal" href="#fps-first-person-camera" id="id12">FPS (first-person) Camera</a></p></li>
-<li><p><a class="reference internal" href="#top-down-orthographic" id="id13">Top-down Orthographic</a></p></li>
-<li><p><a class="reference internal" href="#xy-orbit" id="id14">XY Orbit</a></p></li>
-<li><p><a class="reference internal" href="#third-person-follower" id="id15">Third Person Follower</a></p></li>
-<li><p><a class="reference internal" href="#custom-views" id="id16">Custom Views</a></p></li>
+<li><p><a class="reference internal" href="#orbital-camera-default" id="id12">Orbital Camera (default)</a></p></li>
+<li><p><a class="reference internal" href="#fps-first-person-camera" id="id13">FPS (first-person) Camera</a></p></li>
+<li><p><a class="reference internal" href="#top-down-orthographic" id="id14">Top-down Orthographic</a></p></li>
+<li><p><a class="reference internal" href="#xy-orbit" id="id15">XY Orbit</a></p></li>
+<li><p><a class="reference internal" href="#third-person-follower" id="id16">Third Person Follower</a></p></li>
+<li><p><a class="reference internal" href="#custom-views" id="id17">Custom Views</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#coordinate-frames" id="id17">Coordinate Frames</a></p>
+<li><p><a class="reference internal" href="#coordinate-frames" id="id18">Coordinate Frames</a></p>
 <ul>
-<li><p><a class="reference internal" href="#the-fixed-frame" id="id18">The Fixed Frame</a></p></li>
-<li><p><a class="reference internal" href="#the-target-frame" id="id19">The Target Frame</a></p></li>
+<li><p><a class="reference internal" href="#the-fixed-frame" id="id19">The Fixed Frame</a></p></li>
+<li><p><a class="reference internal" href="#the-target-frame" id="id20">The Target Frame</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#tools" id="id20">Tools</a></p>
+<li><p><a class="reference internal" href="#tools" id="id21">Tools</a></p>
 <ul>
-<li><p><a class="reference internal" href="#interact" id="id21">Interact</a></p></li>
-<li><p><a class="reference internal" href="#move-camera" id="id22">Move Camera</a></p></li>
-<li><p><a class="reference internal" href="#select" id="id23">Select</a></p></li>
-<li><p><a class="reference internal" href="#focus-camera" id="id24">Focus Camera</a></p></li>
-<li><p><a class="reference internal" href="#measure" id="id25">Measure</a></p></li>
-<li><p><a class="reference internal" href="#d-pose-estimate" id="id26">2D Pose Estimate</a></p></li>
-<li><p><a class="reference internal" href="#d-nav-goal" id="id27">2D Nav Goal</a></p></li>
-<li><p><a class="reference internal" href="#publish-point" id="id28">Publish Point</a></p></li>
+<li><p><a class="reference internal" href="#interact" id="id22">Interact</a></p></li>
+<li><p><a class="reference internal" href="#move-camera" id="id23">Move Camera</a></p></li>
+<li><p><a class="reference internal" href="#select" id="id24">Select</a></p></li>
+<li><p><a class="reference internal" href="#focus-camera" id="id25">Focus Camera</a></p></li>
+<li><p><a class="reference internal" href="#measure" id="id26">Measure</a></p></li>
+<li><p><a class="reference internal" href="#d-pose-estimate" id="id27">2D Pose Estimate</a></p></li>
+<li><p><a class="reference internal" href="#d-nav-goal" id="id28">2D Nav Goal</a></p></li>
+<li><p><a class="reference internal" href="#publish-point" id="id29">Publish Point</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#time" id="id29">Time</a></p></li>
+<li><p><a class="reference internal" href="#time" id="id30">Time</a></p></li>
 </ul>
 </nav>
-<section id="background">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Background</a><a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<section id="id1">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>RViz is a 3D visualizer for the Robot Operating System (ROS) framework.</p>
 </section>
 <section id="install-or-build-rviz">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Install or build rviz</a><a class="headerlink" href="#install-or-build-rviz" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Install or build rviz</a><a class="headerlink" href="#install-or-build-rviz" title="Link to this heading"></a></h2>
 <p>Follow the <a class="reference internal" href="../../../../Installation.html"><span class="doc">installation instructions</span></a> for your operating system to install RViz.</p>
 </section>
 <section id="startup">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Startup</a><a class="headerlink" href="#startup" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Startup</a><a class="headerlink" href="#startup" title="Link to this heading"></a></h2>
 <p>Don’t forget to source the setup file.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
 </pre></div>
@@ -486,11 +486,11 @@ Right now it just contains the global options and a Grid, which we’ll get to l
 On the right are some of the other panels, described below.</p>
 </section>
 <section id="displays">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Displays</a><a class="headerlink" href="#displays" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Displays</a><a class="headerlink" href="#displays" title="Link to this heading"></a></h2>
 <p>A display is something that draws something in the 3D world, and likely has some options available in the displays list.
 An example is a point cloud, the robot state, etc.</p>
 <section id="adding-a-new-display">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Adding a new display</a><a class="headerlink" href="#adding-a-new-display" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Adding a new display</a><a class="headerlink" href="#adding-a-new-display" title="Link to this heading"></a></h3>
 <p>To add a display, click the Add button at the bottom:</p>
 <img alt="../../../../_images/add-button.png" src="../../../../_images/add-button.png" />
 <p>This will pop up the new display dialog:</p>
@@ -502,13 +502,13 @@ Finally, you must give the display a unique name.
 If you have, for example, two laser scanners on your robot, you might create two <code class="docutils literal notranslate"><span class="pre">Laser</span> <span class="pre">Scan</span></code> displays named “Laser Base” and “Laser Head”.</p>
 </section>
 <section id="display-properties">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Display Properties</a><a class="headerlink" href="#display-properties" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Display Properties</a><a class="headerlink" href="#display-properties" title="Link to this heading"></a></h3>
 <p>Each display gets its own list of properties.
 For example:</p>
 <img alt="../../../../_images/display-properties.png" src="../../../../_images/display-properties.png" />
 </section>
 <section id="display-status">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Display Status</a><a class="headerlink" href="#display-status" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Display Status</a><a class="headerlink" href="#display-status" title="Link to this heading"></a></h3>
 <p>Each display gets its own status to help let you know if everything is OK or not.
 The status can be one of: <code class="docutils literal notranslate"><span class="pre">OK</span></code>, <code class="docutils literal notranslate"><span class="pre">Warning</span></code>, <code class="docutils literal notranslate"><span class="pre">Error</span></code>, or <code class="docutils literal notranslate"><span class="pre">Disabled</span></code>.
 The status is indicated in the display’s title by the background color,
@@ -518,7 +518,7 @@ as well as in the Status category that you can see if the display is expanded:</
 This information is different for different displays, and the messages should be self explanatory.</p>
 </section>
 <section id="built-in-display-types">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Built-in Display Types</a><a class="headerlink" href="#built-in-display-types" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Built-in Display Types</a><a class="headerlink" href="#built-in-display-types" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 33.3%" />
@@ -625,7 +625,7 @@ This information is different for different displays, and the messages should be
 </section>
 </section>
 <section id="configurations">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Configurations</a><a class="headerlink" href="#configurations" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Configurations</a><a class="headerlink" href="#configurations" title="Link to this heading"></a></h2>
 <p>Different configurations of displays are often useful for different uses of the visualizer.
 A configuration useful for a full PR2 is not necessarily useful for a test cart, for example.
 To this end, the visualizer lets you load and save different configurations.</p>
@@ -637,12 +637,12 @@ To this end, the visualizer lets you load and save different configurations.</p>
 </ul>
 </section>
 <section id="views-panel">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Views Panel</a><a class="headerlink" href="#views-panel" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Views Panel</a><a class="headerlink" href="#views-panel" title="Link to this heading"></a></h2>
 <p>There are a number of different camera types available in the visualizer.</p>
 <img alt="../../../../_images/camera-types.png" src="../../../../_images/camera-types.png" />
 <p>Camera types consist both of different ways of controlling the camera and different types of projection (Orthographic vs. Perspective).</p>
 <section id="orbital-camera-default">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Orbital Camera (default)</a><a class="headerlink" href="#orbital-camera-default" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Orbital Camera (default)</a><a class="headerlink" href="#orbital-camera-default" title="Link to this heading"></a></h3>
 <p>The orbital camera simply rotates around a focal point, while always looking at that point.
 The focal point is visualized as a small disc while you’re moving the camera:</p>
 <img alt="../../../../_images/focal-point.png" src="../../../../_images/focal-point.png" />
@@ -655,7 +655,7 @@ The focal point is visualized as a small disc while you’re moving the camera:<
 </ul>
 </section>
 <section id="fps-first-person-camera">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">FPS (first-person) Camera</a><a class="headerlink" href="#fps-first-person-camera" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">FPS (first-person) Camera</a><a class="headerlink" href="#fps-first-person-camera" title="Link to this heading"></a></h3>
 <p>The FPS camera is a first-person camera, so it rotates as if you’re looking with your head.</p>
 <p>Controls:</p>
 <ul class="simple">
@@ -666,7 +666,7 @@ The focal point is visualized as a small disc while you’re moving the camera:<
 </ul>
 </section>
 <section id="top-down-orthographic">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Top-down Orthographic</a><a class="headerlink" href="#top-down-orthographic" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Top-down Orthographic</a><a class="headerlink" href="#top-down-orthographic" title="Link to this heading"></a></h3>
 <p>The top-down orthographic camera always looks down along the Z axis (in the robot frame),
 and is an orthographic view which means things do not get smaller as they get farther away.</p>
 <p>Controls:</p>
@@ -678,13 +678,13 @@ and is an orthographic view which means things do not get smaller as they get fa
 </ul>
 </section>
 <section id="xy-orbit">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">XY Orbit</a><a class="headerlink" href="#xy-orbit" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">XY Orbit</a><a class="headerlink" href="#xy-orbit" title="Link to this heading"></a></h3>
 <p>Same as the orbital camera, with the focus point restricted to the XY plane.</p>
 <p>Controls:</p>
 <p>See orbital camera.</p>
 </section>
 <section id="third-person-follower">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Third Person Follower</a><a class="headerlink" href="#third-person-follower" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Third Person Follower</a><a class="headerlink" href="#third-person-follower" title="Link to this heading"></a></h3>
 <p>The camera maintains a constant viewing angle towards the target frame.
 In contrast to XY Orbit the camera turns if the target frame yaws.
 This could be handy if you are doing 3D mapping of a hallway with corners for example.</p>
@@ -692,7 +692,7 @@ This could be handy if you are doing 3D mapping of a hallway with corners for ex
 <p>See orbital camera.</p>
 </section>
 <section id="custom-views">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Custom Views</a><a class="headerlink" href="#custom-views" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Custom Views</a><a class="headerlink" href="#custom-views" title="Link to this heading"></a></h3>
 <p>The views panel also lets you create different named views, which are saved and can be switched between.
 A view consists of a target frame, camera type and camera pose.
 You can save a view by clicking the Save button of the views panel.</p>
@@ -707,11 +707,11 @@ You can save a view by clicking the Save button of the views panel.</p>
 </section>
 </section>
 <section id="coordinate-frames">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">Coordinate Frames</a><a class="headerlink" href="#coordinate-frames" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Coordinate Frames</a><a class="headerlink" href="#coordinate-frames" title="Link to this heading"></a></h2>
 <p>RViz uses the tf transform system for transforming data from the coordinate frame it arrives in into a global reference frame.
 There are two coordinate frames that are important to know about in the visualizer, the target frame and the fixed frame.</p>
 <section id="the-fixed-frame">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">The Fixed Frame</a><a class="headerlink" href="#the-fixed-frame" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">The Fixed Frame</a><a class="headerlink" href="#the-fixed-frame" title="Link to this heading"></a></h3>
 <p>The more-important of the two frames is the fixed frame.
 The fixed frame is the reference frame used to denote the <code class="docutils literal notranslate"><span class="pre">world</span></code> frame.
 This is usually the <code class="docutils literal notranslate"><span class="pre">map</span></code>, or <code class="docutils literal notranslate"><span class="pre">world</span></code>, or something similar, but can also be, for example, your odometry frame.</p>
@@ -720,32 +720,32 @@ For correct results, the fixed frame should not be moving relative to the world.
 <p>If you change the fixed frame, all data currently being shown is cleared rather than re-transformed.</p>
 </section>
 <section id="the-target-frame">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">The Target Frame</a><a class="headerlink" href="#the-target-frame" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">The Target Frame</a><a class="headerlink" href="#the-target-frame" title="Link to this heading"></a></h3>
 <p>The target frame is the reference frame for the camera view.
 For example, if your target frame is the map, you’ll see the robot driving around the map.
 If your target frame is the base of the robot, the robot will stay in the same place while everything else moves relative to it.</p>
 </section>
 </section>
 <section id="tools">
-<h2><a class="toc-backref" href="#id20" role="doc-backlink">Tools</a><a class="headerlink" href="#tools" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Tools</a><a class="headerlink" href="#tools" title="Link to this heading"></a></h2>
 <p>The visualizer has a number of tools you can use on the toolbar.
 The following sections will give a short introduction into these tools.
 You can find some more information under Help -&gt; Show Help panel.</p>
 <img alt="../../../../_images/tool.png" src="../../../../_images/tool.png" />
 <section id="interact">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink">Interact</a><a class="headerlink" href="#interact" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Interact</a><a class="headerlink" href="#interact" title="Link to this heading"></a></h3>
 <p>This tool lets you interact with the visualized environment.
 You can click on objects and depending on their properties simply select them, move them around and much more.</p>
 <p>Keyboard shortcut: <code class="docutils literal notranslate"><span class="pre">i</span></code></p>
 </section>
 <section id="move-camera">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink">Move Camera</a><a class="headerlink" href="#move-camera" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Move Camera</a><a class="headerlink" href="#move-camera" title="Link to this heading"></a></h3>
 <p>The Move Camera tool is the default tool.
 When this is selected and you click inside the 3D view, the viewpoint changes according to the options and camera type you have selected in the <code class="docutils literal notranslate"><span class="pre">Views</span></code> panel. See the previous section <code class="docutils literal notranslate"><span class="pre">Views</span> <span class="pre">Panel</span></code> for more information.</p>
 <p>Keyboard shortcut: <code class="docutils literal notranslate"><span class="pre">m</span></code></p>
 </section>
 <section id="select">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink">Select</a><a class="headerlink" href="#select" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Select</a><a class="headerlink" href="#select" title="Link to this heading"></a></h3>
 <p>The Select tool allows you to select items being displayed in the 3D view.
 It supports single-point selection as well as click/drag box selection.
 You can add to a selection with the Shift key, and remove from the selection with the Ctrl key.
@@ -756,13 +756,13 @@ The <code class="docutils literal notranslate"><span class="pre">f</span></code>
 <p>Keyboard shortcut: <code class="docutils literal notranslate"><span class="pre">s</span></code></p>
 </section>
 <section id="focus-camera">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink">Focus Camera</a><a class="headerlink" href="#focus-camera" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Focus Camera</a><a class="headerlink" href="#focus-camera" title="Link to this heading"></a></h3>
 <p>Focus camera lets you select a location in the visualizer.
 The camera will then focus that point by changing its orientation but not its position.</p>
 <p>Keyboard shortcut: <code class="docutils literal notranslate"><span class="pre">c</span></code></p>
 </section>
 <section id="measure">
-<h3><a class="toc-backref" href="#id25" role="doc-backlink">Measure</a><a class="headerlink" href="#measure" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Measure</a><a class="headerlink" href="#measure" title="Link to this heading"></a></h3>
 <p>With the measure tool you can measure the distance between to points in the visualizer.
 The first click after activating the tool will set the starting point and the second one the end point of the measurement.
 The resulting distance will be displayed at the bottom of the RViz window.
@@ -771,7 +771,7 @@ But notice that the measurement tool only works with actually rendered objects i
 <p>Keyboard shortcut: <code class="docutils literal notranslate"><span class="pre">n</span></code></p>
 </section>
 <section id="d-pose-estimate">
-<h3><a class="toc-backref" href="#id26" role="doc-backlink">2D Pose Estimate</a><a class="headerlink" href="#d-pose-estimate" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">2D Pose Estimate</a><a class="headerlink" href="#d-pose-estimate" title="Link to this heading"></a></h3>
 <p>This tool lets you set an initial pose to seed the localization system (sent on the <code class="docutils literal notranslate"><span class="pre">initialpose</span></code> ROS topic).
 Click on a location on the ground plane and drag to select the orientation.
 The output topic can be changed in the <code class="docutils literal notranslate"><span class="pre">Tool</span> <span class="pre">Properties</span></code> panel.</p>
@@ -780,7 +780,7 @@ The output topic can be changed in the <code class="docutils literal notranslate
 <p>Keyboard shortcut: <code class="docutils literal notranslate"><span class="pre">p</span></code></p>
 </section>
 <section id="d-nav-goal">
-<h3><a class="toc-backref" href="#id27" role="doc-backlink">2D Nav Goal</a><a class="headerlink" href="#d-nav-goal" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">2D Nav Goal</a><a class="headerlink" href="#d-nav-goal" title="Link to this heading"></a></h3>
 <p>This tool lets you set a goal sent on the <code class="docutils literal notranslate"><span class="pre">goal_pose</span></code> ROS topic.
 Click on a location on the ground plane and drag to select the orientation.
 The output topic can be changed in the <code class="docutils literal notranslate"><span class="pre">Tool</span> <span class="pre">Properties</span></code> panel.</p>
@@ -788,7 +788,7 @@ The output topic can be changed in the <code class="docutils literal notranslate
 <p>Keyboard shortcut: <code class="docutils literal notranslate"><span class="pre">g</span></code></p>
 </section>
 <section id="publish-point">
-<h3><a class="toc-backref" href="#id28" role="doc-backlink">Publish Point</a><a class="headerlink" href="#publish-point" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Publish Point</a><a class="headerlink" href="#publish-point" title="Link to this heading"></a></h3>
 <p>The publish point tool lets you select an object in the visualizer
 and the tool will publish the coordinates of that point based on the frame.
 The results are shown at the bottom like with the measure tool but are also published on the <code class="docutils literal notranslate"><span class="pre">clicked_point</span></code> topic.</p>
@@ -796,7 +796,7 @@ The results are shown at the bottom like with the measure tool but are also publ
 </section>
 </section>
 <section id="time">
-<h2><a class="toc-backref" href="#id29" role="doc-backlink">Time</a><a class="headerlink" href="#time" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">Time</a><a class="headerlink" href="#time" title="Link to this heading"></a></h2>
 <p>The Time panel is mostly useful when running in a simulator, since it allows you to see how much ROS Time has passed, vs. how much <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">Clock</span></code> (aka real) time has passed.
 The time panel also lets you reset the visualizer’s internal time state, which resets of all the displays as well as tf’s internal cache of data.</p>
 <img alt="../../../../_images/time.png" src="../../../../_images/time.png" />

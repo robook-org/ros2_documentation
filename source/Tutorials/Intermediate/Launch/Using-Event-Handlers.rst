@@ -6,17 +6,17 @@
 Using event handlers
 ====================
 
-**Goal:** Learn about event handlers in ROS 2 launch files
+**目标:** Learn about event handlers in ROS 2 launch files
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Table of Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Launch in ROS 2 is a system that executes and manages user-defined processes.
@@ -27,7 +27,7 @@ Additionally, they can be used to define a complex set of rules which can be use
 
 This tutorial shows usage examples of event handlers in ROS 2 launch files.
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial uses the :doc:`turtlesim <../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim>` package.

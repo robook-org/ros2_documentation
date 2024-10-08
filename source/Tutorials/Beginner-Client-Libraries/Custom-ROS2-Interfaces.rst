@@ -7,17 +7,17 @@
 Creating custom msg and srv files
 =================================
 
-**Goal:** Define custom interface files (``.msg`` and ``.srv``) and use them with Python and C++ nodes.
+**目标:** Define custom interface files (``.msg`` and ``.srv``) and use them with Python and C++ nodes.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In previous tutorials you utilized message and service interfaces to learn about :doc:`topics <../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics>`, :doc:`services <../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services>`, and simple publisher/subscriber (:doc:`C++ <./Writing-A-Simple-Cpp-Publisher-And-Subscriber>`/:doc:`Python<./Writing-A-Simple-Py-Publisher-And-Subscriber>`) and service/client (:doc:`C++ <./Writing-A-Simple-Cpp-Service-And-Client>`/:doc:`Python<./Writing-A-Simple-Py-Service-And-Client>`) nodes.
@@ -26,7 +26,7 @@ The interfaces you used were predefined in those cases.
 While it's good practice to use predefined interface definitions, you will probably need to define your own messages and services sometimes as well.
 This tutorial will introduce you to the simplest method of creating custom interface definitions.
 
-Prerequisites
+前提条件
 -------------
 
 You should have a :doc:`ROS 2 workspace <./Creating-A-Workspace/Creating-A-Workspace>`.

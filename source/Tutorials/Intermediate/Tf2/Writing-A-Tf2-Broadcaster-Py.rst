@@ -5,23 +5,23 @@
 Writing a broadcaster (Python)
 ==============================
 
-**Goal:** Learn how to broadcast the state of a robot to tf2.
+**目标:** Learn how to broadcast the state of a robot to tf2.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In the next two tutorials we will write the code to reproduce the demo from the :doc:`Introduction to tf2 <./Introduction-To-Tf2>` tutorial.
 After that, the following tutorials focus on extending the demo with more advanced tf2 features, including the usage of timeouts in transformation lookups and time travel.
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial assumes you have a working knowledge of ROS 2 and you have completed the :doc:`Introduction to tf2 tutorial <./Introduction-To-Tf2>` and :doc:`tf2 static broadcaster tutorial (Python) <./Writing-A-Tf2-Static-Broadcaster-Py>`.

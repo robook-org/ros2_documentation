@@ -12,7 +12,7 @@ There are two different kinds of package migrations:
 * Implementing the same or similar functionality of a ROS 1 package for ROS 2 but with the assumption that the source code will be significantly different.
   An example for this is `roscpp <https://github.com/ros/ros_comm/tree/melodic-devel/clients/roscpp>`_ in ROS 1 and `rclcpp <https://github.com/ros2/rclcpp/tree/rolling/rclcpp>`_ in ROS 2 which are separate repositories and don't share any code.
 
-Prerequisites
+前提条件
 -------------
 
 Before being able to migrate a ROS 1 package to ROS 2 all of its dependencies must be available in ROS 2.

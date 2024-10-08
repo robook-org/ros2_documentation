@@ -7,24 +7,24 @@
 Writing an action server and client (C++)
 =========================================
 
-**Goal:** Implement an action server and client in C++.
+**目标:** Implement an action server and client in C++.
 
-**Tutorial level:** Intermediate
+**教程等级:** Intermediate
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Actions are a form of asynchronous communication in ROS.
 *Action clients* send goal requests to *action servers*.
 *Action servers* send goal feedback and results to *action clients*.
 
-Prerequisites
+前提条件
 -------------
 
 You will need the ``action_tutorials_interfaces`` package and the ``Fibonacci.action``

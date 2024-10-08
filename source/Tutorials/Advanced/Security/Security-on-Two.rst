@@ -7,18 +7,18 @@
 Ensuring security across machines
 =================================
 
-**Goal:** Make two different machines communicate securely.
+**目标:** Make two different machines communicate securely.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 5 minutes
+**预计时长:** 5 minutes
 
 .. contents:: Contents
   :depth: 2
   :local:
 
 
-Background
+背景
 ----------
 
 The previous tutorials have used two ROS nodes on the same machine sending all network communications over the localhost interface.

@@ -6,17 +6,17 @@
 Setting up a robot simulation (Basic)
 ======================================
 
-**Goal:** Setup a robot simulation and control it from ROS 2.
+**目标:** Setup a robot simulation and control it from ROS 2.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 30 minutes
+**预计时长:** 30 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 In this tutorial, you are going to use the Webots robot simulator to set-up and run a very simple ROS 2 simulation scenario.
@@ -26,7 +26,7 @@ It includes several sub-packages, but in this tutorial, you are going to use onl
 Some other sub-packages contain demos with different robots such as the TurtleBot3.
 They are documented in the `Webots ROS 2 examples <https://github.com/cyberbotics/webots_ros2/wiki/Examples>`_ page.
 
-Prerequisites
+前提条件
 -------------
 
 It is recommended to understand basic ROS principles covered in the beginner :doc:`../../../../Tutorials`.

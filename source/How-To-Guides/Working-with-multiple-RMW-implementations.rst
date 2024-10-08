@@ -13,7 +13,7 @@ Working with multiple ROS 2 middleware implementations
 
 This page explains the default RMW implementation and how to specify an alternative.
 
-Prerequisites
+前提条件
 --------------
 
 You should have already read the :doc:`DDS and ROS middleware implementations page <../Concepts/Intermediate/About-Different-Middleware-Vendors>`.

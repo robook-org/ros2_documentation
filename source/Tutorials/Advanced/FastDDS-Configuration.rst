@@ -6,17 +6,17 @@
 Unlocking the potential of Fast DDS middleware [community-contributed]
 ======================================================================
 
-**Goal:** This tutorial will show how to use the extended configuration capabilities of Fast DDS in ROS 2.
+**目标:** This tutorial will show how to use the extended configuration capabilities of Fast DDS in ROS 2.
 
-**Tutorial level:** Advanced
+**教程等级:** Advanced
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Table of Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 The interface between the ROS 2 stack and *Fast DDS* is provided by the ROS 2 middleware implementation `rmw_fastrtps <https://github.com/ros2/rmw_fastrtps>`_.
@@ -30,7 +30,7 @@ This tutorial will guide you through a series of examples explaining how to use 
 In order to get more information about using *Fast DDS* on ROS 2, please check the `following documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/ros2/ros2.html>`__.
 
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial assumes that you know how to :doc:`create a package <../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package>`.

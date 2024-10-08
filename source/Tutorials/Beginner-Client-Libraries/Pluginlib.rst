@@ -5,17 +5,17 @@
 Creating and using plugins (C++)
 ================================
 
-**Goal:** Learn to create and load a simple plugin using ``pluginlib``.
+**目标:** Learn to create and load a simple plugin using ``pluginlib``.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 20 minutes
+**预计时长:** 20 minutes
 
 .. contents:: Contents
    :depth: 3
    :local:
 
-Background
+背景
 ----------
 
 This tutorial is derived from `<http://wiki.ros.org/pluginlib>`_ and `Writing and Using a Simple Plugin Tutorial <http://wiki.ros.org/pluginlib/Tutorials/Writing%20and%20Using%20a%20Simple%20Plugin>`_.
@@ -25,7 +25,7 @@ Plugins are dynamically loadable classes that are loaded from a runtime library 
 With pluginlib, you do not have to explicitly link your application against the library containing the classes -- instead ``pluginlib`` can open a library containing exported classes at any point without the application having any prior awareness of the library or the header file containing the class definition.
 Plugins are useful for extending/modifying application behavior without needing the application source code.
 
-Prerequisites
+前提条件
 -------------
 
 This tutorial assumes basic C++ knowledge and that you have successfully :doc:`installed ROS 2 <../../Installation>`.

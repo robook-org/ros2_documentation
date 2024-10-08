@@ -7,17 +7,17 @@
 Creating a package
 ==================
 
-**Goal:** Create a new package using either CMake or Python, and run its executable.
+**目标:** Create a new package using either CMake or Python, and run its executable.
 
-**Tutorial level:** Beginner
+**教程等级:** Beginner
 
-**Time:** 15 minutes
+**预计时长:** 15 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 1 What is a ROS 2 package?
@@ -114,7 +114,7 @@ A trivial workspace might look like:
             src/
 
 
-Prerequisites
+前提条件
 -------------
 
 You should have a ROS 2 workspace after following the instructions in the :doc:`previous tutorial <./Creating-A-Workspace/Creating-A-Workspace>`.

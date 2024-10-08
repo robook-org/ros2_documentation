@@ -10,7 +10,7 @@ Understanding real-time programming
    :depth: 2
    :local:
 
-Background
+背景
 ----------
 
 Real-time computing is a key feature of many robotics systems, particularly safety- and mission-critical applications such as autonomous vehicles, spacecrafts, and industrial manufacturing.

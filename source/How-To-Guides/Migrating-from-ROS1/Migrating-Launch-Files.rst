@@ -17,7 +17,7 @@ While launch files in ROS 1 are always specified using `.xml <https://wiki.ros.o
 
 This guide describes how to write ROS 2 XML launch files for an easy migration from ROS 1.
 
-Background
+背景
 ----------
 
 A description of the ROS 2 launch system and its Python API can be found in :doc:`Launch System tutorial <../../../Tutorials/Intermediate/Launch/Launch-system>`.

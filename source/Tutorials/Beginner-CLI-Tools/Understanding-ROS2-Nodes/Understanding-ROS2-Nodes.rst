@@ -4,7 +4,7 @@
 
 .. _ROS2Nodes:
 
-理解 nodes
+理解节点
 ===================
 
 **目标:** Learn about the function of nodes in ROS 2, and the tools to interact with them.
@@ -23,9 +23,9 @@
 1 The ROS 2 graph
 ^^^^^^^^^^^^^^^^^
 
-Over the next few tutorials, you will learn about a series of core ROS 2 concepts that make up what is referred to as the “ROS (2) graph”.
-
-The ROS graph is a network of ROS 2 elements processing data together at the same time.
+接下来的几节教程中，你将学习到一系列 ROS 2 核心概念，这些概念构成了的 "ROS (2) graph"。
+ROS graph 是一个同时处理数据的 ROS 2 组件构成的网络。
+它包含了所有可执行文件以及它们之间的连接，如果你把它们全部映射出来并可视化，那么它就是一个 ROS 2 图。
 It encompasses all executables and the connections between them if you were to map them all out and visualize them.
 
 2 Nodes in ROS 2

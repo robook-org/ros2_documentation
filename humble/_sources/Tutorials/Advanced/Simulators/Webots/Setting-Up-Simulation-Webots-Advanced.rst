@@ -5,7 +5,7 @@ Setting up a robot simulation (Advanced)
 
 **教程等级:** Advanced
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -26,7 +26,7 @@ It is mandatory to start with the first part to set up the custom packages and n
 
 This tutorial is compatible with version 2023.1.0 of ``webots_ros2`` and Webots R2023b, as well as upcoming versions.
 
-Tasks
+任务
 -----
 
 1 Updating ``my_robot.urdf``

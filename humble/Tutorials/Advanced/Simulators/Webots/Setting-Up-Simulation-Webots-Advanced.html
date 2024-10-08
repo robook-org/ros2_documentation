@@ -415,40 +415,40 @@
 <h1>Setting up a robot simulation (Advanced)<a class="headerlink" href="#setting-up-a-robot-simulation-advanced" title="Link to this heading"></a></h1>
 <p><strong>目标:</strong> Extend a robot simulation with an obstacle avoider node.</p>
 <p><strong>教程等级:</strong> Advanced</p>
-<p><strong>预计时长:</strong> 20 minutes</p>
+<p><strong>预计时长:</strong> 20 分钟</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id5">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id6">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id7">Tasks</a></p>
+<li><p><a class="reference internal" href="#id1" id="id6">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id7">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id8">任务</a></p>
 <ul>
-<li><p><a class="reference internal" href="#updating-my-robot-urdf" id="id8">1 Updating <code class="docutils literal notranslate"><span class="pre">my_robot.urdf</span></code></a></p></li>
-<li><p><a class="reference internal" href="#creating-a-ros-node-to-avoid-obstacles" id="id9">2 Creating a ROS node to avoid obstacles</a></p></li>
-<li><p><a class="reference internal" href="#updating-additional-files" id="id10">3 Updating additional files</a></p></li>
-<li><p><a class="reference internal" href="#test-the-obstacle-avoidance-code" id="id11">4 Test the obstacle avoidance code</a></p></li>
+<li><p><a class="reference internal" href="#updating-my-robot-urdf" id="id9">1 Updating <code class="docutils literal notranslate"><span class="pre">my_robot.urdf</span></code></a></p></li>
+<li><p><a class="reference internal" href="#creating-a-ros-node-to-avoid-obstacles" id="id10">2 Creating a ROS node to avoid obstacles</a></p></li>
+<li><p><a class="reference internal" href="#updating-additional-files" id="id11">3 Updating additional files</a></p></li>
+<li><p><a class="reference internal" href="#test-the-obstacle-avoidance-code" id="id12">4 Test the obstacle avoidance code</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id3" id="id12">总结</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id13">下一步</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id13">总结</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id14">下一步</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>In this tutorial you will extend the package created in the first part of the tutorial: <a class="reference internal" href="Setting-Up-Simulation-Webots-Basic.html"><span class="doc">Setting up a robot simulation (Basic)</span></a>.
 The aim is to implement a ROS 2 node that avoids obstacles using the robot’s distance sensors.
 This tutorial focuses on using robot devices with the <code class="docutils literal notranslate"><span class="pre">webots_ros2_driver</span></code> interface.</p>
 </section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p>This is a continuation of the first part of the tutorial: <a class="reference internal" href="Setting-Up-Simulation-Webots-Basic.html"><span class="doc">Setting up a robot simulation (Basic)</span></a>.
 It is mandatory to start with the first part to set up the custom packages and necessary files.</p>
 <p>This tutorial is compatible with version 2023.1.0 of <code class="docutils literal notranslate"><span class="pre">webots_ros2</span></code> and Webots R2023b, as well as upcoming versions.</p>
 </section>
-<section id="tasks">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<section id="id3">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <section id="updating-my-robot-urdf">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">1 Updating <code class="docutils literal notranslate"><span class="pre">my_robot.urdf</span></code></a><a class="headerlink" href="#updating-my-robot-urdf" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">1 Updating <code class="docutils literal notranslate"><span class="pre">my_robot.urdf</span></code></a><a class="headerlink" href="#updating-my-robot-urdf" title="Link to this heading"></a></h3>
 <p>As mentioned in <a class="reference internal" href="Setting-Up-Simulation-Webots-Basic.html"><span class="doc">Setting up a robot simulation (Basic)</span></a>, <code class="docutils literal notranslate"><span class="pre">webots_ros2_driver</span></code> contains plugins to interface most of Webots devices with ROS 2 directly.
 These plugins can be loaded using the <code class="docutils literal notranslate"><span class="pre">&lt;device&gt;</span></code> tag in the URDF file of the robot.
 The <code class="docutils literal notranslate"><span class="pre">reference</span></code> attribute should match the Webots device <code class="docutils literal notranslate"><span class="pre">name</span></code> parameter.
@@ -500,7 +500,7 @@ For available devices that are not configured in the URDF file, the interface wi
 <p>In addition to your custom plugin, the <code class="docutils literal notranslate"><span class="pre">webots_ros2_driver</span></code> will parse the <code class="docutils literal notranslate"><span class="pre">&lt;device&gt;</span></code> tags referring to the <strong>DistanceSensor</strong> nodes and use the standard parameters in the <code class="docutils literal notranslate"><span class="pre">&lt;ros&gt;</span></code> tags to enable the sensors and name their topics.</p>
 </section>
 <section id="creating-a-ros-node-to-avoid-obstacles">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">2 Creating a ROS node to avoid obstacles</a><a class="headerlink" href="#creating-a-ros-node-to-avoid-obstacles" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">2 Creating a ROS node to avoid obstacles</a><a class="headerlink" href="#creating-a-ros-node-to-avoid-obstacles" title="Link to this heading"></a></h3>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>The robot will use a standard ROS node to detect the wall and send motor commands to avoid it.
 In the <code class="docutils literal notranslate"><span class="pre">my_package/my_package/</span></code> folder, create a file named <code class="docutils literal notranslate"><span class="pre">obstacle_avoider.py</span></code> with this code:</p>
@@ -699,7 +699,7 @@ If any of the two sensors detect an obstacle, <code class="docutils literal notr
 </div></div>
 </section>
 <section id="updating-additional-files">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">3 Updating additional files</a><a class="headerlink" href="#updating-additional-files" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">3 Updating additional files</a><a class="headerlink" href="#updating-additional-files" title="Link to this heading"></a></h3>
 <p>You have to modify these two other files to launch your new node.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-2-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>Edit <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and replace <code class="docutils literal notranslate"><span class="pre">'console_scripts'</span></code> with:</p>
@@ -837,7 +837,7 @@ If any of the two sensors detect an obstacle, <code class="docutils literal notr
 <p>This will create an <code class="docutils literal notranslate"><span class="pre">obstacle_avoider</span></code> node that will be included in the <code class="docutils literal notranslate"><span class="pre">LaunchDescription</span></code>.</p>
 </section>
 <section id="test-the-obstacle-avoidance-code">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">4 Test the obstacle avoidance code</a><a class="headerlink" href="#test-the-obstacle-avoidance-code" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">4 Test the obstacle avoidance code</a><a class="headerlink" href="#test-the-obstacle-avoidance-code" title="Link to this heading"></a></h3>
 <p>Launch the simulation from a terminal in your ROS 2 workspace:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-3-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button><button aria-controls="panel-3-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button></div><div aria-labelledby="tab-3-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-3-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><p>From a terminal in your ROS 2 workspace run:</p>
@@ -874,12 +874,12 @@ You can press <code class="docutils literal notranslate"><span class="pre">Ctrl+
 <img alt="../../../../_images/Robot_turning_clockwise.png" src="../../../../_images/Robot_turning_clockwise.png" />
 </section>
 </section>
-<section id="id3">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">总结</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">总结</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>In this tutorial, you extended the basic simulation with a obstacle avoider ROS 2 node that publishes velocity commands based on the distance sensor values of the robot.</p>
 </section>
-<section id="id4">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">下一步</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">下一步</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p>You might want to improve the plugin or create new nodes to change the behavior of the robot.
 You can also implement a reset handler to automatically restart your ROS nodes when the simulation is reset from the Webots interface:</p>
 <ul class="simple">

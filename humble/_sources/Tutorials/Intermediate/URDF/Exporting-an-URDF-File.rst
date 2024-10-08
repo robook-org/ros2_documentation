@@ -3,9 +3,9 @@ Generating an URDF File
 
 **目标:** Learn how to Export and URDF File
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 5 minutes
+**预计时长:** 5 分钟
 
 .. contents:: Contents
    :depth: 2

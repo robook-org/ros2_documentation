@@ -9,9 +9,9 @@ Understanding actions
 
 **目标:** Introspect actions in ROS 2.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -41,7 +41,7 @@ This tutorial uses the :doc:`turtlesim package <../Introducing-Turtlesim/Introdu
 
 As always, don't forget to source ROS 2 in :doc:`every new terminal you open <../Configuring-ROS2-Environment>`.
 
-Tasks
+任务
 -----
 
 1 Setup

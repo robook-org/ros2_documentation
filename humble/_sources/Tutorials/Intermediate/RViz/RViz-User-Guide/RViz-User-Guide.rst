@@ -3,9 +3,9 @@ RViz User Guide
 
 **目标:** Understanding RViz
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 25 Minutes
+**预计时长:** 25 分钟
 
 .. contents:: Contents
    :depth: 2

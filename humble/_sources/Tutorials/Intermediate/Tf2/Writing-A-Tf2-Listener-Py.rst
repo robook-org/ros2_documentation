@@ -7,9 +7,9 @@ Writing a listener (Python)
 
 **目标:** Learn how to use tf2 to get access to frame transformations.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -28,7 +28,7 @@ In this tutorial we'll create a tf2 listener to start using tf2.
 This tutorial assumes you have completed the :doc:`tf2 static broadcaster tutorial (Python) <./Writing-A-Tf2-Static-Broadcaster-Py>` and :doc:`tf2 broadcaster tutorial (Python) <./Writing-A-Tf2-Broadcaster-Py>`.
 In the previous tutorial, we created a ``learning_tf2_py`` package, which is where we will continue working from.
 
-Tasks
+任务
 -----
 
 1 Write the listener node

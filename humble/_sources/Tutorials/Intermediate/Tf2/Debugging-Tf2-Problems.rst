@@ -9,9 +9,9 @@ Debugging
 
 **目标:** Learn how to use a systematic approach for debugging tf2 related problems.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2

@@ -11,9 +11,9 @@ Managing Dependencies with rosdep
 
 **目标:** Manage external dependencies using ``rosdep``.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 5 minutes
+**预计时长:** 5 分钟
 
 This tutorial will explain how to manage external dependencies using ``rosdep``.
 

@@ -7,9 +7,9 @@ Writing a broadcaster (C++)
 
 **目标:** Learn how to broadcast the state of a robot to tf2.
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -29,7 +29,7 @@ We'll be reusing the ``learning_tf2_cpp`` package from that last tutorial.
 
 In previous tutorials, you learned how to :doc:`create a workspace <../../Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace>` and :doc:`create a package <../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package>`.
 
-Tasks
+任务
 -----
 
 1 Write the broadcaster node

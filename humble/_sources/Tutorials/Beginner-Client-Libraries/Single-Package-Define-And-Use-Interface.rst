@@ -10,9 +10,9 @@ Implementing custom interfaces
 
 **目标:** Learn more ways to implement custom interfaces in ROS 2.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -40,7 +40,7 @@ You should have :doc:`ROS 2 installed <../../Installation>`, a :doc:`workspace <
 
 As always, don't forget to :doc:`source ROS 2 <../Beginner-CLI-Tools/Configuring-ROS2-Environment>` in every new terminal you open.
 
-Tasks
+任务
 -----
 
 1 Create a package

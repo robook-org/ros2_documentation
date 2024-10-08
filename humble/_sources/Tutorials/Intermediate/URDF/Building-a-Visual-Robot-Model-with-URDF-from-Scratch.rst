@@ -9,9 +9,9 @@ Building a visual robot model from scratch
 
 **目标:** Learn how to build a visual model of a robot that you can view in Rviz
 
-**教程等级:** Intermediate
+**教程等级:** 中级
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2

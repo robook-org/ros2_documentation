@@ -11,7 +11,7 @@ Setting up a robot simulation (Gazebo)
 
 **教程等级:** Advanced
 
-**预计时长:** 20 minutes
+**预计时长:** 20 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -29,7 +29,7 @@ You have two options:
    - :doc:`ROS 2 install instructions <../../../../Installation>`
    - `Gazebo install instructions <https://gazebosim.org/docs>`__
 
-Tasks
+任务
 -----
 
 1 Launch the simulation

@@ -9,9 +9,9 @@ Creating a package
 
 **目标:** Create a new package using either CMake or Python, and run its executable.
 
-**教程等级:** Beginner
+**教程等级:** 初级
 
-**预计时长:** 15 minutes
+**预计时长:** 15 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -121,7 +121,7 @@ You should have a ROS 2 workspace after following the instructions in the :doc:`
 You will create your package in this workspace.
 
 
-Tasks
+任务
 -----
 
 1 Create a package

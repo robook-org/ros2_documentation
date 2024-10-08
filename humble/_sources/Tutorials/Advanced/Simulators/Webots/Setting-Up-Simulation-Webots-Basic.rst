@@ -10,7 +10,7 @@ Setting up a robot simulation (Basic)
 
 **教程等级:** Advanced
 
-**预计时长:** 30 minutes
+**预计时长:** 30 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -51,7 +51,7 @@ In particular, :doc:`../../../Beginner-CLI-Tools/Introducing-Turtlesim/Introduci
 
 This tutorial is compatible with version 2023.1.0 of ``webots_ros2`` and Webots R2023b, as well as upcoming versions.
 
-Tasks
+任务
 -----
 
 1 Create the package structure

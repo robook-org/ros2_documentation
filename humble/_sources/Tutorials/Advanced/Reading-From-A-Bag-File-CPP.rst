@@ -5,7 +5,7 @@ Reading from a bag file (C++)
 
 **教程等级:** Advanced
 
-**预计时长:** 10 minutes
+**预计时长:** 10 分钟
 
 .. contents:: Contents
    :depth: 2
@@ -27,7 +27,7 @@ If you need to install ROS 2, see the :doc:`Installation instructions <../../Ins
 
 You should have already completed the :doc:`basic ROS 2 bag tutorial <../Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data>`, and we will be using the ``subset`` bag you created there.
 
-Tasks
+任务
 -----
 
 1 Create a Package

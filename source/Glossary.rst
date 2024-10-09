@@ -96,3 +96,6 @@ Glossary of terms used throughout this documentation:
 
     deadlock
         死锁。
+
+    bus
+        总线。

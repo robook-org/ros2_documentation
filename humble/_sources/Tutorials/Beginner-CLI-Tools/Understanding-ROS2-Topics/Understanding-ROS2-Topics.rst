@@ -4,10 +4,10 @@
 
 .. _ROS2Topics:
 
-Understanding topics
+理解 topics
 ====================
 
-**目标:** Use rqt_graph and command line tools to introspect ROS 2 topics.
+**目标:** 使用 rqt_graph 和命令行工具与 ROS 2 topics 交互.
 
 **教程等级:** 初级
 
@@ -20,81 +20,80 @@ Understanding topics
 背景
 ----------
 
-ROS 2 breaks complex systems down into many modular nodes.
-Topics are a vital element of the ROS graph that act as a bus for nodes to exchange messages.
+ROS 2 将复杂的系统分解为许多模块化节点。
+Topics 像总线(bus)一样让节点之间交换数据，是 ROS 图中的重要元素。
 
 .. image:: images/Topic-SinglePublisherandSingleSubscriber.gif
 
-A node may publish data to any number of topics and simultaneously have subscriptions to any number of topics.
+一个节点可以发布数据到任意数量的 topics，并同时订阅任意数量的 topics。
 
 .. image:: images/Topic-MultiplePublisherandMultipleSubscriber.gif
 
-Topics are one of the main ways in which data is moved between nodes and therefore between different parts of the system.
+Topics 是数据在节点之间和系统不同部分之间传递的主要方式之一。
 
 
 前提条件
 -------------
 
-The :doc:`previous tutorial <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` provides some useful background information on nodes that is built upon here.
+:doc:`上一个教程 <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` 提供了一些关于节点的背景信息，这个教程会在此基础上继续。
 
-As always, don't forget to source ROS 2 in :doc:`every new terminal you open <../Configuring-ROS2-Environment>`.
+和之前一样，不要忘记在 :doc:`每次打开新终端时 <../Configuring-ROS2-Environment>` source ROS 2。
 
 任务
 -----
 
-1 Setup
-^^^^^^^
+1 准备工作
+^^^^^^^^^^^
 
-By now you should be comfortable starting up turtlesim.
+现在你应该已经熟悉了如何启动 turtlesim。
 
-Open a new terminal and run:
+打开一个新终端并运行:
 
 .. code-block:: console
 
     ros2 run turtlesim turtlesim_node
 
-Open another terminal and run:
-
+打开另一个终端并运行:
 .. code-block:: console
 
     ros2 run turtlesim turtle_teleop_key
 
-Recall from the :doc:`previous tutorial <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` that the names of these nodes are ``/turtlesim`` and ``/teleop_turtle`` by default.
+从 :doc:`上一个教程 <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` 中可以知道，这两个节点的默认名称分别是 ``/turtlesim`` 和 ``/teleop_turtle``。
 
 
 2 rqt_graph
 ^^^^^^^^^^^
 
-Throughout this tutorial, we will use ``rqt_graph`` to visualize the changing nodes and topics, as well as the connections between them.
+在本教程中，我们将使用 ``rqt_graph`` 来可视化变化的节点和 topics，以及它们之间的连接关系。
 
-The :doc:`turtlesim tutorial <../Introducing-Turtlesim/Introducing-Turtlesim>` tells you how to install rqt and all its plugins, including ``rqt_graph``.
+:doc:`turtlesim 教程 <../Introducing-Turtlesim/Introducing-Turtlesim>` 已经告诉你如何安装 rqt 及其插件，包括 ``rqt_graph``。
 
-To run rqt_graph, open a new terminal and enter the command:
+打开一个新终端并输入以下命令运行 ``rqt_graph``:
 
 .. code-block:: console
 
     rqt_graph
 
-You can also open rqt_graph by opening ``rqt`` and selecting **Plugins** > **Introspection** > **Node Graph**.
+你也可以通过打开 ``rqt`` 并选择 **Plugins** > **Introspection** > **Node Graph** 来打开 rqt_graph。
 
 .. image:: images/rqt_graph.png
 
-You should see the above nodes and topic, as well as two actions around the periphery of the graph (let's ignore those for now).
-If you hover your mouse over the topic in the center, you'll see the color highlighting like in the image above.
+你应该能看到上图中的节点和 topic，以及图中周围的两个 actions （现在我们先忽略 actions ）。
+当你将鼠标悬停在中心的 topic 上时，你会看到像上图中那样的颜色高亮。
 
-The graph is depicting how the ``/turtlesim`` node and the ``/teleop_turtle`` node are communicating with each other over a topic.
-The ``/teleop_turtle`` node is publishing data (the keystrokes you enter to move the turtle around) to the ``/turtle1/cmd_vel`` topic, and the ``/turtlesim`` node is subscribed to that topic to receive the data.
+这个图展示了 ``/turtlesim`` 节点和 ``/teleop_turtle`` 节点如何通过一个 topic 进行通信。
+``/teleop_turtle`` 节点发布数据（你输入的按键来移动乌龟），发布到 ``/turtle1/cmd_vel`` topic，而 ``/turtlesim`` 节点订阅该 topic 来接收数据。
 
-The highlighting feature of rqt_graph is very helpful when examining more complex systems with many nodes and topics connected in many different ways.
+rqt_graph 的高亮功能在检查连接了许多不同节点和 topic 的复杂系统时非常有用。
 
-rqt_graph is a graphical introspection tool.
-Now we'll look at some command line tools for introspecting topics.
+rqt_graph 是一个图形化的 introspection 工具。
+现在我们将看一些用于 introspecting topics 的命令行工具。（译者注：一些与 topic 交互，包括检查状态、收发数据等功能的工具。）
 
 
 3 ros2 topic list
 ^^^^^^^^^^^^^^^^^
 
-Running the ``ros2 topic list`` command in a new terminal will return a list of all the topics currently active in the system:
+在新终端中运行 ``ros2 topic list`` 命令将返回系统中当前运行中(active)的所有 topics 的列表:
 
 .. code-block:: console
 
@@ -104,7 +103,7 @@ Running the ``ros2 topic list`` command in a new terminal will return a list of 
   /turtle1/color_sensor
   /turtle1/pose
 
-``ros2 topic list -t`` will return the same list of topics, this time with the topic type appended in brackets:
+``ros2 topic list -t`` 将返回相同的 topics 列表，但是在括号中附加了 topic 类型:
 
 .. code-block:: console
 
@@ -114,34 +113,34 @@ Running the ``ros2 topic list`` command in a new terminal will return a list of 
   /turtle1/color_sensor [turtlesim/msg/Color]
   /turtle1/pose [turtlesim/msg/Pose]
 
-These attributes, particularly the type, are how nodes know they're talking about the same information as it moves over topics.
+这些属性，特别是类型，使得不同节点能够在信息在 topics 上传递时，知晓不同节点在交换同样对应的信息。
 
-If you're wondering where all these topics are in rqt_graph, you can uncheck all the boxes under **Hide:**
+如果你想知道这些 topics 在 rqt_graph 中的位置，你可以取消勾选 **Hide:** 下的所有选项:
 
 .. image:: images/unhide.png
 
-For now, though, leave those options checked to avoid confusion.
+不过暂时我们还是保持这些选项勾选，以避免看起来太乱导致的混淆。
 
 4 ros2 topic echo
 ^^^^^^^^^^^^^^^^^
 
-To see the data being published on a topic, use:
+要查看在某个 topic 上发布的数据，使用:
 
 .. code-block:: console
 
     ros2 topic echo <topic_name>
 
-Since we know that ``/teleop_turtle`` publishes data to ``/turtlesim`` over the ``/turtle1/cmd_vel`` topic, let's use ``echo`` to introspect that topic:
+因为我们知道 ``/teleop_turtle`` 在 ``/turtlesim`` 上发布数据，通过 ``/turtle1/cmd_vel`` topic，让我们使用 ``echo`` 来 introspect 这个 topic:
 
 .. code-block:: console
 
     ros2 topic echo /turtle1/cmd_vel
 
-At first, this command won't return any data.
-That's because it's waiting for ``/teleop_turtle`` to publish something.
+一开始，这个命令不会返回任何数据。
+这是因为它在等待 ``/teleop_turtle`` 发布数据。
 
-Return to the terminal where ``turtle_teleop_key`` is running and use the arrows to move the turtle around.
-Watch the terminal where your ``echo`` is running at the same time, and you'll see position data being published for every movement you make:
+回到 ``turtle_teleop_key`` 运行的终端，使用方向键移动乌龟。
+同时观察 ``echo`` 运行的终端，你会看到每次移动都会发布位置数据:
 
 .. code-block:: console
 
@@ -155,25 +154,25 @@ Watch the terminal where your ``echo`` is running at the same time, and you'll s
     z: 0.0
     ---
 
-Now return to rqt_graph and uncheck the **Debug** box.
+现在回到 rqt_graph 并取消勾选 **Debug** 选项。
 
 .. image:: images/debug.png
 
-``/_ros2cli_26646`` is the node created by the ``echo`` command we just ran (the number might be different).
-Now you can see that the publisher is publishing data over the ``cmd_vel`` topic, and two subscribers are subscribed to it.
+你会看到 ``/_ros2cli_26646`` 是刚刚运行的 ``echo`` 命令创建的节点（数字可能不同）。
+现在你可以看到发布者在 ``cmd_vel`` topic 上发布数据，有两个订阅者订阅了它。
 
 5 ros2 topic info
 ^^^^^^^^^^^^^^^^^
 
-Topics don't have to only be one-to-one communication; they can be one-to-many, many-to-one, or many-to-many.
+Topics 不仅局限于一对一的通信；它们可以是一对多、多对一或多对多的。
 
-Another way to look at this is running:
+另外一个查看通信情况的方式是运行:
 
 .. code-block:: console
 
     ros2 topic info /turtle1/cmd_vel
 
-Which will return:
+这将返回:
 
 .. code-block:: console
 
@@ -184,26 +183,26 @@ Which will return:
 6 ros2 interface show
 ^^^^^^^^^^^^^^^^^^^^^
 
-Nodes send data over topics using messages.
-Publishers and subscribers must send and receive the same type of message to communicate.
+节点(nodes)使用消息(message)在 topics 上发送数据。
+发布者(publishers)和订阅者(subscribers)必须发送和接收相同类型的消息才能通信。
 
-The topic types we saw earlier after running ``ros2 topic list -t`` let us know what message type is used on each topic.
-Recall that the ``cmd_vel`` topic has the type:
+我们在运行 ``ros2 topic list -t`` 后看到的 topic 类型让我们知道每个 topic 使用的消息类型。
+还记得 ``cmd_vel`` topic 的类型是:
 
 .. code-block:: console
 
     geometry_msgs/msg/Twist
 
-This means that in the package ``geometry_msgs`` there is a ``msg`` called ``Twist``.
+这意味着在 ``geometry_msgs`` 包中有一个叫 ``Twist`` 的 ``msg``。
 
-Now we can run ``ros2 interface show <msg type>`` on this type to learn its details.
-Specifically, what structure of data the message expects.
+现在我们可以运行 ``ros2 interface show <msg type>`` 来了解消息的细节。
+具体来说，就是消息期望的数据结构是什么。
 
 .. code-block:: console
 
     ros2 interface show geometry_msgs/msg/Twist
 
-For the message type from above it yields:
+对于上面的消息类型，它返回:
 
 .. code-block:: console
 
@@ -218,8 +217,8 @@ For the message type from above it yields:
               float64 y
               float64 z
 
-This tells you that the ``/turtlesim`` node is expecting a message with two vectors, ``linear`` and ``angular``, of three elements each.
-If you recall the data we saw ``/teleop_turtle`` passing to ``/turtlesim`` with the ``echo`` command, it's in the same structure:
+这告诉你 ``/turtlesim`` 节点期望一个包含两个向量的消息， ``linear`` 和 ``angular``，每个向量有三个元素。
+如果你还记得我们用 ``echo`` 命令看到 ``/teleop_turtle`` 传递给 ``/turtlesim`` 的数据，它就是这个结构:
 
 .. code-block:: console
 
@@ -236,40 +235,40 @@ If you recall the data we saw ``/teleop_turtle`` passing to ``/turtlesim`` with 
 7 ros2 topic pub
 ^^^^^^^^^^^^^^^^
 
-Now that you have the message structure, you can publish data to a topic directly from the command line using:
+现在你知道了消息结构，你可以直接从命令行发布数据到某个 topic:
 
 .. code-block:: console
 
     ros2 topic pub <topic_name> <msg_type> '<args>'
 
-The ``'<args>'`` argument is the actual data you'll pass to the topic, in the structure you just discovered in the previous section.
+``'<args>'`` 参数是你将传递给 topic 的实际数据，描述在你在上一节发现的那个数据结构里。
 
-The turtle (and commonly the real robots which it is meant to emulate) require a steady stream of commands to operate continuously.
-So, to get the turtle moving, and keep it moving, you can use the following command.
-It's important to note that this argument needs to be input in YAML syntax.
-Input the full command like so:
+小乌龟（当然也是通常情况下它所代指/仿真的机器人真机）需要一个稳定的命令流来连续地控制移动。
+所以，为了让小乌龟移动并保持移动，你可以使用以下命令。
+很重要的一点是这个参数需要使用 YAML 语法输入。
+输入完整的命令如下:
 
 .. code-block:: console
 
   ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
 
-With no command-line options, ``ros2 topic pub`` publishes the command in a steady stream at 1 Hz.
+在没有额外的命令行选项时，``ros2 topic pub`` 以 1 Hz 的速率连续发布命令。
 
 .. image:: images/pub_stream.png
 
-At times you may want to publish data to your topic only once (rather than continuously).
-To publish your command just once add the ``--once`` option.
+有时你可能只想向 topic 发布一次数据（而不是连续发布）。
+这时你可以添加 ``--once`` 选项。
 
 .. code-block:: console
 
   ros2 topic pub --once -w 2 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
 
-``--once`` is an optional argument meaning “publish one message then exit”.
+``--once`` 是一个可选参数，意味着“发布一次消息然后退出”。
 
-``-w 2`` is an optional argument meaning “wait for two matching subscriptions”.
-This is needed because we have both turtlesim and the topic echo subscribed.
+``-w 2`` 是一个可选参数，意味着“等待两个匹配的订阅”。
+这个场景下需要这个参数，因为我们既有 turtlesim 也有 topic echo 订阅了这个 topic。
 
-You will see the following output in the terminal:
+你会在终端看到以下输出:
 
 .. code-block:: console
 
@@ -277,17 +276,17 @@ You will see the following output in the terminal:
   publisher: beginning loop
   publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=2.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=1.8))
 
-And you will see your turtle move like so:
+然后你会看到小乌龟移动:
 
 .. image:: images/pub_once.png
 
 
-You can refresh rqt_graph to see what's happening graphically.
-You will see that the ``ros2 topic pub ...`` node (``/_ros2cli_30358``) is publishing over the ``/turtle1/cmd_vel`` topic, which is being received by both the ``ros2 topic echo ...`` node (``/_ros2cli_26646``) and the ``/turtlesim`` node now.
+你可以刷新 rqt_graph 来查看发生了什么。
+你会看到 ``ros2 topic pub ...`` 节点（ ``/_ros2cli_30358`` ）正在 ``/turtle1/cmd_vel`` topic 上发布数据，这个数据被 ``ros2 topic echo ...`` 节点（ ``/_ros2cli_26646`` ）和 ``/turtlesim`` 节点接收到了。
 
 .. image:: images/rqt_graph2.png
 
-Finally, you can run ``echo`` on the ``pose`` topic and recheck rqt_graph:
+最后，你可以在 ``pose`` topic 上运行 ``echo`` 命令并重新检查 rqt_graph:
 
 .. code-block:: console
 
@@ -295,16 +294,16 @@ Finally, you can run ``echo`` on the ``pose`` topic and recheck rqt_graph:
 
 .. image:: images/rqt_graph3.png
 
-You can see that the ``/turtlesim`` node is also publishing to the ``pose`` topic, which the new ``echo`` node has subscribed to.
+你会看到 ``/turtlesim`` 节点也在 ``pose`` topic 上发布数据，新的 ``echo`` 节点已经订阅了这个 topic。
 
-When publishing messages with timestamps, ``pub`` has two methods to automatically fill them out with the current time.
-For messages with a ``std_msgs/msg/Header``, the header field can be set to ``auto`` to fill out the ``stamp`` field.
+当发布带有时间戳的消息时，``pub`` 有两种方法可以自动填充当前时间。
+对于带有 ``std_msgs/msg/Header`` 的消息，可以将 ``header`` 字段设置为 ``auto`` 来填充 ``stamp`` 字段。
 
 .. code-block:: console
 
   ros2 topic pub /pose geometry_msgs/msg/PoseStamped '{header: "auto", pose: {position: {x: 1.0, y: 2.0, z: 3.0}}}'
 
-If the message does not use a full header, but just has a field with type ``builtin_interfaces/msg/Time``, that can be set to the value ``now``.
+如果消息不使用完整的头部(header)，而只是一个带有类型为 ``builtin_interfaces/msg/Time`` 的字段，可以将其设置为值 ``now``。
 
 .. code-block:: console
 
@@ -313,40 +312,40 @@ If the message does not use a full header, but just has a field with type ``buil
 8 ros2 topic hz
 ^^^^^^^^^^^^^^^
 
-For one last introspection on this process, you can view the rate at which data is published using:
+最后，你可以使用以下命令查看数据发布的速率:
 
 .. code-block:: console
 
     ros2 topic hz /turtle1/pose
 
-It will return data on the rate at which the ``/turtlesim`` node is publishing data to the ``pose`` topic.
+它会返回 ``/turtlesim`` 节点发布数据到 ``pose`` topic 的速率。
 
 .. code-block:: console
 
   average rate: 59.354
     min: 0.005s max: 0.027s std dev: 0.00284s window: 58
 
-Recall that you set the rate of ``turtle1/cmd_vel`` to publish at a steady 1 Hz using ``ros2 topic pub --rate 1``.
-If you run the above command with ``turtle1/cmd_vel`` instead of ``turtle1/pose``, you will see an average reflecting that rate.
+回想一下，你使用 ``ros2 topic pub --rate 1`` 设置 ``turtle1/cmd_vel`` 的发布速率为稳定的 1 Hz。
+如果你用 ``turtle1/cmd_vel`` 替换上面的命令，你会看到一个反映这个速率的平均值。
 
 .. 9 rqt_plot
    ^^^^^^^^^^
    Can't do this section now because there's some significant UI issues with rqt_plot for ROS 2
 
-9 Clean up
+9 关闭节点
 ^^^^^^^^^^
 
-At this point you'll have a lot of nodes running.
-Don't forget to stop them by entering ``Ctrl+C`` in each terminal.
+现在你已经有很多节点在运行。
+不要忘记在每个终端中使用 ``Ctrl+C`` 来停止它们。
 
 总结
 -------
 
-Nodes publish information over topics, which allows any number of other nodes to subscribe to and access that information.
-In this tutorial you examined the connections between several nodes over topics using rqt_graph and command line tools.
-You should now have a good idea of how data moves around a ROS 2 system.
+在 ROS 2 系统中，节点通过 topics 发布信息，这允许任意数量的其他节点订阅并访问该信息。
+在本教程中，你使用 rqt_graph 和命令行工具检查了几个节点之间的连接关系。
+现在你应该对 ROS 2 系统中数据的传递有了一个很好的了解。
 
 下一步
 ----------
 
-Next you'll learn about another communication type in the ROS graph with the tutorial :doc:`../Understanding-ROS2-Services/Understanding-ROS2-Services`.
+接下来你将学习 ROS 图中另一种通信类型，查看教程 :doc:`../Understanding-ROS2-Services/Understanding-ROS2-Services`.

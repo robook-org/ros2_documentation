@@ -105,7 +105,7 @@ intersphinx_mapping = {
 #
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
-    'analytics_id': 'G-EVD5Z6G6NH',
+    'analytics_id': 'GTM-NFW6MLHB',
     'collapse_navigation': False,
     'sticky_navigation': True,
     'navigation_depth': -1,

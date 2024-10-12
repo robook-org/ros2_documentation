@@ -4,10 +4,10 @@
 
 .. _rqt_console:
 
-Using ``rqt_console`` to view logs
+使用 ``rqt_console`` 查看日志
 ==================================
 
-**目标:** Get to know ``rqt_console``, a tool for introspecting log messages.
+**目标:** 了解与日志交互的工具 ``rqt_console``.
 
 **教程等级:** 初级
 
@@ -20,19 +20,18 @@ Using ``rqt_console`` to view logs
 背景
 ----------
 
-``rqt_console`` is a GUI tool used to introspect log messages in ROS 2.
-Typically, log messages show up in your terminal.
-With ``rqt_console``, you can collect those messages over time, view them closely and in a more organized manner, filter them, save them and even reload the saved files to introspect at a different time.
-
-Nodes use logs to output messages concerning events and status in a variety of ways.
-Their content is usually informational, for the sake of the user.
+``rqt_console`` 是一个 GUI 工具，用于检查 ROS 2 中的日志消息。
+一般情况下，日志消息会显示在终端中。
+不过，使用 ``rqt_console``，你可以收集这些随时间产生的消息，更仔细地查看它们，以更有组织的方式查看、过滤、保存它们，甚至重新加载保存的文件以在不同时间内查看。
+节点使用日志以各种方式输出有关各种事件和状态的消息。
+日志的内容一般包含有很多信息性的输出，以便为用户提供足够的信息。
 
 前提条件
 -------------
 
-You will need :doc:`rqt_console and turtlesim <../Introducing-Turtlesim/Introducing-Turtlesim>` installed.
+你需要已经安装 :doc:`rqt_console 和 turtlesim <../Introducing-Turtlesim/Introducing-Turtlesim>`。
 
-As always, don't forget to source ROS 2 in :doc:`every new terminal you open <../Configuring-ROS2-Environment>`.
+如往常一样，不要忘记在 :doc:`每次打开新终端时 <../Configuring-ROS2-Environment>` source ROS 2。
 
 
 任务
@@ -41,17 +40,17 @@ As always, don't forget to source ROS 2 in :doc:`every new terminal you open <..
 1 Setup
 ^^^^^^^
 
-Start ``rqt_console`` in a new terminal with the following command:
+在新终端中输入以下命令启动 ``rqt_console``:
 
 .. code-block:: console
 
     ros2 run rqt_console rqt_console
 
-The ``rqt_console`` window will open:
+``rqt_console`` 窗口会打开:
 
 .. image:: images/console.png
 
-The first section of the console is where log messages from your system will display.
+控制台的第一部分是系统中的日志消息显示区域。
 
 In the middle you have the option to filter messages by excluding severity levels.
 You can also add more exclusion filters using the plus-sign button to the right.

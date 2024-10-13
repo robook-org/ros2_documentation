@@ -416,21 +416,21 @@
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id2" id="id7">背景</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id8">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id9">任务</a></p>
+<li><p><a class="reference internal" href="#id2" id="id9">背景</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id10">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id11">任务</a></p>
 <ul>
-<li><p><a class="reference internal" href="#setup" id="id10">1 Setup</a></p></li>
-<li><p><a class="reference internal" href="#messages-on-rqt-console" id="id11">2 Messages on rqt_console</a></p></li>
-<li><p><a class="reference internal" href="#logger-levels" id="id12">3 Logger levels</a></p></li>
+<li><p><a class="reference internal" href="#setup" id="id12">1 Setup</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id13">2 rqt_console 中的消息</a></p></li>
+<li><p><a class="reference internal" href="#logger" id="id14">3 Logger 等级</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id5" id="id13">总结</a></p></li>
-<li><p><a class="reference internal" href="#id6" id="id14">下一步</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id15">总结</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id16">下一步</a></p></li>
 </ul>
 </nav>
 <section id="id2">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">背景</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">背景</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> 是一个 GUI 工具，用于检查 ROS 2 中的日志消息。
 一般情况下，日志消息会显示在终端中。
 不过，使用 <code class="docutils literal notranslate"><span class="pre">rqt_console</span></code>，你可以收集这些随时间产生的消息，更仔细地查看它们，以更有组织的方式查看、过滤、保存它们，甚至重新加载保存的文件以在不同时间内查看。
@@ -438,14 +438,14 @@
 日志的内容一般包含有很多信息性的输出，以便为用户提供足够的信息。</p>
 </section>
 <section id="id3">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">前提条件</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">前提条件</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>你需要已经安装 <a class="reference internal" href="../Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">rqt_console 和 turtlesim</span></a>。</p>
 <p>如往常一样，不要忘记在 <a class="reference internal" href="../Configuring-ROS2-Environment.html"><span class="doc">每次打开新终端时</span></a> source ROS 2。</p>
 </section>
 <section id="id4">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">任务</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">任务</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <section id="setup">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
 <p>在新终端中输入以下命令启动 <code class="docutils literal notranslate"><span class="pre">rqt_console</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run rqt_console rqt_console</span>
 </pre></div>
@@ -453,30 +453,30 @@
 <p><code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> 窗口会打开:</p>
 <img alt="../../../_images/console.png" src="../../../_images/console.png" />
 <p>控制台的第一部分是系统中的日志消息显示区域。</p>
-<p>In the middle you have the option to filter messages by excluding severity levels.
-You can also add more exclusion filters using the plus-sign button to the right.</p>
-<p>The bottom section is for highlighting messages that include a string you input.
-You can add more filters to this section as well.</p>
-<p>Now start <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code> in a new terminal with the following command:</p>
+<p>中间部份可以通过设置严重级别来过滤消息。
+也可以用右侧的加号按钮添加更多排除过滤条件。</p>
+<p>底部部分是用于高亮包含你输入的字符串的消息。
+当然也可以添加更多过滤条件。</p>
+<p>现在在新终端中输入以下命令启动 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node</span>
 </pre></div>
 </div>
 </section>
-<section id="messages-on-rqt-console">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">2 Messages on rqt_console</a><a class="headerlink" href="#messages-on-rqt-console" title="Link to this heading"></a></h3>
-<p>To produce log messages for <code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> to display, let’s have the turtle run into the wall.
-In a new terminal, enter the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">pub</span></code> command (discussed in detail in the <a class="reference internal" href="../Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">topics tutorial</span></a>) below:</p>
+<section id="id5">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">2 rqt_console 中的消息</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>让乌龟撞到墙上的时候会在 <code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> 显示日志消息，。
+在新终端中输入以下命令（在 <a class="reference internal" href="../Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">topics 教程</span></a> 中有详细讨论）:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub -r 1 /turtle1/cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}&quot;</span>
 </pre></div>
 </div>
-<p>Since the above command is publishing the topic at a steady rate, the turtle is continuously running into the wall.
-In <code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> you will see the same message with the <code class="docutils literal notranslate"><span class="pre">Warn</span></code> severity level displayed over and over, like so:</p>
+<p>上面的命令以恒定的速率发布 topic，所以乌龟会不停地撞到墙上。
+在 <code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> 中你会看到标有 <code class="docutils literal notranslate"><span class="pre">Warn</span></code> 的消息一遍又一遍地显示，如下图所示:</p>
 <img alt="../../../_images/warn.png" src="../../../_images/warn.png" />
-<p>Press <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in the terminal where you ran the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">pub</span></code> command to stop your turtle from running into the wall.</p>
+<p>在你的终端中按 <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> 停止 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">pub</span></code> 命令，让乌龟不再撞墙。</p>
 </section>
-<section id="logger-levels">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">3 Logger levels</a><a class="headerlink" href="#logger-levels" title="Link to this heading"></a></h3>
-<p>ROS 2’s logger levels are ordered by severity:</p>
+<section id="logger">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">3 Logger 等级</a><a class="headerlink" href="#logger" title="Link to this heading"></a></h3>
+<p>ROS 2 的日志等级按严重性排序:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Fatal</span>
 <span class="go">Error</span>
 <span class="go">Warn</span>
@@ -484,38 +484,38 @@ In <code class="docutils literal notranslate"><span class="pre">rqt_console</spa
 <span class="go">Debug</span>
 </pre></div>
 </div>
-<p>There is no exact standard for what each level indicates, but it’s safe to assume that:</p>
+<p>虽然每个等级表示的含义没有严格的标准，但是一般这样假设是比较安全合理的:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Fatal</span></code> messages indicate the system is going to terminate to try to protect itself from detriment.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Error</span></code> messages indicate significant issues that won’t necessarily damage the system, but are preventing it from functioning properly.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Warn</span></code> messages indicate unexpected activity or non-ideal results that might represent a deeper issue, but don’t harm functionality outright.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Info</span></code> messages indicate event and status updates that serve as a visual verification that the system is running as expected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Debug</span></code> messages detail the entire step-by-step process of the system execution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fatal</span></code> 消息表示系统将终止以保护自身免受损害。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Error</span></code> 消息表示重要问题，不一定会损坏系统，但是会阻止系统正常运行。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Warn</span></code> 消息表示意外活动或非理想结果，可能代表更深层次的问题，但不会直接损害功能。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Info</span></code> 消息表示事件和状态更新，作为系统正常运行的可视信息验证。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Debug</span></code> 消息详细描述系统执行的每个步骤。</p></li>
 </ul>
-<p>The default level is <code class="docutils literal notranslate"><span class="pre">Info</span></code>.
-You will only see messages of the default severity level and more-severe levels.</p>
-<p>Normally, only <code class="docutils literal notranslate"><span class="pre">Debug</span></code> messages are hidden because they’re the only level less severe than <code class="docutils literal notranslate"><span class="pre">Info</span></code>.
-For example, if you set the default level to <code class="docutils literal notranslate"><span class="pre">Warn</span></code>, you would only see messages of severity <code class="docutils literal notranslate"><span class="pre">Warn</span></code>, <code class="docutils literal notranslate"><span class="pre">Error</span></code>, and <code class="docutils literal notranslate"><span class="pre">Fatal</span></code>.</p>
-<section id="set-the-default-logger-level">
-<h4>3.1 Set the default logger level<a class="headerlink" href="#set-the-default-logger-level" title="Link to this heading"></a></h4>
-<p>You can set the default logger level when you first run the <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> node using remapping.
-Enter the following command in your terminal:</p>
+<p>默认等级是 <code class="docutils literal notranslate"><span class="pre">Info</span></code>。
+这意味着你只会看到默认等级和更严重的消息。</p>
+<p>一般情况下，只有 <code class="docutils literal notranslate"><span class="pre">Debug</span></code> 消息被隐藏，因为它们是唯一比 <code class="docutils literal notranslate"><span class="pre">Info</span></code> 更不严重的等级。
+例如，如果你将默认等级设置为 <code class="docutils literal notranslate"><span class="pre">Warn</span></code>，你只会看到 <code class="docutils literal notranslate"><span class="pre">Warn</span></code>、 <code class="docutils literal notranslate"><span class="pre">Error</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Fatal</span></code> 级的消息。</p>
+<section id="id6">
+<h4>3.1 设置 logger 的默认等级<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<p>你可以在第一次运行 <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> 节点时使用重映射设置默认的 logger 等级。
+在终端中输入以下命令:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node --ros-args --log-level WARN</span>
 </pre></div>
 </div>
-<p>Now you won’t see the initial <code class="docutils literal notranslate"><span class="pre">Info</span></code> level messages that came up in the console last time you started <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>.
-That’s because <code class="docutils literal notranslate"><span class="pre">Info</span></code> messages are lower priority than the new default severity, <code class="docutils literal notranslate"><span class="pre">Warn</span></code>.</p>
+<p>现在你再次在 <code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> 中看到的消息将只包含 <code class="docutils literal notranslate"><span class="pre">Warn</span></code>、 <code class="docutils literal notranslate"><span class="pre">Error</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Fatal</span></code> 级别的消息。
+这是因为 <code class="docutils literal notranslate"><span class="pre">Info</span></code> 消息的优先级低于新的默认日志等级 <code class="docutils literal notranslate"><span class="pre">Warn</span></code>。</p>
 </section>
 </section>
 </section>
-<section id="id5">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">总结</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> can be very helpful if you need to closely examine the log messages from your system.
-You might want to examine log messages for any number of reasons, usually to find out where something went wrong and the series of events leading up to that.</p>
+<section id="id7">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">总结</a><a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="#rqt-console"><span class="std std-ref">使用 rqt_console 查看日志</span></a> 可以帮助你仔细了解系统中的日志消息。
+通常你会因为各种原因检查日志消息，通常是为了找出哪里出了问题以及导致问题的一系列有序事件。</p>
 </section>
-<section id="id6">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">下一步</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
-<p>The next tutorial will teach you about starting multiple nodes at once with <a class="reference internal" href="../Launching-Multiple-Nodes/Launching-Multiple-Nodes.html"><span class="doc">ROS 2 Launch</span></a>.</p>
+<section id="id8">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">下一步</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>下一个教程将教你如何使用 <a class="reference internal" href="../Launching-Multiple-Nodes/Launching-Multiple-Nodes.html"><span class="doc">ROS 2 Launch</span></a> 一次启动多个节点。</p>
 </section>
 </section>
 

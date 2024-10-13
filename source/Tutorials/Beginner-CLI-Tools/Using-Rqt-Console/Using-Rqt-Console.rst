@@ -52,39 +52,39 @@
 
 控制台的第一部分是系统中的日志消息显示区域。
 
-In the middle you have the option to filter messages by excluding severity levels.
-You can also add more exclusion filters using the plus-sign button to the right.
+中间部份可以通过设置严重级别来过滤消息。
+也可以用右侧的加号按钮添加更多排除过滤条件。
 
-The bottom section is for highlighting messages that include a string you input.
-You can add more filters to this section as well.
+底部部分是用于高亮包含你输入的字符串的消息。
+当然也可以添加更多过滤条件。
 
-Now start ``turtlesim`` in a new terminal with the following command:
+现在在新终端中输入以下命令启动 ``turtlesim``:
 
 .. code-block:: console
 
     ros2 run turtlesim turtlesim_node
 
-2 Messages on rqt_console
+2 rqt_console 中的消息
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To produce log messages for ``rqt_console`` to display, let's have the turtle run into the wall.
-In a new terminal, enter the ``ros2 topic pub`` command (discussed in detail in the :doc:`topics tutorial <../Understanding-ROS2-Topics/Understanding-ROS2-Topics>`) below:
+让乌龟撞到墙上的时候会在 ``rqt_console`` 显示日志消息，。
+在新终端中输入以下命令（在 :doc:`topics 教程 <../Understanding-ROS2-Topics/Understanding-ROS2-Topics>` 中有详细讨论）:
 
 .. code-block:: console
 
     ros2 topic pub -r 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}"
 
-Since the above command is publishing the topic at a steady rate, the turtle is continuously running into the wall.
-In ``rqt_console`` you will see the same message with the ``Warn`` severity level displayed over and over, like so:
+上面的命令以恒定的速率发布 topic，所以乌龟会不停地撞到墙上。
+在 ``rqt_console`` 中你会看到标有 ``Warn`` 的消息一遍又一遍地显示，如下图所示:
 
 .. image:: images/warn.png
 
-Press ``Ctrl+C`` in the terminal where you ran the ``ros2 topic pub`` command to stop your turtle from running into the wall.
+在你的终端中按 ``Ctrl+C`` 停止 ``ros2 topic pub`` 命令，让乌龟不再撞墙。
 
-3 Logger levels
+3 Logger 等级
 ^^^^^^^^^^^^^^^
 
-ROS 2's logger levels are ordered by severity:
+ROS 2 的日志等级按严重性排序:
 
 .. code-block:: console
 
@@ -94,40 +94,40 @@ ROS 2's logger levels are ordered by severity:
     Info
     Debug
 
-There is no exact standard for what each level indicates, but it's safe to assume that:
+虽然每个等级表示的含义没有严格的标准，但是一般这样假设是比较安全合理的:
 
-* ``Fatal`` messages indicate the system is going to terminate to try to protect itself from detriment.
-* ``Error`` messages indicate significant issues that won't necessarily damage the system, but are preventing it from functioning properly.
-* ``Warn`` messages indicate unexpected activity or non-ideal results that might represent a deeper issue, but don't harm functionality outright.
-* ``Info`` messages indicate event and status updates that serve as a visual verification that the system is running as expected.
-* ``Debug`` messages detail the entire step-by-step process of the system execution.
+* ``Fatal`` 消息表示系统将终止以保护自身免受损害。
+* ``Error`` 消息表示重要问题，不一定会损坏系统，但是会阻止系统正常运行。
+* ``Warn`` 消息表示意外活动或非理想结果，可能代表更深层次的问题，但不会直接损害功能。
+* ``Info`` 消息表示事件和状态更新，作为系统正常运行的可视信息验证。
+* ``Debug`` 消息详细描述系统执行的每个步骤。
 
-The default level is ``Info``.
-You will only see messages of the default severity level and more-severe levels.
+默认等级是 ``Info``。
+这意味着你只会看到默认等级和更严重的消息。
 
-Normally, only ``Debug`` messages are hidden because they're the only level less severe than ``Info``.
-For example, if you set the default level to ``Warn``, you would only see messages of severity ``Warn``, ``Error``, and ``Fatal``.
+一般情况下，只有 ``Debug`` 消息被隐藏，因为它们是唯一比 ``Info`` 更不严重的等级。
+例如，如果你将默认等级设置为 ``Warn``，你只会看到 ``Warn``、 ``Error`` 和 ``Fatal`` 级的消息。
 
-3.1 Set the default logger level
+3.1 设置 logger 的默认等级
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can set the default logger level when you first run the ``/turtlesim`` node using remapping.
-Enter the following command in your terminal:
+你可以在第一次运行 ``/turtlesim`` 节点时使用重映射设置默认的 logger 等级。
+在终端中输入以下命令:
 
 .. code-block:: console
 
     ros2 run turtlesim turtlesim_node --ros-args --log-level WARN
 
-Now you won't see the initial ``Info`` level messages that came up in the console last time you started ``turtlesim``.
-That's because ``Info`` messages are lower priority than the new default severity, ``Warn``.
+现在你再次在 ``rqt_console`` 中看到的消息将只包含 ``Warn``、 ``Error`` 和 ``Fatal`` 级别的消息。
+这是因为 ``Info`` 消息的优先级低于新的默认日志等级 ``Warn``。
 
 总结
 -------
 
-``rqt_console`` can be very helpful if you need to closely examine the log messages from your system.
-You might want to examine log messages for any number of reasons, usually to find out where something went wrong and the series of events leading up to that.
+`rqt_console` 可以帮助你仔细了解系统中的日志消息。
+通常你会因为各种原因检查日志消息，通常是为了找出哪里出了问题以及导致问题的一系列有序事件。
 
 下一步
 ----------
 
-The next tutorial will teach you about starting multiple nodes at once with :doc:`ROS 2 Launch <../Launching-Multiple-Nodes/Launching-Multiple-Nodes>`.
+下一个教程将教你如何使用 :doc:`ROS 2 Launch <../Launching-Multiple-Nodes/Launching-Multiple-Nodes>` 一次启动多个节点。

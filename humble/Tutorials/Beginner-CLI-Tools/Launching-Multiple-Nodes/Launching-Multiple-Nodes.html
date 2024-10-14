@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Launching nodes &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>启动多个节点 &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
@@ -28,7 +28,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Recording and playing back data" href="../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html" />
+    <link rel="next" title="记录和回放数据" href="../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html" />
     <link rel="prev" title="使用 rqt_console 查看日志" href="../Using-Rqt-Console/Using-Rqt-Console.html" /> 
 </head>
 
@@ -128,8 +128,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">理解参数</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Understanding-ROS2-Actions/Understanding-ROS2-Actions.html">理解 actions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Using-Rqt-Console/Using-Rqt-Console.html">使用 <code class="docutils literal notranslate"><span class="pre">rqt_console</span></code> 查看日志</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Launching nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">Recording and playing back data</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">启动多个节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">记录和回放数据</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../Beginner-Client-Libraries.html">初级: 客户端库</a><ul>
@@ -396,7 +396,7 @@
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a></li>
-      <li class="breadcrumb-item active">Launching nodes</li>
+      <li class="breadcrumb-item active">启动多个节点</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Launching-Multiple-Nodes/Launching-Multiple-Nodes.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -408,50 +408,50 @@
              
 
 
-  <section id="launching-nodes">
-<span id="ros2launch"></span><h1>Launching nodes<a class="headerlink" href="#launching-nodes" title="Link to this heading"></a></h1>
-<p><strong>目标:</strong> Use a command line tool to launch multiple nodes at once.</p>
+  <section id="ros2launch">
+<span id="id1"></span><h1>启动多个节点<a class="headerlink" href="#ros2launch" title="Link to this heading"></a></h1>
+<p><strong>目标:</strong> 使用命令行工具一次启动多个节点.</p>
 <p><strong>教程等级:</strong> 初级</p>
 <p><strong>预计时长:</strong> 5 分钟</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id6">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id7">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id8">任务</a></p>
+<li><p><a class="reference internal" href="#id2" id="id7">背景</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id8">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id9">任务</a></p>
 <ul>
-<li><p><a class="reference internal" href="#running-a-launch-file" id="id9">Running a Launch File</a></p></li>
-<li><p><a class="reference internal" href="#optional-control-the-turtlesim-nodes" id="id10">(Optional) Control the Turtlesim Nodes</a></p></li>
+<li><p><a class="reference internal" href="#launch-file" id="id10">运行一个 Launch File</a></p></li>
+<li><p><a class="reference internal" href="#turtlesim" id="id11">（可选）控制 Turtlesim 节点</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id4" id="id11">总结</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id12">下一步</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id12">总结</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id13">下一步</a></p></li>
 </ul>
 </nav>
-<section id="id1">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>In most of the introductory tutorials, you have been opening new terminals for every new node you run.
-As you create more complex systems with more and more nodes running simultaneously, opening terminals and reentering configuration details becomes tedious.</p>
-<p>Launch files allow you to start up and configure a number of executables containing ROS 2 nodes simultaneously.</p>
-<p>Running a single launch file with the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> command will start up your entire system - all nodes and their configurations - at once.</p>
-</section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>Before starting these tutorials, install ROS 2 by following the instructions on the ROS 2 <a class="reference internal" href="../../../Installation.html"><span class="doc">安装</span></a> page.</p>
-<p>The commands used in this tutorial assume you followed the binary packages installation guide for your operating system (deb packages for Linux).
-You can still follow along if you built from source, but the path to your setup files will likely be different.
-You also won’t be able to use the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">ros-&lt;distro&gt;-&lt;package&gt;</span></code> command (used frequently in the beginner level tutorials) if you install from source.</p>
-<p>If you are using Linux and are not already familiar with the shell, <a class="reference external" href="https://www.linux.com/training-tutorials/bash-101-working-cli/">this tutorial</a> will help.</p>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">背景</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>在大多数入门教程中，你一直在为每个新节点打开一个新终端。
+当你创建更复杂的系统，有越来越多的节点同时运行时，打开终端并重新输入配置的过程会变得更繁琐。</p>
+<p>ROS 2 的 launch files 允许你同时启动和配置多个包含 ROS 2 节点的可执行文件。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> 命令运行单个 launch 文件将一次启动整个系统 - 包括所有节点及其配置。</p>
 </section>
 <section id="id3">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<section id="running-a-launch-file">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Running a Launch File</a><a class="headerlink" href="#running-a-launch-file" title="Link to this heading"></a></h3>
-<p>Open a new terminal and run:</p>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">前提条件</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>在开始这些教程之前，请按照 ROS 2 <a class="reference internal" href="../../../Installation.html"><span class="doc">安装</span></a> 页面上的说明安装 ROS 2。</p>
+<p>本教程中使用的命令假定你按照操作系统的二进制包安装指南（Linux 的 deb 包）进行了安装。
+如果你是从源代码构建的，仍然可以跟着做，但是你的设置文件路径可能会有所不同。
+如果你从源代码构建，也无法使用 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">ros-&lt;distro&gt;-&lt;package&gt;</span></code> 命令（在初级教程中经常使用）。</p>
+<p>如果你使用的是 Linux 但是还不熟悉 shell，<a class="reference external" href="https://www.linux.com/training-tutorials/bash-101-working-cli/">这个教程</a> 会有所帮助。</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">任务</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="launch-file">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">运行一个 Launch File</a><a class="headerlink" href="#launch-file" title="Link to this heading"></a></h3>
+<p>在新终端中运行如下指令：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch turtlesim multisim.launch.py</span>
 </pre></div>
 </div>
-<p>This command will run the following launch file:</p>
+<p>这个指令会运行下面的 launch file：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># turtlesim/launch/multisim.launch.py</span>
 
 <span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
@@ -468,39 +468,39 @@ You also won’t be able to use the <code class="docutils literal notranslate"><
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The launch file above is written in Python, but you can also use XML and YAML to create launch files.
-You can see a comparison of these different ROS 2 launch formats in <a class="reference internal" href="../../../How-To-Guides/Launch-file-different-formats.html"><span class="doc">Using Python, XML, and YAML for ROS 2 Launch Files</span></a>.</p>
+<p>上面的 launch file 是用 Python 写的，但你也可以使用 XML 和 YAML 来创建 launch file。
+你可以在 <a class="reference internal" href="../../../How-To-Guides/Launch-file-different-formats.html"><span class="doc">Using Python, XML, and YAML for ROS 2 Launch Files</span></a> 中看到这些不同的 ROS 2 launch 格式的比较。</p>
 </div>
-<p>This will run two turtlesim nodes:</p>
+<p>这会运行两个 turtlesim 节点：</p>
 <img alt="../../../_images/turtlesim_multisim.png" src="../../../_images/turtlesim_multisim.png" />
-<p>For now, don’t worry about the contents of this launch file.
-You can find more information on ROS 2 launch in the <a class="reference internal" href="../../Intermediate/Launch/Launch-Main.html"><span class="doc">ROS 2 launch tutorials</span></a>.</p>
+<p>现在，不用担心看不懂这个 launch file 的内容。
+你可以在 <a class="reference internal" href="../../Intermediate/Launch/Launch-Main.html"><span class="doc">ROS 2 launch 教程</span></a> 中找到更多关于 ROS 2 launch 的信息。</p>
 </section>
-<section id="optional-control-the-turtlesim-nodes">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">(Optional) Control the Turtlesim Nodes</a><a class="headerlink" href="#optional-control-the-turtlesim-nodes" title="Link to this heading"></a></h3>
-<p>Now that these nodes are running, you can control them like any other ROS 2 nodes.
-For example, you can make the turtles drive in opposite directions by opening up two additional terminals and running the following commands:</p>
-<p>In the second terminal:</p>
+<section id="turtlesim">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">（可选）控制 Turtlesim 节点</a><a class="headerlink" href="#turtlesim" title="Link to this heading"></a></h3>
+<p>现在这些节点正在运行，你可以像控制其他 ROS 2 节点一样控制它们。
+例如，你可以打开两个额外的终端，运行以下命令让两只乌龟朝相反的方向行驶：</p>
+<p>在第二个终端中：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub  /turtlesim1/turtle1/cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}&quot;</span>
 </pre></div>
 </div>
-<p>In the third terminal:</p>
+<p>在第三个终端中：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub  /turtlesim2/turtle1/cmd_vel geometry_msgs/msg/Twist &quot;{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: -1.8}}&quot;</span>
 </pre></div>
 </div>
-<p>After running these commands, you should see something like the following:</p>
+<p>运行这两个命令后，应该看到类似下面的画面：</p>
 <img alt="../../../_images/turtlesim_multisim_spin.png" src="../../../_images/turtlesim_multisim_spin.png" />
 </section>
 </section>
-<section id="id4">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">总结</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>The significance of what you’ve done so far is that you’ve run two turtlesim nodes with one command.
-Once you learn to write your own launch files, you’ll be able to run multiple nodes - and set up their configuration - in a similar way, with the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> command.</p>
-<p>For more tutorials on ROS 2 launch files, see the <a class="reference internal" href="../../Intermediate/Launch/Launch-Main.html"><span class="doc">main launch file tutorial page</span></a>.</p>
-</section>
 <section id="id5">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">下一步</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p>In the next tutorial, <a class="reference internal" href="../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html"><span class="doc">Recording and playing back data</span></a>, you’ll learn about another helpful tool, <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span></code>.</p>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">总结</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>现在你做到了一件很重要的事情，用一个命令运行了两个 turtlesim 节点。
+一旦你学会写自己的 launch file，你就可以用 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> 命令以类似的方式运行多个节点 - 并设置它们的配置。</p>
+<p>更多有关 ROS 2 launch file 的教程，请查看 <a class="reference internal" href="../../Intermediate/Launch/Launch-Main.html"><span class="doc">Launch</span></a>。</p>
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">下一步</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>在下一个教程中， <a class="reference internal" href="../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html"><span class="doc">记录和回放数据</span></a>，你将学习另一个有用的工具，<code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span></code>。</p>
 </section>
 </section>
 
@@ -510,7 +510,7 @@ Once you learn to write your own launch files, you’ll be able to run multiple 
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../Using-Rqt-Console/Using-Rqt-Console.html" class="btn btn-neutral float-left" title="使用 rqt_console 查看日志" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html" class="btn btn-neutral float-right" title="Recording and playing back data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html" class="btn btn-neutral float-right" title="记录和回放数据" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

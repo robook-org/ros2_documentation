@@ -4,10 +4,10 @@
 
 .. _ROS2Bag:
 
-Recording and playing back data
+记录和回放数据
 ===============================
 
-**目标:** Record data published on a topic so you can replay and examine it any time.
+**目标:** 记录发布在某个 topic 上的数据，以便后续回放数据或者检查数据。
 
 **教程等级:** 初级
 
@@ -20,23 +20,23 @@ Recording and playing back data
 背景
 ----------
 
-``ros2 bag`` is a command line tool for recording data published on topics in your system.
-It accumulates the data passed on any number of topics and saves it in a database.
-You can then replay the data to reproduce the results of your tests and experiments.
-Recording topics is also a great way to share your work and allow others to recreate it.
+``ros2 bag`` 是一个命令行工具，用于记录系统中发布在 topic 上的数据。
+它会记录发布在任意 topic 上的数据，并将其保存在数据库中。
+之后，你可以回放这些数据，以重现你的测试和实验结果。
+记录 topic 也是分享你的工作和让其他人复现它的好方法。
 
 
 前提条件
 -------------
 
-You should have ``ros2 bag`` installed as a part of your regular ROS 2 setup.
+你应该已经安装 ``ros2 bag``，它是 ROS 2 的一部分。
 
-If you need to install ROS 2, see the :doc:`Installation instructions <../../../Installation>`.
+如果你需要安装 ROS 2，请参阅 :doc:`安装指南 <../../../Installation>`。
 
-This tutorial talks about concepts covered in previous tutorials, like :doc:`nodes <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` and :doc:`topics <../Understanding-ROS2-Topics/Understanding-ROS2-Topics>`.
-It also uses the :doc:`turtlesim package <../Introducing-Turtlesim/Introducing-Turtlesim>`.
+本教程涉及到之前教程中的一些概念，比如 :doc:`nodes <../Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` 和 :doc:`topics <../Understanding-ROS2-Topics/Understanding-ROS2-Topics>`。
+它还使用了 :doc:`turtlesim package <../Introducing-Turtlesim/Introducing-Turtlesim>`。
 
-As always, don't forget to source ROS 2 in :doc:`every new terminal you open <../Configuring-ROS2-Environment>`.
+如往常一样，不要忘记在 :doc:`每次打开新终端时 <../Configuring-ROS2-Environment>` source ROS 2。
 
 
 任务
@@ -44,21 +44,22 @@ As always, don't forget to source ROS 2 in :doc:`every new terminal you open <..
 
 1 Setup
 ^^^^^^^
-You'll be recording your keyboard input in the ``turtlesim`` system to save and replay later on, so begin by starting up the ``/turtlesim`` and ``/teleop_turtle`` nodes.
 
-Open a new terminal and run:
+你将在 ``turtlesim`` 系统中记录键盘输入，以便稍后保存和回放，所以首先启动 ``/turtlesim`` 和 ``/teleop_turtle`` 节点。
+
+打开一个新终端并运行:
 
 .. code-block:: console
 
     ros2 run turtlesim turtlesim_node
 
-Open another terminal and run:
+打开另一个终端并运行:
 
 .. code-block:: console
 
     ros2 run turtlesim turtle_teleop_key
 
-Let's also make a new directory to store our saved recordings, just as good practice:
+让我们也创建一个新目录来存储我们保存的记录，这是一个好习惯:
 
 .. tabs::
 
@@ -84,17 +85,17 @@ Let's also make a new directory to store our saved recordings, just as good prac
             cd bag_files
 
 
-2 Choose a topic
+2 选择一个 topic
 ^^^^^^^^^^^^^^^^
 
-``ros2 bag`` can only record data from published messages in topics.
-To see the list of your system's topics, open a new terminal and run the command:
+``ros2 bag`` 只能记录发布在 topic 上的数据。
+要查看系统中的 topic 列表，请打开一个新终端并运行以下命令:
 
 .. code-block:: console
 
   ros2 topic list
 
-Which will return:
+这会返回：
 
 .. code-block:: console
 
@@ -104,17 +105,17 @@ Which will return:
   /turtle1/color_sensor
   /turtle1/pose
 
-In the topics tutorial, you learned that the ``/turtle_teleop`` node publishes commands on the ``/turtle1/cmd_vel`` topic to make the turtle move in turtlesim.
+在 topic 的教程中，你已经学了 ``/turtle_teleop`` 节点在 ``/turtle1/cmd_vel`` topic 上发布命令，以使乌龟在 turtlesim 窗口中移动。
 
-To see the data that ``/turtle1/cmd_vel`` is publishing, run the command:
+要查看 ``/turtle1/cmd_vel`` 发布的数据，运行以下命令:
 
 .. code-block:: console
 
   ros2 topic echo /turtle1/cmd_vel
 
-Nothing will show up at first because no data is being published by the teleop.
-Return to the terminal where you ran the teleop and select it so it's active.
-Use the arrow keys to move the turtle around, and you will see data being published on the terminal running ``ros2 topic echo``.
+一开始不会有任何显示，因为 teleop 没有发布数据。
+返回到运行 teleop 的终端并选中它，使其处于激活状态。
+使用箭头键移动乌龟，你会看到数据发布在运行 ``ros2 topic echo`` 的终端上。
 
 .. code-block:: console
 
@@ -132,24 +133,24 @@ Use the arrow keys to move the turtle around, and you will see data being publis
 3 ros2 bag record
 ^^^^^^^^^^^^^^^^^
 
-3.1 Record a single topic
+3.1 记录某个单独的 topic
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To record the data published to a topic use the command syntax:
+要记录发布在 topic 上的数据，使用以下命令:
 
 .. code-block:: console
 
     ros2 bag record <topic_name>
 
-Before running this command on your chosen topic, open a new terminal and move into the ``bag_files`` directory you created earlier, because the rosbag file will save in the directory where you run it.
+在你选择的 topic 上运行这个命令之前，打开一个新终端并切换到你之前创建的 ``bag_files`` 目录，因为 rosbag 文件会保存在你运行命令的目录中。
 
-Run the command:
+运行以下命令:
 
 .. code-block:: console
 
     ros2 bag record /turtle1/cmd_vel
 
-You will see the following messages in the terminal (the date and time will be different):
+你会在终端中看到以下消息（日期和时间不一样）:
 
 .. code-block:: console
 
@@ -158,34 +159,34 @@ You will see the following messages in the terminal (the date and time will be d
     [INFO] [rosbag2_transport]: Subscribed to topic '/turtle1/cmd_vel'
     [INFO] [rosbag2_transport]: All requested topics are subscribed. Stopping discovery...
 
-Now ``ros2 bag`` is recording the data published on the ``/turtle1/cmd_vel`` topic.
-Return to the teleop terminal and move the turtle around again.
-The movements don't matter, but try to make a recognizable pattern to see when you replay the data later.
+现在 ``ros2 bag`` 正在记录发布在 ``/turtle1/cmd_vel`` topic 上的数据。
+返回到 teleop 终端并再次移动乌龟。
+移动的方式不重要，但尽量是一种可识别的方式，以便稍后回放数据时能看出来。
 
 .. image:: images/record.png
 
-Press ``Ctrl+C`` to stop recording.
+按 ``Ctrl+C`` 停止记录。
 
-The data will be accumulated in a new bag directory with a name in the pattern of ``rosbag2_year_month_day-hour_minute_second``.
-This directory will contain a ``metadata.yaml`` along with the bag file in the recorded format.
+数据会保存在一个新的 bag 目录中，命名方式符合 ``rosbag2_year_month_day-hour_minute_second`` 。
+这个目录会包含一个 ``metadata.yaml`` 文件和一个以记录格式保存的 bag 文件。
 
-3.2 Record multiple topics
+3.2 记录多个 topics
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also record multiple topics, as well as change the name of the file ``ros2 bag`` saves to.
+你也可以记录多个 topics，以及更改 ``ros2 bag`` 保存的文件名。
 
-Run the following command:
+运行以下命令:
 
 .. code-block:: console
 
   ros2 bag record -o subset /turtle1/cmd_vel /turtle1/pose
 
-The ``-o`` option allows you to choose a unique name for your bag file.
-The following string, in this case ``subset``, is the file name.
+``-o`` 选项允许你为你的 bag 文件选择一个唯一的名字。
+在这个例子中，``subset`` 是文件名。
 
-To record more than one topic at a time, simply list each topic separated by a space.
+要记录多个 topic，只需用空格分隔每个 topic。
 
-You will see the following message, confirming that both topics are being recorded.
+你会看到以下消息，确认两个 topic 都在被记录:
 
 .. code-block:: console
 
@@ -195,22 +196,22 @@ You will see the following message, confirming that both topics are being record
   [INFO] [rosbag2_transport]: Subscribed to topic '/turtle1/pose'
   [INFO] [rosbag2_transport]: All requested topics are subscribed. Stopping discovery...
 
-You can move the turtle around and press ``Ctrl+C`` when you're finished.
+你可以随意移动乌龟，觉得可以结束了就按 ``Ctrl+C``。
 
 .. note::
 
-    There is another option you can add to the command, ``-a``, which records all the topics on your system.
+    也可以在命令中添加另一个选项，``-a``，它会记录系统上的所有 topics。
 
 4 ros2 bag info
 ^^^^^^^^^^^^^^^
 
-You can see details about your recording by running:
+你可以通过运行以下命令查看关于你的记录数据的详细信息:
 
 .. code-block:: console
 
     ros2 bag info <bag_file_name>
 
-Running this command on the ``subset`` bag file will return a list of information on the file:
+在 ``subset`` bag 文件上运行这个命令会返回文件的信息列表:
 
 .. code-block:: console
 
@@ -231,33 +232,33 @@ Running this command on the ``subset`` bag file will return a list of informatio
 5 ros2 bag play
 ^^^^^^^^^^^^^^^
 
-Before replaying the bag file, enter ``Ctrl+C`` in the terminal where the teleop is running.
-Then make sure your turtlesim window is visible so you can see the bag file in action.
+在回放 bag 文件之前，输入 ``Ctrl+C`` 停止 teleop 的运行。
+然后确保你的 turtlesim 窗口是可见的，这样你就可以看到 bag 文件的运行。
 
-Enter the command:
+要回放记录的数据，运行以下命令:
 
 .. code-block:: console
 
     ros2 bag play subset
 
-The terminal will return the message:
+终端会返回消息:
 
 .. code-block:: console
 
     [INFO] [rosbag2_storage]: Opened database 'subset'.
 
-Your turtle will follow the same path you entered while recording (though not 100% exactly; turtlesim is sensitive to small changes in the system's timing).
+现在你的乌龟会按照你录制时的路径移动（虽然不是 100% 准确；turtlesim 对系统时间的小变化很敏感）。
 
 .. image:: images/playback.png
 
-Because the ``subset`` file recorded the ``/turtle1/pose`` topic, the ``ros2 bag play`` command won't quit for as long as you had turtlesim running, even if you weren't moving.
+因为 ``subset`` 文件记录的是 ``/turtle1/pose`` 这个 topic，所以只要你不退出 turtlesim， ``ros2 bag play`` 命令就会一直运行。
 
-This is because as long as the ``/turtlesim`` node is active, it publishes data on the  ``/turtle1/pose`` topic at regular intervals.
-You may have noticed in the ``ros2 bag info`` example result above that the  ``/turtle1/cmd_vel`` topic's ``Count`` information was only 9; that's how many times we pressed the arrow keys while recording.
+这是因为只要 ``/turtlesim`` 节点在运行，它就会在固定的时间间隔内（也就是以固定频率）发布数据到 ``/turtle1/pose`` topic 上。
+你应该已经注意到，前面 ``ros2 bag info`` 返回的 ``/turtle1/pose`` topic 的 ``Count`` 值只有9.这是我们录制时按下方向键的次数。
 
-Notice that ``/turtle1/pose`` has a ``Count`` value of over 3000; while we were recording, data was published on that topic 3000 times.
+不过注意， ``/turtle1/pose`` 的 ``Count`` 值是3000多；这意思是，在我们录制时，数据在这个 topic 上发布了3000多次。
 
-To get an idea of how often position data is published, you can run the command:
+用下面的指令可以查看位置数据发布的频率:
 
 .. code-block:: console
 
@@ -266,17 +267,17 @@ To get an idea of how often position data is published, you can run the command:
 总结
 -------
 
-You can record data passed on topics in your ROS 2 system using the ``ros2 bag`` command.
-Whether you're sharing your work with others or introspecting your own experiments, it's a great tool to know about.
+你可以用 ``ros2 bag`` 命令记录 ROS 2 系统中发布在 topic 上的数据。
+这是一个很好的工具，无论是与他人分享你的工作，还是自己回顾实验结果。
 
 下一步
 ----------
 
-You've completed the "Beginner: CLI Tools" tutorials!
-The next step is tackling the "Beginner: Client Libraries" tutorials, starting with :doc:`../../Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace`.
+你已经完成了 "初级: CLI 工具" 教程！
+接下来是 "初级: 客户端库" 教程，从 :doc:`../../Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace` 开始。
 
 相关内容
 ---------------
 
-A more thorough explanation of ``ros2 bag`` can be found in the README `here <https://github.com/ros2/rosbag2>`__.
-For more information on QoS compatibility and ``ros2 bag``, see :doc:`../../../How-To-Guides/Overriding-QoS-Policies-For-Recording-And-Playback`.
+更多关于 ``ros2 bag`` 的详细解释可以在 `这个 README <https://github.com/ros2/rosbag2>`__ 找到.
+有关 QoS 兼容性和 ``ros2 bag`` 的更多信息，请参阅 :doc:`../../../How-To-Guides/Overriding-QoS-Policies-For-Recording-And-Playback`。

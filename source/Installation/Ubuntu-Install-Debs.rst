@@ -11,7 +11,7 @@ Ubuntu (deb packages)
    :local:
 
 ROS 2 {DISTRO_TITLE_FULL} 的 Deb packages 目前在 Ubuntu Jammy (22.04) 上可用.
-The target platforms are defined in `REP 2000 <https://ros.org/reps/rep-2000.html>`__.
+可部署的目标平台定义在 `REP 2000 <https://ros.org/reps/rep-2000.html>`__ 中.
 
 相关资源
 ---------
@@ -49,10 +49,10 @@ The target platforms are defined in `REP 2000 <https://ros.org/reps/rep-2000.htm
 
 .. warning::
 
-   Due to early updates in Ubuntu 22.04 it is important that ``systemd`` and ``udev``-related packages are updated before installing ROS 2.
-   The installation of ROS 2's dependencies on a freshly installed system without upgrading can trigger the **removal of critical system packages**.
+   由于 Ubuntu 22.04 的更新，请注意在安装 ROS 2 之前更新 ``systemd`` 和 ``udev`` 相关的包是很重要的。
+   在没有升级的情况下在新安装的系统上安装 ROS 2 的依赖可能会触发 **删除关键系统包**。
 
-   Please refer to `ros2/ros2#1272 <https://github.com/ros2/ros2/issues/1272>`_ and `Launchpad #1974196 <https://bugs.launchpad.net/ubuntu/+source/systemd/+bug/1974196>`_ for more information.
+   请请参考 `ros2/ros2#1272 <https://github.com/ros2/ros2/issues/1272>`_ 和 `Launchpad #1974196 <https://bugs.launchpad.net/ubuntu/+source/systemd/+bug/1974196>`_ 获取更多信息.
 
 桌面版安装(推荐)包含: ROS, RViz, demos, 教程.
 
@@ -123,8 +123,8 @@ The ROS 1 bridge 可以将 topic 从 ROS 1 传递至 ROS 2，反之亦然. 请�
 
 其它 RMW 实现 (可选内容)
 -----------------------------------------
-The default middleware that ROS 2 uses is ``Fast DDS``, but the middleware (RMW) can be replaced at runtime.
-See the :doc:`guide <../How-To-Guides/Working-with-multiple-RMW-implementations>` on how to work with multiple RMWs.
+ROS 2 默认使用的中间件是 ``Fast DDS``, 但是中间件 (RMW) 可以在运行时替换.
+查看 :doc:`此文档 <../How-To-Guides/Working-with-multiple-RMW-implementations>` 以了解如何使用多个 RMWs.
 
 异常排查
 ---------------

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using colcon to build packages &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>使用 colcon 构建包 &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -134,7 +134,7 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="../Beginner-Client-Libraries.html">初级: 客户端库</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Using <code class="docutils literal notranslate"><span class="pre">colcon</span></code> to build packages</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 构建包</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html">Creating a workspace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Creating-Your-First-ROS2-Package.html">Creating a package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">Writing a simple publisher and subscriber (C++)</a></li>
@@ -397,7 +397,7 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../Beginner-Client-Libraries.html">初级: 客户端库</a></li>
-      <li class="breadcrumb-item active">Using <code class="docutils literal notranslate"><span class="pre">colcon</span></code> to build packages</li>
+      <li class="breadcrumb-item active">使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 构建包</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -409,50 +409,50 @@
              
 
 
-  <section id="using-colcon-to-build-packages">
-<span id="colcon"></span><h1>Using <code class="docutils literal notranslate"><span class="pre">colcon</span></code> to build packages<a class="headerlink" href="#using-colcon-to-build-packages" title="Link to this heading"></a></h1>
+  <section id="colcon">
+<span id="id1"></span><h1>使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 构建包<a class="headerlink" href="#colcon" title="Link to this heading"></a></h1>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id3">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id4">前提条件</a></p>
+<li><p><a class="reference internal" href="#id2" id="id9">背景</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id10">前提条件</a></p>
 <ul>
-<li><p><a class="reference internal" href="#install-colcon" id="id5">Install colcon</a></p></li>
-<li><p><a class="reference internal" href="#install-ros-2" id="id6">Install ROS 2</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id11">安装 colcon</a></p></li>
+<li><p><a class="reference internal" href="#ros-2" id="id12">安装 ROS 2</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#basics" id="id7">Basics</a></p>
+<li><p><a class="reference internal" href="#id5" id="id13">基础知识</a></p>
 <ul>
-<li><p><a class="reference internal" href="#create-a-workspace" id="id8">Create a workspace</a></p></li>
-<li><p><a class="reference internal" href="#add-some-sources" id="id9">Add some sources</a></p></li>
-<li><p><a class="reference internal" href="#source-an-underlay" id="id10">Source an underlay</a></p></li>
-<li><p><a class="reference internal" href="#build-the-workspace" id="id11">Build the workspace</a></p></li>
-<li><p><a class="reference internal" href="#run-tests" id="id12">Run tests</a></p></li>
-<li><p><a class="reference internal" href="#source-the-environment" id="id13">Source the environment</a></p></li>
-<li><p><a class="reference internal" href="#try-a-demo" id="id14">Try a demo</a></p></li>
+<li><p><a class="reference internal" href="#workspace" id="id14">创建一个 workspace</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id15">添加一些资源</a></p></li>
+<li><p><a class="reference internal" href="#source-an-underlay" id="id16">Source an underlay</a></p></li>
+<li><p><a class="reference internal" href="#the-workspace" id="id17">构建 the workspace</a></p></li>
+<li><p><a class="reference internal" href="#colcon-run-the-tests" id="id18">运行测试</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id19">Source 当前环境</a></p></li>
+<li><p><a class="reference internal" href="#demo" id="id20">尝试 demo</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#create-your-own-package" id="id15">Create your own package</a></p></li>
-<li><p><a class="reference internal" href="#setup-colcon-cd" id="id16">Setup <code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code></a></p></li>
-<li><p><a class="reference internal" href="#setup-colcon-tab-completion" id="id17">Setup <code class="docutils literal notranslate"><span class="pre">colcon</span></code> tab completion</a></p></li>
-<li><p><a class="reference internal" href="#tips" id="id18">Tips</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id21">创建你自己的包</a></p></li>
+<li><p><a class="reference internal" href="#colcon-cd" id="id22">配置 <code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code></a></p></li>
+<li><p><a class="reference internal" href="#colcon-tab" id="id23">配置 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> tab 键自动补全</a></p></li>
+<li><p><a class="reference internal" href="#tips" id="id24">Tips</a></p></li>
 </ul>
 </nav>
-<p><strong>目标:</strong> Build a ROS 2 workspace with <code class="docutils literal notranslate"><span class="pre">colcon</span></code>.</p>
+<p><strong>目标:</strong> 使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 构建一个 ROS 2 工作空间.</p>
 <p><strong>教程等级:</strong> 初级</p>
 <p><strong>预计时长:</strong> 20 分钟</p>
-<p>This is a brief tutorial on how to create and build a ROS 2 workspace with <code class="docutils literal notranslate"><span class="pre">colcon</span></code>.
-It is a practical tutorial and not designed to replace the core documentation.</p>
-<section id="id1">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">colcon</span></code> is an iteration on the ROS build tools <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code>, <code class="docutils literal notranslate"><span class="pre">catkin_make_isolated</span></code>, <code class="docutils literal notranslate"><span class="pre">catkin_tools</span></code> and <code class="docutils literal notranslate"><span class="pre">ament_tools</span></code>.
-For more information on the design of colcon see <a class="reference external" href="https://design.ros2.org/articles/build_tool.html">this document</a>.</p>
-<p>The source code can be found in the <a class="reference external" href="https://github.com/colcon">colcon GitHub organization</a>.</p>
-</section>
+<p>这是一个关于如何使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 创建和构建 ROS 2 工作空间的简短教程。
+这是一个实用教程，不是为了取代核心文档。</p>
 <section id="id2">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<section id="install-colcon">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Install colcon</a><a class="headerlink" href="#install-colcon" title="Link to this heading"></a></h3>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">背景</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">colcon</span></code> 是 ROS 构建工具 <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code>、 <code class="docutils literal notranslate"><span class="pre">catkin_make_isolated</span></code>、 <code class="docutils literal notranslate"><span class="pre">catkin_tools</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ament_tools</span></code> 的迭代版本。
+更多关于 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 设计的信息请参考 <a class="reference external" href="https://design.ros2.org/articles/build_tool.html">这篇文档</a>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">colcon</span></code> 的源代码可以在 <a class="reference external" href="https://github.com/colcon">colcon GitHub organization</a> 中找到.</p>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">前提条件</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">安装 colcon</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-colcon-common-extensions
 </pre></div>
@@ -465,38 +465,38 @@ For more information on the design of colcon see <a class="reference external" h
 </div>
 </div></div>
 </section>
-<section id="install-ros-2">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Install ROS 2</a><a class="headerlink" href="#install-ros-2" title="Link to this heading"></a></h3>
-<p>To build the samples, you will need to install ROS 2.</p>
-<p>Follow the <a class="reference internal" href="../../Installation.html"><span class="doc">installation instructions</span></a>.</p>
+<section id="ros-2">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">安装 ROS 2</a><a class="headerlink" href="#ros-2" title="Link to this heading"></a></h3>
+<p>为了构建示例，你需要安装 ROS 2。</p>
+<p>请按照 <a class="reference internal" href="../../Installation.html"><span class="doc">安装指南</span></a> 进行安装。</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>If installing from deb packages, this tutorial requires the <a class="reference internal" href="../../Installation/Ubuntu-Install-Debs.html#linux-install-debs-install-ros-2-packages"><span class="std std-ref">desktop installation</span></a>.</p>
+<p>如果从 deb 包安装，请参考 <a class="reference internal" href="../../Installation/Ubuntu-Install-Debs.html#linux-install-debs-install-ros-2-packages"><span class="std std-ref">桌面版安装</span></a>。</p>
 </div>
 </section>
 </section>
-<section id="basics">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Basics</a><a class="headerlink" href="#basics" title="Link to this heading"></a></h2>
-<p>A ROS workspace is a directory with a particular structure.
-Commonly there is a <code class="docutils literal notranslate"><span class="pre">src</span></code> subdirectory.
-Inside that subdirectory is where the source code of ROS packages will be located.
-Typically the directory starts otherwise empty.</p>
-<p>colcon does out of source builds.
-By default it will create the following directories as peers of the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory:</p>
+<section id="id5">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">基础知识</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>ROS 工作空间是一个具有特定结构的目录。
+通常有一个 <code class="docutils literal notranslate"><span class="pre">src</span></code> 子目录。
+在这个子目录中是 ROS 包的源代码。
+最开始这个目录一般是空的。</p>
+<p><code class="docutils literal notranslate"><span class="pre">colcon</span></code> 支持在源代码之外构建。（译者注：就是说 colcon 可以不在源码的目录下运行）
+默认情况下，它会创建以下目录作为 <code class="docutils literal notranslate"><span class="pre">src</span></code> 目录的同级目录:</p>
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">build</span></code> directory will be where intermediate files are stored.
-For each package a subfolder will be created in which e.g. CMake is being invoked.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">install</span></code> directory is where each package will be installed to.
-By default each package will be installed into a separate subdirectory.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">log</span></code> directory contains various logging information about each colcon invocation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build</span></code> 目录是存放中间文件的地方。
+对于每个包，都会创建一个子目录，其中会调用 CMake 等工具。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">install</span></code> 目录是每个包将被安装到的地方。
+默认情况下，每个包将被安装到单独的子目录中。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log</span></code> 目录包含有关每个 colcon 调用的各种日志信息。</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Compared to catkin there is no <code class="docutils literal notranslate"><span class="pre">devel</span></code> directory.</p>
+<p>与 catkin 相比，没有 <code class="docutils literal notranslate"><span class="pre">devel</span></code> 目录。</p>
 </div>
-<section id="create-a-workspace">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Create a workspace</a><a class="headerlink" href="#create-a-workspace" title="Link to this heading"></a></h3>
-<p>First, create a directory (<code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>) to contain our workspace:</p>
+<section id="workspace">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">创建一个 workspace</a><a class="headerlink" href="#workspace" title="Link to this heading"></a></h3>
+<p>首先，创建一个目录（<code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>）来包含我们的工作空间:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-1-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-1-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/ros2_ws/src
 <span class="nb">cd</span><span class="w"> </span>~/ros2_ws
@@ -511,7 +511,7 @@ By default each package will be installed into a separate subdirectory.</p></li>
 </pre></div>
 </div>
 </div></div>
-<p>At this point the workspace contains a single empty directory <code class="docutils literal notranslate"><span class="pre">src</span></code>:</p>
+<p>此时工作空间中只有一个空目录 <code class="docutils literal notranslate"><span class="pre">src</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
 └──<span class="w"> </span>src
 
@@ -519,13 +519,13 @@ By default each package will be installed into a separate subdirectory.</p></li>
 </pre></div>
 </div>
 </section>
-<section id="add-some-sources">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Add some sources</a><a class="headerlink" href="#add-some-sources" title="Link to this heading"></a></h3>
-<p>Let’s clone the <a class="reference external" href="https://github.com/ros2/examples">examples</a> repository into the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory of the workspace:</p>
+<section id="id6">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">添加一些资源</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>让我们将 <a class="reference external" href="https://github.com/ros2/examples">examples</a> 仓库克隆到工作空间里的 <code class="docutils literal notranslate"><span class="pre">src</span></code> 目录:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ros2/examples<span class="w"> </span>src/examples<span class="w"> </span>-b<span class="w"> </span>humble
 </pre></div>
 </div>
-<p>Now the workspace should have the source code to the ROS 2 examples:</p>
+<p>现在工作空间应该已经有 ROS 2 示例的源代码:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
 └──<span class="w"> </span>src
 <span class="w">    </span>└──<span class="w"> </span>examples
@@ -540,22 +540,22 @@ By default each package will be installed into a separate subdirectory.</p></li>
 </div>
 </section>
 <section id="source-an-underlay">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Source an underlay</a><a class="headerlink" href="#source-an-underlay" title="Link to this heading"></a></h3>
-<p>It is important that we have sourced the environment for an existing ROS 2 installation that will provide our workspace with the necessary build dependencies for the example packages.
-This is achieved by sourcing the setup script provided by a binary installation or a source installation, ie. another colcon workspace (see <a class="reference internal" href="../../Installation.html"><span class="doc">Installation</span></a>).
-We call this environment an <strong>underlay</strong>.</p>
-<p>Our workspace, <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>, will be an <strong>overlay</strong> on top of the existing ROS 2 installation.
-In general, it is recommended to use an overlay when you plan to iterate on a small number of packages, rather than putting all of your packages into the same workspace.</p>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Source an underlay</a><a class="headerlink" href="#source-an-underlay" title="Link to this heading"></a></h3>
+<p>为了构建示例包，我们需要为我们的工作空间提供必要的构建依赖，也就是要 source 现有 ROS 2 的环境。
+这可以通过获取二进制安装或源码安装提供的设置脚本来实现，也就是另一个 colcon 工作空间（参见 <a class="reference internal" href="../../Installation.html"><span class="doc">安装</span></a>）。
+我们称这个环境为 <strong>underlay</strong>。</p>
+<p>我们现在这个工作空间，<code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>，将会是现有 ROS 2 安装的 <strong>overlay</strong>。
+在一般情况下，建议在迭代少量包时使用 overlay，而不是将所有包放入同一个工作空间。</p>
 </section>
-<section id="build-the-workspace">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Build the workspace</a><a class="headerlink" href="#build-the-workspace" title="Link to this heading"></a></h3>
+<section id="the-workspace">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">构建 the workspace</a><a class="headerlink" href="#the-workspace" title="Link to this heading"></a></h3>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>To build packages on Windows you need to be in a Visual Studio environment, see <a class="reference internal" href="../../Installation/Alternatives/Windows-Development-Setup.html#windows-dev-build-ros2"><span class="std std-ref">Building the ROS 2 Code</span></a> for more details.</p>
+<p>如果要在 Windows 上构建包，你需要在 Visual Studio 环境中，参见 <a class="reference internal" href="../../Installation/Alternatives/Windows-Development-Setup.html#windows-dev-build-ros2"><span class="std std-ref">在 Windows 上构建 ROS 2 代码</span></a> 获取更多细节。</p>
 </div>
-<p>In the root of the workspace, run <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code>.
-Since build types such as <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> do not support the concept of the <code class="docutils literal notranslate"><span class="pre">devel</span></code> space and require the package to be installed, colcon supports the option <code class="docutils literal notranslate"><span class="pre">--symlink-install</span></code>.
-This allows the installed files to be changed by changing the files in the <code class="docutils literal notranslate"><span class="pre">source</span></code> space (e.g. Python files or other non-compiled resources) for faster iteration.</p>
+<p>在工作空间的根目录下，运行 <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code>。
+由于 <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> 等构建类型不支持 <code class="docutils literal notranslate"><span class="pre">devel</span></code> 空间的概念，所以需要包被安装到安装目录，不过colcon 支持 <code class="docutils literal notranslate"><span class="pre">--symlink-install</span></code> 选项。
+这个选项可以通过更改 <code class="docutils literal notranslate"><span class="pre">source</span></code> 空间中的文件（例如 Python 文件或其他非编译资源）来更改已安装的文件，以加快迭代速度。（译者注：也就是说在有这个选项的情况下，对非编译资源的源码的修改会直接反映在安装的程序上，而不需要先构建。）</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-2-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-2-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-2-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-2-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">colcon build --symlink-install</span>
 </pre></div>
@@ -566,9 +566,9 @@ This allows the installed files to be changed by changing the files in the <code
 </div><div aria-labelledby="tab-2-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">colcon build --symlink-install --merge-install</span>
 </pre></div>
 </div>
-<p>Windows doesn’t allow long paths, so <code class="docutils literal notranslate"><span class="pre">merge-install</span></code> will combine all the paths into the <code class="docutils literal notranslate"><span class="pre">install</span></code> directory.</p>
+<p>Windows 不允许长路径，所以 <code class="docutils literal notranslate"><span class="pre">merge-install</span></code> 将所有路径合并到 <code class="docutils literal notranslate"><span class="pre">install</span></code> 目录中。</p>
 </div></div>
-<p>After the build is finished, we should see the <code class="docutils literal notranslate"><span class="pre">build</span></code>, <code class="docutils literal notranslate"><span class="pre">install</span></code>, and <code class="docutils literal notranslate"><span class="pre">log</span></code> directories:</p>
+<p>构建完成后，我们应该看到 <code class="docutils literal notranslate"><span class="pre">build</span></code>、 <code class="docutils literal notranslate"><span class="pre">install</span></code> 和 <code class="docutils literal notranslate"><span class="pre">log</span></code> 目录:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
 ├──<span class="w"> </span>build
 ├──<span class="w"> </span>install
@@ -579,9 +579,9 @@ This allows the installed files to be changed by changing the files in the <code
 </pre></div>
 </div>
 </section>
-<section id="run-tests">
-<span id="colcon-run-the-tests"></span><h3><a class="toc-backref" href="#id12" role="doc-backlink">Run tests</a><a class="headerlink" href="#run-tests" title="Link to this heading"></a></h3>
-<p>To run tests for the packages we just built, run the following:</p>
+<section id="colcon-run-the-tests">
+<span id="id7"></span><h3><a class="toc-backref" href="#id18" role="doc-backlink">运行测试</a><a class="headerlink" href="#colcon-run-the-tests" title="Link to this heading"></a></h3>
+<p>运行我们刚刚构建的包的测试:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-3-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-3-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-3-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-3-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">colcon test</span>
 </pre></div>
@@ -596,12 +596,12 @@ This allows the installed files to be changed by changing the files in the <code
 <p>You also need to specify <code class="docutils literal notranslate"><span class="pre">--merge-install</span></code> here since we used it for building above.</p>
 </div></div>
 </section>
-<section id="source-the-environment">
-<span id="colcon-tutorial-source-the-environment"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">Source the environment</a><a class="headerlink" href="#source-the-environment" title="Link to this heading"></a></h3>
-<p>When colcon has completed building successfully, the output will be in the <code class="docutils literal notranslate"><span class="pre">install</span></code> directory.
-Before you can use any of the installed executables or libraries, you will need to add them to your path and library paths.
-colcon will have generated bash/bat files in the <code class="docutils literal notranslate"><span class="pre">install</span></code> directory to help set up the environment.
-These files will add all of the required elements to your path and library paths as well as provide any bash or shell commands exported by packages.</p>
+<section id="source">
+<span id="colcon-tutorial-source-the-environment"></span><h3><a class="toc-backref" href="#id19" role="doc-backlink">Source 当前环境</a><a class="headerlink" href="#source" title="Link to this heading"></a></h3>
+<p>当 colcon 成功构建后，输出将在 <code class="docutils literal notranslate"><span class="pre">install</span></code> 目录中。
+你需要先将它们添加到你的系统路径中才能使用已安装的可执行文件或库。
+colcon 会在 <code class="docutils literal notranslate"><span class="pre">install</span></code> 目录中生成 bash/bat 文件来帮助设置环境。
+这些文件将添加所有必需的元素到你的路径和库路径中，同时提供由包导出的 bash 或 shell 命令。</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-4-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-4-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-4-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-4-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>install/setup.bash
 </pre></div>
@@ -618,38 +618,38 @@ These files will add all of the required elements to your path and library paths
 </div>
 </div></div>
 </section>
-<section id="try-a-demo">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Try a demo</a><a class="headerlink" href="#try-a-demo" title="Link to this heading"></a></h3>
-<p>With the environment sourced, we can run executables built by colcon.
-Let’s run a subscriber node from the examples:</p>
+<section id="demo">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">尝试 demo</a><a class="headerlink" href="#demo" title="Link to this heading"></a></h3>
+<p>有了环境后，我们可以运行 colcon 构建的可执行文件。
+让我们从示例中运行一个订阅者节点:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>examples_rclcpp_minimal_subscriber<span class="w"> </span>subscriber_member_function
 </pre></div>
 </div>
-<p>In another terminal, let’s run a publisher node (don’t forget to source the setup script):</p>
+<p>在另一个终端中，让我们运行一个发布者节点（不要忘记 source 环境脚本）:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>examples_rclcpp_minimal_publisher<span class="w"> </span>publisher_member_function
 </pre></div>
 </div>
-<p>You should see messages from the publisher and subscriber with numbers incrementing.</p>
+<p>你应该看到发布者和订阅者的消息，数字递增。</p>
 </section>
 </section>
-<section id="create-your-own-package">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Create your own package</a><a class="headerlink" href="#create-your-own-package" title="Link to this heading"></a></h2>
-<p>colcon uses the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> specification defined in <a class="reference external" href="https://www.ros.org/reps/rep-0149.html">REP 149</a> (<a class="reference external" href="https://www.ros.org/reps/rep-0140.html">format 2</a> is also supported).</p>
-<p>colcon supports multiple build types.
-The recommended build types are <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> and <code class="docutils literal notranslate"><span class="pre">ament_python</span></code>.
-Also supported are pure <code class="docutils literal notranslate"><span class="pre">cmake</span></code> packages.</p>
-<p>An example of an <code class="docutils literal notranslate"><span class="pre">ament_python</span></code> build is the <a class="reference external" href="https://github.com/ament/ament_index/tree/humble/ament_index_python">ament_index_python package</a> , where the setup.py is the primary entry point for building.</p>
-<p>A package such as <a class="reference external" href="https://github.com/ros2/demos/tree/humble/demo_nodes_cpp">demo_nodes_cpp</a> uses the <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> build type, and uses CMake as the build tool.</p>
-<p>For convenience, you can use the tool <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">create</span></code> to create a new package based on a template.</p>
+<section id="id8">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">创建你自己的包</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>colcon 使用 <a class="reference external" href="https://www.ros.org/reps/rep-0149.html">REP 149</a> 中定义的 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 规范（也支持 <a class="reference external" href="https://www.ros.org/reps/rep-0140.html">format 2</a>）。</p>
+<p>colcon 支持多种构建类型。
+推荐的构建类型是 <code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ament_python</span></code>。
+也支持纯 <code class="docutils literal notranslate"><span class="pre">cmake</span></code> 包。</p>
+<p><code class="docutils literal notranslate"><span class="pre">ament_python</span></code> 构建的一个例子是 <a class="reference external" href="https://github.com/ament/ament_index/tree/humble/ament_index_python">ament_index_python 包</a> , 其中 setup.py 是构建好的程序的入口（entry point）.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> 构建的一个例子是 <a class="reference external" href="https://github.com/ros2/demos/tree/humble/demo_nodes_cpp">demo_nodes_cpp</a> , 它使用 CMake 作为构建工具.</p>
+<p>为了方便，你可以使用 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">create</span></code> 工具基于模板创建一个新包。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For <code class="docutils literal notranslate"><span class="pre">catkin</span></code> users, this is the equivalent of <code class="docutils literal notranslate"><span class="pre">catkin_create_package</span></code>.</p>
+<p>这相当于 <code class="docutils literal notranslate"><span class="pre">catkin</span></code> 用户知道的 <code class="docutils literal notranslate"><span class="pre">catkin_create_package</span></code>。</p>
 </div>
 </section>
-<section id="setup-colcon-cd">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">Setup <code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code></a><a class="headerlink" href="#setup-colcon-cd" title="Link to this heading"></a></h2>
-<p>The command <code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code> allows you to quickly change the current working directory of your shell to the directory of a package.
-As an example <code class="docutils literal notranslate"><span class="pre">colcon_cd</span> <span class="pre">some_ros_package</span></code> would quickly bring you to the directory <code class="docutils literal notranslate"><span class="pre">~/ros2_ws/src/some_ros_package</span></code>.</p>
+<section id="colcon-cd">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">配置 <code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code></a><a class="headerlink" href="#colcon-cd" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code> 命令允许你快速将 shell 的当前工作目录切换为包的目录。
+例如 <code class="docutils literal notranslate"><span class="pre">colcon_cd</span> <span class="pre">some_ros_package</span></code> 将快速将你带到 <code class="docutils literal notranslate"><span class="pre">~/ros2_ws/src/some_ros_package</span></code> 目录。</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-5-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-5-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-5-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-5-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &quot;source /usr/share/colcon_cd/function/colcon_cd.sh&quot; &gt;&gt; ~/.bashrc</span>
 <span class="go">echo &quot;export _colcon_cd_root=/opt/ros/humble/&quot; &gt;&gt; ~/.bashrc</span>
@@ -661,20 +661,20 @@ As an example <code class="docutils literal notranslate"><span class="pre">colco
 </div>
 </div><div aria-labelledby="tab-5-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>Not yet available</p>
 </div></div>
-<p>Depending on the way you installed <code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code> and where your workspace is, the instructions above may vary, please refer to <a class="reference external" href="https://colcon.readthedocs.io/en/released/user/installation.html#quick-directory-changes">the documentation</a> for more details.
-To undo this in Linux and macOS, locate your system’s shell startup script and remove the appended source and export commands.</p>
+<p>根据你如何安装 <code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code> 和你的工作空间的位置，上面的指令可能会有所不同，请参考 <a class="reference external" href="https://colcon.readthedocs.io/en/released/user/installation.html#quick-directory-changes">文档</a> 获取更多细节。
+如果你不想使用 <code class="docutils literal notranslate"><span class="pre">colcon_cd</span></code> 了，可以在 Linux 和 macOS 中找到系统的 shell 启动脚本并删除附加的 source 和 export 命令。</p>
 </section>
-<section id="setup-colcon-tab-completion">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">Setup <code class="docutils literal notranslate"><span class="pre">colcon</span></code> tab completion</a><a class="headerlink" href="#setup-colcon-tab-completion" title="Link to this heading"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">colcon</span></code> command supports command completion for bash and bash-like shells.
-The <code class="docutils literal notranslate"><span class="pre">colcon-argcomplete</span></code> package must be installed, and <a class="reference external" href="https://colcon.readthedocs.io/en/released/user/installation.html#enable-completion">some setup may be required</a> to make it work.</p>
+<section id="colcon-tab">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">配置 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> tab 键自动补全</a><a class="headerlink" href="#colcon-tab" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">colcon</span></code> 命令支持 bash 和类似 bash 的 shell 的命令自动补全。
+必须安装 <code class="docutils literal notranslate"><span class="pre">colcon-argcomplete</span></code> 包， 可能需要 <a class="reference external" href="https://colcon.readthedocs.io/en/released/user/installation.html#enable-completion">一些设置</a> 才能使其工作。</p>
 </section>
 <section id="tips">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">Tips</a><a class="headerlink" href="#tips" title="Link to this heading"></a></h2>
 <ul>
-<li><p>If you do not want to build a specific package place an empty file named <code class="docutils literal notranslate"><span class="pre">COLCON_IGNORE</span></code> in the directory and it will not be indexed.</p></li>
-<li><p>If you want to avoid configuring and building tests in CMake packages you can pass: <code class="docutils literal notranslate"><span class="pre">--cmake-args</span> <span class="pre">-DBUILD_TESTING=0</span></code>.</p></li>
-<li><p>If you want to run a single particular test from a package:</p>
+<li><p>如果你不想构建特定包，请在目录中放置一个名为 <code class="docutils literal notranslate"><span class="pre">COLCON_IGNORE</span></code> 的空文件，这个目录将不会被构建工具索引到。</p></li>
+<li><p>如果你想避免在 CMake 包中配置和构建测试，可以传递: <code class="docutils literal notranslate"><span class="pre">--cmake-args</span> <span class="pre">-DBUILD_TESTING=0</span></code>。</p></li>
+<li><p>如果你想运行某个包中的单个测试：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--packages-select<span class="w"> </span>YOUR_PKG_NAME<span class="w"> </span>--ctest-args<span class="w"> </span>-R<span class="w"> </span>YOUR_TEST_IN_PKG
 </pre></div>
 </div>

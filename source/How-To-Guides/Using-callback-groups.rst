@@ -374,9 +374,9 @@ Demo code
 
 译者注：Mutually Exclusive Callback Group 中的回调函数是一个一个挨着执行的，只有前一个回调函数执行完了，下一个回调函数才能执行。
 那么让我们考虑上面的例子。最开始 gruop 需要运行的回调函数列表里面是空的。一开始，我们往里面添加了一个 timer 的回调函数，称之为 timer_callback。
-在 timer_callback 中，我们运行了一个发出请求的函数，叫它 request_call, quest_call 会向 group 内添加一个需要执行的回调函数,叫它 response_callback.
+在 timer_callback 中，我们运行了一个发出请求的函数，叫它 request_call, request_call 会向 group 内添加一个需要执行的回调函数,叫它 response_callback.
 此时 group 里面有两个回调函数，前面的是 timer_callback，后面的是 response_callback。
-quest_call 只有得到 response_callback 的结果才会返回。
+request_call 只有得到 response_callback 的结果才会返回。
 但是要想执行到 response_callback，需要先执行完 timer_callback。可是 timer_callback 里面的 request_call 又在等待 response_callback 的结果。
 这样就形成了一个死锁(deadlock)。
 

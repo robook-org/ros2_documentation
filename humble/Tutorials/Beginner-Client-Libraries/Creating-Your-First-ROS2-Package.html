@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creating a package &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>创建 ROS 2 包 &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -136,7 +136,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../Beginner-Client-Libraries.html">初级: 客户端库</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="Colcon-Tutorial.html">使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 构建包</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html">创建工作空间</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Creating a package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">创建 ROS 2 包</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">Writing a simple publisher and subscriber (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Py-Publisher-And-Subscriber.html">Writing a simple publisher and subscriber (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html">Writing a simple service and client (C++)</a></li>
@@ -397,7 +397,7 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../Beginner-Client-Libraries.html">初级: 客户端库</a></li>
-      <li class="breadcrumb-item active">Creating a package</li>
+      <li class="breadcrumb-item active">创建 ROS 2 包</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -409,65 +409,65 @@
              
 
 
-  <section id="creating-a-package">
-<span id="createpkg"></span><h1>Creating a package<a class="headerlink" href="#creating-a-package" title="Link to this heading"></a></h1>
-<p><strong>目标:</strong> Create a new package using either CMake or Python, and run its executable.</p>
+  <section id="ros-2">
+<span id="createpkg"></span><h1>创建 ROS 2 包<a class="headerlink" href="#ros-2" title="Link to this heading"></a></h1>
+<p><strong>目标:</strong> 用 CMake 或者 Python 创建一个新的包，然后运行对应的可执行文件.</p>
 <p><strong>教程等级:</strong> 初级</p>
 <p><strong>预计时长:</strong> 15 分钟</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id6">背景</a></p>
+<li><p><a class="reference internal" href="#id1" id="id13">背景</a></p>
 <ul>
-<li><p><a class="reference internal" href="#what-is-a-ros-2-package" id="id7">1 What is a ROS 2 package?</a></p></li>
-<li><p><a class="reference internal" href="#what-makes-up-a-ros-2-package" id="id8">2 What makes up a ROS 2 package?</a></p></li>
-<li><p><a class="reference internal" href="#packages-in-a-workspace" id="id9">3 Packages in a workspace</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id14">1 什么是 ROS 2 包?</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id15">2 ROS 2 包由哪些内容构成?</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id16">3 工作空间中的包</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id2" id="id10">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id11">任务</a></p>
+<li><p><a class="reference internal" href="#id5" id="id17">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id18">任务</a></p>
 <ul>
-<li><p><a class="reference internal" href="#create-a-package" id="id12">1 Create a package</a></p></li>
-<li><p><a class="reference internal" href="#build-a-package" id="id13">2 Build a package</a></p></li>
-<li><p><a class="reference internal" href="#source-the-setup-file" id="id14">3 Source the setup file</a></p></li>
-<li><p><a class="reference internal" href="#use-the-package" id="id15">4 Use the package</a></p></li>
-<li><p><a class="reference internal" href="#examine-package-contents" id="id16">5 Examine package contents</a></p></li>
-<li><p><a class="reference internal" href="#customize-package-xml" id="id17">6 Customize package.xml</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id19">1 创建包</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id20">2 构建包</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id21">3 Source 配置文件</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id22">4 使用包</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id23">5 检查包的内容</a></p></li>
+<li><p><a class="reference internal" href="#package-xml" id="id24">6 自定义 package.xml</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id4" id="id18">总结</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id19">下一步</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id25">总结</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id26">下一步</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<section id="what-is-a-ros-2-package">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">1 What is a ROS 2 package?</a><a class="headerlink" href="#what-is-a-ros-2-package" title="Link to this heading"></a></h3>
-<p>A package is an organizational unit for your ROS 2 code.
-If you want to be able to install your code or share it with others, then you’ll need it organized in a package.
-With packages, you can release your ROS 2 work and allow others to build and use it easily.</p>
-<p>Package creation in ROS 2 uses ament as its build system and colcon as its build tool.
-You can create a package using either CMake or Python, which are officially supported, though other build types do exist.</p>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">1 什么是 ROS 2 包?</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>包是 ROS 2 代码的组织单元.
+如果你想安装你的代码或者与他人分享，那么你需要将它组织成一个包.
+用包可以发布你的 ROS 2 工作，让其他人更容易构建和使用它.</p>
+<p>ROS 2 中的包创建使用 ament 作为构建系统(build system)，colcon 作为构建工具(build tool).
+你可以使用 CMake 或者 Python 创建一个包，这两种方法都是官方支持的，当然也有其他构建类型.</p>
 </section>
-<section id="what-makes-up-a-ros-2-package">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">2 What makes up a ROS 2 package?</a><a class="headerlink" href="#what-makes-up-a-ros-2-package" title="Link to this heading"></a></h3>
-<p>ROS 2 Python and CMake packages each have their own minimum required contents:</p>
+<section id="id3">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">2 ROS 2 包由哪些内容构成?</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>ROS 2 Python 和 CMake 包各自有自己的最低要求内容:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-0-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file that describes how to build the code within the package</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">include/&lt;package_name&gt;</span></code> directory containing the public headers for the package</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">package.xml</span></code> file containing meta information about the package</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">src</span></code> directory containing the source code for the package</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 描述如何构建包内代码</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">include/&lt;package_name&gt;</span></code> 目录包含包的公共头文件</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 包含关于包的元信息</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src</span></code> 目录包含包的源代码</p></li>
 </ul>
 </div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">package.xml</span></code> file containing meta information about the package</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">resource/&lt;package_name&gt;</span></code> marker file for the package</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> is required when a package has executables, so <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> can find them</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">setup.py</span></code> containing instructions for how to install the package</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;package_name&gt;</span></code> - a directory with the same name as your package, used by ROS 2 tools to find your package, contains <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 包含关于包的元信息</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resource/&lt;package_name&gt;</span></code> 包的标记文件</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> 当包有可执行文件时是必需的，这样 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> 才能找到它们</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 包含如何安装包的指令</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;package_name&gt;</span></code> 是一个与包名相同的目录，ROS 2 工具用这个名字找到你的包的源码，需要含有 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件</p></li>
 </ul>
 </div></div>
-<p>The simplest possible package may have a file structure that looks like:</p>
+<p>最简可运行的包应该有如下的文件结构：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-1-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">my_package/</span>
 <span class="go">     CMakeLists.txt</span>
@@ -486,14 +486,14 @@ You can create a package using either CMake or Python, which are officially supp
 </div>
 </div></div>
 </section>
-<section id="packages-in-a-workspace">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">3 Packages in a workspace</a><a class="headerlink" href="#packages-in-a-workspace" title="Link to this heading"></a></h3>
-<p>A single workspace can contain as many packages as you want, each in their own folder.
-You can also have packages of different build types in one workspace (CMake, Python, etc.).
-You cannot have nested packages.</p>
-<p>Best practice is to have a <code class="docutils literal notranslate"><span class="pre">src</span></code> folder within your workspace, and to create your packages in there.
-This keeps the top level of the workspace “clean”.</p>
-<p>A trivial workspace might look like:</p>
+<section id="id4">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">3 工作空间中的包</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>每个工作空间可以包含任意多的包，每个包都在自己的文件夹中.
+一个工作空间中可以有不同构建类型的包（CMake, Python 等）.
+但是一个包不能包含另一个包，也就是说包不能嵌套.</p>
+<p>最佳实践：在工作空间中创建一个 <code class="docutils literal notranslate"><span class="pre">src</span></code> 文件夹，然后在里面放你的包.
+这样可以保持工作空间顶层的“干净条理”.</p>
+<p>一个简单的工作空间看起来是这样的：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">workspace_folder/</span>
 <span class="go">    src/</span>
 <span class="go">      cpp_package_1/</span>
@@ -518,18 +518,18 @@ This keeps the top level of the workspace “clean”.</p>
 </div>
 </section>
 </section>
-<section id="id2">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>You should have a ROS 2 workspace after following the instructions in the <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">previous tutorial</span></a>.
-You will create your package in this workspace.</p>
+<section id="id5">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">前提条件</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>在 <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">上一个教程</span></a> 中按照指示操作，你应该已经有了 ROS 2 工作空间.
+现在你可以在这个工作空间中创建你的包.</p>
 </section>
-<section id="id3">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<section id="create-a-package">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">1 Create a package</a><a class="headerlink" href="#create-a-package" title="Link to this heading"></a></h3>
-<p>First, <a class="reference internal" href="../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">source your ROS 2 installation</span></a>.</p>
-<p>Let’s use the workspace you created in the <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html#new-directory"><span class="std std-ref">previous tutorial</span></a>, <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>, for your new package.</p>
-<p>Make sure you are in the <code class="docutils literal notranslate"><span class="pre">src</span></code> folder before running the package creation command.</p>
+<section id="id6">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">任务</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<section id="id7">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">1 创建包</a><a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>首先，<a class="reference internal" href="../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">source 你的 ROS 2 安装环境</span></a>.</p>
+<p>让我们在 <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html#new-directory"><span class="std std-ref">上一个教程</span></a> 中创建的工作空间 <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> 里创建新包.</p>
+<p>确保你在运行包创建的命令之前已经在 <code class="docutils literal notranslate"><span class="pre">src</span></code> 文件夹里了.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-2-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-2-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-2-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-2-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/ros2_ws/src</span>
 </pre></div>
@@ -541,7 +541,7 @@ You will create your package in this workspace.</p>
 </pre></div>
 </div>
 </div></div>
-<p>The command syntax for creating a new package in ROS 2 is:</p>
+<p>下面这个命令能创建一个新的包:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-3-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 pkg create --build-type ament_cmake --license Apache-2.0 &lt;package_name&gt;</span>
 </pre></div>
@@ -550,8 +550,8 @@ You will create your package in this workspace.</p>
 </pre></div>
 </div>
 </div></div>
-<p>For this tutorial, you will use the optional argument <code class="docutils literal notranslate"><span class="pre">--node-name</span></code> which creates a simple Hello World type executable in the package.</p>
-<p>Enter the following command in your terminal:</p>
+<p>在这个教程中，你将学习使用可选参数 <code class="docutils literal notranslate"><span class="pre">--node-name</span></code> 来创建一个简单的 Hello World 式的可执行文件.</p>
+<p>在终端中输入以下命令:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-4-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 pkg create --build-type ament_cmake --license Apache-2.0 --node-name my_node my_package</span>
 </pre></div>
@@ -560,8 +560,8 @@ You will create your package in this workspace.</p>
 </pre></div>
 </div>
 </div></div>
-<p>You will now have a new folder within your workspace’s <code class="docutils literal notranslate"><span class="pre">src</span></code> directory called <code class="docutils literal notranslate"><span class="pre">my_package</span></code>.</p>
-<p>After running the command, your terminal will return the message:</p>
+<p>这个命令会在你的工作空间的 <code class="docutils literal notranslate"><span class="pre">src</span></code> 目录下创建一个新文件夹，名为 <code class="docutils literal notranslate"><span class="pre">my_package</span></code>.</p>
+<p>运行完命令后，终端会返回以下信息:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-5-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">going to create a new package</span>
 <span class="go">package name: my_package</span>
@@ -611,13 +611,13 @@ You will create your package in this workspace.</p>
 </pre></div>
 </div>
 </div></div>
-<p>You can see the automatically generated files for the new package.</p>
+<p>可以看到为新创建的包自动生成的文件.</p>
 </section>
-<section id="build-a-package">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">2 Build a package</a><a class="headerlink" href="#build-a-package" title="Link to this heading"></a></h3>
-<p>Putting packages in a workspace is especially valuable because you can build many packages at once by running <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> in the workspace root.
-Otherwise, you would have to build each package individually.</p>
-<p>Return to the root of your workspace:</p>
+<section id="id8">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">2 构建包</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>把包都放在工作空间中就可以在工作空间根目录下运行 <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> 来一次性构建所有包.
+不然你还得单独构建每个包。</p>
+<p>回到工作空间的根目录:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-6-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-6-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-6-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-6-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/ros2_ws</span>
 </pre></div>
@@ -629,7 +629,7 @@ Otherwise, you would have to build each package individually.</p>
 </pre></div>
 </div>
 </div></div>
-<p>Now you can build your packages:</p>
+<p>现在构建包:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-7-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-7-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-7-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-7-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">colcon build</span>
 </pre></div>
@@ -642,18 +642,18 @@ Otherwise, you would have to build each package individually.</p>
 </div>
 <p>Windows doesn’t allow long paths, so <code class="docutils literal notranslate"><span class="pre">merge-install</span></code> will combine all the paths into the <code class="docutils literal notranslate"><span class="pre">install</span></code> directory.</p>
 </div></div>
-<p>Recall from the last tutorial that you also have the <code class="docutils literal notranslate"><span class="pre">ros_tutorials</span></code> packages in your <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>.
-You might have noticed that running <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> also built the <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code> package.
-That’s fine when you only have a few packages in your workspace, but when there are many packages, <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> can take a long time.</p>
-<p>To build only the <code class="docutils literal notranslate"><span class="pre">my_package</span></code> package next time, you can run:</p>
+<p>还记得上一个教程中你的 <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> 中也放了 <code class="docutils literal notranslate"><span class="pre">ros_tutorials</span></code> 包吧.
+你可能已经注意到运行 <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> 时也构建了 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code> 包.
+这在你的工作空间中只有几个包时没什么问题，但是包多了的话， <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> 就会消耗很长时间.</p>
+<p>下次如果只想构建 <code class="docutils literal notranslate"><span class="pre">my_package</span></code> 包，可以运行:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">colcon build --packages-select my_package</span>
 </pre></div>
 </div>
 </section>
-<section id="source-the-setup-file">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">3 Source the setup file</a><a class="headerlink" href="#source-the-setup-file" title="Link to this heading"></a></h3>
-<p>To use your new package and executable, first open a new terminal and source your main ROS 2 installation.</p>
-<p>Then, from inside the <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> directory, run the following command to source your workspace:</p>
+<section id="source">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">3 Source 配置文件</a><a class="headerlink" href="#source" title="Link to this heading"></a></h3>
+<p>想要运行新包里的可执行文件，首先要 source 你的 ROS 2 安装环境.</p>
+<p>然后，在 <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> 目录内运行以下命令来 source 你的工作空间:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-8-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-8-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-8-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-8-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-8-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-8-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-8-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source install/local_setup.bash</span>
 </pre></div>
@@ -665,15 +665,15 @@ That’s fine when you only have a few packages in your workspace, but when ther
 </pre></div>
 </div>
 </div></div>
-<p>Now that your workspace has been added to your path, you will be able to use your new package’s executables.</p>
+<p>现在你的工作空间已经被添加到环境变量中，就可以使用新包的可执行文件了.</p>
 </section>
-<section id="use-the-package">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">4 Use the package</a><a class="headerlink" href="#use-the-package" title="Link to this heading"></a></h3>
-<p>To run the executable you created using the <code class="docutils literal notranslate"><span class="pre">--node-name</span></code> argument during package creation, enter the command:</p>
+<section id="id9">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">4 使用包</a><a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>用以下指令运行在创建包的时候用 <code class="docutils literal notranslate"><span class="pre">--node-name</span></code> 指定生成的可执行文件:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run my_package my_node</span>
 </pre></div>
 </div>
-<p>Which will return a message to your terminal:</p>
+<p>终端会返回以下信息:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-9-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-9-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-9-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-9-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-9-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hello world my_package package</span>
 </pre></div>
@@ -683,9 +683,9 @@ That’s fine when you only have a few packages in your workspace, but when ther
 </div>
 </div></div>
 </section>
-<section id="examine-package-contents">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">5 Examine package contents</a><a class="headerlink" href="#examine-package-contents" title="Link to this heading"></a></h3>
-<p>Inside <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/my_package</span></code>, you will see the files and folders that <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">create</span></code> automatically generated:</p>
+<section id="id10">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">5 检查包的内容</a><a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>在 <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/my_package</span></code> 目录下可以看到 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">create</span></code> 自动创建了一些文件和文件夹:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-10-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-10-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-10-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-10-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-10-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">CMakeLists.txt  include  package.xml  src</span>
 </pre></div>
@@ -699,12 +699,12 @@ This is where all your custom C++ nodes will go in the future.</p>
 This is where all your custom Python nodes will go in the future.</p>
 </div></div>
 </section>
-<section id="customize-package-xml">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">6 Customize package.xml</a><a class="headerlink" href="#customize-package-xml" title="Link to this heading"></a></h3>
-<p>You may have noticed in the return message after creating your package that the fields <code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">license</span></code> contain <code class="docutils literal notranslate"><span class="pre">TODO</span></code> notes.
-That’s because the package description and license declaration are not automatically set, but are required if you ever want to release your package.
-The <code class="docutils literal notranslate"><span class="pre">maintainer</span></code> field may also need to be filled in.</p>
-<p>From <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/my_package</span></code>, open <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> using your preferred text editor:</p>
+<section id="package-xml">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">6 自定义 package.xml</a><a class="headerlink" href="#package-xml" title="Link to this heading"></a></h3>
+<p>你应该已经注意到在创建包后返回的信息中 <code class="docutils literal notranslate"><span class="pre">description</span></code> 和 <code class="docutils literal notranslate"><span class="pre">license</span></code> 字段包含了一些 <code class="docutils literal notranslate"><span class="pre">TODO</span></code> 标记.
+这是因为 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 中的包描述和许可声明不是自动生成的，但是如果你想发布你的包，这两个字段则是是必需的.
+<code class="docutils literal notranslate"><span class="pre">maintainer</span></code> 字段也得根据需要填写.</p>
+<p>从 <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/my_package</span></code> 目录下用你喜欢的文本编辑器打开 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 文件:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-11-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-11-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-11-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-11-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-11-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="cp">&lt;?xml-model</span>
@@ -751,28 +751,28 @@ The <code class="docutils literal notranslate"><span class="pre">maintainer</spa
 </pre></div>
 </div>
 </div></div>
-<p>Input your name and email on the <code class="docutils literal notranslate"><span class="pre">maintainer</span></code> line if it hasn’t been automatically populated for you.
-Then, edit the <code class="docutils literal notranslate"><span class="pre">description</span></code> line to summarize the package:</p>
+<p>如果 <code class="docutils literal notranslate"><span class="pre">maintainer</span></code> 字段没有自动填充，就在 <code class="docutils literal notranslate"><span class="pre">maintainer</span></code> 行输入你的名字和邮箱.
+然后编辑 <code class="docutils literal notranslate"><span class="pre">description</span></code> 行来描述或概括一下包的内容或作用:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;description&gt;</span>Beginner<span class="w"> </span>client<span class="w"> </span>libraries<span class="w"> </span>tutorials<span class="w"> </span>practice<span class="w"> </span>package<span class="nt">&lt;/description&gt;</span>
 </pre></div>
 </div>
-<p>Then, update the <code class="docutils literal notranslate"><span class="pre">license</span></code> line.
-You can read more about open source licenses <a class="reference external" href="https://opensource.org/licenses/alphabetical">here</a>.
-Since this package is only for practice, it’s safe to use any license.
-We’ll use <code class="docutils literal notranslate"><span class="pre">Apache</span> <span class="pre">License</span> <span class="pre">2.0</span></code>:</p>
+<p>接下来更新 <code class="docutils literal notranslate"><span class="pre">license</span></code> 行.
+在 <a class="reference external" href="https://opensource.org/licenses/alphabetical">这里</a> 可以了解更多关于开源许可证的信息.
+因为这个包只是练习用的，所以可以使用任何许可证.
+我们使用 <code class="docutils literal notranslate"><span class="pre">Apache</span> <span class="pre">License</span> <span class="pre">2.0</span></code>:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;license&gt;</span>Apache<span class="w"> </span>License<span class="w"> </span>2.0<span class="nt">&lt;/license&gt;</span>
 </pre></div>
 </div>
-<p>Don’t forget to save once you’re done editing.</p>
-<p>Below the license tag, you will see some tag names ending with <code class="docutils literal notranslate"><span class="pre">_depend</span></code>.
-This is where your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> would list its dependencies on other packages, for colcon to search for.
-<code class="docutils literal notranslate"><span class="pre">my_package</span></code> is simple and doesn’t have any dependencies, but you will see this space being utilized in upcoming tutorials.</p>
+<p>编辑完成后别忘了保存.</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">license</span></code> 标签(tag)下面，你会看到一些标签名字以 <code class="docutils literal notranslate"><span class="pre">_depend</span></code> 结尾.
+这是你的 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 列出了它对其他包的依赖，colcon 会搜索这些依赖.
+<code class="docutils literal notranslate"><span class="pre">my_package</span></code> 很简单，没有依赖，但是在后续教程中你会看到这个标签被用到.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-12-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-12-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-12-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-12-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-12-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><p>You’re all done for now!</p>
-</div><div aria-labelledby="tab-12-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-12-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file contains the same description, maintainer and license fields as <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>, so you need to set those as well.
-They need to match exactly in both files.
-The version and name (<code class="docutils literal notranslate"><span class="pre">package_name</span></code>) also need to match exactly, and should be automatically populated in both files.</p>
-<p>Open <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> with your preferred text editor.</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-Q01ha2U=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-12-Q01ha2U=" name="Q01ha2U=" role="tab" tabindex="0">CMake</button><button aria-controls="panel-12-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-12-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-12-Q01ha2U=" class="sphinx-tabs-panel group-tab" id="panel-12-Q01ha2U=" name="Q01ha2U=" role="tabpanel" tabindex="0"><p>你已经完成了全部任务！</p>
+</div><div aria-labelledby="tab-12-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-12-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p><code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 文件包含了和 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 一样的描述、维护者和许可证字段，所以你也需要设置这些地方的参数.
+这两个文件中的这些参数需要完全匹配.
+<code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 中的版本和名字(<code class="docutils literal notranslate"><span class="pre">package_name</span></code>)也需要完全匹配，应该会自动填充到两个文件中.</p>
+<p>用你喜欢的文本编辑器打开 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 文件:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
 
 <span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;my_py_pkg&#39;</span>
@@ -801,20 +801,20 @@ The version and name (<code class="docutils literal notranslate"><span class="pr
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Edit the <code class="docutils literal notranslate"><span class="pre">maintainer</span></code>, <code class="docutils literal notranslate"><span class="pre">maintainer_email</span></code>, and <code class="docutils literal notranslate"><span class="pre">description</span></code> lines to match <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>.</p>
-<p>Don’t forget to save the file.</p>
+<p>编辑 <code class="docutils literal notranslate"><span class="pre">maintainer</span></code>，<code class="docutils literal notranslate"><span class="pre">maintainer_email</span></code> 和 <code class="docutils literal notranslate"><span class="pre">description</span></code> 行与 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 中保持一致.</p>
+<p>别忘记保存文件.</p>
 </div></div>
 </section>
 </section>
-<section id="id4">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">总结</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>You’ve created a package to organize your code and make it easy to use for others.</p>
-<p>Your package was automatically populated with the necessary files, and then you used colcon to build it so you can use its executables in your local environment.</p>
+<section id="id11">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">总结</a><a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<p>你已经创建了一个包来组织你的代码，以及让别人更容易使用它.</p>
+<p>你的包已经自动填充了必要的文件，然后你用 colcon 构建它，这样你就可以在本地环境中使用它的可执行文件了.</p>
 </section>
-<section id="id5">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">下一步</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p>Next, let’s add something meaningful to a package.
-You’ll start with a simple publisher/subscriber system, which you can choose to write in either <a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html"><span class="doc">C++</span></a> or <a class="reference internal" href="Writing-A-Simple-Py-Publisher-And-Subscriber.html"><span class="doc">Python</span></a>.</p>
+<section id="id12">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">下一步</a><a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>接下来，让我们给包添加一些有意义的东西.
+你将实现一个简单的发布/订阅系统，用 <a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html"><span class="doc">C++</span></a> 或者 <a class="reference internal" href="Writing-A-Simple-Py-Publisher-And-Subscriber.html"><span class="doc">Python</span></a> 都可以.</p>
 </section>
 </section>
 

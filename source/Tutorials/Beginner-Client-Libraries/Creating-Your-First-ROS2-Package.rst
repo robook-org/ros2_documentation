@@ -4,10 +4,10 @@
 
 .. _CreatePkg:
 
-Creating a package
+创建 ROS 2 包
 ==================
 
-**目标:** Create a new package using either CMake or Python, and run its executable.
+**目标:** 用 CMake 或者 Python 创建一个新的包，然后运行对应的可执行文件.
 
 **教程等级:** 初级
 
@@ -20,39 +20,39 @@ Creating a package
 背景
 ----------
 
-1 What is a ROS 2 package?
+1 什么是 ROS 2 包?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A package is an organizational unit for your ROS 2 code.
-If you want to be able to install your code or share it with others, then you'll need it organized in a package.
-With packages, you can release your ROS 2 work and allow others to build and use it easily.
+包是 ROS 2 代码的组织单元.
+如果你想安装你的代码或者与他人分享，那么你需要将它组织成一个包.
+用包可以发布你的 ROS 2 工作，让其他人更容易构建和使用它.
 
-Package creation in ROS 2 uses ament as its build system and colcon as its build tool.
-You can create a package using either CMake or Python, which are officially supported, though other build types do exist.
+ROS 2 中的包创建使用 ament 作为构建系统(build system)，colcon 作为构建工具(build tool).
+你可以使用 CMake 或者 Python 创建一个包，这两种方法都是官方支持的，当然也有其他构建类型.
 
-2 What makes up a ROS 2 package?
+2 ROS 2 包由哪些内容构成?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ROS 2 Python and CMake packages each have their own minimum required contents:
+ROS 2 Python 和 CMake 包各自有自己的最低要求内容:
 
 .. tabs::
 
    .. group-tab:: CMake
 
-      * ``CMakeLists.txt`` file that describes how to build the code within the package
-      * ``include/<package_name>`` directory containing the public headers for the package
-      * ``package.xml`` file containing meta information about the package
-      * ``src`` directory containing the source code for the package
+      * ``CMakeLists.txt`` 描述如何构建包内代码
+      * ``include/<package_name>`` 目录包含包的公共头文件
+      * ``package.xml`` 包含关于包的元信息
+      * ``src`` 目录包含包的源代码
 
    .. group-tab:: Python
 
-      * ``package.xml`` file containing meta information about the package
-      * ``resource/<package_name>`` marker file for the package
-      * ``setup.cfg`` is required when a package has executables, so ``ros2 run`` can find them
-      * ``setup.py`` containing instructions for how to install the package
-      * ``<package_name>`` - a directory with the same name as your package, used by ROS 2 tools to find your package, contains ``__init__.py``
+      * ``package.xml`` 包含关于包的元信息
+      * ``resource/<package_name>`` 包的标记文件
+      * ``setup.cfg`` 当包有可执行文件时是必需的，这样 ``ros2 run`` 才能找到它们
+      * ``setup.py`` 包含如何安装包的指令
+      * ``<package_name>`` 是一个与包名相同的目录，ROS 2 工具用这个名字找到你的包的源码，需要含有 ``__init__.py`` 文件
 
-The simplest possible package may have a file structure that looks like:
+最简可运行的包应该有如下的文件结构：
 
 .. tabs::
 
@@ -78,17 +78,17 @@ The simplest possible package may have a file structure that looks like:
               my_package/
 
 
-3 Packages in a workspace
+3 工作空间中的包
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A single workspace can contain as many packages as you want, each in their own folder.
-You can also have packages of different build types in one workspace (CMake, Python, etc.).
-You cannot have nested packages.
+每个工作空间可以包含任意多的包，每个包都在自己的文件夹中.
+一个工作空间中可以有不同构建类型的包（CMake, Python 等）.
+但是一个包不能包含另一个包，也就是说包不能嵌套.
 
-Best practice is to have a ``src`` folder within your workspace, and to create your packages in there.
-This keeps the top level of the workspace “clean”.
+最佳实践：在工作空间中创建一个 ``src`` 文件夹，然后在里面放你的包.
+这样可以保持工作空间顶层的“干净条理”.
 
-A trivial workspace might look like:
+一个简单的工作空间看起来是这样的：
 
 .. code-block:: console
 
@@ -117,21 +117,21 @@ A trivial workspace might look like:
 前提条件
 -------------
 
-You should have a ROS 2 workspace after following the instructions in the :doc:`previous tutorial <./Creating-A-Workspace/Creating-A-Workspace>`.
-You will create your package in this workspace.
+在 :doc:`上一个教程 <./Creating-A-Workspace/Creating-A-Workspace>` 中按照指示操作，你应该已经有了 ROS 2 工作空间.
+现在你可以在这个工作空间中创建你的包.
 
 
 任务
 -----
 
-1 Create a package
+1 创建包
 ^^^^^^^^^^^^^^^^^^
 
-First, :doc:`source your ROS 2 installation <../Beginner-CLI-Tools/Configuring-ROS2-Environment>`.
+首先，:doc:`source 你的 ROS 2 安装环境 <../Beginner-CLI-Tools/Configuring-ROS2-Environment>`.
 
-Let's use the workspace you created in the :ref:`previous tutorial <new-directory>`, ``ros2_ws``, for your new package.
+让我们在 :ref:`上一个教程 <new-directory>` 中创建的工作空间 ``ros2_ws`` 里创建新包.
 
-Make sure you are in the ``src`` folder before running the package creation command.
+确保你在运行包创建的命令之前已经在 ``src`` 文件夹里了.
 
 .. tabs::
 
@@ -153,7 +153,7 @@ Make sure you are in the ``src`` folder before running the package creation comm
 
        cd \ros2_ws\src
 
-The command syntax for creating a new package in ROS 2 is:
+下面这个命令能创建一个新的包:
 
 .. tabs::
 
@@ -169,9 +169,9 @@ The command syntax for creating a new package in ROS 2 is:
 
         ros2 pkg create --build-type ament_python --license Apache-2.0 <package_name>
 
-For this tutorial, you will use the optional argument ``--node-name`` which creates a simple Hello World type executable in the package.
+在这个教程中，你将学习使用可选参数 ``--node-name`` 来创建一个简单的 Hello World 式的可执行文件.
 
-Enter the following command in your terminal:
+在终端中输入以下命令:
 
 .. tabs::
 
@@ -187,9 +187,9 @@ Enter the following command in your terminal:
 
         ros2 pkg create --build-type ament_python --license Apache-2.0 --node-name my_node my_package
 
-You will now have a new folder within your workspace's ``src`` directory called ``my_package``.
+这个命令会在你的工作空间的 ``src`` 目录下创建一个新文件夹，名为 ``my_package``.
 
-After running the command, your terminal will return the message:
+运行完命令后，终端会返回以下信息:
 
 .. tabs::
 
@@ -246,15 +246,15 @@ After running the command, your terminal will return the message:
         creating ./my_package/test/test_pep257.py
         creating ./my_package/my_package/my_node.py
 
-You can see the automatically generated files for the new package.
+可以看到为新创建的包自动生成的文件.
 
-2 Build a package
+2 构建包
 ^^^^^^^^^^^^^^^^^
 
-Putting packages in a workspace is especially valuable because you can build many packages at once by running ``colcon build`` in the workspace root.
-Otherwise, you would have to build each package individually.
+把包都放在工作空间中就可以在工作空间根目录下运行 ``colcon build`` 来一次性构建所有包.
+不然你还得单独构建每个包。
 
-Return to the root of your workspace:
+回到工作空间的根目录:
 
 .. tabs::
 
@@ -276,7 +276,7 @@ Return to the root of your workspace:
 
        cd \ros2_ws
 
-Now you can build your packages:
+现在构建包:
 
 .. tabs::
 
@@ -300,22 +300,21 @@ Now you can build your packages:
 
     Windows doesn't allow long paths, so ``merge-install`` will combine all the paths into the ``install`` directory.
 
-Recall from the last tutorial that you also have the ``ros_tutorials`` packages in your ``ros2_ws``.
-You might have noticed that running ``colcon build`` also built the ``turtlesim`` package.
-That's fine when you only have a few packages in your workspace, but when there are many packages, ``colcon build`` can take a long time.
+还记得上一个教程中你的 ``ros2_ws`` 中也放了 ``ros_tutorials`` 包吧.
+你可能已经注意到运行 ``colcon build`` 时也构建了 ``turtlesim`` 包.
+这在你的工作空间中只有几个包时没什么问题，但是包多了的话， ``colcon build`` 就会消耗很长时间.
 
-To build only the ``my_package`` package next time, you can run:
+下次如果只想构建 ``my_package`` 包，可以运行:
 
 .. code-block:: console
 
     colcon build --packages-select my_package
 
-3 Source the setup file
+3 Source 配置文件
 ^^^^^^^^^^^^^^^^^^^^^^^
+想要运行新包里的可执行文件，首先要 source 你的 ROS 2 安装环境.
 
-To use your new package and executable, first open a new terminal and source your main ROS 2 installation.
-
-Then, from inside the ``ros2_ws`` directory, run the following command to source your workspace:
+然后，在 ``ros2_ws`` 目录内运行以下命令来 source 你的工作空间:
 
 .. tabs::
 
@@ -337,18 +336,18 @@ Then, from inside the ``ros2_ws`` directory, run the following command to source
 
       call install/local_setup.bat
 
-Now that your workspace has been added to your path, you will be able to use your new package's executables.
+现在你的工作空间已经被添加到环境变量中，就可以使用新包的可执行文件了.
 
-4 Use the package
+4 使用包
 ^^^^^^^^^^^^^^^^^
 
-To run the executable you created using the ``--node-name`` argument during package creation, enter the command:
+用以下指令运行在创建包的时候用 ``--node-name`` 指定生成的可执行文件:
 
 .. code-block:: console
 
   ros2 run my_package my_node
 
-Which will return a message to your terminal:
+终端会返回以下信息:
 
 .. tabs::
 
@@ -364,10 +363,10 @@ Which will return a message to your terminal:
 
         Hi from my_package.
 
-5 Examine package contents
+5 检查包的内容
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Inside ``ros2_ws/src/my_package``, you will see the files and folders that ``ros2 pkg create`` automatically generated:
+在 ``ros2_ws/src/my_package`` 目录下可以看到 ``ros2 pkg create`` 自动创建了一些文件和文件夹:
 
 .. tabs::
 
@@ -389,14 +388,14 @@ Inside ``ros2_ws/src/my_package``, you will see the files and folders that ``ros
       ``my_node.py`` is inside the ``my_package`` directory.
       This is where all your custom Python nodes will go in the future.
 
-6 Customize package.xml
+6 自定义 package.xml
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-You may have noticed in the return message after creating your package that the fields ``description`` and ``license`` contain ``TODO`` notes.
-That's because the package description and license declaration are not automatically set, but are required if you ever want to release your package.
-The ``maintainer`` field may also need to be filled in.
+你应该已经注意到在创建包后返回的信息中 ``description`` 和 ``license`` 字段包含了一些 ``TODO`` 标记.
+这是因为 ``package.xml`` 中的包描述和许可声明不是自动生成的，但是如果你想发布你的包，这两个字段则是是必需的.
+``maintainer`` 字段也得根据需要填写.
 
-From ``ros2_ws/src/my_package``, open ``package.xml`` using your preferred text editor:
+从 ``ros2_ws/src/my_package`` 目录下用你喜欢的文本编辑器打开 ``package.xml`` 文件:
 
 .. tabs::
 
@@ -450,41 +449,41 @@ From ``ros2_ws/src/my_package``, open ``package.xml`` using your preferred text 
       </export>
      </package>
 
-Input your name and email on the ``maintainer`` line if it hasn't been automatically populated for you.
-Then, edit the ``description`` line to summarize the package:
+如果 ``maintainer`` 字段没有自动填充，就在 ``maintainer`` 行输入你的名字和邮箱.
+然后编辑 ``description`` 行来描述或概括一下包的内容或作用:
 
 .. code-block:: xml
 
   <description>Beginner client libraries tutorials practice package</description>
 
-Then, update the ``license`` line.
-You can read more about open source licenses `here <https://opensource.org/licenses/alphabetical>`__.
-Since this package is only for practice, it's safe to use any license.
-We'll use ``Apache License 2.0``:
+接下来更新 ``license`` 行.
+在 `这里 <https://opensource.org/licenses/alphabetical>`__ 可以了解更多关于开源许可证的信息.
+因为这个包只是练习用的，所以可以使用任何许可证.
+我们使用 ``Apache License 2.0``:
 
 .. code-block:: xml
 
   <license>Apache License 2.0</license>
 
-Don't forget to save once you're done editing.
+编辑完成后别忘了保存.
 
-Below the license tag, you will see some tag names ending with ``_depend``.
-This is where your ``package.xml`` would list its dependencies on other packages, for colcon to search for.
-``my_package`` is simple and doesn't have any dependencies, but you will see this space being utilized in upcoming tutorials.
+在 ``license`` 标签(tag)下面，你会看到一些标签名字以 ``_depend`` 结尾.
+这是你的 ``package.xml`` 列出了它对其他包的依赖，colcon 会搜索这些依赖.
+``my_package`` 很简单，没有依赖，但是在后续教程中你会看到这个标签被用到.
 
 .. tabs::
 
    .. group-tab:: CMake
 
-      You're all done for now!
+      你已经完成了全部任务！
 
    .. group-tab:: Python
 
-      The ``setup.py`` file contains the same description, maintainer and license fields as ``package.xml``, so you need to set those as well.
-      They need to match exactly in both files.
-      The version and name (``package_name``) also need to match exactly, and should be automatically populated in both files.
+      ``setup.py`` 文件包含了和 ``package.xml`` 一样的描述、维护者和许可证字段，所以你也需要设置这些地方的参数.
+      这两个文件中的这些参数需要完全匹配.
+      ``setup.py`` 中的版本和名字(``package_name``)也需要完全匹配，应该会自动填充到两个文件中.
 
-      Open ``setup.py`` with your preferred text editor.
+      用你喜欢的文本编辑器打开 ``setup.py`` 文件:
 
       .. code-block:: python
 
@@ -515,20 +514,20 @@ This is where your ``package.xml`` would list its dependencies on other packages
           },
        )
 
-      Edit the ``maintainer``, ``maintainer_email``, and ``description`` lines to match ``package.xml``.
+      编辑 ``maintainer``，``maintainer_email`` 和 ``description`` 行与 ``package.xml`` 中保持一致.
 
-      Don't forget to save the file.
+      别忘记保存文件.
 
 
 总结
 -------
 
-You've created a package to organize your code and make it easy to use for others.
+你已经创建了一个包来组织你的代码，以及让别人更容易使用它.
 
-Your package was automatically populated with the necessary files, and then you used colcon to build it so you can use its executables in your local environment.
+你的包已经自动填充了必要的文件，然后你用 colcon 构建它，这样你就可以在本地环境中使用它的可执行文件了.
 
 下一步
 ----------
 
-Next, let's add something meaningful to a package.
-You'll start with a simple publisher/subscriber system, which you can choose to write in either :doc:`C++ <./Writing-A-Simple-Cpp-Publisher-And-Subscriber>` or :doc:`Python <./Writing-A-Simple-Py-Publisher-And-Subscriber>`.
+接下来，让我们给包添加一些有意义的东西.
+你将实现一个简单的发布/订阅系统，用 :doc:`C++ <./Writing-A-Simple-Cpp-Publisher-And-Subscriber>` 或者 :doc:`Python <./Writing-A-Simple-Py-Publisher-And-Subscriber>` 都可以.

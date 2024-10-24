@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>发布者和订阅者(publisher &amp; subscriber) (Python) &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>发布者和订阅者(publisher &amp; subscriber) (Python 实现) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -29,8 +29,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Writing a simple service and client (C++)" href="Writing-A-Simple-Cpp-Service-And-Client.html" />
-    <link rel="prev" title="写一组简单的发布者和订阅者(publisher &amp; subscriber) (C++)" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html" /> 
+    <link rel="next" title="服务与客户端(Service and Client)(C++ 实现)" href="Writing-A-Simple-Cpp-Service-And-Client.html" />
+    <link rel="prev" title="发布者和订阅者(publisher &amp; subscriber)(C++ 实现)" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -137,10 +137,10 @@
 <li class="toctree-l3"><a class="reference internal" href="Colcon-Tutorial.html">使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 构建包</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html">创建工作空间</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Creating-Your-First-ROS2-Package.html">创建 ROS 2 包</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">写一组简单的发布者和订阅者(publisher &amp; subscriber) (C++)</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">发布者和订阅者(publisher &amp; subscriber) (Python)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html">Writing a simple service and client (C++)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Py-Service-And-Client.html">Writing a simple service and client (Python)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">发布者和订阅者(publisher &amp; subscriber)(C++ 实现)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">发布者和订阅者(publisher &amp; subscriber) (Python 实现)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html">服务与客户端(Service and Client)(C++ 实现)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Py-Service-And-Client.html">服务与客户端(Service and Client)(Python 实现)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Custom-ROS2-Interfaces.html">Creating custom msg and srv files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Single-Package-Define-And-Use-Interface.html">Implementing custom interfaces</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Using-Parameters-In-A-Class-CPP.html">Using parameters in a class (C++)</a></li>
@@ -283,7 +283,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Launch-file-different-formats.html">Using Python, XML, and YAML for ROS 2 Launch Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Launching-composable-nodes.html">Using ROS 2 launch to launch composable nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Node-arguments.html">Passing ROS arguments to nodes via the command-line</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Sync-Vs-Async.html">Synchronous vs. asynchronous service clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Sync-Vs-Async.html">同步 vs. 异步 service 客户端</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/DDS-tuning.html">DDS tuning information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Overriding-QoS-Policies-For-Recording-And-Playback.html">rosbag2: Overriding QoS Policies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../How-To-Guides/Working-with-multiple-RMW-implementations.html">Working with multiple ROS 2 middleware implementations</a></li>
@@ -397,7 +397,7 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../Beginner-Client-Libraries.html">初级: 客户端库</a></li>
-      <li class="breadcrumb-item active">发布者和订阅者(publisher &amp; subscriber) (Python)</li>
+      <li class="breadcrumb-item active">发布者和订阅者(publisher &amp; subscriber) (Python 实现)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -410,7 +410,7 @@
 
 
   <section id="publisher-subscriber-python">
-<span id="pypubsub"></span><h1>发布者和订阅者(publisher &amp; subscriber) (Python)<a class="headerlink" href="#publisher-subscriber-python" title="Link to this heading"></a></h1>
+<span id="pypubsub"></span><h1>发布者和订阅者(publisher &amp; subscriber) (Python 实现)<a class="headerlink" href="#publisher-subscriber-python" title="Link to this heading"></a></h1>
 <p><strong>目标:</strong> 用 Python 创建并运行 publisher &amp; subscriber 节点.</p>
 <p><strong>教程等级:</strong> 初级</p>
 <p><strong>预计时长:</strong> 20 分钟</p>
@@ -819,8 +819,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html" class="btn btn-neutral float-left" title="写一组简单的发布者和订阅者(publisher &amp; subscriber) (C++)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Writing-A-Simple-Cpp-Service-And-Client.html" class="btn btn-neutral float-right" title="Writing a simple service and client (C++)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html" class="btn btn-neutral float-left" title="发布者和订阅者(publisher &amp; subscriber)(C++ 实现)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Writing-A-Simple-Cpp-Service-And-Client.html" class="btn btn-neutral float-right" title="服务与客户端(Service and Client)(C++ 实现)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

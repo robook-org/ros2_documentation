@@ -4,7 +4,7 @@
 
 .. _PySrvCli:
 
-服务与客户端(Service and Client)(Python 实现)
+实现服务与客户端(Service and Client)(Python)
 ==================================================
 
 **目标:** 使用 Python 创建并运行服务和客户端节点.

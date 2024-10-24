@@ -4,10 +4,10 @@
 
 .. _CppSrvCli:
 
-Writing a simple service and client (C++)
+服务与客户端(Service and Client)(C++ 实现)
 =========================================
 
-**目标:** Create and run service and client nodes using C++.
+**目标:** 使用 C++ 创建并运行服务和客户端节点.
 
 **教程等级:** 初级
 
@@ -20,38 +20,37 @@ Writing a simple service and client (C++)
 背景
 ----------
 
-When :doc:`nodes <../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` communicate using :doc:`services <../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services>`, the node that sends a request for data is called the client node, and the one that responds to the request is the service node.
-The structure of the request and response is determined by a ``.srv`` file.
+在 :doc:`节点 <../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes>` 之间使用 :doc:`服务 <../Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services>` 通信时，发送数据请求的节点称为客户端节点，而响应请求的节点称为服务节点。
+请求和响应(request and response)的结构由 ``.srv`` 文件决定。
 
-The example used here is a simple integer addition system; one node requests the sum of two integers, and the other responds with the result.
-
+本教程将展示如何创建一个简单的整数加法系统；一个节点请求两个整数的和，另一个节点返回结果。
 
 前提条件
 -------------
 
-In previous tutorials, you learned how to :doc:`create a workspace <./Creating-A-Workspace/Creating-A-Workspace>` and :doc:`create a package <./Creating-Your-First-ROS2-Package>`.
+从之前的教程中学习了如何 :doc:`创建工作空间 <./Creating-A-Workspace/Creating-A-Workspace>` 和 :doc:`创建包 <./Creating-Your-First-ROS2-Package>`。
 
 任务
 -----
 
-1 Create a package
+1 创建包
 ^^^^^^^^^^^^^^^^^^
 
-Open a new terminal and :doc:`source your ROS 2 installation <../Beginner-CLI-Tools/Configuring-ROS2-Environment>` so that ``ros2`` commands will work.
+打开一个新终端并 :doc:`source ROS 2 安装 <../Beginner-CLI-Tools/Configuring-ROS2-Environment>`，这样 ``ros2`` 命令就能用了。
 
-Navigate into the ``ros2_ws`` directory created in a :ref:`previous tutorial <new-directory>`.
+进入之前创建的 ``ros2_ws`` 目录。
 
-Recall that packages should be created in the ``src`` directory, not the root of the workspace.
-Navigate into ``ros2_ws/src`` and create a new package:
+之前学过，包应该在 ``src`` 目录中创建，而不是工作空间的根目录。
+进入 ``ros2_ws/src`` 并创建一个新包：
 
 .. code-block:: console
 
   ros2 pkg create --build-type ament_cmake --license Apache-2.0 cpp_srvcli --dependencies rclcpp example_interfaces
 
-Your terminal will return a message verifying the creation of your package ``cpp_srvcli`` and all its necessary files and folders.
+终端会返回一个消息，确认包 ``cpp_srvcli`` 及其所有必要文件和文件夹都已创建。
 
-The ``--dependencies`` argument will automatically add the necessary dependency lines to ``package.xml`` and ``CMakeLists.txt``.
-``example_interfaces`` is the package that includes `the .srv file <https://github.com/ros2/example_interfaces/blob/{REPOS_FILE_BRANCH}/srv/AddTwoInts.srv>`__ you will need to structure your requests and responses:
+``--dependencies`` 参数会自动将必要的依赖行添加到 ``package.xml`` 和 ``CMakeLists.txt`` 中。
+``example_interfaces`` 中包含 `.srv 文件 <https://github.com/ros2/example_interfaces/blob/{REPOS_FILE_BRANCH}/srv/AddTwoInts.srv>`__ ，在这个文件中定义请求和响应的结构。:
 
 .. code-block:: console
 
@@ -60,14 +59,14 @@ The ``--dependencies`` argument will automatically add the necessary dependency 
     ---
     int64 sum
 
-The first two lines are the parameters of the request, and below the dashes is the response.
+前两行定义请求，横线下面定义响应。
 
-1.1 Update ``package.xml``
+1.1 更新 ``package.xml``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Because you used the ``--dependencies`` option during package creation, you don't have to manually add dependencies to ``package.xml`` or ``CMakeLists.txt``.
+因为在包创建过程中使用了 ``--dependencies`` 选项，所以不需要手动将依赖项添加到 ``package.xml`` 或 ``CMakeLists.txt``。
 
-As always, though, make sure to add the description, maintainer email and name, and license information to ``package.xml``.
+和之前一样，记得向 ``package.xml`` 添加描述、维护者邮箱和姓名，以及许可信息。
 
 .. code-block:: xml
 
@@ -76,10 +75,10 @@ As always, though, make sure to add the description, maintainer email and name, 
   <license>Apache License 2.0</license>
 
 
-2 Write the service node
+2 编写服务节点
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Inside the ``ros2_ws/src/cpp_srvcli/src`` directory, create a new file called ``add_two_ints_server.cpp`` and paste the following code within:
+在 ``ros2_ws/src/cpp_srvcli/src`` 目录中创建一个名为 ``add_two_ints_server.cpp`` 的新文件，并粘贴以下代码：
 
 .. code-block:: C++
 
@@ -112,12 +111,12 @@ Inside the ``ros2_ws/src/cpp_srvcli/src`` directory, create a new file called ``
         rclcpp::shutdown();
       }
 
-2.1 Examine the code
+2.1 检查代码
 ~~~~~~~~~~~~~~~~~~~~
 
-The first two ``#include`` statements are your package dependencies.
+前两个 ``#include`` 语句声明包的依赖项。
 
-The ``add`` function adds two integers from the request and gives the sum to the response, while notifying the console of its status using logs.
+``add`` 函数从请求中添加两个整数并将和给响应，同时使用日志通知控制台其状态。
 
 .. code-block:: C++
 
@@ -130,51 +129,52 @@ The ``add`` function adds two integers from the request and gives the sum to the
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%ld]", (long int)response->sum);
     }
 
-The ``main`` function accomplishes the following, line by line:
+``main`` 函数逐行完成以下操作：
 
-* Initializes ROS 2 C++ client library:
+* 初始化 ROS 2 C++ 客户端库：
 
   .. code-block:: C++
 
     rclcpp::init(argc, argv);
 
-* Creates a node named ``add_two_ints_server``:
+* 创建名为 ``add_two_ints_server`` 的节点：
 
   .. code-block:: C++
 
     std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("add_two_ints_server");
 
-* Creates a service named ``add_two_ints`` for that node and automatically advertises it over the networks with the ``&add`` method:
+* 为该节点创建一个名为 ``add_two_ints`` 的服务，自动将其广播到网络中，为服务添加 ``&add`` 作为回调函数：
 
   .. code-block:: C++
 
     rclcpp::Service<example_interfaces::srv::AddTwoInts>::SharedPtr service =
     node->create_service<example_interfaces::srv::AddTwoInts>("add_two_ints", &add);
 
-* Prints a log message when it's ready:
+* 当准备好时打印日志消息：
 
   .. code-block:: C++
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to add two ints.");
 
-* Spins the node, making the service available.
+运行(spin)节点，使服务可用。
 
   .. code-block:: C++
 
     rclcpp::spin(node);
 
-2.2 Add executable
-~~~~~~~~~~~~~~~~~~
+2.2 添加可执行文件
+~~~~~~~~~~~~~~~~~~~~~
 
-The ``add_executable`` macro generates an executable you can run using ``ros2 run``.
-Add the following code block to ``CMakeLists.txt`` to create an executable named ``server``:
+``add_executable`` 宏生成一个可以使用 ``ros2 run`` 运行的可执行文件。
+
+将以下代码块添加到 ``CMakeLists.txt`` 中，创建一个名为 ``server`` 的可执行文件：
 
 .. code-block:: console
 
     add_executable(server src/add_two_ints_server.cpp)
     ament_target_dependencies(server rclcpp example_interfaces)
 
-So ``ros2 run`` can find the executable, add the following lines to the end of the file, right before ``ament_package()``:
+这样 ``ros2 run`` 就能找到可执行文件，将以下行添加到文件末尾，就在 ``ament_package()`` 之前：
 
 .. code-block:: console
 
@@ -182,12 +182,12 @@ So ``ros2 run`` can find the executable, add the following lines to the end of t
         server
       DESTINATION lib/${PROJECT_NAME})
 
-You could build your package now, source the local setup files, and run it, but let's create the client node first so you can see the full system at work.
+服务端节点已经准备好了，接下来我们创建客户端节点。
 
-3 Write the client node
+3 编写客户端节点
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Inside the ``ros2_ws/src/cpp_srvcli/src`` directory, create a new file called ``add_two_ints_client.cpp`` and paste the following code within:
+在 ``ros2_ws/src/cpp_srvcli/src`` 目录中创建一个名为 ``add_two_ints_client.cpp`` 的新文件，并粘贴以下代码：
 
 .. code-block:: C++
 
@@ -240,10 +240,10 @@ Inside the ``ros2_ws/src/cpp_srvcli/src`` directory, create a new file called ``
   }
 
 
-3.1 Examine the code
+3.1 检查代码
 ~~~~~~~~~~~~~~~~~~~~
 
-Similar to the service node, the following lines of code create the node and then create the client for that node:
+与服务节点类似，以下代码块创建节点并为该节点创建客户端：
 
 .. code-block:: C++
 
@@ -251,8 +251,7 @@ Similar to the service node, the following lines of code create the node and the
     rclcpp::Client<example_interfaces::srv::AddTwoInts>::SharedPtr client =
       node->create_client<example_interfaces::srv::AddTwoInts>("add_two_ints");
 
-Next, the request is created.
-Its structure is defined by the ``.srv`` file mentioned earlier.
+接下来创建请求，其结构由之前提到的 ``.srv`` 文件定义。
 
 .. code-block:: C++
 
@@ -260,26 +259,26 @@ Its structure is defined by the ``.srv`` file mentioned earlier.
   request->a = atoll(argv[1]);
   request->b = atoll(argv[2]);
 
-The ``while`` loop gives the client 1 second to search for service nodes in the network.
-If it can't find any, it will continue waiting.
+``while`` 循环给客户端 1 秒的时间在网络中搜索服务节点。
+如果找不到服务节点，它会继续等待。
 
 .. code-block:: C++
 
   RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, waiting again...");
 
-If the client is canceled (e.g. by you entering ``Ctrl+C`` into the terminal), it will return an error log message stating it was interrupted.
+如果客户端被取消（例如你在终端中输入 ``Ctrl+C``），它会返回一个错误日志消息，说明它被中断了。
 
 .. code-block:: C++
 
   RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service. Exiting.");
 
-Then the client sends its request, and the node spins until it receives its response, or fails.
+如果找到服务节点，客户端会异步发送请求，然后等待结果。
 
-3.2 Add executable
-~~~~~~~~~~~~~~~~~~
+3.2 添加可执行文件
+~~~~~~~~~~~~~~~~~~~~~~
 
-Return to ``CMakeLists.txt`` to add the executable and target for the new node.
-After removing some unnecessary boilerplate from the automatically generated file, your ``CMakeLists.txt`` should look like this:
+在 ``CMakeLists.txt`` 中添加可执行文件和目标，为新节点添加依赖项。
+从自动生成的文件中删除一些不必要的模板代码后，你的 ``CMakeLists.txt`` 应该如下所示：
 
 .. code-block:: console
 
@@ -304,10 +303,10 @@ After removing some unnecessary boilerplate from the automatically generated fil
   ament_package()
 
 
-4 Build and run
+4 构建和运行
 ^^^^^^^^^^^^^^^
 
-It's good practice to run ``rosdep`` in the root of your workspace (``ros2_ws``) to check for missing dependencies before building:
+在构建之前，最好在工作空间的根目录（ ``ros2_ws`` ）中运行 ``rosdep`` 检查是否有缺少的依赖项：
 
 .. tabs::
 
@@ -326,7 +325,7 @@ It's good practice to run ``rosdep`` in the root of your workspace (``ros2_ws``)
       rosdep only runs on Linux, so you can skip ahead to next step.
 
 
-Navigate back to the root of your workspace, ``ros2_ws``, and build your new package:
+返回到工作空间的根目录，也就是 ``ros2_ws``，构建新包：
 
 .. tabs::
 
@@ -348,7 +347,7 @@ Navigate back to the root of your workspace, ``ros2_ws``, and build your new pac
 
       colcon build --merge-install --packages-select cpp_srvcli
 
-Open a new terminal, navigate to ``ros2_ws``, and source the setup files:
+打开一个新终端，导航到 ``ros2_ws``，并 source 配置文件：
 
 .. tabs::
 
@@ -370,33 +369,32 @@ Open a new terminal, navigate to ``ros2_ws``, and source the setup files:
 
       call install/setup.bat
 
-Now run the service node:
+现在运行服务节点：
 
 .. code-block:: console
 
      ros2 run cpp_srvcli server
 
-The terminal should return the following message, and then wait:
+终端应该返回以下消息，然后等待：
 
 .. code-block:: console
 
     [INFO] [rclcpp]: Ready to add two ints.
 
-Open another terminal, source the setup files from inside ``ros2_ws`` again.
-Start the client node, followed by any two integers separated by a space:
+其他终端中，再次 source ``ros2_ws`` 中的配置文件。
+运行客户端节点，后面跟两个整数，用空格分隔：
 
 .. code-block:: console
 
      ros2 run cpp_srvcli client 2 3
 
-If you chose ``2`` and ``3``, for example, the client would receive a response like this:
+如果你发了 ``2`` 和 ``3``，客户端会收到这样的响应：
 
 .. code-block:: console
 
     [INFO] [rclcpp]: Sum: 5
 
-Return to the terminal where your service node is running.
-You will see that it published log messages when it received the request and the data it received, and the response it sent back:
+返回服务节点的终端，你会看到它在接收请求、接收数据和返回响应时都发布了日志消息：
 
 .. code-block:: console
 
@@ -404,21 +402,21 @@ You will see that it published log messages when it received the request and the
     a: 2 b: 3
     [INFO] [rclcpp]: sending back response: [5]
 
-Enter ``Ctrl+C`` in the server terminal to stop the node from spinning.
+按 ``Ctrl+C`` 停止节点的运行。
 
 总结
 -------
 
-You created two nodes to request and respond to data over a service.
-You added their dependencies and executables to the package configuration files so that you could build and run them, and see a service/client system at work.
+你创建了两个节点，用于通过服务请求和响应数据。
+你添加了它们的依赖项和可执行文件到包配置文件中，这样你就能构建、运行，并观察到服务/客户端系统的工作情况。
 
 下一步
 ----------
 
-In the last few tutorials you've been utilizing interfaces to pass data across topics and services.
-Next, you'll learn how to :doc:`create custom interfaces <./Custom-ROS2-Interfaces>`.
+在最近的几个教程中，你一直在使用接口(interfaces)在 topic 和服务间传递数据。
+接下来，你将学习如何 :doc:`创建自定义接口 <./Custom-ROS2-Interfaces>`。
 
 相关内容
 ---------------
 
-* There are several ways you could write a service and client in C++; check out the ``minimal_service`` and ``minimal_client`` packages in the `ros2/examples <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclcpp/services>`_ repo.
+有几种方法可以在 C++ 中编写服务和客户端，查看 `ros2/examples <https://github.com/ros2/examples/tree/{REPOS_FILE_BRANCH}/rclcpp/services>`_ 中的 ``minimal_service`` 和 ``minimal_client`` 。

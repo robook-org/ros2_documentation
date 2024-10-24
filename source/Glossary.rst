@@ -99,3 +99,6 @@ Glossary of terms used throughout this documentation:
 
     bus
         总线。
+
+    spin
+        运行。这个单词本身有旋转的意思。在 ROS 2 中，或者类似的系统中，spin 是指让某个类似 executor 的东西轮流执行其中的任务，这个过程通常是一个无限循环，像是转动起一个填满任务的轮一样，所以叫 spin。

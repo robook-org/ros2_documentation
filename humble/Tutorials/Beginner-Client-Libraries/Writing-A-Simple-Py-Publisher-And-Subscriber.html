@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Writing a simple publisher and subscriber (Python) &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>发布者和订阅者(publisher &amp; subscriber) (Python) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -138,7 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html">创建工作空间</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Creating-Your-First-ROS2-Package.html">创建 ROS 2 包</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">写一组简单的发布者和订阅者(publisher &amp; subscriber) (C++)</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Writing a simple publisher and subscriber (Python)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">发布者和订阅者(publisher &amp; subscriber) (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html">Writing a simple service and client (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Py-Service-And-Client.html">Writing a simple service and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Custom-ROS2-Interfaces.html">Creating custom msg and srv files</a></li>
@@ -397,7 +397,7 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../Beginner-Client-Libraries.html">初级: 客户端库</a></li>
-      <li class="breadcrumb-item active">Writing a simple publisher and subscriber (Python)</li>
+      <li class="breadcrumb-item active">发布者和订阅者(publisher &amp; subscriber) (Python)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -409,59 +409,58 @@
              
 
 
-  <section id="writing-a-simple-publisher-and-subscriber-python">
-<span id="pypubsub"></span><h1>Writing a simple publisher and subscriber (Python)<a class="headerlink" href="#writing-a-simple-publisher-and-subscriber-python" title="Link to this heading"></a></h1>
-<p><strong>目标:</strong> Create and run a publisher and subscriber node using Python.</p>
+  <section id="publisher-subscriber-python">
+<span id="pypubsub"></span><h1>发布者和订阅者(publisher &amp; subscriber) (Python)<a class="headerlink" href="#publisher-subscriber-python" title="Link to this heading"></a></h1>
+<p><strong>目标:</strong> 用 Python 创建并运行 publisher &amp; subscriber 节点.</p>
 <p><strong>教程等级:</strong> 初级</p>
 <p><strong>预计时长:</strong> 20 分钟</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id9">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id10">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id11">任务</a></p>
+<li><p><a class="reference internal" href="#id1" id="id15">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id16">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id17">任务</a></p>
 <ul>
-<li><p><a class="reference internal" href="#create-a-package" id="id12">1 Create a package</a></p></li>
-<li><p><a class="reference internal" href="#write-the-publisher-node" id="id13">2 Write the publisher node</a></p></li>
-<li><p><a class="reference internal" href="#write-the-subscriber-node" id="id14">3 Write the subscriber node</a></p></li>
-<li><p><a class="reference internal" href="#build-and-run" id="id15">4 Build and run</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id18">1 创建包</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id19">2 编写发布者节点</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id20">3 编写订阅者节点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id21">4 构建和运行</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id6" id="id16">总结</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id17">下一步</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id18">相关内容</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id22">总结</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id23">下一步</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id24">相关内容</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>In this tutorial, you will create <a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html"><span class="doc">nodes</span></a> that pass information in the form of string messages to each other over a <a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">topic</span></a>.
-The example used here is a simple “talker” and “listener” system;
-one node publishes data and the other subscribes to the topic so it can receive that data.</p>
-<p>The code used in these examples can be found <a class="reference external" href="https://github.com/ros2/examples/tree/humble/rclpy/topics">here</a>.</p>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>在此教程中，你需要创建 <a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html"><span class="doc">节点</span></a>，这些节点通过 <a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">topic</span></a> 以字符串消息的形式传递信息。
+这里的例子是一个简单的 “talker” 和 “listener” 系统; 一个节点发布数据，另一个订阅主题以接收数据.</p>
+<p>这些示例中使用的代码可以在 <a class="reference external" href="https://github.com/ros2/examples/tree/humble/rclpy/topics">这里</a> 找到.</p>
 </section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>In previous tutorials, you learned how to <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">create a workspace</span></a> and <a class="reference internal" href="Creating-Your-First-ROS2-Package.html"><span class="doc">create a package</span></a>.</p>
-<p>A basic understanding of Python is recommended, but not entirely necessary.</p>
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>在此之前，你已经学会了如何 <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">创建工作空间</span></a> 和 <a class="reference internal" href="Creating-Your-First-ROS2-Package.html"><span class="doc">创建包</span></a>.</p>
+<p>此外你最好对 Python 有基本的了解，但也不是必须的。</p>
 </section>
 <section id="id3">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<section id="create-a-package">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">1 Create a package</a><a class="headerlink" href="#create-a-package" title="Link to this heading"></a></h3>
-<p>Open a new terminal and <a class="reference internal" href="../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">source your ROS 2 installation</span></a> so that <code class="docutils literal notranslate"><span class="pre">ros2</span></code> commands will work.</p>
-<p>Navigate into the <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> directory created in a <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html#new-directory"><span class="std std-ref">previous tutorial</span></a>.</p>
-<p>Recall that packages should be created in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory, not the root of the workspace.
-So, navigate into <code class="docutils literal notranslate"><span class="pre">ros2_ws/src</span></code>, and run the package creation command:</p>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">1 创建包</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>打开一个新的终端， <a class="reference internal" href="../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">source 你的 ROS 2 安装</span></a>，这样 <code class="docutils literal notranslate"><span class="pre">ros2</span></code> 命令就能用了。</p>
+<p>进入之前创建的 <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> 目录。</p>
+<p>回想一下，包应该在 <code class="docutils literal notranslate"><span class="pre">src</span></code> 目录中创建，而不是工作空间的根目录。
+所以，进入 <code class="docutils literal notranslate"><span class="pre">ros2_ws/src</span></code>，运行包创建命令:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 pkg create --build-type ament_python --license Apache-2.0 py_pubsub</span>
 </pre></div>
 </div>
-<p>Your terminal will return a message verifying the creation of your package <code class="docutils literal notranslate"><span class="pre">py_pubsub</span></code> and all its necessary files and folders.</p>
+<p>你的终端会返回一个消息，确认了包 <code class="docutils literal notranslate"><span class="pre">py_pubsub</span></code> 及其所有必要的文件和文件夹已经创建。</p>
 </section>
-<section id="write-the-publisher-node">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">2 Write the publisher node</a><a class="headerlink" href="#write-the-publisher-node" title="Link to this heading"></a></h3>
-<p>Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/py_pubsub/py_pubsub</span></code>.
-Recall that this directory is a <a class="reference external" href="https://docs.python.org/3/tutorial/modules.html#packages">Python package</a> with the same name as the ROS 2 package it’s nested in.</p>
-<p>Download the example talker code by entering the following command:</p>
+<section id="id5">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">2 编写发布者节点</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>进入 <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/py_pubsub/py_pubsub</span></code> 目录。
+回想一下，这个目录是一个与 ROS 2 包同名的 <a class="reference external" href="https://docs.python.org/3/tutorial/modules.html#packages">Python 包</a>。</p>
+<p>输入以下命令下载发布者代码样例:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wget https://raw.githubusercontent.com/ros2/examples/humble/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py</span>
 </pre></div>
@@ -478,8 +477,8 @@ Recall that this directory is a <a class="reference external" href="https://docs
 </pre></div>
 </div>
 </div></div>
-<p>Now there will be a new file named <code class="docutils literal notranslate"><span class="pre">publisher_member_function.py</span></code> adjacent to <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
-<p>Open the file using your preferred text editor.</p>
+<p>现在 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 旁边会有一个新文件，名为 <code class="docutils literal notranslate"><span class="pre">publisher_member_function.py</span></code>。</p>
+<p>用你喜欢的文本编辑器打开这个文件。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
@@ -521,29 +520,29 @@ Recall that this directory is a <a class="reference external" href="https://docs
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<section id="examine-the-code">
-<h4>2.1 Examine the code<a class="headerlink" href="#examine-the-code" title="Link to this heading"></a></h4>
-<p>The first lines of code after the comments import <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> so its <code class="docutils literal notranslate"><span class="pre">Node</span></code> class can be used.</p>
+<section id="id6">
+<h4>2.1 检查代码<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<p>文件中，最前面注释之后的第一行代码导入 <code class="docutils literal notranslate"><span class="pre">rclpy</span></code>，这样就可以使用它的 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 类。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 </pre></div>
 </div>
-<p>The next statement imports the built-in string message type that the node uses to structure the data that it passes on the topic.</p>
+<p>接下来的语句导入了内置的字符串消息类型，节点使用它来组织它通过主题传递的数据。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
 </pre></div>
 </div>
-<p>These lines represent the node’s dependencies.
-Recall that dependencies have to be added to <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>, which you’ll do in the next section.</p>
-<p>Next, the <code class="docutils literal notranslate"><span class="pre">MinimalPublisher</span></code> class is created, which inherits from (or is a subclass of) <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
+<p>上面这几行表明了节点的依赖关系。
+回想一下，这些依赖关系必须添加到 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 中，这是下一节你要做的事情。</p>
+<p>接下来，创建 <code class="docutils literal notranslate"><span class="pre">MinimalPublisher</span></code> 类，它继承自 <code class="docutils literal notranslate"><span class="pre">Node</span></code> （或者叫作“是 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 的子类”）。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MinimalPublisher</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
 </pre></div>
 </div>
-<p>Following is the definition of the class’s constructor.
-<code class="docutils literal notranslate"><span class="pre">super().__init__</span></code> calls the <code class="docutils literal notranslate"><span class="pre">Node</span></code> class’s constructor and gives it your node name, in this case <code class="docutils literal notranslate"><span class="pre">minimal_publisher</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">create_publisher</span></code> declares that the node publishes messages of type <code class="docutils literal notranslate"><span class="pre">String</span></code> (imported from the <code class="docutils literal notranslate"><span class="pre">std_msgs.msg</span></code> module), over a topic named <code class="docutils literal notranslate"><span class="pre">topic</span></code>, and that the “queue size” is 10.
-Queue size is a required QoS (quality of service) setting that limits the amount of queued messages if a subscriber is not receiving them fast enough.</p>
-<p>Next, a timer is created with a callback to execute every 0.5 seconds.
-<code class="docutils literal notranslate"><span class="pre">self.i</span></code> is a counter used in the callback.</p>
+<p>后面的代码是类的构造函数的定义。</p>
+<p><code class="docutils literal notranslate"><span class="pre">super().__init__</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 类的构造函数，并传递你的节点名称，这里是 <code class="docutils literal notranslate"><span class="pre">minimal_publisher</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">create_publisher</span></code> 声明了节点发布 <code class="docutils literal notranslate"><span class="pre">String</span></code> 类型的消息（从 <code class="docutils literal notranslate"><span class="pre">std_msgs.msg</span></code> 模块导入），发布到名为 <code class="docutils literal notranslate"><span class="pre">topic</span></code> 的主题上，”queue size” 是 10。
+队列大小是一个必需的 QoS（服务质量）设置，它限制了如果订阅者接收消息不够快时的最大排队消息数量。</p>
+<p>接下来，创建一个定时器，每 0.5 秒调用一次回调函数。
+<code class="docutils literal notranslate"><span class="pre">self.i</span></code> 是回调函数中的一个计数变量。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;minimal_publisher&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">publisher_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="s1">&#39;topic&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -552,7 +551,7 @@ Queue size is a required QoS (quality of service) setting that limits the amount
     <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">timer_callback</span></code> creates a message with the counter value appended, and publishes it to the console with <code class="docutils literal notranslate"><span class="pre">get_logger().info</span></code>.</p>
+<p>回调函数 <code class="docutils literal notranslate"><span class="pre">timer_callback</span></code> 创建一个消息，将计数变量加一，然后使用 <code class="docutils literal notranslate"><span class="pre">get_logger().info</span></code> 将其发布到控制台。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">timer_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
     <span class="n">msg</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;Hello World: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span>
@@ -561,7 +560,7 @@ Queue size is a required QoS (quality of service) setting that limits the amount
     <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>Lastly, the main function is defined.</p>
+<p>最后，主函数就定义好了：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
 
@@ -576,37 +575,37 @@ Queue size is a required QoS (quality of service) setting that limits the amount
     <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>First the <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> library is initialized, then the node is created, and then it “spins” the node so its callbacks are called.</p>
+<p>先初始化 <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> 库，然后创建节点，最后让节点运行(spin)起来。</p>
 </section>
-<section id="add-dependencies">
-<h4>2.2 Add dependencies<a class="headerlink" href="#add-dependencies" title="Link to this heading"></a></h4>
-<p>Navigate one level back to the <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/py_pubsub</span></code> directory, where the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>, and <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> files have been created for you.</p>
-<p>Open <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> with your text editor.</p>
-<p>As mentioned in the <a class="reference internal" href="Creating-Your-First-ROS2-Package.html"><span class="doc">previous tutorial</span></a>, make sure to fill in the <code class="docutils literal notranslate"><span class="pre">&lt;description&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;maintainer&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;license&gt;</span></code> tags:</p>
+<section id="id7">
+<h4>2.2 添加依赖<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<p>回到 <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/py_pubsub</span></code> 目录，这里已经创建好了 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>、 <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> 和 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 文件。</p>
+<p>打开 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>。</p>
+<p>如前面的 <a class="reference internal" href="Creating-Your-First-ROS2-Package.html"><span class="doc">教程</span></a> 中提到的，确保填写了 <code class="docutils literal notranslate"><span class="pre">&lt;description&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;maintainer&gt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&lt;license&gt;</span></code> 标签:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;description&gt;</span>Examples<span class="w"> </span>of<span class="w"> </span>minimal<span class="w"> </span>publisher/subscriber<span class="w"> </span>using<span class="w"> </span>rclpy<span class="nt">&lt;/description&gt;</span>
 <span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;you@email.com&quot;</span><span class="nt">&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/maintainer&gt;</span>
 <span class="nt">&lt;license&gt;</span>Apache<span class="w"> </span>License<span class="w"> </span>2.0<span class="nt">&lt;/license&gt;</span>
 </pre></div>
 </div>
-<p>After the lines above, add the following dependencies corresponding to your node’s import statements:</p>
+<p>在上面这些行的后面，添加以下依赖，对应于节点的导入语句:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;exec_depend&gt;</span>rclpy<span class="nt">&lt;/exec_depend&gt;</span>
 <span class="nt">&lt;exec_depend&gt;</span>std_msgs<span class="nt">&lt;/exec_depend&gt;</span>
 </pre></div>
 </div>
-<p>This declares the package needs <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> and <code class="docutils literal notranslate"><span class="pre">std_msgs</span></code> when its code is executed.</p>
-<p>Make sure to save the file.</p>
+<p>这样声明了当代码执行时，需要 <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> 和 <code class="docutils literal notranslate"><span class="pre">std_msgs</span></code>。</p>
+<p>记得保存文件。</p>
 </section>
-<section id="add-an-entry-point">
-<h4>2.3 Add an entry point<a class="headerlink" href="#add-an-entry-point" title="Link to this heading"></a></h4>
-<p>Open the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file.
-Again, match the <code class="docutils literal notranslate"><span class="pre">maintainer</span></code>, <code class="docutils literal notranslate"><span class="pre">maintainer_email</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">license</span></code> fields to your <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>:</p>
+<section id="entry-point">
+<h4>2.3 添加 entry point<a class="headerlink" href="#entry-point" title="Link to this heading"></a></h4>
+<p>打开 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 文件。
+然后确保 <code class="docutils literal notranslate"><span class="pre">maintainer</span></code>, <code class="docutils literal notranslate"><span class="pre">maintainer_email</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code> 和 <code class="docutils literal notranslate"><span class="pre">license</span></code> 的内容与 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 中的一致:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">maintainer</span><span class="o">=</span><span class="s1">&#39;YourName&#39;</span><span class="p">,</span>
 <span class="n">maintainer_email</span><span class="o">=</span><span class="s1">&#39;you@email.com&#39;</span><span class="p">,</span>
 <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Examples of minimal publisher/subscriber using rclpy&#39;</span><span class="p">,</span>
 <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Apache License 2.0&#39;</span><span class="p">,</span>
 </pre></div>
 </div>
-<p>Add the following line within the <code class="docutils literal notranslate"><span class="pre">console_scripts</span></code> brackets of the <code class="docutils literal notranslate"><span class="pre">entry_points</span></code> field:</p>
+<p>接下来，添加以下行到 <code class="docutils literal notranslate"><span class="pre">entry_points</span></code> 字段的 <code class="docutils literal notranslate"><span class="pre">console_scripts</span></code> 括号中:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="s1">&#39;talker = py_pubsub.publisher_member_function:main&#39;</span><span class="p">,</span>
@@ -614,25 +613,25 @@ Again, match the <code class="docutils literal notranslate"><span class="pre">ma
 <span class="p">},</span>
 </pre></div>
 </div>
-<p>Don’t forget to save.</p>
+<p>别忘了保存文件。</p>
 </section>
-<section id="check-setup-cfg">
-<h4>2.4 Check setup.cfg<a class="headerlink" href="#check-setup-cfg" title="Link to this heading"></a></h4>
-<p>The contents of the <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file should be correctly populated automatically, like so:</p>
+<section id="setup-cfg">
+<h4>2.4 检查 setup.cfg<a class="headerlink" href="#setup-cfg" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> 文件的内容应该已经自动正确填充了，像这样:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[develop]</span>
 <span class="go">script_dir=$base/lib/py_pubsub</span>
 <span class="go">[install]</span>
 <span class="go">install_scripts=$base/lib/py_pubsub</span>
 </pre></div>
 </div>
-<p>This is simply telling setuptools to put your executables in <code class="docutils literal notranslate"><span class="pre">lib</span></code>, because <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> will look for them there.</p>
-<p>You could build your package now, source the local setup files, and run it, but let’s create the subscriber node first so you can see the full system at work.</p>
+<p>这是告诉 setuptools 将你的可执行文件放在 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 中，因为 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> 会在那里找它们。</p>
+<p>现在你可以构建你的包了，然后运行它，但是让我们先创建订阅者节点，这样你就能看到整个系统是如何工作的。</p>
 </section>
 </section>
-<section id="write-the-subscriber-node">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">3 Write the subscriber node</a><a class="headerlink" href="#write-the-subscriber-node" title="Link to this heading"></a></h3>
-<p>Return to <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/py_pubsub/py_pubsub</span></code> to create the next node.
-Enter the following code in your terminal:</p>
+<section id="id8">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">3 编写订阅者节点</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>回到 <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/py_pubsub/py_pubsub</span></code> 目录，创建下一个节点。
+在终端中输入以下命令:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-1-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-1-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wget https://raw.githubusercontent.com/ros2/examples/humble/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py</span>
 </pre></div>
@@ -649,13 +648,13 @@ Enter the following code in your terminal:</p>
 </pre></div>
 </div>
 </div></div>
-<p>Now the directory should have these files:</p>
+<p>现在目录中应该有这些文件:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">__init__.py  publisher_member_function.py  subscriber_member_function.py</span>
 </pre></div>
 </div>
-<section id="id4">
-<h4>3.1 Examine the code<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
-<p>Open the <code class="docutils literal notranslate"><span class="pre">subscriber_member_function.py</span></code> with your text editor.</p>
+<section id="id9">
+<h4>3.1 检查代码<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<p>打开 <code class="docutils literal notranslate"><span class="pre">subscriber_member_function.py</span></code>。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
@@ -695,9 +694,9 @@ Enter the following code in your terminal:</p>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The subscriber node’s code is nearly identical to the publisher’s.
-The constructor creates a subscriber with the same arguments as the publisher.
-Recall from the <a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">topics tutorial</span></a> that the topic name and message type used by the publisher and subscriber must match to allow them to communicate.</p>
+<p>订阅者节点的代码几乎和发布者的一样。
+构造函数创建一个与发布者相同参数的订阅者。
+从 <a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">topics 教程</span></a> 中回忆一下，发布者和订阅者的主题名称和消息类型必须匹配，才能让它们通信。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">subscription</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
     <span class="n">String</span><span class="p">,</span>
     <span class="s1">&#39;topic&#39;</span><span class="p">,</span>
@@ -705,27 +704,27 @@ Recall from the <a class="reference internal" href="../Beginner-CLI-Tools/Unders
     <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The subscriber’s constructor and callback don’t include any timer definition, because it doesn’t need one.
-Its callback gets called as soon as it receives a message.</p>
-<p>The callback definition simply prints an info message to the console, along with the data it received.
-Recall that the publisher defines <code class="docutils literal notranslate"><span class="pre">msg.data</span> <span class="pre">=</span> <span class="pre">'Hello</span> <span class="pre">World:</span> <span class="pre">%d'</span> <span class="pre">%</span> <span class="pre">self.i</span></code></p>
+<p>订阅者的构造函数和回调函数都没有定时器定义，因为它不需要。
+它的回调函数在接收到消息时立即调用。</p>
+<p>回调函数的定义只是简单地将它接收到的数据打印到控制台。
+回想一下，发布者定义了 <code class="docutils literal notranslate"><span class="pre">msg.data</span> <span class="pre">=</span> <span class="pre">'Hello</span> <span class="pre">World:</span> <span class="pre">%d'</span> <span class="pre">%</span> <span class="pre">self.i</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">listener_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;I heard: &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">main</span></code> definition is almost exactly the same, replacing the creation and spinning of the publisher with the subscriber.</p>
+<p><code class="docutils literal notranslate"><span class="pre">main</span></code> 函数几乎和发布者的一样，只是用订阅者替换了发布者的创建和运行。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">minimal_subscriber</span> <span class="o">=</span> <span class="n">MinimalSubscriber</span><span class="p">()</span>
 
 <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">minimal_subscriber</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Since this node has the same dependencies as the publisher, there’s nothing new to add to <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>.
-The <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file can also remain untouched.</p>
+<p>这个节点的依赖和发布者的一样，所以不需要修改 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>。
+<code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> 文件也不需要修改。</p>
 </section>
-<section id="id5">
-<h4>3.2 Add an entry point<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
-<p>Reopen <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and add the entry point for the subscriber node below the publisher’s entry point.
-The <code class="docutils literal notranslate"><span class="pre">entry_points</span></code> field should now look like this:</p>
+<section id="id10">
+<h4>3.2 添加 entry point<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<p>重新打开 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>，在发布者的 entry point 下面添加订阅者节点的 entry point。
+<code class="docutils literal notranslate"><span class="pre">entry_points</span></code> 部分应该像这样:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="s1">&#39;talker = py_pubsub.publisher_member_function:main&#39;</span><span class="p">,</span>
@@ -734,13 +733,13 @@ The <code class="docutils literal notranslate"><span class="pre">entry_points</s
 <span class="p">},</span>
 </pre></div>
 </div>
-<p>Make sure to save the file, and then your pub/sub system should be ready.</p>
+<p>别忘了保存文件。</p>
 </section>
 </section>
-<section id="build-and-run">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">4 Build and run</a><a class="headerlink" href="#build-and-run" title="Link to this heading"></a></h3>
-<p>You likely already have the <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> and <code class="docutils literal notranslate"><span class="pre">std_msgs</span></code> packages installed as part of your ROS 2 system.
-It’s good practice to run <code class="docutils literal notranslate"><span class="pre">rosdep</span></code> in the root of your workspace (<code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>) to check for missing dependencies before building:</p>
+<section id="id11">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">4 构建和运行</a><a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>你应该已经安装了 <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> 和 <code class="docutils literal notranslate"><span class="pre">std_msgs</span></code> 包，他们是为 ROS 2 系统的一部分。
+在构建之前，最好在工作空间的根目录（ <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> ）中运行 <code class="docutils literal notranslate"><span class="pre">rosdep</span></code> 检查是否有缺少的依赖:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-2-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-2-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-2-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-2-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rosdep install -i --from-path src --rosdistro humble -y</span>
 </pre></div>
@@ -748,7 +747,7 @@ It’s good practice to run <code class="docutils literal notranslate"><span cla
 </div><div aria-labelledby="tab-2-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><p>rosdep only runs on Linux, so you can skip ahead to next step.</p>
 </div><div aria-labelledby="tab-2-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>rosdep only runs on Linux, so you can skip ahead to next step.</p>
 </div></div>
-<p>Still in the root of your workspace, <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>, build your new package:</p>
+<p>然后在工作空间的根目录（ <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> ）中构建你的新包:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-3-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-3-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-3-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-3-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">colcon build --packages-select py_pubsub</span>
 </pre></div>
@@ -760,7 +759,7 @@ It’s good practice to run <code class="docutils literal notranslate"><span cla
 </pre></div>
 </div>
 </div></div>
-<p>Open a new terminal, navigate to <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>, and source the setup files:</p>
+<p>打开一个新的终端，进入 <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>，然后 source setup 文件:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-4-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-4-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-4-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-4-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source install/setup.bash</span>
 </pre></div>
@@ -772,11 +771,11 @@ It’s good practice to run <code class="docutils literal notranslate"><span cla
 </pre></div>
 </div>
 </div></div>
-<p>Now run the talker node:</p>
+<p>运行 talker 节点:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run py_pubsub talker</span>
 </pre></div>
 </div>
-<p>The terminal should start publishing info messages every 0.5 seconds, like so:</p>
+<p>终端应该开始每 0.5 秒发布一条信息，像这样:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [minimal_publisher]: Publishing: &quot;Hello World: 0&quot;</span>
 <span class="go">[INFO] [minimal_publisher]: Publishing: &quot;Hello World: 1&quot;</span>
 <span class="go">[INFO] [minimal_publisher]: Publishing: &quot;Hello World: 2&quot;</span>
@@ -785,11 +784,11 @@ It’s good practice to run <code class="docutils literal notranslate"><span cla
 <span class="go">...</span>
 </pre></div>
 </div>
-<p>Open another terminal, source the setup files from inside <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> again, and then start the listener node:</p>
+<p>打开另一个终端，再次 source <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> 中的 setup 文件，然后运行 listener 节点:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run py_pubsub listener</span>
 </pre></div>
 </div>
-<p>The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:</p>
+<p>listener 会开始在控制台打印发布者发布的消息，从发布者当前的消息计数开始，像这样:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 10&quot;</span>
 <span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 11&quot;</span>
 <span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 12&quot;</span>
@@ -797,22 +796,21 @@ It’s good practice to run <code class="docutils literal notranslate"><span cla
 <span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 14&quot;</span>
 </pre></div>
 </div>
-<p>Enter <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in each terminal to stop the nodes from spinning.</p>
+<p>在每个终端中按 <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> 停止节点。</p>
 </section>
 </section>
-<section id="id6">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">总结</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
-<p>You created two nodes to publish and subscribe to data over a topic.
-Before running them, you added their dependencies and entry points to the package configuration files.</p>
+<section id="id12">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">总结</a><a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>你创建了两个节点，通过 topic 发布和订阅数据。
+运行之前还添加了它们的依赖和 entry points 到包配置文件中。</p>
 </section>
-<section id="id7">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">下一步</a><a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
-<p>Next you’ll create another simple ROS 2 package using the service/client model.
-Again, you can choose to write it in either <a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html"><span class="doc">C++</span></a> or <a class="reference internal" href="Writing-A-Simple-Py-Service-And-Client.html"><span class="doc">Python</span></a>.</p>
+<section id="id13">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">下一步</a><a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<p>接下来你可以选择用 <a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html"><span class="doc">C++</span></a> 或 <a class="reference internal" href="Writing-A-Simple-Py-Service-And-Client.html"><span class="doc">Python</span></a> 写一个使用服务/客户端模型的简单 ROS 2 包。</p>
 </section>
-<section id="id8">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">相关内容</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
-<p>There are several ways you could write a publisher and subscriber in Python; check out the <code class="docutils literal notranslate"><span class="pre">minimal_publisher</span></code> and <code class="docutils literal notranslate"><span class="pre">minimal_subscriber</span></code> packages in the <a class="reference external" href="https://github.com/ros2/examples/tree/humble/rclpy/topics">ros2/examples</a> repo.</p>
+<section id="id14">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">相关内容</a><a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<p>有很多种方法可以在 Python 中实现发布者和订阅者; 在 <a class="reference external" href="https://github.com/ros2/examples/tree/humble/rclpy/topics">ros2/examples</a> 中可以找到.</p>
 </section>
 </section>
 

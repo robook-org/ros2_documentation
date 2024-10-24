@@ -4,7 +4,7 @@
 
 .. _PyPubSub:
 
-发布者和订阅者(publisher & subscriber) (Python)
+发布者和订阅者(publisher & subscriber) (Python 实现)
 ==================================================
 
 **目标:** 用 Python 创建并运行 publisher & subscriber 节点.

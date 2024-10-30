@@ -312,7 +312,7 @@ Topics 不仅局限于一对一的通信；它们可以是一对多、多对一�
 8 ros2 topic hz
 ^^^^^^^^^^^^^^^
 
-最后，你可以使用以下命令查看数据发布的速率:
+You can also view the rate at which data is published using:
 
 .. code-block:: console
 
@@ -328,12 +328,52 @@ Topics 不仅局限于一对一的通信；它们可以是一对多、多对一�
 回想一下，你使用 ``ros2 topic pub --rate 1`` 设置 ``turtle1/cmd_vel`` 的发布速率为稳定的 1 Hz。
 如果你用 ``turtle1/cmd_vel`` 替换上面的命令，你会看到一个反映这个速率的平均值。
 
-.. 9 rqt_plot
-   ^^^^^^^^^^
-   Can't do this section now because there's some significant UI issues with rqt_plot for ROS 2
+9 ros2 topic bw
+^^^^^^^^^^^^^^^
 
-9 关闭节点
-^^^^^^^^^^
+The bandwidth used by a topic can be viewed using:
+
+.. code-block:: console
+
+    ros2 topic bw /turtle1/pose
+
+It returns the bandwidth utilization and number of messages being published to the ``/turtle1/pose`` the topic.
+
+.. code-block:: console
+
+    Subscribed to [/turtle1/pose]
+    1.51 KB/s from 62 messages
+        Message size mean: 0.02 KB min: 0.02 KB max: 0.02 KB
+
+10 ros2 topic find
+^^^^^^^^^^^^^^^^^^
+
+To list a list of available topics of a given type use:
+
+.. code-block:: console
+
+    ros2 topic find <topic_type>
+
+Recall that the ``cmd_vel`` topic has the type:
+
+.. code-block:: console
+
+    geometry_msgs/msg/Twist
+
+Using the ``find`` command outputs topics available when given the message type:
+
+.. code-block:: console
+
+    ros2 topic find geometry_msgs/msg/Twist
+
+This outputs:
+
+.. code-block:: console
+
+    /turtle1/cmd_vel
+
+11 Clean up
+^^^^^^^^^^^
 
 现在你已经有很多节点在运行。
 不要忘记在每个终端中使用 ``Ctrl+C`` 来停止它们。

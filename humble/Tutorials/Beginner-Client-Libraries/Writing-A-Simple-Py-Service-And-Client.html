@@ -400,7 +400,7 @@
           <li class="breadcrumb-item"><a href="../Beginner-Client-Libraries.html">初级: 客户端库</a></li>
       <li class="breadcrumb-item active">服务与客户端(Service and Client)(Python 实现)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -623,14 +623,14 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">req</span> <span class="o">=</span> <span class="n">AddTwoInts</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>下面是 <code class="docutils literal notranslate"><span class="pre">send_request</span></code> 方法，它将发送请求并返回一个 future ，可以传递给 <code class="docutils literal notranslate"><span class="pre">spin_until_future_complete</span></code>：</p>
+<p>Below the constructor is the <code class="docutils literal notranslate"><span class="pre">send_request</span></code> method, which will send the request and spin until it receives the response or fails.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>最后是 <code class="docutils literal notranslate"><span class="pre">main</span></code> 方法，它构造一个 <code class="docutils literal notranslate"><span class="pre">MinimalClientAsync</span></code> 对象，使用传入的命令行参数发送请求，调用 <code class="docutils literal notranslate"><span class="pre">spin_until_future_complete</span></code> 并记录结果：</p>
+<p>Finally we have the <code class="docutils literal notranslate"><span class="pre">main</span></code> method, which constructs a <code class="docutils literal notranslate"><span class="pre">MinimalClientAsync</span></code> object, sends the request using the passed-in command-line arguments, calls <code class="docutils literal notranslate"><span class="pre">rclpy.spin_until_future_complete</span></code> to wait for the result, and logs the results.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
 
@@ -645,6 +645,11 @@
     <span class="n">minimal_client</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
     <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not use <code class="docutils literal notranslate"><span class="pre">rclpy.spin_until_future_complete</span></code> in a ROS 2 callback.
+For more details see the <a class="reference internal" href="../../How-To-Guides/Sync-Vs-Async.html"><span class="doc">sync deadlock article</span></a>.</p>
 </div>
 </section>
 <section id="id9">
@@ -779,13 +784,13 @@ Python 中还有另一种服务调用 API，称为同步调用。
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

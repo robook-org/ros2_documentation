@@ -244,7 +244,7 @@
           self.get_logger().info('service not available, waiting again...')
       self.req = AddTwoInts.Request()
 
-下面是 ``send_request`` 方法，它将发送请求并返回一个 future ，可以传递给 ``spin_until_future_complete``：
+Below the constructor is the ``send_request`` method, which will send the request and spin until it receives the response or fails.
 
 .. code-block:: python
 
@@ -253,7 +253,7 @@
       self.req.b = b
       return self.cli.call_async(self.req)
 
-最后是 ``main`` 方法，它构造一个 ``MinimalClientAsync`` 对象，使用传入的命令行参数发送请求，调用 ``spin_until_future_complete`` 并记录结果：
+Finally we have the ``main`` method, which constructs a ``MinimalClientAsync`` object, sends the request using the passed-in command-line arguments, calls ``rclpy.spin_until_future_complete`` to wait for the result, and logs the results.
 
 .. code-block:: python
 
@@ -271,6 +271,10 @@
       minimal_client.destroy_node()
       rclpy.shutdown()
 
+.. warning::
+
+  Do not use ``rclpy.spin_until_future_complete`` in a ROS 2 callback.
+  For more details see the :doc:`sync deadlock article <../../../How-To-Guides/Sync-Vs-Async>`.
 
 3.2 添加 entry point
 ~~~~~~~~~~~~~~~~~~~~~~

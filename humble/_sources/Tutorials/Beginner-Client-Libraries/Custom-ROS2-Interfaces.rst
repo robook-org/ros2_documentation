@@ -398,7 +398,7 @@
               self.subscription
 
           def listener_callback(self, msg):
-                  self.get_logger().info('I heard: "%d"' % msg.num)  # CHANGE
+              self.get_logger().info('I heard: "%d"' % msg.num)  # CHANGE
 
 
       def main(args=None):

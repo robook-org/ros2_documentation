@@ -195,7 +195,7 @@ Topics 不仅局限于一对一的通信；它们可以是一对多、多对一�
 
 这意味着在 ``geometry_msgs`` 包中有一个叫 ``Twist`` 的 ``msg``。
 
-现在我们可以运行 ``ros2 interface show <msg type>`` 来了解消息的细节。
+现在我们可以运行 ``ros2 interface show <msg_type>`` 来了解消息的细节。
 具体来说，就是消息期望的数据结构是什么。
 
 .. code-block:: console

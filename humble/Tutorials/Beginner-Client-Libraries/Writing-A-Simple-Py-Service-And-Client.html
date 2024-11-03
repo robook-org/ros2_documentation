@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>服务与客户端(Service and Client)(Python 实现) &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>实现服务与客户端(Service and Client)(Python) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -30,7 +30,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="创建自定义的 msg 和 srv" href="Custom-ROS2-Interfaces.html" />
-    <link rel="prev" title="服务与客户端(Service and Client)(C++ 实现)" href="Writing-A-Simple-Cpp-Service-And-Client.html" /> 
+    <link rel="prev" title="实现服务与客户端(Service and Client)(C++)" href="Writing-A-Simple-Cpp-Service-And-Client.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -137,14 +137,14 @@
 <li class="toctree-l3"><a class="reference internal" href="Colcon-Tutorial.html">使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 构建包</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html">创建工作空间</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Creating-Your-First-ROS2-Package.html">创建 ROS 2 包</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">发布者和订阅者(publisher &amp; subscriber)(C++ 实现)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Py-Publisher-And-Subscriber.html">发布者和订阅者(publisher &amp; subscriber) (Python 实现)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html">服务与客户端(Service and Client)(C++ 实现)</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">服务与客户端(Service and Client)(Python 实现)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">实现发布者和订阅者(publisher &amp; subscriber)(C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Py-Publisher-And-Subscriber.html">实现发布者和订阅者(publisher &amp; subscriber) (Python)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html">实现服务与客户端(Service and Client)(C++)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">实现服务与客户端(Service and Client)(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Custom-ROS2-Interfaces.html">创建自定义的 msg 和 srv</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Single-Package-Define-And-Use-Interface.html">Implementing custom interfaces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Using-Parameters-In-A-Class-CPP.html">Using parameters in a class (C++)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Using-Parameters-In-A-Class-Python.html">Using parameters in a class (Python)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Using-Parameters-In-A-Class-CPP.html">在类中使用参数 (C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Using-Parameters-In-A-Class-Python.html">在类中使用参数 (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Getting-Started-With-Ros2doctor.html">Using <code class="docutils literal notranslate"><span class="pre">ros2doctor</span></code> to identify issues</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Pluginlib.html">Creating and using plugins (C++)</a></li>
 </ul>
@@ -398,7 +398,7 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../Beginner-Client-Libraries.html">初级: 客户端库</a></li>
-      <li class="breadcrumb-item active">服务与客户端(Service and Client)(Python 实现)</li>
+      <li class="breadcrumb-item active">实现服务与客户端(Service and Client)(Python)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -411,7 +411,7 @@
 
 
   <section id="service-and-client-python">
-<span id="pysrvcli"></span><h1>服务与客户端(Service and Client)(Python 实现)<a class="headerlink" href="#service-and-client-python" title="Link to this heading"></a></h1>
+<span id="pysrvcli"></span><h1>实现服务与客户端(Service and Client)(Python)<a class="headerlink" href="#service-and-client-python" title="Link to this heading"></a></h1>
 <p><strong>目标:</strong> 使用 Python 创建并运行服务和客户端节点.</p>
 <p><strong>教程等级:</strong> 初级</p>
 <p><strong>预计时长:</strong> 20 分钟</p>
@@ -741,7 +741,7 @@ Python 中还有另一种服务调用 API，称为同步调用。
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Writing-A-Simple-Cpp-Service-And-Client.html" class="btn btn-neutral float-left" title="服务与客户端(Service and Client)(C++ 实现)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Writing-A-Simple-Cpp-Service-And-Client.html" class="btn btn-neutral float-left" title="实现服务与客户端(Service and Client)(C++)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="Custom-ROS2-Interfaces.html" class="btn btn-neutral float-right" title="创建自定义的 msg 和 srv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

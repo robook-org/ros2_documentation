@@ -4,7 +4,7 @@
 
 .. _CppPubSub:
 
-发布者和订阅者(publisher & subscriber)(C++ 实现)
+实现发布者和订阅者(publisher & subscriber)(C++)
 ===============================================================
 
 **目标:** 用 C++ 创建并运行 publisher & subscriber 节点.

@@ -4,7 +4,7 @@
 
 .. _CppSrvCli:
 
-服务与客户端(Service and Client)(C++ 实现)
+实现服务与客户端(Service and Client)(C++)
 ===============================================
 
 **目标:** 使用 C++ 创建并运行服务和客户端节点.
@@ -347,7 +347,7 @@
 
       colcon build --merge-install --packages-select cpp_srvcli
 
-打开一个新终端，导航到 ``ros2_ws``，并 source 配置文件：
+打开一个新终端，进入 ``ros2_ws``，并 source 配置文件：
 
 .. tabs::
 

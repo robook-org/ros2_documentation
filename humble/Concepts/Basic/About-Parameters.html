@@ -136,14 +136,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html">使用 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 构建包</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">创建工作空间</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html">创建 ROS 2 包</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">发布者和订阅者(publisher &amp; subscriber)(C++ 实现)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html">发布者和订阅者(publisher &amp; subscriber) (Python 实现)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Service-And-Client.html">服务与客户端(Service and Client)(C++ 实现)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html">服务与客户端(Service and Client)(Python 实现)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html">实现发布者和订阅者(publisher &amp; subscriber)(C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html">实现发布者和订阅者(publisher &amp; subscriber) (Python)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Service-And-Client.html">实现服务与客户端(Service and Client)(C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html">实现服务与客户端(Service and Client)(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html">创建自定义的 msg 和 srv</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html">Implementing custom interfaces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html">Using parameters in a class (C++)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html">Using parameters in a class (Python)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html">在类中使用参数 (C++)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html">在类中使用参数 (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Getting-Started-With-Ros2doctor.html">Using <code class="docutils literal notranslate"><span class="pre">ros2doctor</span></code> to identify issues</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Pluginlib.html">Creating and using plugins (C++)</a></li>
 </ul>
@@ -447,7 +447,7 @@
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">声明参数</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>默认情况下，节点需要声明其在生命周期中可以接受的所有参数。
 这样，参数的类型和名称在节点启动时就被定义好了，降低了后续配置错误的可能性。
-请参见 <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html"><span class="doc">Using parameters in a class (C++)</span></a> 或 <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html"><span class="doc">Using parameters in a class (Python)</span></a> 了解如何声明和使用节点中的参数。</p>
+请参见 <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html"><span class="doc">在类中使用参数 (C++)</span></a> 或 <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html"><span class="doc">在类中使用参数 (Python)</span></a> 了解如何声明和使用节点中的参数。</p>
 <p>对于某些类型的节点，不是所有参数都能提前知道。
 在这些情况下，可以实例化节点时将 <code class="docutils literal notranslate"><span class="pre">allow_undeclared_parameters</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">true</span></code>，这样即使参数没有被声明，也可以在节点上进行 get 和 set 操作。</p>
 </section>
@@ -481,7 +481,7 @@
 </section>
 <section id="id5">
 <h2><a class="toc-backref" href="#id14" role="doc-backlink">与参数交互</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p>ROS 2 节点可以通过节点 API操作参数，如 <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html"><span class="doc">Using parameters in a class (C++)</span></a> 或 <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html"><span class="doc">Using parameters in a class (Python)</span></a> 中所述
+<p>ROS 2 节点可以通过节点 API操作参数，如 <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html"><span class="doc">在类中使用参数 (C++)</span></a> 或 <a class="reference internal" href="../../Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html"><span class="doc">在类中使用参数 (Python)</span></a> 中所述
 外部程序可以通过节点实例化时默认创建的参数服务操作参数。
 默认创建的服务有：</p>
 <ul class="simple">

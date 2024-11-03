@@ -102,3 +102,9 @@ Glossary of terms used throughout this documentation:
 
     spin
         运行。这个单词本身有旋转的意思。在 ROS 2 中，或者类似的系统中，spin 是指让某个类似 executor 的东西轮流执行其中的任务，这个过程通常是一个无限循环，像是转动起一个填满任务的轮一样，所以叫 spin。
+
+    launch file
+        启动文件。 在 ROS 2 中特指那些可以用来启动多个节点的文件，这些文件可以用 Python、XML 或 YAML 编写。
+
+    setup file
+        配置文件。当表述为 source setup file 时，特指需要被 source 的那些诸如 setup.bash、setup.sh、setup.bat 之类的用来配置 ROS 2 环境的文件。

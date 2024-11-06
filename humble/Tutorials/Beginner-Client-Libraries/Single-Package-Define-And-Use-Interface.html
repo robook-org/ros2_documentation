@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Implementing custom interfaces &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>实现自定义接口(interfaces) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -142,7 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Cpp-Service-And-Client.html">实现服务与客户端(Service and Client)(C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-A-Simple-Py-Service-And-Client.html">实现服务与客户端(Service and Client)(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Custom-ROS2-Interfaces.html">创建自定义的 msg 和 srv</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Implementing custom interfaces</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">实现自定义接口(interfaces)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Using-Parameters-In-A-Class-CPP.html">在类中使用参数 (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Using-Parameters-In-A-Class-Python.html">在类中使用参数 (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Getting-Started-With-Ros2doctor.html">Using <code class="docutils literal notranslate"><span class="pre">ros2doctor</span></code> to identify issues</a></li>
@@ -398,9 +398,9 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../Beginner-Client-Libraries.html">初级: 客户端库</a></li>
-      <li class="breadcrumb-item active">Implementing custom interfaces</li>
+      <li class="breadcrumb-item active">实现自定义接口(interfaces)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -410,58 +410,58 @@
              
 
 
-  <section id="implementing-custom-interfaces">
-<span id="singlepkginterface"></span><h1>Implementing custom interfaces<a class="headerlink" href="#implementing-custom-interfaces" title="Link to this heading"></a></h1>
-<p><strong>目标:</strong> Learn more ways to implement custom interfaces in ROS 2.</p>
+  <section id="interfaces">
+<span id="singlepkginterface"></span><h1>实现自定义接口(interfaces)<a class="headerlink" href="#interfaces" title="Link to this heading"></a></h1>
+<p><strong>目标:</strong> 学习在 ROS 2 中实现自定义接口的更多方法。</p>
 <p><strong>教程等级:</strong> 初级</p>
 <p><strong>预计时长:</strong> 15 分钟</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id7">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id8">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id9">任务</a></p>
+<li><p><a class="reference internal" href="#id1" id="id14">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id15">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id16">任务</a></p>
 <ul>
-<li><p><a class="reference internal" href="#create-a-package" id="id10">1 Create a package</a></p></li>
-<li><p><a class="reference internal" href="#create-a-msg-file" id="id11">2 Create a msg file</a></p></li>
-<li><p><a class="reference internal" href="#use-an-interface-from-the-same-package" id="id12">3 Use an interface from the same package</a></p></li>
-<li><p><a class="reference internal" href="#try-it-out" id="id13">4 Try it out</a></p></li>
-<li><p><a class="reference internal" href="#extra-use-an-existing-interface-definition" id="id14">5 (Extra) Use an existing interface definition</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id17">1 创建包</a></p></li>
+<li><p><a class="reference internal" href="#msg" id="id18">2 创建 msg 文件</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id19">3 在同一个包中使用接口</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id20">4 尝试一下</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id21">5 (额外内容) 使用现有接口定义</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id4" id="id15">总结</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id16">下一步</a></p></li>
-<li><p><a class="reference internal" href="#id6" id="id17">相关内容</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id22">总结</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id23">下一步</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id24">相关内容</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>In a <a class="reference internal" href="Custom-ROS2-Interfaces.html"><span class="doc">previous tutorial</span></a>, you learned how to create custom msg and srv interfaces.</p>
-<p>While best practice is to declare interfaces in dedicated interface packages, sometimes it can be convenient to declare, create and use an interface all in one package.</p>
-<p>Recall that interfaces can currently only be defined in CMake packages.
-It is possible, however, to have Python libraries and nodes in CMake packages (using <a class="reference external" href="https://github.com/ament/ament_cmake/tree/humble/ament_cmake_python">ament_cmake_python</a>), so you could define interfaces and Python nodes together in one package.
-We’ll use a CMake package and C++ nodes here for the sake of simplicity.</p>
-<p>This tutorial will focus on the msg interface type, but the steps here are applicable to all interface types.</p>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>在 <a class="reference internal" href="Custom-ROS2-Interfaces.html"><span class="doc">上一个教程</span></a> 中，你学习了如何创建自定义 msg 和 srv 。</p>
+<p>不过最佳做法是在专门的接口包中声明接口，有时在一个包中声明、创建和使用接口会更方便。</p>
+<p>请注意，目前接口只能在 CMake 包中定义。
+但是可以在 CMake 包中包含 Python 库和节点(使用 <a class="reference external" href="https://github.com/ament/ament_cmake/tree/humble/ament_cmake_python">ament_cmake_python &lt;ament_cmake_python</a>), 所以可以在同一个包中定义接口并实现 Python 节点.
+为了方便起见，我们将在这里使用 CMake 包和 C++ 节点。</p>
+<p>本教程将重点介绍 msg 接口类型，但这里提到的步骤适用于所有接口类型。</p>
 </section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>We assume you’ve reviewed the basics in the <a class="reference internal" href="Custom-ROS2-Interfaces.html"><span class="doc">创建自定义的 msg 和 srv</span></a> tutorial before working through this one.</p>
-<p>You should have <a class="reference internal" href="../../Installation.html"><span class="doc">ROS 2 installed</span></a>, a <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">workspace</span></a>, and an understanding of <a class="reference internal" href="Creating-Your-First-ROS2-Package.html"><span class="doc">creating packages</span></a>.</p>
-<p>As always, don’t forget to <a class="reference internal" href="../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">source ROS 2</span></a> in every new terminal you open.</p>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>我们假设你在开始本教程之前已经熟悉了 <a class="reference internal" href="Custom-ROS2-Interfaces.html"><span class="doc">创建自定义的 msg 和 srv</span></a> 教程中的基础知识。</p>
+<p>你应该已经安装了 <a class="reference internal" href="../../Installation.html"><span class="doc">ROS 2</span></a>，有一个 <a class="reference internal" href="Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">工作空间</span></a>，并了解 <a class="reference internal" href="Creating-Your-First-ROS2-Package.html"><span class="doc">创建包</span></a>。</p>
+<p>还是不要忘记，请在每次打开新终端时 <a class="reference internal" href="../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">source ROS 2</span></a>。</p>
 </section>
 <section id="id3">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<section id="create-a-package">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">1 Create a package</a><a class="headerlink" href="#create-a-package" title="Link to this heading"></a></h3>
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">1 创建包</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <p>In your workspace <code class="docutils literal notranslate"><span class="pre">src</span></code> directory, create a package <code class="docutils literal notranslate"><span class="pre">more_interfaces</span></code> and make a directory within it for msg files:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 pkg create --build-type ament_cmake --license Apache-2.0 more_interfaces</span>
 <span class="go">mkdir more_interfaces/msg</span>
 </pre></div>
 </div>
 </section>
-<section id="create-a-msg-file">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">2 Create a msg file</a><a class="headerlink" href="#create-a-msg-file" title="Link to this heading"></a></h3>
-<p>Inside <code class="docutils literal notranslate"><span class="pre">more_interfaces/msg</span></code>, create a new file <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code>, and paste the following code to create a message meant to carry information about an individual:</p>
+<section id="msg">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">2 创建 msg 文件</a><a class="headerlink" href="#msg" title="Link to this heading"></a></h3>
+<p>在 <code class="docutils literal notranslate"><span class="pre">more_interfaces/msg</span></code> 中创建一个新文件 <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code>，并粘贴以下代码,创建一个包含了个人信息的消息：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uint8</span> <span class="n">PHONE_TYPE_HOME</span><span class="o">=</span><span class="mi">0</span>
 <span class="n">uint8</span> <span class="n">PHONE_TYPE_WORK</span><span class="o">=</span><span class="mi">1</span>
 <span class="n">uint8</span> <span class="n">PHONE_TYPE_MOBILE</span><span class="o">=</span><span class="mi">2</span>
@@ -472,19 +472,19 @@ We’ll use a CMake package and C++ nodes here for the sake of simplicity.</p>
 <span class="n">uint8</span> <span class="n">phone_type</span>
 </pre></div>
 </div>
-<p>This message is composed of these fields:</p>
+<p>这个消息由以下字段组成：</p>
 <ul class="simple">
-<li><p>first_name: of type string</p></li>
-<li><p>last_name: of type string</p></li>
-<li><p>phone_number: of type string</p></li>
-<li><p>phone_type: of type uint8, with several named constant values defined</p></li>
+<li><p>first_name: of type string. 名字。</p></li>
+<li><p>last_name: of type string. 姓氏。</p></li>
+<li><p>phone_number: of type string. 电话号码。</p></li>
+<li><p>phone_type: of type uint8, with several named constant values defined. 电话类型。</p></li>
 </ul>
-<p>Note that it’s possible to set default values for fields within a message definition.
-See <a class="reference internal" href="../../Concepts/Basic/About-Interfaces.html"><span class="doc">接口(Interfaces)</span></a> for more ways you can customize interfaces.</p>
-<p>Next, we need to make sure that the msg file is turned into source code for C++, Python, and other languages.</p>
-<section id="build-a-msg-file">
-<h4>2.1 Build a msg file<a class="headerlink" href="#build-a-msg-file" title="Link to this heading"></a></h4>
-<p>Open <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> and add the following lines:</p>
+<p>请注意，可以在消息定义中为字段设置默认值。
+查看 <a class="reference internal" href="../../Concepts/Basic/About-Interfaces.html"><span class="doc">接口(Interfaces)</span></a> 了解更多自定义接口的方法。</p>
+<p>接下来，我们需要确保 msg 文件被转换为 C++、Python 和其他语言的源代码。</p>
+<section id="id5">
+<h4>2.1 构建 msg<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<p>打开 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 并添加以下行：</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;buildtool_depend&gt;</span>rosidl_default_generators<span class="nt">&lt;/buildtool_depend&gt;</span>
 
 <span class="nt">&lt;exec_depend&gt;</span>rosidl_default_runtime<span class="nt">&lt;/exec_depend&gt;</span>
@@ -492,37 +492,37 @@ See <a class="reference internal" href="../../Concepts/Basic/About-Interfaces.ht
 <span class="nt">&lt;member_of_group&gt;</span>rosidl_interface_packages<span class="nt">&lt;/member_of_group&gt;</span>
 </pre></div>
 </div>
-<p>Note that at build time, we need <code class="docutils literal notranslate"><span class="pre">rosidl_default_generators</span></code>, while at runtime, we only need <code class="docutils literal notranslate"><span class="pre">rosidl_default_runtime</span></code>.</p>
-<p>Open <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> and add the following lines:</p>
-<p>Find the package that generates message code from msg/srv files:</p>
+<p>注意，在构建时需要 <code class="docutils literal notranslate"><span class="pre">rosidl_default_generators</span></code>，而在运行时只需要 <code class="docutils literal notranslate"><span class="pre">rosidl_default_runtime</span></code>。</p>
+<p>打开 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 并添加以下行：</p>
+<p>找到用于生成 msg/srv 文件的包：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">rosidl_default_generators</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Declare the list of messages you want to generate:</p>
+<p>声明想要生成消息的源文件列表：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">msg_files</span>
 <span class="w">  </span><span class="s2">&quot;msg/AddressBook.msg&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>By adding the .msg files manually, we make sure that CMake knows when it has to reconfigure the project after you add other .msg files.</p>
-<p>Generate the messages:</p>
+<p>通过手动添加 <code class="docutils literal notranslate"><span class="pre">.msg</span></code> 文件，我们让 CMake 知道在添加其他 <code class="docutils literal notranslate"><span class="pre">.msg</span></code> 文件后需要重新配置项目。</p>
+<p>生成消息：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">rosidl_generate_interfaces</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
 <span class="w">  </span><span class="o">${</span><span class="nv">msg_files</span><span class="o">}</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Also make sure you export the message runtime dependency:</p>
+<p>确保导出消息运行时依赖项：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">ament_export_dependencies</span><span class="p">(</span><span class="s">rosidl_default_runtime</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now you’re ready to generate source files from your msg definition.
-We’ll skip the compile step for now as we’ll do it all together below in step 4.</p>
+<p>现在为 msg 定义生成源文件需要的准备已经完成。
+不过我们暂时先跳过构建步骤，因为我们将在下面的第 4 步一起完成。</p>
 </section>
 </section>
-<section id="use-an-interface-from-the-same-package">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">3 Use an interface from the same package</a><a class="headerlink" href="#use-an-interface-from-the-same-package" title="Link to this heading"></a></h3>
-<p>Now we can start writing code that uses this message.</p>
-<p>In <code class="docutils literal notranslate"><span class="pre">more_interfaces/src</span></code> create a file called <code class="docutils literal notranslate"><span class="pre">publish_address_book.cpp</span></code> and paste the following code:</p>
+<section id="id6">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">3 在同一个包中使用接口</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>现在我们开始编写使用这个消息的代码。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">more_interfaces/src</span></code> 中创建一个名为 <code class="docutils literal notranslate"><span class="pre">publish_address_book.cpp</span></code> 的文件，并粘贴以下代码：</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
 
@@ -572,13 +572,13 @@ We’ll skip the compile step for now as we’ll do it all together below in ste
 <span class="p">}</span>
 </pre></div>
 </div>
-<section id="the-code-explained">
-<h4>3.1 The code explained<a class="headerlink" href="#the-code-explained" title="Link to this heading"></a></h4>
-<p>Include the header of our newly created <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code>.</p>
+<section id="id7">
+<h4>3.1 代码解释<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<p>首先包含我们新创建的 <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> 的头文件。</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;more_interfaces/msg/address_book.hpp&quot;</span>
 </pre></div>
 </div>
-<p>Create a node and an <code class="docutils literal notranslate"><span class="pre">AddressBook</span></code> publisher.</p>
+<p>创建一个节点和一个 <code class="docutils literal notranslate"><span class="pre">AddressBook</span></code> 发布者。</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">chrono_literals</span><span class="p">;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">AddressBookPublisher</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span>
@@ -591,36 +591,36 @@ We’ll skip the compile step for now as we’ll do it all together below in ste
 <span class="w">      </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">create_publisher</span><span class="o">&lt;</span><span class="n">more_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">AddressBook</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;address_book&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Create a callback to publish the messages periodically.</p>
+<p>创建一个回调函数以定期发布消息。</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">publish_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">]()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
-<p>Create an <code class="docutils literal notranslate"><span class="pre">AddressBook</span></code> message instance that we will later publish.</p>
+<p>创建一条稍后要发布的 <code class="docutils literal notranslate"><span class="pre">AddressBook</span></code> 消息实例。</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">more_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">AddressBook</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Populate <code class="docutils literal notranslate"><span class="pre">AddressBook</span></code> fields.</p>
+<p>填充 <code class="docutils literal notranslate"><span class="pre">AddressBook</span></code> 的字段。</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">message</span><span class="p">.</span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;John&quot;</span><span class="p">;</span>
 <span class="n">message</span><span class="p">.</span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Doe&quot;</span><span class="p">;</span>
 <span class="n">message</span><span class="p">.</span><span class="n">phone_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1234567890&quot;</span><span class="p">;</span>
 <span class="n">message</span><span class="p">.</span><span class="n">phone_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="n">PHONE_TYPE_MOBILE</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Finally send the message periodically.</p>
+<p>最后定期发送消息。</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Publishing Contact</span><span class="se">\n</span><span class="s">First:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="n">first_name</span><span class="w"> </span><span class="o">&lt;&lt;</span>
 <span class="w">  </span><span class="s">&quot;  Last:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="n">last_name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="k">this</span><span class="o">-&gt;</span><span class="n">address_book_publisher_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Create a 1 second timer to call our <code class="docutils literal notranslate"><span class="pre">publish_msg</span></code> function every second.</p>
+<p>创建一个 1 秒定时器，每秒调用我们的 <code class="docutils literal notranslate"><span class="pre">publish_msg</span></code> 函数。</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">timer_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">create_wall_timer</span><span class="p">(</span><span class="mi">1</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">publish_msg</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
-<section id="build-the-publisher">
-<h4>3.2 Build the publisher<a class="headerlink" href="#build-the-publisher" title="Link to this heading"></a></h4>
-<p>We need to create a new target for this node in the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>:</p>
+<section id="id8">
+<h4>3.2 构建发布者<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<p>我们需要在 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 中为这个节点创建一个新目标(target)：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">rclcpp</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">publish_address_book</span><span class="w"> </span><span class="s">src/publish_address_book.cpp</span><span class="p">)</span>
@@ -632,23 +632,23 @@ We’ll skip the compile step for now as we’ll do it all together below in ste
 </pre></div>
 </div>
 </section>
-<section id="link-against-the-interface">
-<h4>3.3 Link against the interface<a class="headerlink" href="#link-against-the-interface" title="Link to this heading"></a></h4>
-<p>In order to use the messages generated in the same package we need to use the following CMake code:</p>
+<section id="link">
+<h4>3.3 链接(link)接口<a class="headerlink" href="#link" title="Link to this heading"></a></h4>
+<p>为了在同一个包中使用生成的消息，我们需要使用以下 CMake 代码：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">rosidl_get_typesupport_target</span><span class="p">(</span><span class="s">cpp_typesupport_target</span>
 <span class="w">  </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="w"> </span><span class="s">rosidl_typesupport_cpp</span><span class="p">)</span>
 
 <span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">publish_address_book</span><span class="w"> </span><span class="s2">&quot;${cpp_typesupport_target}&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This finds the relevant generated C++ code from <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> and allows your target to link against it.</p>
-<p>You may have noticed that this step was not necessary when the interfaces being used were from a different package that was built independently.
-This CMake code is only required when you want to use interfaces in the same package as the one in which they are defined.</p>
+<p>这会找到与 <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> 相关的生成的 C++ 代码，并允许你的目标链接到它。</p>
+<p>你可能已经注意到，当使用来自独立构建的不同包的接口时，这一步是不必要的。
+只有在想要在定义它们的包中使用接口时才需要这段 CMake 代码。</p>
 </section>
 </section>
-<section id="try-it-out">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">4 Try it out</a><a class="headerlink" href="#try-it-out" title="Link to this heading"></a></h3>
-<p>Return to the root of the workspace to build the package:</p>
+<section id="id9">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">4 尝试一下</a><a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>返回工作空间的根目录，构建包：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/ros2_ws</span>
 <span class="go">colcon build --packages-up-to more_interfaces</span>
@@ -663,7 +663,7 @@ This CMake code is only required when you want to use interfaces in the same pac
 </pre></div>
 </div>
 </div></div>
-<p>Then source the workspace and run the publisher:</p>
+<p>然后 source 工作空间并运行发布者：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-1-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-1-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source install/local_setup.bash</span>
 <span class="go">ros2 run more_interfaces publish_address_book</span>
@@ -683,8 +683,8 @@ This CMake code is only required when you want to use interfaces in the same pac
 </pre></div>
 </div>
 </div></div>
-<p>You should see the publisher relaying the msg you defined, including the values you set in <code class="docutils literal notranslate"><span class="pre">publish_address_book.cpp</span></code>.</p>
-<p>To confirm the message is being published on the <code class="docutils literal notranslate"><span class="pre">address_book</span></code> topic, open another terminal, source the workspace, and call <code class="docutils literal notranslate"><span class="pre">topic</span> <span class="pre">echo</span></code>:</p>
+<p>你应该看到发布者传递了你定义的消息，包括 <code class="docutils literal notranslate"><span class="pre">publish_address_book.cpp</span></code> 中设置的值。</p>
+<p>为了确认消息被发布到 <code class="docutils literal notranslate"><span class="pre">address_book</span></code> topic 上，打开另一个终端，source 工作空间，然后调用 <code class="docutils literal notranslate"><span class="pre">topic</span> <span class="pre">echo</span></code>：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-2-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-2-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-2-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-2-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source install/setup.bash</span>
 <span class="go">ros2 topic echo /address_book</span>
@@ -704,27 +704,27 @@ This CMake code is only required when you want to use interfaces in the same pac
 </pre></div>
 </div>
 </div></div>
-<p>We won’t create a subscriber in this tutorial, but you can try to write one yourself for practice (use <a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html"><span class="doc">实现发布者和订阅者(publisher &amp; subscriber)(C++)</span></a> to help).</p>
+<p>在本教程中，我们没有创建订阅者，但你可以尝试自己编写一个(使用 <a class="reference internal" href="Writing-A-Simple-Cpp-Publisher-And-Subscriber.html"><span class="doc">实现发布者和订阅者(publisher &amp; subscriber)(C++)</span></a> 进行练习)。</p>
 </section>
-<section id="extra-use-an-existing-interface-definition">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">5 (Extra) Use an existing interface definition</a><a class="headerlink" href="#extra-use-an-existing-interface-definition" title="Link to this heading"></a></h3>
+<section id="id10">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">5 (额外内容) 使用现有接口定义</a><a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can use an existing interface definition in a new interface definition.
-For example, let’s say there is a message named <code class="docutils literal notranslate"><span class="pre">Contact.msg</span></code> that belongs to an existing ROS 2 package named <code class="docutils literal notranslate"><span class="pre">rosidl_tutorials_msgs</span></code>.
-Assume that its definition is identical to our custom-made <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> interface from earlier.</p>
-<p>In that case you could have defined <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> (an interface in the package <em>with</em> your nodes) as type <code class="docutils literal notranslate"><span class="pre">Contact</span></code> (an interface in a <em>separate</em> package).
-You could even define <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> as an <em>array</em> of type <code class="docutils literal notranslate"><span class="pre">Contact</span></code>, like so:</p>
+<p>你可以在新接口定义中使用现有的接口定义。
+比如说，假设有一个名为 <code class="docutils literal notranslate"><span class="pre">Contact.msg</span></code> 的消息，属于一个名为 <code class="docutils literal notranslate"><span class="pre">rosidl_tutorials_msgs</span></code> 的现有 ROS 2 包。
+假设它的定义与我们之前自定义的 <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> 接口完全相同。</p>
+<p>在这种情况下，你可以将 <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> (在你自己包中的接口)定义为类型 <code class="docutils literal notranslate"><span class="pre">Contact</span></code> (一个你的包以外的包中的接口)。
+你甚至可以将 <code class="docutils literal notranslate"><span class="pre">AddressBook.msg</span></code> 定义为 <code class="docutils literal notranslate"><span class="pre">Contact</span></code> 类型的数组，如下所示：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosidl_tutorials_msgs</span><span class="o">/</span><span class="n">Contact</span><span class="p">[]</span> <span class="n">address_book</span>
 </pre></div>
 </div>
-<p>To generate this message you would need to declare a dependency on <code class="docutils literal notranslate"><span class="pre">Contact.msg's</span></code> package, <code class="docutils literal notranslate"><span class="pre">rosidl_tutorials_msgs</span></code>, in <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>:</p>
+<p>为了生成这个消息，你需要在 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> 中声明对 <code class="docutils literal notranslate"><span class="pre">Contact.msg</span></code> 的包 <code class="docutils literal notranslate"><span class="pre">rosidl_tutorials_msgs</span></code> 的依赖：</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;build_depend&gt;</span>rosidl_tutorials_msgs<span class="nt">&lt;/build_depend&gt;</span>
 
 <span class="nt">&lt;exec_depend&gt;</span>rosidl_tutorials_msgs<span class="nt">&lt;/exec_depend&gt;</span>
 </pre></div>
 </div>
-<p>And in <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>:</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 中添加：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">rosidl_tutorials_msgs</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 
 <span class="nb">rosidl_generate_interfaces</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
@@ -733,11 +733,11 @@ You could even define <code class="docutils literal notranslate"><span class="pr
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>You would also need to include the header of <code class="docutils literal notranslate"><span class="pre">Contact.msg</span></code> in your publisher node in order to be able to add <code class="docutils literal notranslate"><span class="pre">contacts</span></code> to your <code class="docutils literal notranslate"><span class="pre">address_book</span></code>.</p>
+<p>你还需要在发布者节点中包含 <code class="docutils literal notranslate"><span class="pre">Contact.msg</span></code> 的头文件，以便能够将 <code class="docutils literal notranslate"><span class="pre">contacts</span></code> 添加到你的 <code class="docutils literal notranslate"><span class="pre">address_book</span></code> 中。</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rosidl_tutorials_msgs/msg/contact.hpp&quot;</span>
 </pre></div>
 </div>
-<p>You could change the callback to something like this:</p>
+<p>你可以将回调函数更改为以下内容：</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">publish_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">]()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="k">auto</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">more_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">AddressBook</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="w">   </span><span class="p">{</span>
@@ -767,23 +767,23 @@ You could even define <code class="docutils literal notranslate"><span class="pr
 <span class="w"> </span><span class="p">};</span>
 </pre></div>
 </div>
-<p>Building and running these changes would show the msg defined as expected, as well as the array of msgs defined above.</p>
+<p>构建和运行这些更改将显示前面定义好的的 msg，以及上面定义的 msg 数组。</p>
 </div>
 </section>
 </section>
-<section id="id4">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">总结</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>In this tutorial, you tried out different field types for defining interfaces, then built an interface in the same package where it’s being used.</p>
-<p>You also learned how to use another interface as a field type, as well as the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>, <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>, and <code class="docutils literal notranslate"><span class="pre">#include</span></code> statements necessary for utilizing that feature.</p>
+<section id="id11">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">总结</a><a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<p>在本教程中，你尝试了不同的字段类型来定义接口，然后在在这个接口所在的包中构建好它。</p>
+<p>你还学习了如何使用另一个接口作为字段类型，以及使用 <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>、 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 和 <code class="docutils literal notranslate"><span class="pre">#include</span></code> 来应用这个接口。</p>
 </section>
-<section id="id5">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">下一步</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<p>Next you will create a simple ROS 2 package with a custom parameter that you will learn to set from a launch file.
-Again, you can choose to write it in either <a class="reference internal" href="Using-Parameters-In-A-Class-CPP.html"><span class="doc">C++</span></a> or <a class="reference internal" href="Using-Parameters-In-A-Class-Python.html"><span class="doc">Python</span></a>.</p>
+<section id="id12">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">下一步</a><a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>接下来，你将创建一个简单的 ROS 2 包，其中包含一个自定义参数，你将学习如何从一个 launch 文件中设置这个参数。
+当然，你还是可以选择用 <a class="reference internal" href="Using-Parameters-In-A-Class-CPP.html"><span class="doc">C++</span></a> 或 <a class="reference internal" href="Using-Parameters-In-A-Class-Python.html"><span class="doc">Python</span></a> 中编写它。</p>
 </section>
-<section id="id6">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">相关内容</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
-<p>There are <a class="reference external" href="https://design.ros2.org/#interfaces">several design articles</a> on ROS 2 interfaces and the IDL (interface definition language).</p>
+<section id="id13">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">相关内容</a><a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<p>这有 <a class="reference internal" href="Custom-ROS2-Interfaces.html"><span class="doc">一些设计文档</span></a> 是关于 IDL (interface definition language) 的。</p>
 </section>
 </section>
 
@@ -835,13 +835,13 @@ Again, you can choose to write it in either <a class="reference internal" href="
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

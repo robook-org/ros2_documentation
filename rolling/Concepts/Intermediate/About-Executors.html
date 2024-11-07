@@ -403,7 +403,7 @@
           <li class="breadcrumb-item"><a href="../Intermediate.html">Intermediate Concepts</a></li>
       <li class="breadcrumb-item active">Executors</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/Concepts/Intermediate/About-Executors.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/Concepts/Intermediate/About-Executors.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -483,23 +483,29 @@ The <em>wait set</em> is also used to detect when timers expire.</p>
    StaticSingleThreadedExecutor  [shape=polygon,sides=4];
 
    }" class="graphviz" /></div>
-<p>The <em>Multi-Threaded Executor</em> creates a configurable number of threads to allow for processing multiple messages or events in parallel.
-The <em>Static Single-Threaded Executor</em> optimizes the runtime costs for scanning the structure of a node in terms of subscriptions, timers, service servers, action servers, etc.
-It performs this scan only once when the node is added, while the other two executors regularly scan for such changes.
-Therefore, the Static Single-Threaded Executor should be used only with nodes that create all subscriptions, timers, etc. during initialization.</p>
+<p>The <em>Multi-Threaded Executor</em> creates a configurable number of threads to allow for processing multiple messages or events in parallel.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>Static Single-Threaded Executor</em> has been deprecated, and <em>Single-Threaded Executor</em> is recommended instead.
+The <em>Static Single-Threaded Executor</em> was developed to reduce the the runtime costs for scanning the entities of a node in terms of subscriptions, timers, service servers, action servers, etc.
+These runtime improvements are now available also in all the other <em>Executor</em>.
+Besides, the <em>Static Single-Threaded Executor</em> has a few issues such as <a class="reference external" href="https://github.com/ros2/rclcpp/issues/2462">max duration is not respected in spin_some</a>.
+Because of these unstable issues, some unit tests are skipped for <em>Static Single-Threaded Executor</em>.
+You can see more details for <a class="reference external" href="https://discourse.ros.org/t/the-ros-2-c-executors/38296">ROS Discourse: The ROS 2 C++ Executors</a>.</p>
+</div>
 <p>All three executors can be used with multiple nodes by calling <code class="docutils literal notranslate"><span class="pre">add_node(..)</span></code> for each node.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">node1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
 <span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">node2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
 <span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">node3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
 
-<span class="n">rclcpp</span><span class="o">::</span><span class="n">executors</span><span class="o">::</span><span class="n">StaticSingleThreadedExecutor</span><span class="w"> </span><span class="n">executor</span><span class="p">;</span>
+<span class="n">rclcpp</span><span class="o">::</span><span class="n">executors</span><span class="o">::</span><span class="n">SingleThreadedExecutor</span><span class="w"> </span><span class="n">executor</span><span class="p">;</span>
 <span class="n">executor</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node1</span><span class="p">);</span>
 <span class="n">executor</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node2</span><span class="p">);</span>
 <span class="n">executor</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node3</span><span class="p">);</span>
 <span class="n">executor</span><span class="p">.</span><span class="n">spin</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>In the above example, the one thread of a Static Single-Threaded Executor is used to serve three nodes together.
+<p>In the above example, the one thread of a Single-Threaded Executor is used to serve three nodes together.
 In case of a Multi-Threaded Executor, the actual parallelism depends on the callback groups.</p>
 </section>
 <section id="callback-groups">
@@ -565,8 +571,7 @@ Higher priority callbacks may be blocked by lower priority callbacks.</p></li>
 <li><p>No explicit control over the callbacks execution order.</p></li>
 <li><p>No built-in control over triggering for specific topics.</p></li>
 </ol>
-<p>Additionally, the executor overhead in terms of CPU and memory usage is considerable.
-The Static Single-Threaded Executor reduces this overhead greatly but it might not be enough for some applications.</p>
+<p>Additionally, the executor overhead in terms of CPU and memory usage is considerable.</p>
 <p>These issues have been partially addressed by the following developments:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/ros2/rclcpp/blob/rolling/rclcpp/include/rclcpp/wait_set.hpp">rclcpp WaitSet</a>: The <code class="docutils literal notranslate"><span class="pre">WaitSet</span></code> class of rclcpp allows waiting directly on subscriptions, timers, service servers, action servers, etc. instead of using an Executor.
@@ -634,13 +639,13 @@ Furthermore, it implements ideas of the Logical Execution Time (LET) semantics.<
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GTM-NFW6MLHB', {
+      gtag('config', 'G-EVD5Z6G6NH', {
           'anonymize_ip': false,
       });
     </script> 

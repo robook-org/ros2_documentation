@@ -3,124 +3,124 @@
   Guides/DDS-tuning
   Troubleshooting/DDS-tuning
 
-DDS tuning information
+DDS 调优指南
 ======================
 
-This page provides some guidance on parameter tunings that were found to address issues faced while using various DDS implementations on Linux in real-world situations.
-It is possible that the issues we identified on Linux or while using one vendor may occur for other platforms and vendors not documented here.
+本页面提供了一些关于在 Linux 上使用各种 DDS 提供商的实现时遇到的问题的参数调优指导。
+我们在 Linux 上或者某些 DDS 实现上发现了一些问题，这些问题也许会在其他平台或 DDS 上发生，但可能不会记录在这里。
 
-The recommendations below are starting points for tuning; they worked for specific systems and environments, but the tuning may vary depending on a number of factors.
-You may need to increase or decrease values while debugging relative to factors like message size, network topology, etc.
+调优将从如下一些建议开始：参数调整只适用于特定的系统和环境，会因为很多因素而有所不同。
+在调试时，你可能需要增加或减少消息大小、网络拓扑之类的值。
 
-It is important to recognize that tuning parameters can come at a cost to resources, and may affect parts of your system beyond the scope of the desired improvements.
-The benefits of improving reliability should be weighed against any detriments for each individual case.
+同时你应该了解一个事实：调优参数可能会带来资源消耗，可能会影响到系统中的其他部分，超出了你想要的改进范围。
+应该根据具体情况权衡提高可靠性带来的好处和其他方面可能产生的损失。
 
 .. _cross-vendor-tuning:
 
-Cross-vendor tuning
+通用调优
 -------------------
 
-**Issue:** Sending data over lossy (usually WiFi) connections becomes problematic when some IP fragments are dropped, possibly causing the kernel buffer on the receiving side to become full.
+**Issue:** 通过有损(lossy)连接(通常是 WiFi)发送数据会出现问题，因为一些 IP 片段(fragments)在传输中可能会丢包，有可能导致接收端的内核缓冲区被塞满。
 
-When a UDP packet is missing at least one IP fragment, the rest of the received fragments fill up the kernel buffer.
-By default, the Linux kernel will time out after 30s of trying to recombine packet fragments.
-Since the kernel buffer is full at this point (default size is 256KB), no new fragments can come in, and so the connection will seemingly "hang" for long periods of time.
+只要 UDP 包丢失至少一个 IP 片段，接收到的其余片段会填满内核缓冲区。
+默认情况下，Linux 内核在尝试重新组合数据包片段 30s 后会超时。
+由于内核缓冲区在这个时候已经满了(默认大小为 256KB)，没有新的片段可以进来，所以连接会看起来“卡住”很长时间。
 
-This issue is generic across all DDS vendors, so the solutions involve adjusting kernel parameters.
+这个问题是所有 DDS 提供商都会遇到的，所以解决方案涉及调整内核参数。
 
-**Solution:** Use best-effort QoS settings instead of reliable.
+**解决方案:** 使用尽力(best-effort)传输的 QoS 配置而不是可靠(reliable)传输。
 
-Best-effort settings reduce the amount of network traffic since the DDS implementation does not have to incur the overhead of reliable communications, where publishers require acknowledgements for messages sent to subscribers and must resend samples that have not been properly received.
+尽力传输可以减少网络流量，因为 DDS 实现无需承担可靠通信的开销。在可靠通信中，发布者需要对发送给订阅者的信息进行确认，并且必须重新发送未正确接收的信息。
 
-If the kernel buffer for IP fragments gets full, though, the symptom is still the same (blocking for 30s).
-This solution should improve the issue somewhat without having to adjust parameters.
+不过，如果内核的 IP 片段缓冲区满了，问题表现还是一样的（阻塞 30 秒）。
+这个解决方案应该能在一定程度上改善问题，而无需调整参数。
 
-**Solution:** Reduce the value of the ``ipfrag_time`` parameter.
+**解决方案:** 减小 ``ipfrag_time`` 参数的值。
 
-``net.ipv4.ipfrag_time / /proc/sys/net/ipv4/ipfrag_time`` (default 30s) :
-Time in seconds to keep an IP fragment in memory.
+``net.ipv4.ipfrag_time / /proc/sys/net/ipv4/ipfrag_time`` (默认 30s) :
+在内存中保留一个 IP 片段的时间，单位为秒。
 
-Reduce the value, for example, to 3s, by running:
+通过运行以下命令改小这个值，比如设置为 3s:
 
 .. code-block:: console
 
     sudo sysctl net.ipv4.ipfrag_time=3
 
-Reducing this parameter’s value also reduces the window of time where no fragments are received.
-The parameter is global for all incoming fragments, so the feasibility of reducing its value needs to be considered for every environment.
+减小这个参数的值也会减少没有接收到片段的时间窗口。
+这个参数是全局的，所以需要根据不同环境的实际情况考虑是否减小这个值。
 
-**Solution:** Increase the value of the ``ipfrag_high_thresh`` parameter.
+**解决方案:** 增大 ``ipfrag_high_thresh`` 参数的值。
 
-``net.ipv4.ipfrag_high_thresh / /proc/sys/net/ipv4/ipfrag_high_thresh`` (default: 262144 bytes):
-Maximum memory used to reassemble IP fragments.
+``net.ipv4.ipfrag_high_thresh / /proc/sys/net/ipv4/ipfrag_high_thresh`` (默认 262144 字节):
+用于重新组装 IP 片段的最大内存。
 
-Increase the value, for example, to 128MB, by running:
+通过运行以下命令增大这个值，比如设置为 128MB:
 
 .. code-block:: console
 
     sudo sysctl net.ipv4.ipfrag_high_thresh=134217728     # (128 MB)
 
-Significantly increasing this parameter’s value is an attempt to ensure that the buffer never becomes completely full.
-However, the value would likely have to be significantly high to hold all data received during the time window of ``ipfrag_time``, assuming every UDP packet lacks one fragment.
+增大这个参数的值是为了确保缓冲区永远不会完全填满。
+不过这个值可能需要设置得很大才能在 ``ipfrag_time`` 时间窗口内保留所有接收到的数据，如果假设每个 UDP 包都缺少一个片段的话。
 
-**Issue:** Sending custom messages with large variable-sized arrays of non-primitive types causes high serialization/deserialization overhead and CPU load.
-This can lead to stalling of the publisher due to excessive time spent in ``publish()`` and tools like ``ros2 topic hz`` under reporting the actual frequency of messages being received.
-Note that for example ``builtin_interfaces/Time`` is also considered a non-primitive type and will incur higher serialization overhead.
-Because of the increased serialization overhead, severe performance degradation can be observed when naively transitioning custom message types from ROS 1 to ROS 2.
+**Issue:** 使用非原始类型的大型可变大小数组发送自定义消息会造成较高的序列化/解序列化开销和 CPU 负载。
+这会导致 publisher 在 ``publish()`` 中花费过多时间， ``ros2 topic hz`` 这样的工具报告的实际接收的消息频率不足。
+请注意， ``builtin_interfaces/Time`` 这样的消息也被认为是非原始类型，会导致更高的序列化开销。
+由于序列化开销增加，当将自定义消息类型从 ROS 1 迁移到 ROS 2 时，可能会观察到严重的性能下降。
 
-**Workaround:** Use multiple arrays of primitives instead of a single array of custom types, or pack into byte array as done e.g. in ``PointCloud2`` messages.
-For example, instead of defining a ``FooArray`` message as:
+**解决方案:** 使用多个原始类型的数组而不是单个自定义类型的数组，或者像 ``PointCloud2`` 中那样把信息打包到字节数组中。
+例如，不要定义一个 ``FooArray`` 消息为:
 
 .. code-block:: console
 
     Foo[] my_large_array
 
-with ``Foo`` is defined as:
+其中 ``Foo`` 是这样定义的:
 
 .. code-block:: console
 
     uint64 foo_1
     uint32 foo_2
 
-Instead, define ``FooArray`` as:
+而是将 ``FooArray`` 定义为:
 
 .. code-block:: console
 
     uint64[] foo_1_array
     uint32[] foo_2_array
 
-Fast RTPS tuning
+Fast RTPS 调优
 ----------------
 
-**Issue:** Fast RTPS floods the network with large pieces of data or fast-published data when operating over WiFi.
+**Issue:** Fast RTPS 在 WiFi 上运行时会让网络充斥着大块数据或快速发布的数据。
 
 See the solutions under :ref:`Cross-vendor tuning <cross-vendor-tuning>`.
 
-Cyclone DDS tuning
+Cyclone DDS 调优
 ------------------
 
-**Issue:** Cyclone DDS is not delivering large messages reliably, despite using reliable settings and transferring over a wired network.
+**Issue:** 即使在使用了可靠的设置并在有线网络上传输大消息时，Cyclone DDS 无法可靠传输。
 
-This issue should be `addressed soon <https://github.com/eclipse-cyclonedds/cyclonedds/issues/484>`_.
-Until then, we’ve come up with the following solution (debugged using `this test program <https://github.com/jacobperron/pc_pipe>`_):
+这个问题应该会很快得到解决，详情请参考 `这个问题 <https://github.com/eclipse-cyclonedds/cyclonedds/issues/484>`_ .
+目前我们提供了以下解决方案(通过 `这个测试程序 <https://github.com/jacobperron/pc_pipe>`_ debug):
 
-**Solution:** Increase the maximum Linux kernel receive buffer size and the minimum socket receive buffer size that Cyclone uses.
+**解决方案:** 增加 Cyclone 使用的最大 Linux 内核接收缓冲区大小和最小 socket 接收缓冲区大小。
 
-*Adjustments to solve for a 9MB message:*
+*调整以解决 9MB 消息的问题:*
 
-Set the maximum receive buffer size, ``rmem_max``, by running:
+设置最大接收缓冲区大小 ``rmem_max``，运行:
 
  .. code-block:: console
 
     sudo sysctl -w net.core.rmem_max=2147483647
 
-Or permanently set it by editing the ``/etc/sysctl.d/10-cyclone-max.conf`` file to contain:
+或者通过编辑 ``/etc/sysctl.d/10-cyclone-max.conf`` 文件永久设置:
 
  .. code-block:: console
 
     net.core.rmem_max=2147483647
 
-Next, to set the minimum socket receive buffer size that Cyclone requests, write out a configuration file for Cyclone to use while starting, like so:
+接下来，设置 Cyclone 请求的最小 socket 接收缓冲区大小，写好一个配置文件给Cyclone 在启动时使用，如下:
 
 .. code-block:: xml
 
@@ -134,37 +134,36 @@ Next, to set the minimum socket receive buffer size that Cyclone requests, write
       </Domain>
   </CycloneDDS>
 
-Then, whenever you are going to run a node, set the following environment variable:
+每次运行节点时，设置以下环境变量:
 
 .. code-block:: console
 
     CYCLONEDDS_URI=file:///absolute/path/to/config_file.xml
 
-RTI Connext tuning
+RTI Connext 调优
 ------------------
 
-**Issue:** Connext is not delivering large messages reliably, despite using reliable settings and transferring over a wired network.
+**Issue:** 即使使用了可靠设置并在有线网络上传输大消息时，Connext 还是无法可靠传输。
 
-**Solution:** This `Connext QoS profile <https://github.com/jacobperron/pc_pipe/blob/master/etc/ROS2TEST_QOS_PROFILES.xml>`_, along with increasing the ``rmem_max`` parameter.
+**解决方案:** 使用这个 `Connext QoS profile <https://github.com/jacobperron/pc_pipe/blob/master/etc/ROS2TEST_QOS_PROFILES.xml>`_ , 并且调大 ``rmem_max`` 的值.
 
-Set the maximum receive buffer size, ``rmem_max``, by running:
+运行以下指令设置最大接收缓冲区大小 ``rmem_max``:
 
  .. code-block:: console
 
     sudo sysctl -w net.core.rmem_max=4194304
 
-By tuning ``net.core.rmem_max`` to 4MB in the Linux kernel, the QoS profile can produce truly reliable behavior.
+将 ``net.core.rmem_max`` 调整到 4MB 后，QoS 配置就能产生真正可靠的行为。
 
-This configuration has been proven to reliably deliver messages via SHMEM|UDPv4, and with just UDPv4 on a single machine.
-A multi-machine configuration was also tested with ``rmem_max`` at 4MB and at 20MB (two machines connected with 1Gbps ethernet), with no dropped messages and average message delivery times of 700ms and 371ms, respectively.
+事实证明这种配置可以通过 SHMEM|UDPv4 和 UDPv4 在单机上可靠地传送信息。
+我们还测试了 rmem_max 为 4MB 和 20MB 的多机配置（两台机器使用 1Gbps 以太网连接），结果没有出现报文丢失，平均报文传送时间分别为 700ms 和 371ms。
 
-Without configuring the kernel’s ``rmem_max``, the same Connext QoS profile took up to 12 seconds for the data to be delivered.
-However, it always at least managed to complete the delivery.
+在未配置内核 rmem_max 的情况下，相同的 Connext QoS 配置文件需要 12 秒才能完成数据传输。 不过，它至少能完成传输。
 
-**Solution:** Use the `Connext QoS profile <https://github.com/jacobperron/pc_pipe/blob/master/etc/ROS2TEST_QOS_PROFILES.xml>`_ *without* adjusting ``rmem_max``.
+**解决方案:** 使用这个 `Connext QoS profile <https://github.com/jacobperron/pc_pipe/blob/master/etc/ROS2TEST_QOS_PROFILES.xml>`_ 而 *不调整* ``rmem_max``.
 
-The ROS2TEST_QOS_PROFILES.xml file was configured using RTI’s documentation on `configuring flow controllers <https://community.rti.com/forum-topic/transfering-large-data-over-dds>`_. It has slow, medium and fast flow controllers (seen in the Connext QoS profile link).
+这个 QoS 配置文件是参照 RTI 的文档 `配置流控制器 <https://community.rti.com/forum-topic/transfering-large-data-over-dds>`_ 配置的。其中包含了慢、中、快三种流控制器。（在 Connext QoS 配置文件链接中可以看到）
 
-The medium flow controller produced the best results for our case.
-However, the controllers will still need to be tuned for the particular machine/network/environment they are operating in.
-The Connext flow controllers can be used to tune bandwidth and its aggressiveness for sending out data, though once the bandwidth of a particular setup is passed, performance will start to drop.
+我们的测试结果表明，中等流控制器对我们的情况效果最好。
+不过，控制器仍然需要针对它们所在的特定机器/网络/环境进行调整。
+Connext 流控制器可以用来调整带宽及其发送数据的激进程度(aggressiveness)，但是一旦超过特定设置的带宽，性能还是会开始下降。

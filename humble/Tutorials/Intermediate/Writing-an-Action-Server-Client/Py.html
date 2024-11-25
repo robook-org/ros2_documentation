@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Writing an action server and client (Python) &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>实现 action 服务器和客户端(Python) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
@@ -30,7 +30,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Writing a Composable Node (C++)" href="../Writing-a-Composable-Node.html" />
-    <link rel="prev" title="Writing an action server and client (C++)" href="Cpp.html" /> 
+    <link rel="prev" title="实现 action 服务器和客户端(C++)" href="Cpp.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -151,9 +151,9 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../Intermediate.html">中级教程</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../Rosdep.html">Managing Dependencies with rosdep</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../Creating-an-Action.html">Creating an action</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Cpp.html">Writing an action server and client (C++)</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Writing an action server and client (Python)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Creating-an-Action.html">创建 action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cpp.html">实现 action 服务器和客户端(C++)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Composition.html">Composing multiple nodes in a single process</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
@@ -399,9 +399,9 @@
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../../Intermediate.html">中级教程</a></li>
-      <li class="breadcrumb-item active">Writing an action server and client (Python)</li>
+      <li class="breadcrumb-item active">实现 action 服务器和客户端(Python)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -411,49 +411,45 @@
              
 
 
-  <section id="writing-an-action-server-and-client-python">
-<span id="actionspy"></span><h1>Writing an action server and client (Python)<a class="headerlink" href="#writing-an-action-server-and-client-python" title="Link to this heading"></a></h1>
-<p><strong>目标:</strong> Implement an action server and client in Python.</p>
+  <section id="action-python">
+<span id="actionspy"></span><h1>实现 action 服务器和客户端(Python)<a class="headerlink" href="#action-python" title="Link to this heading"></a></h1>
+<p><strong>目标:</strong> 在 Python 中实现 action 服务器和客户端。</p>
 <p><strong>教程等级:</strong> 中级</p>
 <p><strong>预计时长:</strong> 15 分钟</p>
 <nav class="contents local" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id6">背景</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id7">前提条件</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id8">任务</a></p>
+<li><p><a class="reference internal" href="#id1" id="id10">背景</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id11">前提条件</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id12">任务</a></p>
 <ul>
-<li><p><a class="reference internal" href="#writing-an-action-server" id="id9">1 Writing an action server</a></p></li>
-<li><p><a class="reference internal" href="#writing-an-action-client" id="id10">2 Writing an action client</a></p></li>
+<li><p><a class="reference internal" href="#action" id="id13">1 编写 action 服务器</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id14">2 编写 action 客户端</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id4" id="id11">总结</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id12">相关内容</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id15">总结</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id16">相关内容</a></p></li>
 </ul>
 </nav>
 <section id="id1">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>Actions are a form of asynchronous communication in ROS 2.
-<em>Action clients</em> send goal requests to <em>action servers</em>.
-<em>Action servers</em> send goal feedback and results to <em>action clients</em>.</p>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Actions 是 ROS 2 中的一种异步通信形式。
+<em>Action 客户端</em> 发送目标请求到 <em>Action 服务器</em>。
+<em>Action 服务器</em> 发送目标反馈和结果到 <em>Action 客户端</em>。</p>
 </section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>You will need the <code class="docutils literal notranslate"><span class="pre">action_tutorials_interfaces</span></code> package and the <code class="docutils literal notranslate"><span class="pre">Fibonacci.action</span></code>
-interface defined in the previous tutorial, <a class="reference internal" href="../Creating-an-Action.html"><span class="doc">Creating an action</span></a>.</p>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">前提条件</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>你需要有 <code class="docutils literal notranslate"><span class="pre">action_tutorials_interfaces</span></code> 包和在之前的教程 <a class="reference internal" href="../Creating-an-Action.html"><span class="doc">创建 action</span></a> 中定义的 <code class="docutils literal notranslate"><span class="pre">Fibonacci.action</span></code> 接口。</p>
 </section>
 <section id="id3">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<section id="writing-an-action-server">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">1 Writing an action server</a><a class="headerlink" href="#writing-an-action-server" title="Link to this heading"></a></h3>
-<p>Let’s focus on writing an action server that computes the Fibonacci sequence
-using the action we created in the <a class="reference internal" href="../Creating-an-Action.html"><span class="doc">Creating an action</span></a> tutorial.</p>
-<p>Until now, you’ve created packages and used <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> to run your nodes.
-To keep things simple in this tutorial, however, we’ll scope the action server to a single file.
-If you’d like to see what a complete package for the actions tutorials looks like, check out
-<a class="reference external" href="https://github.com/ros2/demos/tree/humble/action_tutorials">action_tutorials</a>.</p>
-<p>Open a new file in your home directory, let’s call it <code class="docutils literal notranslate"><span class="pre">fibonacci_action_server.py</span></code>,
-and add the following code:</p>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">任务</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="action">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">1 编写 action 服务器</a><a class="headerlink" href="#action" title="Link to this heading"></a></h3>
+<p>让我们专注于编写一个 action 服务器，使用我们在 <a class="reference internal" href="../Creating-an-Action.html"><span class="doc">创建 action</span></a> 教程中创建的 action 来计算斐波那契数列。</p>
+<p>到目前为止，你已经创建了包并使用 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> 运行节点。
+为了让本教程保持简洁，我们将把 action 服务器范围限制在一个文件中。
+如果你想看完整的 action 教程包是什么样子的，可以查看 <a class="reference external" href="https://github.com/ros2/demos/tree/humble/action_tutorials">action_tutorials</a>.</p>
+<p>在目录下创建一个新文件，我们称之为 <code class="docutils literal notranslate"><span class="pre">fibonacci_action_server.py</span></code>，并添加以下代码：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.action</span> <span class="kn">import</span> <span class="n">ActionServer</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
@@ -489,12 +485,12 @@ and add the following code:</p>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Line 8 defines a class <code class="docutils literal notranslate"><span class="pre">FibonacciActionServer</span></code> that is a subclass of <code class="docutils literal notranslate"><span class="pre">Node</span></code>.
-The class is initialized by calling the <code class="docutils literal notranslate"><span class="pre">Node</span></code> constructor, naming our node <code class="docutils literal notranslate"><span class="pre">fibonacci_action_server</span></code>:</p>
+<p>第 8 行定义了一个 <code class="docutils literal notranslate"><span class="pre">FibonacciActionServer</span></code> 类，它是 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 的子类。
+通过调用 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 构造函数初始化类，将我们的节点命名为 <code class="docutils literal notranslate"><span class="pre">fibonacci_action_server</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;fibonacci_action_server&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In the constructor we also instantiate a new action server:</p>
+<p>在构造函数中，我们还实例化了一个新的 action 服务器：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_action_server</span> <span class="o">=</span> <span class="n">ActionServer</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">Fibonacci</span><span class="p">,</span>
@@ -502,23 +498,23 @@ The class is initialized by calling the <code class="docutils literal notranslat
             <span class="bp">self</span><span class="o">.</span><span class="n">execute_callback</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>An action server requires four arguments:</p>
+<p>一个 action 服务器需要四个参数：</p>
 <ol class="arabic simple">
-<li><p>A ROS 2 node to add the action client to: <code class="docutils literal notranslate"><span class="pre">self</span></code>.</p></li>
-<li><p>The type of the action: <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> (imported in line 5).</p></li>
-<li><p>The action name: <code class="docutils literal notranslate"><span class="pre">'fibonacci'</span></code>.</p></li>
-<li><p>A callback function for executing accepted goals: <code class="docutils literal notranslate"><span class="pre">self.execute_callback</span></code>.
-This callback <strong>must</strong> return a result message for the action type.</p></li>
+<li><p>一个 ROS 2 节点，将 action 客户端添加到： <code class="docutils literal notranslate"><span class="pre">self</span></code> 。</p></li>
+<li><p>action 的类型： <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> （在第 5 行引入）。</p></li>
+<li><p>action 名称： <code class="docutils literal notranslate"><span class="pre">'fibonacci'</span></code>。</p></li>
+<li><p>一个用于执行接受的目标的回调函数： <code class="docutils literal notranslate"><span class="pre">self.execute_callback</span></code>。
+这个回调 <strong>必须</strong> 返回一个 action 类型的结果消息。</p></li>
 </ol>
-<p>We also define an <code class="docutils literal notranslate"><span class="pre">execute_callback</span></code> method in our class:</p>
+<p>我们还在类中定义了一个 <code class="docutils literal notranslate"><span class="pre">execute_callback</span></code> 方法：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">execute_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_handle</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Executing goal...&#39;</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">Fibonacci</span><span class="o">.</span><span class="n">Result</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-<p>This is the method that will be called to execute a goal once it is accepted.</p>
-<p>Let’s try running our action server:</p>
+<p>这个函数将在接受目标后被调用。</p>
+<p>让我们尝试运行 action 服务器：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>fibonacci_action_server.py
 </pre></div>
@@ -530,13 +526,13 @@ This callback <strong>must</strong> return a result message for the action type.
 </pre></div>
 </div>
 </div></div>
-<p>In another terminal, we can use the command line interface to send a goal:</p>
+<p>在另一个终端中，我们可以使用命令行接口发送一个目标：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>action<span class="w"> </span>send_goal<span class="w"> </span>fibonacci<span class="w"> </span>action_tutorials_interfaces/action/Fibonacci<span class="w"> </span><span class="s2">&quot;{order: 5}&quot;</span>
 </pre></div>
 </div>
-<p>In the terminal that is running the action server, you should see a logged message “Executing goal…” followed by a warning that the goal state was not set.
-By default, if the goal handle state is not set in the execute callback it assumes the <em>aborted</em> state.</p>
-<p>We can use the method <a class="reference external" href="http://docs.ros2.org/latest/api/rclpy/api/actions.html#rclpy.action.server.ServerGoalHandle.succeed">succeed()</a> on the goal handle to indicate that the goal was successful:</p>
+<p>在运行 action 服务器的终端中，你应该看到一个记录的消息 “Executing goal…”，后面是一个警告，表示目标状态未设置。
+默认情况下，如果在执行回调中未设置目标的执行状态，它会假定为 <em>aborted</em> 状态。</p>
+<p>我们可以使用 <a class="reference external" href="http://docs.ros2.org/latest/api/rclpy/api/actions.html#rclpy.action.server.ServerGoalHandle.succeed">succeed()</a> 方法在目标处理完成后指示目标成功：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">execute_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_handle</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Executing goal...&#39;</span><span class="p">)</span>
 <span class="hll">        <span class="n">goal_handle</span><span class="o">.</span><span class="n">succeed</span><span class="p">()</span>
@@ -544,8 +540,8 @@ By default, if the goal handle state is not set in the execute callback it assum
         <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-<p>Now if you restart the action server and send another goal, you should see the goal finished with the status <code class="docutils literal notranslate"><span class="pre">SUCCEEDED</span></code>.</p>
-<p>Now let’s make our goal execution actually compute and return the requested Fibonacci sequence:</p>
+<p>现在，如果重新启动 action 服务器并发送另一个目标，你应该看到目标以 <code class="docutils literal notranslate"><span class="pre">SUCCEEDED</span></code> 状态完成。</p>
+<p>现在让我们实际计算并返回请求的斐波那契数列：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">execute_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_handle</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Executing goal...&#39;</span><span class="p">)</span>
 
@@ -561,15 +557,15 @@ By default, if the goal handle state is not set in the execute callback it assum
 </span>        <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-<p>After computing the sequence, we assign it to the result message field before returning.</p>
-<p>Again, restart the action server and send another goal.
-You should see the goal finish with the proper result sequence.</p>
-<section id="publishing-feedback">
-<h4>1.2 Publishing feedback<a class="headerlink" href="#publishing-feedback" title="Link to this heading"></a></h4>
-<p>One of the nice things about actions is the ability to provide feedback to an action client during goal execution.
-We can make our action server publish feedback for action clients by calling the goal handle’s <a class="reference external" href="http://docs.ros2.org/latest/api/rclpy/api/actions.html#rclpy.action.server.ServerGoalHandle.publish_feedback">publish_feedback()</a> method.</p>
-<p>We’ll replace the <code class="docutils literal notranslate"><span class="pre">sequence</span></code> variable, and use a feedback message to store the sequence instead.
-After every update of the feedback message in the for-loop, we publish the feedback message and sleep for dramatic effect:</p>
+<p>在计算序列后，我们在返回之前将其赋值给结果。</p>
+<p>再次重新启动 action 服务器并发送另一个目标。
+你应该看到目标以正确的结果序列完成。</p>
+<section id="id4">
+<h4>1.2 发布反馈<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<p>action 的一个好处是在目标执行期间能向 action 客户端提供反馈。
+我们可以通过调用目标的 <a class="reference external" href="http://docs.ros2.org/latest/api/rclpy/api/actions.html#rclpy.action.server.ServerGoalHandle.publish_feedback">publish_feedback()</a> 方法使 action 服务器发布反馈给 action 客户端。</p>
+<p>我们将替换回复的 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 变量，用来存储目前计算到的序列。
+在 for 循环中更新反馈消息后，我们会发布反馈消息，然后 sleep 一段时间来模拟计算耗时：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">time</span>
 </span>
 <span class="kn">import</span> <span class="nn">rclpy</span>
@@ -621,16 +617,16 @@ After every update of the feedback message in the for-loop, we publish the feedb
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>After restarting the action server, we can confirm that feedback is now published by using the command line tool with the <code class="docutils literal notranslate"><span class="pre">--feedback</span></code> option:</p>
+<p>重新启动 action 服务器后，我们可以使用 <code class="docutils literal notranslate"><span class="pre">--feedback</span></code> 选项的命令行工具来确认反馈是否发布：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>action<span class="w"> </span>send_goal<span class="w"> </span>--feedback<span class="w"> </span>fibonacci<span class="w"> </span>action_tutorials_interfaces/action/Fibonacci<span class="w"> </span><span class="s2">&quot;{order: 5}&quot;</span>
 </pre></div>
 </div>
 </section>
 </section>
-<section id="writing-an-action-client">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">2 Writing an action client</a><a class="headerlink" href="#writing-an-action-client" title="Link to this heading"></a></h3>
-<p>We’ll also scope the action client to a single file.
-Open a new file, let’s call it <code class="docutils literal notranslate"><span class="pre">fibonacci_action_client.py</span></code>, and add the following boilerplate code:</p>
+<section id="id5">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">2 编写 action 客户端</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>我们现在在单个文件中编写一个 action 客户端。
+打开一个新文件，我们称之为 <code class="docutils literal notranslate"><span class="pre">fibonacci_action_client.py</span></code>，并添加以下代码：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.action</span> <span class="kn">import</span> <span class="n">ActionClient</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
@@ -667,23 +663,23 @@ Open a new file, let’s call it <code class="docutils literal notranslate"><spa
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>We’ve defined a class <code class="docutils literal notranslate"><span class="pre">FibonacciActionClient</span></code> that is a subclass of <code class="docutils literal notranslate"><span class="pre">Node</span></code>.
-The class is initialized by calling the <code class="docutils literal notranslate"><span class="pre">Node</span></code> constructor, naming our node <code class="docutils literal notranslate"><span class="pre">fibonacci_action_client</span></code>:</p>
+<p>我们定义了一个 <code class="docutils literal notranslate"><span class="pre">FibonacciActionClient</span></code> 类，它是 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 的子类。
+通过调用 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 构造函数初始化类，将我们的节点命名为 <code class="docutils literal notranslate"><span class="pre">fibonacci_action_client</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;fibonacci_action_client&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Also in the class constructor, we create an action client using the custom action definition from the previous tutorial on <a class="reference internal" href="../Creating-an-Action.html"><span class="doc">Creating an action</span></a>:</p>
+<p>在类构造函数中，我们使用在 <a class="reference internal" href="../Creating-an-Action.html"><span class="doc">创建 action</span></a> 教程中定义的自定义 action 来创建一个 action 客户端：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Fibonacci</span><span class="p">,</span> <span class="s1">&#39;fibonacci&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We create an <code class="docutils literal notranslate"><span class="pre">ActionClient</span></code> by passing it three arguments:</p>
+<p>我们传递三个参数来创建一个 <code class="docutils literal notranslate"><span class="pre">ActionClient</span></code>：</p>
 <ol class="arabic simple">
-<li><p>A ROS 2 node to add the action client to: <code class="docutils literal notranslate"><span class="pre">self</span></code></p></li>
-<li><p>The type of the action: <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code></p></li>
-<li><p>The action name: <code class="docutils literal notranslate"><span class="pre">'fibonacci'</span></code></p></li>
+<li><p>一个 ROS 2 节点，将 action 客户端添加到： <code class="docutils literal notranslate"><span class="pre">self</span></code>。</p></li>
+<li><p>action 的类型： <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code>。</p></li>
+<li><p>action 名称： <code class="docutils literal notranslate"><span class="pre">'fibonacci'</span></code>。</p></li>
 </ol>
-<p>Our action client will be able to communicate with action servers of the same action name and type.</p>
-<p>We also define a method <code class="docutils literal notranslate"><span class="pre">send_goal</span></code> in the <code class="docutils literal notranslate"><span class="pre">FibonacciActionClient</span></code> class:</p>
+<p>我们的 action 客户端将能够与相同 action 名称和类型的 action 服务器通信。</p>
+<p>我们还在 <code class="docutils literal notranslate"><span class="pre">FibonacciActionClient</span></code> 类中定义了一个 <code class="docutils literal notranslate"><span class="pre">send_goal</span></code> 方法：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">send_goal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
         <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">Fibonacci</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
@@ -693,13 +689,12 @@ The class is initialized by calling the <code class="docutils literal notranslat
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span><span class="o">.</span><span class="n">send_goal_async</span><span class="p">(</span><span class="n">goal_msg</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This method waits for the action server to be available, then sends a goal to the server.
-It returns a future that we can later wait on.</p>
-<p>After the class definition, we define a function <code class="docutils literal notranslate"><span class="pre">main()</span></code> that initializes ROS 2
-and creates an instance of our <code class="docutils literal notranslate"><span class="pre">FibonacciActionClient</span></code> node.
-It then sends a goal and waits until that goal has been completed.</p>
-<p>Finally, we call <code class="docutils literal notranslate"><span class="pre">main()</span></code> in the entry point of our Python program.</p>
-<p>Let’s test our action client by first running the action server built earlier:</p>
+<p>这个方法等待 action 服务器可用，然后发送一个目标到服务器。
+它返回一个我们稍后可以等待的 future。</p>
+<p>在类定义之后，我们定义了一个 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 函数，它初始化 ROS 2 并创建 <code class="docutils literal notranslate"><span class="pre">FibonacciActionClient</span></code> 节点的实例。
+然后发送一个目标并等待目标完成。</p>
+<p>最后，我们在 Python 程序的入口点中调用 <code class="docutils literal notranslate"><span class="pre">main()</span></code>。</p>
+<p>让我们通过运行之前构建的 action 服务器来测试我们的 action 客户端：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-1-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-1-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>fibonacci_action_server.py
 </pre></div>
@@ -711,7 +706,7 @@ It then sends a goal and waits until that goal has been completed.</p>
 </pre></div>
 </div>
 </div></div>
-<p>In another terminal, run the action client:</p>
+<p>在另一个终端中，运行 action 客户端：</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-2-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-2-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-2-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-2-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>fibonacci_action_client.py
 </pre></div>
@@ -723,7 +718,7 @@ It then sends a goal and waits until that goal has been completed.</p>
 </pre></div>
 </div>
 </div></div>
-<p>You should see messages printed by the action server as it successfully executes the goal:</p>
+<p>你应该能看到 action 服务端打印出成功执行目标的消息：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>fibonacci_action_server<span class="o">]</span>:<span class="w"> </span>Executing<span class="w"> </span>goal...
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>fibonacci_action_server<span class="o">]</span>:<span class="w"> </span>Feedback:<span class="w"> </span>array<span class="o">(</span><span class="s1">&#39;i&#39;</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">1</span><span class="o">])</span>
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>fibonacci_action_server<span class="o">]</span>:<span class="w"> </span>Feedback:<span class="w"> </span>array<span class="o">(</span><span class="s1">&#39;i&#39;</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span><span class="o">])</span>
@@ -732,15 +727,15 @@ It then sends a goal and waits until that goal has been completed.</p>
 <span class="c1"># etc.</span>
 </pre></div>
 </div>
-<p>The action client should start up, and then quickly finish.
-At this point, we have a functioning action client, but we don’t see any results or get any feedback.</p>
-<section id="getting-a-result">
-<h4>2.1 Getting a result<a class="headerlink" href="#getting-a-result" title="Link to this heading"></a></h4>
-<p>So we can send a goal, but how do we know when it is completed?
-We can get the result information with a couple steps.
-First, we need to get a goal handle for the goal we sent.
-Then, we can use the goal handle to request the result.</p>
-<p>Here’s the complete code for this example:</p>
+<p>而 action 客户端应该会在启动后的很短时间内运行结束。
+现在，我们有一个运行的 action 客户端，但我们没有看到任何结果或得到任何反馈。</p>
+<section id="id6">
+<h4>2.1 获取结果<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<p>我们可以发送目标，但是怎么知道它什么时候完成呢？
+可以通过几个步骤获取结果。
+首先，我们拿到我们发送的目标的 handle .
+然后，我们可以使用 handle 来接收对应的结果。</p>
+<p>以下是这个示例的完整代码：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.action</span> <span class="kn">import</span> <span class="n">ActionClient</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
@@ -795,14 +790,14 @@ Then, we can use the goal handle to request the result.</p>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The <a class="reference external" href="http://docs.ros2.org/latest/api/rclpy/api/actions.html#rclpy.action.client.ActionClient.send_goal_async">ActionClient.send_goal_async()</a> method returns a future to a goal handle.
-First we register a callback for when the future is complete:</p>
+<p><a class="reference external" href="http://docs.ros2.org/latest/api/rclpy/api/actions.html#rclpy.action.client.ActionClient.send_goal_async">ActionClient.send_goal_async()</a> 会对 goal handle 返回一个 future 。
+首先，我们会为 future 的完成注册一个回调函数：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_send_goal_future</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">goal_response_callback</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that the future is completed when an action server accepts or rejects the goal request.
-Let’s look at the <code class="docutils literal notranslate"><span class="pre">goal_response_callback</span></code> in more detail.
-We can check to see if the goal was rejected and return early since we know there will be no result:</p>
+<p>请注意，只有当 action 服务器接受或拒绝目标请求时，future 才会被标记为已完成。
+现在我们来看看 <code class="docutils literal notranslate"><span class="pre">goal_response_callback</span></code> 的细节。
+我们可以检查目标是否已经被拒绝了，如果是的话，提前返回就好了，毕竟拒绝就意味着不会有结果传回来了：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">goal_response_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">future</span><span class="p">):</span>
         <span class="n">goal_handle</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">goal_handle</span><span class="o">.</span><span class="n">accepted</span><span class="p">:</span>
@@ -812,21 +807,21 @@ We can check to see if the goal was rejected and return early since we know ther
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Goal accepted :)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now that we’ve got a goal handle, we can use it to request the result with the method <a class="reference external" href="http://docs.ros2.org/latest/api/rclpy/api/actions.html#rclpy.action.client.ClientGoalHandle.get_result_async">get_result_async()</a>.
-Similar to sending the goal, we will get a future that will complete when the result is ready.
-Let’s register a callback just like we did for the goal response:</p>
+<p>现在我们有了一个 goal handle，我们可以使用它的 <a class="reference external" href="http://docs.ros2.org/latest/api/rclpy/api/actions.html#rclpy.action.client.ClientGoalHandle.get_result_async">get_result_async()</a> 方法来请求结果。
+类似于发送目标，我们会得到一个 future ，它结果准备好时会被标记为已完成。
+然后我我们给 future 的完成注册一个回调函数：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_get_result_future</span> <span class="o">=</span> <span class="n">goal_handle</span><span class="o">.</span><span class="n">get_result_async</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_get_result_future</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_result_callback</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In the callback, we log the result sequence and shutdown ROS 2 for a clean exit:</p>
+<p>在回调中，我们会记录结果序列，并关闭 ROS 2，以便干净利落地退出：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_result_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">future</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">result</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Result: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
         <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>With an action server running in a separate terminal, go ahead and try running our Fibonacci action client!</p>
+<p>在一个单独的终端中运行 action 服务器，然后尝试运行 Fibonacci Action 客户端！</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-3-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-3-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-3-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-3-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>fibonacci_action_client.py
 </pre></div>
@@ -838,14 +833,14 @@ Let’s register a callback just like we did for the goal response:</p>
 </pre></div>
 </div>
 </div></div>
-<p>You should see logged messages for the goal being accepted and the final result.</p>
+<p>应该能看到表示目标被接受和最终结果的日志信息。</p>
 </section>
-<section id="getting-feedback">
-<h4>2.2 Getting feedback<a class="headerlink" href="#getting-feedback" title="Link to this heading"></a></h4>
-<p>Our action client can send goals.
+<section id="id7">
+<h4>2.2 获取反馈<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<p>Action 客户端可以发送目标了。
 Nice!
-But it would be great if we could get some feedback about the goals we send from the action server.</p>
-<p>Here’s the complete code for this example:</p>
+但是如果我们能从 action 服务器得到一些关于目标的反馈就更好了了。</p>
+<p>以下是这个示例的完整代码：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.action</span> <span class="kn">import</span> <span class="n">ActionClient</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
@@ -904,31 +899,31 @@ But it would be great if we could get some feedback about the goals we send from
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Here’s the callback function for feedback messages:</p>
+<p>这里是用于反馈消息的回调函数：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">feedback_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback_msg</span><span class="p">):</span>
         <span class="n">feedback</span> <span class="o">=</span> <span class="n">feedback_msg</span><span class="o">.</span><span class="n">feedback</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Received feedback: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feedback</span><span class="o">.</span><span class="n">partial_sequence</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>In the callback we get the feedback portion of the message and print the <code class="docutils literal notranslate"><span class="pre">partial_sequence</span></code> field to the screen.</p>
-<p>We need to register the callback with the action client.
-This is achieved by additionally passing the callback to the action client when we send a goal:</p>
+<p>在回调中，我们获取消息的反馈部分并将 <code class="docutils literal notranslate"><span class="pre">partial_sequence</span></code> 字段打印到屏幕上。</p>
+<p>我们需要将回调注册给 action 客户端。
+可以通过在发送目标时将回调传递给 action 客户端来实现：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_send_goal_future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span><span class="o">.</span><span class="n">send_goal_async</span><span class="p">(</span><span class="n">goal_msg</span><span class="p">,</span> <span class="n">feedback_callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feedback_callback</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We’re all set. If we run our action client, you should see feedback being printed to the screen.</p>
+<p>大功告成。如果运行 action 客户端，你应该能看到屏幕上打印出的反馈消息。</p>
 </section>
 </section>
 </section>
-<section id="id4">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">总结</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<p>In this tutorial, you put together a Python action server and action client line by line, and configured them to exchange goals, feedback, and results.</p>
+<section id="id8">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">总结</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>在本教程中，你逐行编写了一个 Python action 服务器和 action 客户端，并配置它们来传递目标、反馈和结果。</p>
 </section>
-<section id="id5">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">相关内容</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<section id="id9">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">相关内容</a><a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>There are several ways you could write an action server and client in Python; check out the <code class="docutils literal notranslate"><span class="pre">minimal_action_server</span></code> and <code class="docutils literal notranslate"><span class="pre">minimal_action_client</span></code> packages in the <a class="reference external" href="https://github.com/ros2/examples/tree/humble/rclpy/actions">ros2/examples</a> repo.</p></li>
-<li><p>For more detailed information about ROS actions, please refer to the <a class="reference external" href="http://design.ros2.org/articles/actions.html">design article</a>.</p></li>
+<li><p>有几种方法可以在 Python 中编写 action 服务器和客户端；请查看 <a class="reference external" href="https://github.com/ros2/examples/tree/humble/rclpy/actions">ros2/examples</a> 中的 <code class="docutils literal notranslate"><span class="pre">minimal_action_server</span></code> and <code class="docutils literal notranslate"><span class="pre">minimal_action_client</span></code>.</p></li>
+<li><p>更多关于 ROS actions 的详细信息，请参考 <a class="reference external" href="http://design.ros2.org/articles/actions.html">design article</a>.</p></li>
 </ul>
 </section>
 </section>
@@ -938,7 +933,7 @@ This is achieved by additionally passing the callback to the action client when 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Cpp.html" class="btn btn-neutral float-left" title="Writing an action server and client (C++)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Cpp.html" class="btn btn-neutral float-left" title="实现 action 服务器和客户端(C++)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../Writing-a-Composable-Node.html" class="btn btn-neutral float-right" title="Writing a Composable Node (C++)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -981,13 +976,13 @@ This is achieved by additionally passing the callback to the action client when 
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

@@ -108,3 +108,6 @@ Glossary of terms used throughout this documentation:
 
     setup file
         配置文件。当表述为 source setup file 时，特指需要被 source 的那些诸如 setup.bash、setup.sh、setup.bat 之类的用来配置 ROS 2 环境的文件。
+
+    entry point
+        入口点。在 ROS 2 中，指的是一个程序的入口，通常是一个 Python 程序的主函数。

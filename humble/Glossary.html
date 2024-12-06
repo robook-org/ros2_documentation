@@ -156,12 +156,12 @@
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Creating-Launch-Files.html">Creating a launch file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Launch-system.html">Integrating launch files into ROS 2 packages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Using-Substitutions.html">Using substitutions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Using-Event-Handlers.html">Using event handlers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html">Managing large projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Tutorials/Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Launch-system.html">将启动文件集成到 ROS 2 包中</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Using-Substitutions.html">使用可替换变量(substitutions)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Using-Event-Handlers.html">使用事件处理器(event handlers)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html">管理大型项目</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="Tutorials/Intermediate/Tf2/Tf2-Main.html"><code class="docutils literal notranslate"><span class="pre">tf2</span></code></a><ul>
@@ -398,7 +398,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">术语表</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Glossary.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Glossary.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -433,6 +433,8 @@ In the context of this document, repositories usually contain one or more <a cla
 <section id="id2">
 <h2>翻译对照表<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <dl class="simple glossary">
+<dt id="term-broadcaster">broadcaster<a class="headerlink" href="#term-broadcaster" title="Link to this term"></a></dt><dd><p>广播，广播器。</p>
+</dd>
 <dt id="term-build">build<a class="headerlink" href="#term-build" title="Link to this term"></a></dt><dd><p>构建, 在 ROS 2 中，构建是指将源代码转换为可执行文件的过程。构建过程通常包括编译、链接和安装等。由于一些计算机学科的历史发展原因，或者在其他领域已经被广泛使用的用法的影响下，在交流中我们也有可能直接将这个过程称为编译。</p>
 </dd>
 <dt id="term-bus">bus<a class="headerlink" href="#term-bus" title="Link to this term"></a></dt><dd><p>总线。</p>
@@ -449,13 +451,21 @@ In the context of this document, repositories usually contain one or more <a cla
 </dd>
 <dt id="term-entry-point">entry point<a class="headerlink" href="#term-entry-point" title="Link to this term"></a></dt><dd><p>入口点。在 ROS 2 中，指的是一个程序的入口，通常是一个 Python 程序的主函数。</p>
 </dd>
+<dt id="term-event-handler">event handler<a class="headerlink" href="#term-event-handler" title="Link to this term"></a></dt><dd><p>事件处理器。</p>
+</dd>
 <dt id="term-example">example<a class="headerlink" href="#term-example" title="Link to this term"></a></dt><dd><p>示例，样例，例子。</p>
 </dd>
 <dt id="term-executor">executor<a class="headerlink" href="#term-executor" title="Link to this term"></a></dt><dd><p>执行器。</p>
 </dd>
 <dt id="term-field">field<a class="headerlink" href="#term-field" title="Link to this term"></a></dt><dd><p>字段。</p>
 </dd>
+<dt id="term-frame">frame<a class="headerlink" href="#term-frame" title="Link to this term"></a></dt><dd><p>当表述有关坐标变换时，frame 通常指的是坐标系。一般会出现在和 tf2 有关的文档中。</p>
+</dd>
+<dt id="term-include">include<a class="headerlink" href="#term-include" title="Link to this term"></a></dt><dd><p>包含，引用。</p>
+</dd>
 <dt id="term-launch-file">launch file<a class="headerlink" href="#term-launch-file" title="Link to this term"></a></dt><dd><p>启动文件。 在 ROS 2 中特指那些可以用来启动多个节点的文件，这些文件可以用 Python、XML 或 YAML 编写。</p>
+</dd>
+<dt id="term-listener">listener<a class="headerlink" href="#term-listener" title="Link to this term"></a></dt><dd><p>监听器。</p>
 </dd>
 <dt id="term-node">node<a class="headerlink" href="#term-node" title="Link to this term"></a></dt><dd><p>节点。</p>
 </dd>
@@ -464,6 +474,8 @@ In the context of this document, repositories usually contain one or more <a cla
 <dt id="term-request">request<a class="headerlink" href="#term-request" title="Link to this term"></a></dt><dd><p>请求。</p>
 </dd>
 <dt id="term-response">response<a class="headerlink" href="#term-response" title="Link to this term"></a></dt><dd><p>响应，回复。</p>
+</dd>
+<dt id="term-reuse">reuse<a class="headerlink" href="#term-reuse" title="Link to this term"></a></dt><dd><p>复用。把一个东西用在多个地方、场景。</p>
 </dd>
 <dt id="term-service">service<a class="headerlink" href="#term-service" title="Link to this term"></a></dt><dd><p>服务。</p>
 </dd>
@@ -476,6 +488,8 @@ In the context of this document, repositories usually contain one or more <a cla
 <dt id="term-strong-typed">strong-typed<a class="headerlink" href="#term-strong-typed" title="Link to this term"></a></dt><dd><p>类型严格。也叫强类型。</p>
 </dd>
 <dt id="term-subscription">subscription<a class="headerlink" href="#term-subscription" title="Link to this term"></a></dt><dd><p>订阅。</p>
+</dd>
+<dt id="term-substitution">substitution<a class="headerlink" href="#term-substitution" title="Link to this term"></a></dt><dd><p>替换，可被替换的变量，可替换变量。</p>
 </dd>
 <dt id="term-terminal">terminal<a class="headerlink" href="#term-terminal" title="Link to this term"></a></dt><dd><p>终端。</p>
 </dd>
@@ -535,13 +549,13 @@ In the context of this document, repositories usually contain one or more <a cla
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

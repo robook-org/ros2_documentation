@@ -111,3 +111,24 @@ Glossary of terms used throughout this documentation:
 
     entry point
         入口点。在 ROS 2 中，指的是一个程序的入口，通常是一个 Python 程序的主函数。
+
+    event handler
+        事件处理器。
+
+    substitution
+        替换，可被替换的变量，可替换变量。
+
+    listener
+        监听器。
+
+    broadcaster
+        广播，广播器。
+
+    include
+        包含，引用。
+
+    reuse
+        复用。把一个东西用在多个地方、场景。
+
+    frame
+        当表述有关坐标变换时，frame 通常指的是坐标系。一般会出现在和 tf2 有关的文档中。

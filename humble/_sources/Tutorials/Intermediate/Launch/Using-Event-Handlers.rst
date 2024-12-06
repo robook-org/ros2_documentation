@@ -3,10 +3,10 @@
     Tutorials/Launch-Files/Using-Event-Handlers
     Tutorials/Launch/Using-Event-Handlers
 
-Using event handlers
-====================
+使用事件处理器(event handlers)
+===============================
 
-**目标:** Learn about event handlers in ROS 2 launch files
+**目标:** 学习 ROS 2 启动文件中事件处理器的使用。
 
 **教程等级:** 中级
 
@@ -19,29 +19,29 @@ Using event handlers
 背景
 ----------
 
-Launch in ROS 2 is a system that executes and manages user-defined processes.
-It is responsible for monitoring the state of processes it launched, as well as reporting and reacting to changes in the state of those processes.
-These changes are called events and can be handled by registering an event handler with the launch system.
-Event handlers can be registered for specific events and can be useful for monitoring the state of processes.
-Additionally, they can be used to define a complex set of rules which can be used to dynamically modify the launch file.
+启动系统(Launch)在 ROS 2 中是一个执行和管理用户定义进程的系统。
+它负责监视它启动的进程的状态，并且报告和响应这些进程状态的变化。
+我们把这些状态的变化称为事件(event)，可以通过在启动系统中注册事件处理器(event handler)来处理这些事件。
+事件处理器中可以注册特定事件的处理程序，用于监视进程的状态。
+此外，它们可以用于定义一组复杂的规则，这些规则可以用于动态修改启动文件。
 
-This tutorial shows usage examples of event handlers in ROS 2 launch files.
+本教程展示了在 ROS 2 启动文件中使用事件处理器的用法。
 
 前提条件
 -------------
 
-This tutorial uses the :doc:`turtlesim <../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim>` package.
-This tutorial also assumes you have :doc:`created a new package <../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package>` of build type ``ament_python`` called ``launch_tutorial``.
+本教程用到了 :doc:`turtlesim <../../Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim>` 包。
+本教程还假设你已经 :doc:`创建了一个新的包 <../../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package>`，构建类型为 ``ament_python``，名为 ``launch_tutorial``。
 
-This tutorial extends the code shown in the :doc:`Using substitutions in launch files <./Using-Substitutions>` tutorial.
+本教程扩展了 :doc:`在启动文件中使用替换 <./Using-Substitutions>` 教程中展示的代码。
 
-Using event handlers
+使用事件处理器
 --------------------
 
-1 Event handlers example launch file
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1 带有事件处理器的示例启动文件
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a new file called ``example_event_handlers.launch.py`` file in the ``launch`` folder of the ``launch_tutorial`` package.
+创建一个名为 ``example_event_handlers.launch.py`` 的新文件，放在 ``launch_tutorial`` 包的 ``launch`` 文件夹中。
 
 .. code-block:: python
 
@@ -180,10 +180,10 @@ Create a new file called ``example_event_handlers.launch.py`` file in the ``laun
             ),
         ])
 
-``RegisterEventHandler`` actions for the ``OnProcessStart``, ``OnProcessIO``, ``OnExecutionComplete``, ``OnProcessExit``, and ``OnShutdown`` events were defined in the launch description.
+``OnProcessStart``, ``OnProcessIO``, ``OnExecutionComplete``, ``OnProcessExit`` 和 ``OnShutdown`` 事件的 ``RegisterEventHandler`` 操作在启动描述中定义好了。
 
-The ``OnProcessStart`` event handler is used to register a callback function that is executed when the turtlesim node starts.
-It logs a message to the console and executes the ``spawn_turtle`` action when the turtlesim node starts.
+``OnProcessStart`` 用于注册一个在turtlesim 节点启动时执行的回调函数。
+它在 turtlesim 节点启动时记录一条消息到控制台，并在turtlesim节点启动时运行 ``spawn_turtle`` action。
 
 .. code-block:: python
 
@@ -197,8 +197,8 @@ It logs a message to the console and executes the ``spawn_turtle`` action when t
         )
     ),
 
-The ``OnProcessIO`` event handler is used to register a callback function that is executed when the ``spawn_turtle`` action writes to its standard output.
-It logs the result of the spawn request.
+``OnProcessIO`` 用于注册一个在 ``spawn_turtle`` action 向其标准输出写数据时执行的回调函数。
+它记录了生成请求的结果。
 
 .. code-block:: python
 
@@ -212,8 +212,8 @@ It logs the result of the spawn request.
         )
     ),
 
-The ``OnExecutionComplete`` event handler is used to register a callback function that is executed when the ``spawn_turtle`` action completes.
-It logs a message to the console and executes the ``change_background_r`` and ``change_background_r_conditioned`` actions when the spawn action completes.
+``OnExecutionComplete`` 用于注册一个在 ``spawn_turtle`` action 完成时的回调函数。
+它记录了一条消息到控制台，并在 spawn action 完成时执行 ``change_background_r`` 和 ``change_background_r_conditioned`` actions。
 
 .. code-block:: python
 
@@ -231,9 +231,9 @@ It logs a message to the console and executes the ``change_background_r`` and ``
         )
     ),
 
-The ``OnProcessExit`` event handler is used to register a callback function that is executed when the turtlesim node exits.
-It logs a message to the console and executes the ``EmitEvent`` action to emit a ``Shutdown`` event when the turtlesim node exits.
-It means that the launch process will shutdown when the turtlesim window is closed.
+``OnProcessExit`` 用于注册一个在 turtlesim 节点退出时执行的回调函数。
+它记录了一条消息到控制台，并在 turtlesim 节点退出时执行 ``EmitEvent`` action 来发出一个 ``Shutdown`` 事件。
+这意味着当 turtlesim 窗口关闭时， launch 进程将关闭。
 
 .. code-block:: python
 
@@ -249,9 +249,9 @@ It means that the launch process will shutdown when the turtlesim window is clos
         )
     ),
 
-Finally, the ``OnShutdown`` event handler is used to register a callback function that is executed when the launch file is asked to shutdown.
-It logs a message to the console why the launch file is asked to shutdown.
-It logs the message with a reason for shutdown like the closure of turtlesim window or :kbd:`ctrl-c` signal made by the user.
+最后，``OnShutdown`` 事件处理器用于注册一个回调函数，在启动文件关闭时执行。
+它记录了一条消息到控制台，说明关闭启动文件的原因。
+比如，当 turtlesim 窗口关闭或用户通过 :kbd:`ctrl-c` 信号关闭时，它记录了带有关闭原因的消息。
 
 .. code-block:: python
 
@@ -264,50 +264,50 @@ It logs the message with a reason for shutdown like the closure of turtlesim win
         )
     ),
 
-Build the package
+构建包
 -----------------
 
-Go to the root of the workspace, and build the package:
+进入工作空间的根目录，构建包:
 
 .. code-block:: console
 
   colcon build
 
-Also remember to source the workspace after building.
+记得在构建后 source 代码。
 
-Launching example
+运行示例
 -----------------
 
-Now you can launch the ``example_event_handlers.launch.py`` file using the ``ros2 launch`` command.
+现在可以使用 ``ros2 launch`` 命令启动 ``example_event_handlers.launch.py`` 。
 
 .. code-block:: console
 
     ros2 launch launch_tutorial example_event_handlers.launch.py turtlesim_ns:='turtlesim3' use_provided_red:='True' new_background_r:=200
 
-This will do the following:
+这将执行以下操作:
 
-#. Start a turtlesim node with a blue background
-#. Spawn the second turtle
-#. Change the color to purple
-#. Change the color to pink after two seconds if the provided ``background_r`` argument is ``200`` and ``use_provided_red`` argument is ``True``
-#. Shutdown the launch file when the turtlesim window is closed
+#. 使用蓝色背景启动 turtlesim 节点
+#. 生成第二只乌龟
+#. 将背景颜色更改为紫色
+#. 如果提供的 ``background_r`` 参数为 ``200`` 并且 ``use_provided_red`` 参数为 ``True``，则在两秒后将颜色更改为粉色
+#. 当 turtlesim 窗口关闭时关闭启动文件
 
-Additionally, it will log messages to the console when:
+此外，在以下情况出现时会在控制台打印 log :
 
-#. The turtlesim node starts
-#. The spawn action is executed
-#. The ``change_background_r`` action is executed
-#. The ``change_background_r_conditioned`` action is executed
-#. The turtlesim node exits
-#. The launch process is asked to shutdown.
+#. turtlesim 节点启动时
+#. spawn action 运行时
+#. ``change_background_r`` action 运行时
+#. ``change_background_r_conditioned`` action 运行时
+#. turtlesim 节点退出时
+#. 启动文件被关闭时
 
-Documentation
+文档
 -------------
 
-`The launch documentation <https://github.com/ros2/launch/blob/{REPOS_FILE_BRANCH}/launch/doc/source/architecture.rst>`_ provides detailed information about available event handlers.
+`The launch documentation <https://github.com/ros2/launch/blob/{REPOS_FILE_BRANCH}/launch/doc/source/architecture.rst>`_ 提供了关于事件处理器的详细信息。
 
 总结
 -------
 
-In this tutorial, you learned about using event handlers in launch files.
-You learned about their syntax and usage examples to define a complex set of rules to dynamically modify launch files.
+在本教程中，你学习了如何在启动文件中使用事件处理器。
+你学习了它们的语法和用法示例，用于定义一组复杂的规则，这些规则可以用于动态修改启动文件。

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Launch &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>启动(Launch) &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
@@ -28,7 +28,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Creating a launch file" href="Creating-Launch-Files.html" />
+    <link rel="next" title="创建启动文件" href="Creating-Launch-Files.html" />
     <link rel="prev" title="Monitoring for parameter changes (C++)" href="../Monitoring-For-Parameter-Changes-CPP.html" /> 
 </head>
 
@@ -156,12 +156,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Composition.html">Composing multiple nodes in a single process</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Launch</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Creating-Launch-Files.html">Creating a launch file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Launch-system.html">Integrating launch files into ROS 2 packages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Using-Substitutions.html">Using substitutions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Using-Event-Handlers.html">Using event handlers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Using-ROS2-Launch-For-Large-Projects.html">Managing large projects</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">启动(Launch)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Creating-Launch-Files.html">创建启动文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Launch-system.html">将启动文件集成到 ROS 2 包中</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Using-Substitutions.html">使用可替换变量(substitutions)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Using-Event-Handlers.html">使用事件处理器(event handlers)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Using-ROS2-Launch-For-Large-Projects.html">管理大型项目</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Tf2/Tf2-Main.html"><code class="docutils literal notranslate"><span class="pre">tf2</span></code></a><ul>
@@ -398,9 +398,9 @@
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../Tutorials.html">教程</a></li>
           <li class="breadcrumb-item"><a href="../../Intermediate.html">中级教程</a></li>
-      <li class="breadcrumb-item active">Launch</li>
+      <li class="breadcrumb-item active">启动(Launch)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Launch/Launch-Main.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Launch/Launch-Main.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -411,31 +411,31 @@
 
 
   <section id="launch">
-<span id="launchfilesmain"></span><h1>Launch<a class="headerlink" href="#launch" title="Link to this heading"></a></h1>
-<p>ROS 2 Launch files allow you to start up and configure a number of executables containing ROS 2 nodes simultaneously.</p>
+<span id="launchfilesmain"></span><h1>启动(Launch)<a class="headerlink" href="#launch" title="Link to this heading"></a></h1>
+<p>通过 ROS 2 启动文件，可以同时启动和配置多个包含 ROS 2 节点的可执行文件。</p>
 <div class="toctree-wrapper compound">
 </div>
 <ol class="arabic">
-<li><p><a class="reference internal" href="Creating-Launch-Files.html"><span class="doc">Creating a launch file</span></a>.</p>
-<p>Learn how to create a launch file that will start up nodes and their configurations all at once.</p>
+<li><p><a class="reference internal" href="Creating-Launch-Files.html"><span class="doc">创建启动文件</span></a>.</p>
+<p>了解如何创建启动文件，一次性启动并配置节点。</p>
 </li>
-<li><p><a class="reference internal" href="Launch-system.html"><span class="doc">Launching and monitoring multiple nodes</span></a>.</p>
-<p>Get a more advanced overview of how launch files work.</p>
+<li><p><a class="reference internal" href="Launch-system.html"><span class="doc">运行并监控多个节点</span></a>.</p>
+<p>更深入地了解启动文件的工作原理。</p>
 </li>
-<li><p><a class="reference internal" href="Using-Substitutions.html"><span class="doc">Using substitutions</span></a>.</p>
-<p>Use substitutions to provide more flexibility when describing reusable launch files.</p>
+<li><p><a class="reference internal" href="Using-Substitutions.html"><span class="doc">使用可被替换的变量</span></a>.</p>
+<p>在描述可重复使用的启动文件时，使用可被替换的变量可以提供更大的灵活性。</p>
 </li>
-<li><p><a class="reference internal" href="Using-Event-Handlers.html"><span class="doc">Using event handlers</span></a>.</p>
-<p>Use event handlers to monitor the state of processes or to define a complex set of rules that can be used to dynamically modify the launch file.</p>
+<li><p><a class="reference internal" href="Using-Event-Handlers.html"><span class="doc">使用事件处理器</span></a>.</p>
+<p>使用事件处理程序监控进程状态，或定义一组复杂的规则，用于动态修改启动文件。</p>
 </li>
-<li><p><a class="reference internal" href="Using-ROS2-Launch-For-Large-Projects.html"><span class="doc">Managing large projects</span></a>.</p>
-<p>Structure launch files for large projects so they may be reused as much as possible in different situations.
-See usage examples of different launch tools like parameters, YAML files, remappings, namespaces, default arguments, and RViz configs.</p>
+<li><p><a class="reference internal" href="Using-ROS2-Launch-For-Large-Projects.html"><span class="doc">管理大型项目</span></a>.</p>
+<p>为大型项目构建启动文件，以便在不同情况下尽可能重复使用。
+查看不同启动工具的使用示例，如参数、YAML 文件、重映射、命名空间、默认参数和 RViz 配置。</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you are coming from ROS 1, you can use the <a class="reference internal" href="../../../How-To-Guides/Migrating-from-ROS1/Migrating-Launch-Files.html"><span class="doc">ROS Launch Migration guide</span></a> to help you migrate your launch files to ROS 2.</p>
+<p>如果你之前用的是 ROS 1， <a class="reference internal" href="../../../How-To-Guides/Migrating-from-ROS1/Migrating-Launch-Files.html"><span class="doc">ROS 启动文件迁移指南</span></a> 可以帮助你迁移到 ROS 2。</p>
 </div>
 </section>
 
@@ -445,7 +445,7 @@ See usage examples of different launch tools like parameters, YAML files, remapp
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../Monitoring-For-Parameter-Changes-CPP.html" class="btn btn-neutral float-left" title="Monitoring for parameter changes (C++)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Creating-Launch-Files.html" class="btn btn-neutral float-right" title="Creating a launch file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Creating-Launch-Files.html" class="btn btn-neutral float-right" title="创建启动文件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -487,13 +487,13 @@ See usage examples of different launch tools like parameters, YAML files, remapp
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

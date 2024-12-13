@@ -7,27 +7,30 @@ Topics vs Services vs Actions
    :depth: 1
    :local:
 
-When designing a system there are three primary styles of interfaces.
-The specifications for the content is in the :doc:`Interfaces Overview <../Concepts/Basic/About-Interfaces>`.
-This is written to provide the reader with guidelines about when to use each type of interface.
+有三种主要的接口形式可以用在 ROS 2 的系统设计中。
+文档中所提及的接口规范在 :doc:`接口概述 <../Concepts/Basic/About-Interfaces>` 中可以找到。
+本文的目的是指导读者选择合适的接口类型。
 
 Topics
 ------
 
-* Should be used for continuous data streams (sensor data, robot state, ...).
-* Are for continuous data flow. Data might be published and subscribed at any time independent of any senders/receivers. Many to many connection. Callbacks receive data once it is available. The publisher decides when data is sent.
+* 应当用于连续数据流（传感器数据，机器人状态等）。
+* 数据随时有可能被发布和订阅，不依赖于发送者或接收者。
+* 多对多连接。
+* 数据一可用就会被回调函数接收。
+* 发布方决定何时发送数据。
 
 Services
 --------
 
-* Should be used for remote procedure calls that terminate quickly, e.g. for querying the state of a node or doing a quick calculation such as IK. They should never be used for longer running processes, in particular processes that might be required to preempt if exceptional situations occur and they should never change or depend on state to avoid unwanted side effects for other nodes.
-* Simple blocking call. Mostly used for comparably fast tasks as requesting specific data. Semantically for processing requests.
+* 应当用于远程过程调用（remote procedure calls， RPC），这些调用会很快结束，例如查询节点状态或进行快速计算，如 IK。它们永远不应该用于运行时间较长的进程，特别是可能需要在发生异常情况时抢占的进程，也永远不应该改变或依赖于状态以避免对其他节点产生不希望的副作用。
+* 简单的阻塞调用。主要用于请求特定数据。从名字上能看出来就是用于处理请求。
 
 Actions
 -------
 
-* Should be used for any discrete behavior that moves a robot or that runs for a longer time but provides feedback during execution.
-* The most important property of actions is that they can be preempted and preemption should always be implemented cleanly by action servers.
-* Actions can keep state for the lifetime of a goal, i.e. if executing two action goals in parallel on the same server, for each client a separate state instance can be kept since the goal is uniquely identified by its id.
-* Slow perception routines which take several seconds to terminate or initiating a lower-level control mode are good use cases for actions.
-* More complex non-blocking background processing. Used for longer tasks like execution of robot actions. Semantically for real-world actions.
+* 应当用于运行时间较长但在执行过程中提供反馈的离散行为，例如移动机器人。
+* 最重要的是，它们可以被抢占，而且抢占应该总是由 action 服务器无副作用地实现。
+* Actions 可以保持状态，直到目标完成，例如在同一台服务器上并行执行两个 action 目标时，对于每个客户端可以保持一个单独的状态实例，因为目标是通过其 ID 唯一标识的。
+* 需要好几秒才能终止的感知程序，或者启动某个底层控制模式，都是适合使用 action 的例子。
+* 更复杂的非阻塞后台处理。用于执行机器人动作等较长任务。顾名思义， action 当然是用于执行真实世界的 action 的。

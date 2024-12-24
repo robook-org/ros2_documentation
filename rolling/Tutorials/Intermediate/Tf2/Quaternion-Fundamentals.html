@@ -459,7 +459,7 @@ You can take a look at libraries like <a class="reference external" href="https:
 A quaternion has 4 components <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z,</span> <span class="pre">w)</span></code>.
 In ROS 2, <code class="docutils literal notranslate"><span class="pre">w</span></code> is last, but in some libraries like Eigen, <code class="docutils literal notranslate"><span class="pre">w</span></code> can be placed at the first position.
 The commonly-used unit quaternion that yields no rotation about the x/y/z axes is <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1)</span></code>, and can be created in a following way:</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2/LinearMath/Quaternion.h&gt;</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2/LinearMath/Quaternion.hpp&gt;</span>
 <span class="p">...</span>
 
 <span class="n">tf2</span><span class="o">::</span><span class="n">Quaternion</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>

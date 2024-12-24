@@ -492,7 +492,7 @@ Inside the <code class="docutils literal notranslate"><span class="pre">src/lear
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;geometry_msgs/msg/transform_stamped.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rclcpp/rclcpp.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tf2/LinearMath/Quaternion.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tf2/LinearMath/Quaternion.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tf2_ros/static_transform_broadcaster.h&quot;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">StaticFramePublisher</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span>
@@ -577,7 +577,7 @@ First we include <code class="docutils literal notranslate"><span class="pre">ge
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">tf2::Quaternion</span></code> is a class for a quaternion that provides convenient functions for converting Euler angles to quaternions and vice versa.
 We also include <code class="docutils literal notranslate"><span class="pre">tf2_ros/static_transform_broadcaster.h</span></code> to use the <code class="docutils literal notranslate"><span class="pre">StaticTransformBroadcaster</span></code> to make the publishing of static transforms easy.</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tf2/LinearMath/Quaternion.h&quot;</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tf2/LinearMath/Quaternion.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;tf2_ros/static_transform_broadcaster.h&quot;</span>
 </pre></div>
 </div>

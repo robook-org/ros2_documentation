@@ -59,6 +59,8 @@ Executors 使用底层操作系统的一个或多个线程来调用 subscription
 
 单线程执行器也被容器进程用于 :doc:`components <./About-Composition>`，即在所有节点在没有显式地被主函数的创建和执行的情况下。
 
+.. _TypesOfExecutors:
+
 Executors 类型
 ------------------
 

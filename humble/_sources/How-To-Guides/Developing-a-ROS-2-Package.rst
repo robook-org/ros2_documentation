@@ -4,7 +4,7 @@
     Guides/Developing-a-ROS-2-Package
     Tutorials/Developing-a-ROS-2-Package
 
-开发一个 ROS 2 包
+开发 ROS 2 包
 ##########################
 
 .. contents:: Table of Contents

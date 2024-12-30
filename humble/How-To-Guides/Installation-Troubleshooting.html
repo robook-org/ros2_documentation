@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation troubleshooting &mdash; ROS 2 Documentation: Humble  documentation</title>
+  <title>安装问题排查 &mdash; ROS 2 Documentation: Humble  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
@@ -28,7 +28,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="开发一个 ROS 2 包" href="Developing-a-ROS-2-Package.html" />
+    <link rel="next" title="开发 ROS 2 包" href="Developing-a-ROS-2-Package.html" />
     <link rel="prev" title="应用指南" href="../How-To-Guides.html" /> 
 </head>
 
@@ -267,8 +267,8 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../How-To-Guides.html">应用指南</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation troubleshooting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Developing-a-ROS-2-Package.html">开发一个 ROS 2 包</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">安装问题排查</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developing-a-ROS-2-Package.html">开发 ROS 2 包</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Documenting-a-ROS-2-Package.html">Documenting a ROS 2 package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Ament-CMake-Documentation.html">ament_cmake user documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Ament-CMake-Python-Documentation.html">ament_cmake_python user documentation</a></li>
@@ -401,7 +401,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../How-To-Guides.html">应用指南</a></li>
-      <li class="breadcrumb-item active">Installation troubleshooting</li>
+      <li class="breadcrumb-item active">安装问题排查</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/How-To-Guides/Installation-Troubleshooting.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -413,93 +413,93 @@
              
 
 
-  <section id="installation-troubleshooting">
-<h1>Installation troubleshooting<a class="headerlink" href="#installation-troubleshooting" title="Link to this heading"></a></h1>
-<p>Troubleshooting techniques for installation are sorted by the platforms they apply to.</p>
+  <section id="id1">
+<h1>安装问题排查<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>安装过程中的问题排查技巧按照适用的平台进行了分类。</p>
 <nav class="contents local" id="platforms">
 <p class="topic-title">Platforms</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#general" id="id1">General</a></p></li>
-<li><p><a class="reference internal" href="#linux" id="id2">Linux</a></p></li>
-<li><p><a class="reference internal" href="#macos" id="id3">macOS</a></p></li>
-<li><p><a class="reference internal" href="#windows" id="id4">Windows</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id6">共性问题</a></p></li>
+<li><p><a class="reference internal" href="#linux" id="id7">Linux</a></p></li>
+<li><p><a class="reference internal" href="#macos" id="id8">macOS</a></p></li>
+<li><p><a class="reference internal" href="#windows" id="id9">Windows</a></p></li>
 </ul>
 </nav>
-<section id="general">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">General</a><a class="headerlink" href="#general" title="Link to this heading"></a></h2>
-<p>General troubleshooting techniques apply to all platforms.</p>
-<section id="enable-multicast">
-<h3>Enable multicast<a class="headerlink" href="#enable-multicast" title="Link to this heading"></a></h3>
-<p>In order to communicate successfully via DDS, the used network interface has to be multicast enabled.
-We’ve seen in past experiences that this might not necessarily be enabled by default (on Ubuntu or OSX) when using the loopback adapter.
-See the <a class="reference external" href="https://github.com/ros2/ros2/issues/552">original issue</a> or a <a class="reference external" href="https://answers.ros.org/question/300370/ros2-talker-cannot-communicate-with-listener/">conversation on ros-answers</a>.
-You can verify that your current setup allows multicast with the ROS 2 tool:</p>
-<p>In Terminal 1:</p>
+<section id="id2">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">共性问题</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>共性问题的排查技巧适用于所有平台。</p>
+<section id="multicast">
+<h3>使能 multicast<a class="headerlink" href="#multicast" title="Link to this heading"></a></h3>
+<p>为了能够通过 DDS 通信，使用的网络接口必须已经使能/启用了 multicast。
+在之前的经验中，当使用环回适配器(loopback adapter)时这功能可能不会默认启用（在 Ubuntu 或 OSX 上）。
+可以查看 <a class="reference external" href="https://github.com/ros2/ros2/issues/552">原始问题</a> 或者 <a class="reference external" href="https://answers.ros.org/question/300370/ros2-talker-cannot-communicate-with-listener/">ros-answers 上的讨论</a>.
+可以使用 ROS 2 工具来验证当前的设置是否允许 multicast：</p>
+<p>在终端 1 中：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>multicast<span class="w"> </span>receive
 </pre></div>
 </div>
-<p>In Terminal 2:</p>
+<p>在终端 2 中：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>multicast<span class="w"> </span>send
 </pre></div>
 </div>
-<p>If the first command did not return a response similar to:</p>
+<p>如果第一个命令没有返回类似这样的信息：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Received<span class="w"> </span>from<span class="w"> </span>xx.xxx.xxx.xx:43751:<span class="w"> </span><span class="s1">&#39;Hello World!&#39;</span>
 </pre></div>
 </div>
-<p>then you will need to update your firewall configuration to allow multicast using <a class="reference external" href="https://help.ubuntu.com/community/UFW">ufw</a>.</p>
+<p>那你就需要更新防火墙配置来允许 multicast， 使用 <a class="reference external" href="https://help.ubuntu.com/community/UFW">ufw</a>。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="k">in</span><span class="w"> </span>proto<span class="w"> </span>udp<span class="w"> </span>to<span class="w"> </span><span class="m">224</span>.0.0.0/4
 sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="k">in</span><span class="w"> </span>proto<span class="w"> </span>udp<span class="w"> </span>from<span class="w"> </span><span class="m">224</span>.0.0.0/4
 </pre></div>
 </div>
-<p>You can check if the multicast flag is enabled for your network interface using the <code class="code docutils literal notranslate"><span class="pre">ifconfig</span></code> tool and looking for <code class="code docutils literal notranslate"><span class="pre">MULITCAST</span></code> in the flags section:</p>
+<p>你可以使用 <code class="code docutils literal notranslate"><span class="pre">ifconfig</span></code> 工具来检查网络接口是否已经使能了 multicast 标志，查看 flags 部分是否包含 <code class="code docutils literal notranslate"><span class="pre">MULITCAST</span></code>：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eno1:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">4163</span>&lt;...,MULTICAST&gt;
 <span class="w">   </span>...
 </pre></div>
 </div>
 </section>
-<section id="import-failing-without-library-present-on-the-system">
-<h3>Import failing without library present on the system<a class="headerlink" href="#import-failing-without-library-present-on-the-system" title="Link to this heading"></a></h3>
-<p>Sometimes <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> fails to be imported because the expected C extension libraries are not found.
-If so, compare the libraries present in the directory with the one mentioned in the error message.
-Assuming a file with a similar name exists (same prefix like <code class="docutils literal notranslate"><span class="pre">_rclpy.</span></code> and same suffix like <code class="docutils literal notranslate"><span class="pre">.so</span></code> but a different Python version / architecture) you are using a different Python interpreter than which was used to build the C extension.
-Be sure to use the same Python interpreter as the one used to build the binary.</p>
-<p>For example, such a mismatch can crop up after an update of the OS. Then, rebuilding the workspace may fix the issue.</p>
+<section id="import">
+<h3>Import 时找不到库<a class="headerlink" href="#import" title="Link to this heading"></a></h3>
+<p>有时候 <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> 无法被导入是因为依赖的 C 扩展库没有找到。
+如果是这样，可以查看错误信息中提到的库所在的目录，然后查看这个目录中是否有类似名称的文件。
+如果有个用不同版本 Python 构建的 C 拓展库（文件名前缀类似 <code class="docutils literal notranslate"><span class="pre">_rclpy.</span></code>，后缀类似 <code class="docutils literal notranslate"><span class="pre">.so</span></code>，但是 Python 版本/架构不同），
+那么请确保运行时使用的 Python 与构建时使用的 Python 版本相同。</p>
+<p>这样的问题可能会在升级操作系统后出现，重新构建工作空间一般就能解决这个问题。</p>
 </section>
 </section>
 <section id="linux">
-<span id="linux-troubleshooting"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Linux</a><a class="headerlink" href="#linux" title="Link to this heading"></a></h2>
-<section id="internal-compiler-error">
-<h3>Internal compiler error<a class="headerlink" href="#internal-compiler-error" title="Link to this heading"></a></h3>
-<p>If you experience an ICE when trying to compile on a memory constrained platform like a Raspberry PI you might want to build single threaded (prefix the build invocation with <code class="docutils literal notranslate"><span class="pre">MAKEFLAGS=-j1</span></code>).</p>
+<span id="linux-troubleshooting"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">Linux</a><a class="headerlink" href="#linux" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>内部编译错误<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>如果在内存受限的平台上编译（比如 Raspberry PI）时遇到内部编译错误，你可能需要单线程编译（在构建命令前加上 <code class="docutils literal notranslate"><span class="pre">MAKEFLAGS=-j1</span></code>）。</p>
 </section>
-<section id="out-of-memory">
-<h3>Out of memory<a class="headerlink" href="#out-of-memory" title="Link to this heading"></a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">ros1_bridge</span></code> in its current form requires 4Gb of free RAM to compile.
-If you don’t have that amount of RAM available it’s suggested to use <code class="docutils literal notranslate"><span class="pre">COLCON_IGNORE</span></code> in that folder and skip its compilation.</p>
+<section id="id4">
+<h3>内存不足<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ros1_bridge</span></code> 在当前形式下需要 4Gb 的空闲内存来编译。
+如果你没有足够的内存，可以在那个文件夹中使用 <code class="docutils literal notranslate"><span class="pre">COLCON_IGNORE</span></code> 来跳过它的编译。</p>
 </section>
-<section id="multiple-host-interference">
-<h3>Multiple host interference<a class="headerlink" href="#multiple-host-interference" title="Link to this heading"></a></h3>
-<p>If you’re running multiple instances on the same network you may get interference.
-To avoid this you can set the environment variable <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code> to a different integer, the default is zero.
-This will define the DDS domain id for your system.</p>
+<section id="id5">
+<h3>多机干扰<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>如果在同一网络上运行多个 ROS 实例，可能会出现干扰。
+为了避免这种情况，可以设置环境变量 <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code> 为不同的整数，默认值是零。
+这可以为你的系统定义 DDS domain ID。</p>
 </section>
-<section id="exception-sourcing-setup-bash">
-<h3>Exception sourcing setup.bash<a class="headerlink" href="#exception-sourcing-setup-bash" title="Link to this heading"></a></h3>
-<p>If you encounter exceptions when trying to source the environment after building from source, try to upgrade <code class="docutils literal notranslate"><span class="pre">colcon</span></code> related packages using</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>version-check<span class="w">  </span><span class="c1"># check if newer versions available</span>
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-colcon*<span class="w"> </span>--only-upgrade<span class="w">  </span><span class="c1"># upgrade installed colcon packages to latest version</span>
+<section id="source-setup-bash">
+<h3>source setup.bash 时出现异常<a class="headerlink" href="#source-setup-bash" title="Link to this heading"></a></h3>
+<p>如果从源码构建后 source 环境时遇到异常，尝试使用以下命令升级 <code class="docutils literal notranslate"><span class="pre">colcon</span></code> 相关的包：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>version-check<span class="w">  </span><span class="c1"># 检查是否有可用的更新</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-colcon*<span class="w"> </span>--only-upgrade<span class="w">  </span><span class="c1"># 升级 colcon 至最新版本</span>
 </pre></div>
 </div>
 </section>
-<section id="anaconda-python-conflict">
-<h3>Anaconda Python Conflict<a class="headerlink" href="#anaconda-python-conflict" title="Link to this heading"></a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">conda</span></code> does not work in conjunction with ROS 2.
-Make sure that your <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable does not have any conda paths in it.
-You may have to check your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> for this line and comment it out.</p>
+<section id="anaconda-python">
+<h3>Anaconda Python 冲突<a class="headerlink" href="#anaconda-python" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span></code> 与 ROS 2 不兼容。
+确保你的 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 环境变量中没有任何 conda 路径。
+你可能需要检查你的 <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> 文件，注释掉“添加 conda 路径”的那一行。</p>
 </section>
 </section>
 <section id="macos">
-<span id="macos-troubleshooting"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">macOS</a><a class="headerlink" href="#macos" title="Link to this heading"></a></h2>
+<span id="macos-troubleshooting"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">macOS</a><a class="headerlink" href="#macos" title="Link to this heading"></a></h2>
 <section id="segmentation-fault-when-using-pyenv">
 <h3>Segmentation fault when using <code class="docutils literal notranslate"><span class="pre">pyenv</span></code><a class="headerlink" href="#segmentation-fault-when-using-pyenv" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pyenv</span></code> seems to default to building Python with <code class="docutils literal notranslate"><span class="pre">.a</span></code> files, but that causes issues with <code class="docutils literal notranslate"><span class="pre">rclpy</span></code>, so it’s recommended to build Python with Frameworks enabled on macOS when using <code class="docutils literal notranslate"><span class="pre">pyenv</span></code>:</p>
@@ -604,7 +604,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>
 </section>
 </section>
 <section id="windows">
-<span id="windows-troubleshooting"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Windows</a><a class="headerlink" href="#windows" title="Link to this heading"></a></h2>
+<span id="windows-troubleshooting"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">Windows</a><a class="headerlink" href="#windows" title="Link to this heading"></a></h2>
 <section id="import-failing-even-with-library-present-on-the-system">
 <h3>Import failing even with library present on the system<a class="headerlink" href="#import-failing-even-with-library-present-on-the-system" title="Link to this heading"></a></h3>
 <p>Sometimes <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> fails to be imported because of some missing DLLs on your system.
@@ -694,7 +694,7 @@ For each executable, the shebang (first line) of the accompanying script is used
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../How-To-Guides.html" class="btn btn-neutral float-left" title="应用指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Developing-a-ROS-2-Package.html" class="btn btn-neutral float-right" title="开发一个 ROS 2 包" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Developing-a-ROS-2-Package.html" class="btn btn-neutral float-right" title="开发 ROS 2 包" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

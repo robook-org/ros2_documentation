@@ -3,112 +3,111 @@
   Guides/Installation-Troubleshooting
   Troubleshooting/Installation-Troubleshooting
 
-Installation troubleshooting
+安装问题排查
 ============================
 
-Troubleshooting techniques for installation are sorted by the platforms they apply to.
+安装过程中的问题排查技巧按照适用的平台进行了分类。
 
 .. contents:: Platforms
    :depth: 1
    :local:
 
-General
--------
+共性问题
+----------
 
-General troubleshooting techniques apply to all platforms.
+共性问题的排查技巧适用于所有平台。
 
-Enable multicast
+使能 multicast
 ^^^^^^^^^^^^^^^^
 
-In order to communicate successfully via DDS, the used network interface has to be multicast enabled.
-We've seen in past experiences that this might not necessarily be enabled by default (on Ubuntu or OSX) when using the loopback adapter.
-See the `original issue <https://github.com/ros2/ros2/issues/552>`__ or a `conversation on ros-answers <https://answers.ros.org/question/300370/ros2-talker-cannot-communicate-with-listener/>`__.
-You can verify that your current setup allows multicast with the ROS 2 tool:
+为了能够通过 DDS 通信，使用的网络接口必须已经使能/启用了 multicast。
+在之前的经验中，当使用环回适配器(loopback adapter)时这功能可能不会默认启用（在 Ubuntu 或 OSX 上）。
+可以查看 `原始问题 <https://github.com/ros2/ros2/issues/552>`__ 或者 `ros-answers 上的讨论 <https://answers.ros.org/question/300370/ros2-talker-cannot-communicate-with-listener/>`__.
+可以使用 ROS 2 工具来验证当前的设置是否允许 multicast：
 
-In Terminal 1:
+在终端 1 中：
 
 .. code-block:: bash
 
    ros2 multicast receive
 
-In Terminal 2:
+在终端 2 中：
 
 .. code-block:: bash
 
    ros2 multicast send
 
-If the first command did not return a response similar to:
+如果第一个命令没有返回类似这样的信息：
 
 .. code-block:: bash
 
    Received from xx.xxx.xxx.xx:43751: 'Hello World!'
 
-then you will need to update your firewall configuration to allow multicast using `ufw <https://help.ubuntu.com/community/UFW>`__.
+那你就需要更新防火墙配置来允许 multicast， 使用 `ufw <https://help.ubuntu.com/community/UFW>`__。
 
 .. code-block:: bash
 
    sudo ufw allow in proto udp to 224.0.0.0/4
    sudo ufw allow in proto udp from 224.0.0.0/4
 
-
-You can check if the multicast flag is enabled for your network interface using the :code:`ifconfig` tool and looking for :code:`MULITCAST` in the flags section:
+你可以使用 :code:`ifconfig` 工具来检查网络接口是否已经使能了 multicast 标志，查看 flags 部分是否包含 :code:`MULITCAST`：
 
 .. code-block:: bash
 
    eno1: flags=4163<...,MULTICAST>
       ...
 
-Import failing without library present on the system
+Import 时找不到库
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sometimes ``rclpy`` fails to be imported because the expected C extension libraries are not found.
-If so, compare the libraries present in the directory with the one mentioned in the error message.
-Assuming a file with a similar name exists (same prefix like ``_rclpy.`` and same suffix like ``.so`` but a different Python version / architecture) you are using a different Python interpreter than which was used to build the C extension.
-Be sure to use the same Python interpreter as the one used to build the binary.
+有时候 ``rclpy`` 无法被导入是因为依赖的 C 扩展库没有找到。
+如果是这样，可以查看错误信息中提到的库所在的目录，然后查看这个目录中是否有类似名称的文件。
+如果有个用不同版本 Python 构建的 C 拓展库（文件名前缀类似 ``_rclpy.``，后缀类似 ``.so``，但是 Python 版本/架构不同），
+那么请确保运行时使用的 Python 与构建时使用的 Python 版本相同。
 
-For example, such a mismatch can crop up after an update of the OS. Then, rebuilding the workspace may fix the issue.
+这样的问题可能会在升级操作系统后出现，重新构建工作空间一般就能解决这个问题。
 
 .. _linux-troubleshooting:
 
 Linux
 -----
 
-Internal compiler error
+内部编译错误
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If you experience an ICE when trying to compile on a memory constrained platform like a Raspberry PI you might want to build single threaded (prefix the build invocation with ``MAKEFLAGS=-j1``).
+如果在内存受限的平台上编译（比如 Raspberry PI）时遇到内部编译错误，你可能需要单线程编译（在构建命令前加上 ``MAKEFLAGS=-j1``）。
 
-Out of memory
+内存不足
 ^^^^^^^^^^^^^
 
-The ``ros1_bridge`` in its current form requires 4Gb of free RAM to compile.
-If you don't have that amount of RAM available it's suggested to use ``COLCON_IGNORE`` in that folder and skip its compilation.
+``ros1_bridge`` 在当前形式下需要 4Gb 的空闲内存来编译。
+如果你没有足够的内存，可以在那个文件夹中使用 ``COLCON_IGNORE`` 来跳过它的编译。
 
-Multiple host interference
+多机干扰
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you're running multiple instances on the same network you may get interference.
-To avoid this you can set the environment variable ``ROS_DOMAIN_ID`` to a different integer, the default is zero.
-This will define the DDS domain id for your system.
+如果在同一网络上运行多个 ROS 实例，可能会出现干扰。
+为了避免这种情况，可以设置环境变量 ``ROS_DOMAIN_ID`` 为不同的整数，默认值是零。
+这可以为你的系统定义 DDS domain ID。
 
-Exception sourcing setup.bash
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+source setup.bash 时出现异常
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. only relevant to Eloquent and Foxy
 
-If you encounter exceptions when trying to source the environment after building from source, try to upgrade ``colcon`` related packages using
+如果从源码构建后 source 环境时遇到异常，尝试使用以下命令升级 ``colcon`` 相关的包：
 
 .. code-block:: bash
 
-   colcon version-check  # check if newer versions available
-   sudo apt install python3-colcon* --only-upgrade  # upgrade installed colcon packages to latest version
+   colcon version-check  # 检查是否有可用的更新
+   sudo apt install python3-colcon* --only-upgrade  # 升级 colcon 至最新版本
 
-Anaconda Python Conflict
+Anaconda Python 冲突
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-``conda`` does not work in conjunction with ROS 2.
-Make sure that your ``PATH`` environment variable does not have any conda paths in it.
-You may have to check your ``.bashrc`` for this line and comment it out.
+``conda`` 与 ROS 2 不兼容。
+确保你的 ``PATH`` 环境变量中没有任何 conda 路径。
+你可能需要检查你的 ``.bashrc`` 文件，注释掉“添加 conda 路径”的那一行。
 
 .. _macOS-troubleshooting:
 

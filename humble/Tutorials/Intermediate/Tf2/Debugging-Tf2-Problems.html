@@ -548,7 +548,7 @@ You should notice the following message:</p>
 <p>Firstly, we need to find out what exactly we are asking tf2 to do.
 Therefore, we go into the part of the code that is using tf2.
 Open the <code class="docutils literal notranslate"><span class="pre">src/turtle_tf2_listener_debug.cpp</span></code> file, and take a look at line 67:</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">to_frame_rel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;turtle3&quot;</span><span class="p">;</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">toFrameRel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;turtle3&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>and lines 75-79:</p>
@@ -586,7 +586,7 @@ If you like to get a graphical representation of this, use <code class="docutils
 <p>So obviously the problem is that we are requesting transform from frame <code class="docutils literal notranslate"><span class="pre">turtle3</span></code>, which does not exist.
 To fix this bug, just replace <code class="docutils literal notranslate"><span class="pre">turtle3</span></code> with <code class="docutils literal notranslate"><span class="pre">turtle2</span></code> in line 67.</p>
 <p>And now stop the running demo, build it, and run it again:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch turtle_tf2 start_debug_demo.launch.py</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch learning_tf2_cpp start_tf2_debug_demo_launch.py</span>
 </pre></div>
 </div>
 <p>And right away we run into the next problem:</p>
@@ -633,7 +633,7 @@ Let’s test this quickly by changing lines 75-79 to:</p>
 <p>In the new code we are asking for the transform between the turtles 100 milliseconds ago.
 It is usual to use a longer periods, just to make sure that the transform will arrive.
 Stop the demo, build and run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch turtle_tf2 start_debug_demo.launch.py</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch turtle_tf2 start_tf2_debug_demo_launch.py</span>
 </pre></div>
 </div>
 <p>And you should finally see the turtle move!</p>
@@ -688,7 +688,7 @@ You also learned how to use tf2 debugging tools, such as <code class="docutils l
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Open Robotics.</p>
+    <p>&#169; Copyright 2025, Open Robotics.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

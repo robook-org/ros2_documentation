@@ -203,6 +203,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/RViz/RViz-Main.html">RViz</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html">RViz User Guide</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../Tutorials/Intermediate/RViz/RViz-Custom-Display/RViz-Custom-Display.html">Building a Custom RViz Display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../Tutorials/Intermediate/RViz/RViz-Custom-Panel/RViz-Custom-Panel.html">Building a Custom RViz Panel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../Tutorials/Intermediate/RViz/Marker-Display-types/Marker-Display-types.html">Marker: Display types</a></li>
 </ul>
 </li>
@@ -405,7 +406,7 @@
           <li class="breadcrumb-item"><a href="Releasing-a-Package.html">Releasing a Package</a></li>
       <li class="breadcrumb-item active">First Time Release</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/How-To-Guides/Releasing/First-Time-Release.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/How-To-Guides/Releasing/First-Time-Release.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -621,6 +622,13 @@ In a common scenario such as:</p>
 Simply respond to the prompt by pressing Enter.</p>
 </div>
 <p>Bloom will automatically create a pull request for you against <a class="reference external" href="https://github.com/ros/rosdistro">rosdistro</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, bloom will release all packages in the source repository.
+To selectively block the release of some packages for a particular <code class="docutils literal notranslate"><span class="pre">humble</span></code>, add <code class="docutils literal notranslate"><span class="pre">humble.ignored</span></code> files to the <code class="docutils literal notranslate"><span class="pre">master`</span></code> branch of the release repository.
+In each file, list the name of the package, one per line, to block the release of the package.
+The <a class="reference external" href="https://github.com/ros2-gbp/rosidl-release">rosidl-release</a> repository may serve as a useful reference for this configuration.</p>
+</div>
 </section>
 <section id="id1">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">下一步</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
@@ -680,13 +688,13 @@ To get updates on when the next synchronization (sync) is coming, subscribe to t
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

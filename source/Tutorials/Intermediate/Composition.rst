@@ -367,12 +367,32 @@ Passing additional arguments into components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``ros2 component load`` command-line supports passing particular options to the component manager for use when constructing the node.
-As of now, the only command-line option that is supported is to instantiate a node using intra-process communication.
-This functionality can be used as follows:
+
+The following example shows the use of the extra arguments ``use_intra_process_comms`` and ``forward_global_arguments``:
 
 .. code-block:: bash
 
-   ros2 component load /ComponentManager composition composition::Talker -e use_intra_process_comms:=true
+   ros2 component load /ComponentManager composition composition::Talker -e use_intra_process_comms:=true -e forward_global_arguments:=false
+
+The following extra arguments are supported.
+
+.. list-table:: Extra Arguments for Component Manager
+   :widths: 15 15 15 15
+   :header-rows: 1
+
+   * - Argument
+     - Type
+     - Default
+     - Description
+   * - ``forward_global_arguments``
+     - Boolean
+     - True
+     - Apply global arguments to the component node when loading.
+   * - ``use_intra_process_comms``
+     - Boolean
+     - False
+     - Enable intra-process communication in the component node.
+
 
 Composable nodes as shared libraries
 ------------------------------------

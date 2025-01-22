@@ -501,9 +501,28 @@ use_sim_time
 <span class="w">        </span><span class="nt">some_lists</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">some_integers</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">]</span>
 <span class="w">            </span><span class="nt">some_doubles </span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">3.14</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.718</span><span class="p p-Indicator">]</span>
+
+<span class="nt">/**</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wildcard_full</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Full</span><span class="nv"> </span><span class="s">wildcard</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">namespaces</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">node</span><span class="nv"> </span><span class="s">names&quot;</span>
+
+<span class="nt">/**/parameter_blackboard</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wildcard_namespace</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Wildcard</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">node</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">under</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">namespace&quot;</span>
+
+<span class="nt">/*</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wildcard_nodename_root_namespace</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Wildcard</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">node</span><span class="nv"> </span><span class="s">names,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">root</span><span class="nv"> </span><span class="s">namespace&quot;</span>
 </pre></div>
 </div>
-<p>Then either declare the parameters within your node with <code class="docutils literal notranslate"><span class="pre">declare_parameter</span></code>  or <code class="docutils literal notranslate"><span class="pre">declare_parameters</span></code> (see <a class="reference external" href="https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1Node.html#a095ea977b26e7464d9371efea5f36c42">documentation</a> for function signatures), or <a class="reference external" href="https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1NodeOptions.html#a094ceb7af7c9b358ec007a4b8e14d40d">set the node to automatically declare parameters</a> if they were passed in via a command line override.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wildcards can be used for node names and namespaces.
+<code class="docutils literal notranslate"><span class="pre">*</span></code> matches a single token delimited by slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>).
+<code class="docutils literal notranslate"><span class="pre">**</span></code> matches zero or more tokens delimited by slashes.
+Partial matches are not allowed (e.g. <code class="docutils literal notranslate"><span class="pre">foo*</span></code>).</p>
+</div>
+<p>Then either declare the parameters within your node with <a class="reference external" href="http://docs.ros.org/en/humble/p/rclcpp/generated/classrclcpp_1_1Node.html#_CPPv4N6rclcpp4Node17declare_parameterERKNSt6stringERKN6rclcpp14ParameterValueERKN14rcl_interfaces3msg19ParameterDescriptorEb">declare_parameter</a>  or <a class="reference external" href="http://docs.ros.org/en/humble/p/rclcpp/generated/classrclcpp_1_1Node.html#_CPPv4I0EN6rclcpp4Node18declare_parametersENSt6vectorI10ParameterTEERKNSt6stringERKNSt3mapINSt6stringENSt4pairI10ParameterTN14rcl_interfaces3msg19ParameterDescriptorEEEEEb">declare_parameters</a>, or <a class="reference external" href="http://docs.ros.org/en/humble/p/rclcpp/generated/classrclcpp_1_1NodeOptions.html#_CPPv4NK6rclcpp11NodeOptions47automatically_declare_parameters_from_overridesEv">set the node to automatically declare parameters</a> if they were passed in via a command line override.</p>
 <p>Then run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>parameter_blackboard<span class="w"> </span>--ros-args<span class="w"> </span>--params-file<span class="w"> </span>demo_params.yaml
 </pre></div>
@@ -519,6 +538,9 @@ some_int
 some_lists.some_doubles
 some_lists.some_integers
 use_sim_time
+wildcard_full
+wildcard_namespace
+wildcard_nodename_root_namespace
 </pre></div>
 </div>
 </section>

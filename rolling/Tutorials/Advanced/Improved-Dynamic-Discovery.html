@@ -678,21 +678,21 @@ A <code class="docutils literal notranslate"><span class="pre">O</span></code> i
 <p>For example, the following commands will limit the ROS 2 communication only with localhost and specific peers:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST</span>
-<span class="go">export ROS_STATIC_PEERS=192.168.0.1;remote.com</span>
+<span class="go">export ROS_STATIC_PEERS=&#39;192.168.0.1;remote.com&#39;</span>
 </pre></div>
 </div>
 <p>To maintain this setting between shell sessions, you can add the command to your shell startup script:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &quot;export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST&quot; &gt;&gt; ~/.bashrc</span>
-<span class="go">echo &quot;export ROS_STATIC_PEERS=192.168.0.1;remote.com&quot; &gt;&gt; ~/.bashrc</span>
+<span class="go">echo &quot;export ROS_STATIC_PEERS=&#39;192.168.0.1;remote.com&#39;&quot; &gt;&gt; ~/.bashrc</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST</span>
-<span class="go">export ROS_STATIC_PEERS=192.168.0.1;remote.com</span>
+<span class="go">export ROS_STATIC_PEERS=&#39;192.168.0.1;remote.com&#39;</span>
 </pre></div>
 </div>
 <p>To maintain this setting between shell sessions, you can add the command to your shell startup script:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &quot;export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST&quot; &gt;&gt; ~/.bash_profile</span>
-<span class="go">echo &quot;export ROS_STATIC_PEERS=192.168.0.1;remote.com&quot; &gt;&gt; ~/.bash_profile</span>
+<span class="go">echo &quot;export ROS_STATIC_PEERS=&#39;192.168.0.1;remote.com&#39;&quot; &gt;&gt; ~/.bash_profile</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST</span>

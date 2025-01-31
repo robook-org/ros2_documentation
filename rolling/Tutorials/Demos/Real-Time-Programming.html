@@ -548,7 +548,7 @@ Here, latency means the amount of time after the update was expected to occur.</
 <p>The requirements of a real-time system depend on the application, but let’s say in this demo we have a 1kHz (1 millisecond) update loop, and we’re aiming for a maximum allowable latency of 5% of our update period.</p>
 <p>So, our average latency was really good in this run, but the maximum latency was unacceptable because it actually exceeded our update loop! What happened?</p>
 <p>We may be suffering from a non-deterministic scheduler.
-If you’re running a vanilla Linux system and you don’t have the RT_PREEMPT kernel installed, you probably won’t be able to meet the real-time goal we set for ourselves, because the Linux scheduler won’t allow you to arbitrarily pre-empt threads at the user level.</p>
+If you’re running a vanilla Linux system and you don’t have the RT_PREEMPT kernel installed, you probably won’t be able to meet the real-time goal we set for ourselves, because the Linux scheduler won’t allow you to arbitrarily preempt threads at the user level.</p>
 <p>See the <a class="reference external" href="https://design.ros2.org/articles/realtime_background.html#multithreaded-programming-and-synchronization">realtime design article</a> for more information.</p>
 <p>The demo attempts to set the scheduler and thread priority of the demo to be suitable for real-time performance.
 If this operation failed, you’ll see an error message: “Couldn’t set scheduling priority and policy: Operation not permitted”.

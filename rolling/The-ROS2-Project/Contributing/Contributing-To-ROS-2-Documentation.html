@@ -578,7 +578,7 @@ Using your browser’s developer mode, find the name of the first useful HTML el
 In most cases all of the HTML between the third line of the file, starting with the <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code> tag, through the start of the first <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;</span></code> tag can be safely removed.
 In the case where there is a table of contents, the first useful tag may be an <code class="docutils literal notranslate"><span class="pre">&lt;h2&gt;</span></code> tag.  Similarly, the ROS wiki contains some footer text that starts with <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">id=&quot;pagebottom&quot;&gt;&lt;/div&gt;</span></code> and ends just above <code class="docutils literal notranslate"><span class="pre">&lt;/body&gt;&lt;/html&gt;</span></code> that can also be removed.</p></li>
 <li><p>Convert your html file by running a PanDoc conversion between HTML and restructured text.
-The following command coverts an HTML file to the equivalent reStructured text files: <code class="docutils literal notranslate"><span class="pre">pandoc</span> <span class="pre">-f</span> <span class="pre">html</span> <span class="pre">-t</span> <span class="pre">rst</span> <span class="pre">urdf.html</span> <span class="pre">&gt;</span> <span class="pre">URDF.rst</span></code>.</p></li>
+The following command converts an HTML file to the equivalent reStructured text files: <code class="docutils literal notranslate"><span class="pre">pandoc</span> <span class="pre">-f</span> <span class="pre">html</span> <span class="pre">-t</span> <span class="pre">rst</span> <span class="pre">urdf.html</span> <span class="pre">&gt;</span> <span class="pre">URDF.rst</span></code>.</p></li>
 <li><p>Attempt to build your new documentation using the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> command.
 There may be errors and warnings that you will need to address.</p></li>
 <li><p><strong>CAREFULLY</strong> read through the entire page making sure the material is up to date for ROS 2.
@@ -590,7 +590,7 @@ You should verify that every code sample in the document is working correctly un
 <li><p>Find and download any images that may be in the old document. The easiest way to do this is to right click in the browser and download all of the images. Alternatively you can find images by searching for <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">src&gt;</span></code> tags in the HTML file.</p></li>
 <li><p>For each image files downloaded update the image file links to point to the correct image directory for the ROS Docs.
 If any of the images require updating, or could be replaced with a <a class="reference external" href="https://mermaid.js.org/intro/">Mermaid</a> chart, please make this change.
-Be aware that Mermaid.js is only supported in the core ROS 2 documenation currently.</p></li>
+Be aware that Mermaid.js is only supported in the core ROS 2 documentation currently.</p></li>
 <li><p>Once your document is complete add a table of contents to the top of your new rst document using the appropriate Sphinx commands.
 This block should replace any existing table of contents from the old ROS Wiki.</p></li>
 <li><p>Issue your pull request.

@@ -520,7 +520,7 @@ Set the <code class="docutils literal notranslate"><span class="pre">&lt;build_t
 include_directories(include ${catkin_INCLUDE_DIRS})
 </pre></div>
 </div>
-<p>Add a call <code class="docutils literal notranslate"><span class="pre">target_include_directories()</span></code> for every library in your pacakage (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/CMakeLists.txt#L24-L26">example</a>).</p>
+<p>Add a call <code class="docutils literal notranslate"><span class="pre">target_include_directories()</span></code> for every library in your package (<a class="reference external" href="https://github.com/ros2/geometry2/blob/d85102217f692746abea8546c8e41f0abc95c8b8/tf2/CMakeLists.txt#L24-L26">example</a>).</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_include_directories</span><span class="p">(</span><span class="s">my_library</span><span class="w"> </span><span class="s">PUBLIC</span>
 <span class="w">   </span><span class="s2">&quot;$&lt;BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include&gt;&quot;</span>
 <span class="w">   </span><span class="s2">&quot;$&lt;INSTALL_INTERFACE:include/${PROJECT_NAME}&gt;&quot;</span><span class="p">)</span>

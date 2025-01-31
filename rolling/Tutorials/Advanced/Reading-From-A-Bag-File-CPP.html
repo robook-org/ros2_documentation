@@ -604,7 +604,7 @@ Then, we can pass both these objects to the <code class="docutils literal notran
 </pre></div>
 </div>
 <p>Finally, we publish the deserialized message and print out the xy coordinate to the terminal.
-We also break out of the loop so that we publish the next message during the next timer calback.</p>
+We also break out of the loop so that we publish the next message during the next timer callback.</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">publisher_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="o">*</span><span class="n">ros_msg</span><span class="p">);</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;(&#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ros_msg</span><span class="o">-&gt;</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ros_msg</span><span class="o">-&gt;</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 

@@ -453,7 +453,7 @@ You can verify that your current setup allows multicast with the ROS 2 tool:</p>
 sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="k">in</span><span class="w"> </span>proto<span class="w"> </span>udp<span class="w"> </span>from<span class="w"> </span><span class="m">224</span>.0.0.0/4
 </pre></div>
 </div>
-<p>You can check if the multicast flag is enabled for your network interface using the <code class="code docutils literal notranslate"><span class="pre">ifconfig</span></code> tool and looking for <code class="code docutils literal notranslate"><span class="pre">MULITCAST</span></code> in the flags section:</p>
+<p>You can check if the multicast flag is enabled for your network interface using the <code class="code docutils literal notranslate"><span class="pre">ifconfig</span></code> tool and looking for <code class="code docutils literal notranslate"><span class="pre">MULTICAST</span></code> in the flags section:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eno1:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">4163</span>&lt;...,MULTICAST&gt;
 <span class="w">   </span>...
 </pre></div>
@@ -604,7 +604,7 @@ but<span class="w"> </span>active<span class="w"> </span>developer<span class="w
 </section>
 <section id="rosdep-install-error-homebrew-failed-to-detect-successful-installation-of-qt5">
 <h3>rosdep install error <code class="docutils literal notranslate"><span class="pre">homebrew:</span> <span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">detect</span> <span class="pre">successful</span> <span class="pre">installation</span> <span class="pre">of</span> <span class="pre">[qt5]</span></code><a class="headerlink" href="#rosdep-install-error-homebrew-failed-to-detect-successful-installation-of-qt5" title="Link to this heading"></a></h3>
-<p>While following the <a class="reference internal" href="../Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">Creating a workspace</span></a> tutorial, you might encounter the following error stating that <code class="docutils literal notranslate"><span class="pre">rosdep</span></code> failes to install Qt5.</p>
+<p>While following the <a class="reference internal" href="../Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html"><span class="doc">Creating a workspace</span></a> tutorial, you might encounter the following error stating that <code class="docutils literal notranslate"><span class="pre">rosdep</span></code> fails to install Qt5.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>-i<span class="w"> </span>--from-path<span class="w"> </span>src<span class="w"> </span>--rosdistro<span class="w"> </span>rolling<span class="w"> </span>-y
 executing<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="o">[</span>brew<span class="w"> </span>install<span class="w"> </span>qt5<span class="o">]</span>
 Warning:<span class="w"> </span>qt<span class="w"> </span><span class="m">5</span>.15.0<span class="w"> </span>is<span class="w"> </span>already<span class="w"> </span>installed<span class="w"> </span>and<span class="w"> </span>up-to-date

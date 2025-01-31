@@ -513,7 +513,7 @@ Discovery permissions remain unchanged from the original template.</p>
 <h3><a class="toc-backref" href="#id3" role="doc-backlink">Sign the policy file</a><a class="headerlink" href="#sign-the-policy-file" title="Link to this heading"></a></h3>
 <p>This next command creates the new S/MIME signed policy file <code class="docutils literal notranslate"><span class="pre">permissions.p7s</span></code> from the updated XML file <code class="docutils literal notranslate"><span class="pre">permissions.xml</span></code>.
 The file must be signed with the Permissions CA certificate, <strong>which requires access to the Permission CA private key</strong>.
-If the private key has been protected, additional steps may be required to unlock and use it accoring to your security plan.</p>
+If the private key has been protected, additional steps may be required to unlock and use it according to your security plan.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl<span class="w"> </span>smime<span class="w"> </span>-sign<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>permissions.xml<span class="w"> </span>-out<span class="w"> </span>permissions.p7s<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--signer<span class="w"> </span>permissions_ca.cert.pem<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-inkey<span class="w"> </span>~/sros2_demo/demo_keystore/private/permissions_ca.key.pem

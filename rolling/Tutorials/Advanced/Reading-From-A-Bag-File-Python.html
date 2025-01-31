@@ -496,10 +496,10 @@ As always, though, make sure to add the description, maintainer email and name, 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;simple_bag_reader&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">SequentialReader</span><span class="p">()</span>
-        <span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
+        <span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
             <span class="n">uri</span><span class="o">=</span><span class="s1">&#39;my_bag&#39;</span><span class="p">,</span>
             <span class="n">storage_id</span><span class="o">=</span><span class="s1">&#39;mcap&#39;</span><span class="p">)</span>
-        <span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">converter_options</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">publisher</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="s1">&#39;chatter&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -541,10 +541,10 @@ Other readers with different behaviors may be available in <a class="reference e
 <p>Now that we have a bag reader object, we can open the bag using it.
 We specify the URI of the bag and the format (<code class="docutils literal notranslate"><span class="pre">mcap</span></code>), leaving other options at their defaults.
 The default conversion options are used, which will perform no conversion and store the messages in the serialization format they are received in.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
     <span class="n">uri</span><span class="o">=</span><span class="s1">&#39;my_bag&#39;</span><span class="p">,</span>
     <span class="n">storage_id</span><span class="o">=</span><span class="s1">&#39;mcap&#39;</span><span class="p">)</span>
-<span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">converter_options</span><span class="p">)</span>
 </pre></div>
 </div>

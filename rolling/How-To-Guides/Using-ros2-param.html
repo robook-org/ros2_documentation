@@ -471,7 +471,7 @@ This can be worked around by using the YAML syntax for explicitly setting string
 </pre></div>
 </div>
 <p>Additionally, YAML supports heterogeneous lists, containing (say) a string, a boolean, and an integer.
-However, ROS 2 parameters do not support heterogenous lists, so any YAML list that has multiple types will be interpreted as a string.
+However, ROS 2 parameters do not support heterogeneous lists, so any YAML list that has multiple types will be interpreted as a string.
 Assuming that the parameter <code class="docutils literal notranslate"><span class="pre">my_int_array</span></code> on node <code class="docutils literal notranslate"><span class="pre">my_node</span></code> is of type integer array, the following will not work:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros param set /my_node my_int_array &#39;[foo,off,1]&#39;</span>
 </pre></div>

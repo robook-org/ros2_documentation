@@ -446,7 +446,8 @@
 <li><p><a class="reference internal" href="#lists" id="id16">Lists</a></p></li>
 <li><p><a class="reference internal" href="#code-formatting" id="id17">Code Formatting</a></p></li>
 <li><p><a class="reference internal" href="#images" id="id18">Images</a></p></li>
-<li><p><a class="reference internal" href="#references-and-links" id="id19">References and Links</a></p></li>
+<li><p><a class="reference internal" href="#charts-graphs-and-diagrams" id="id19">Charts, Graphs, and Diagrams</a></p></li>
+<li><p><a class="reference internal" href="#references-and-links" id="id20">References and Links</a></p></li>
 </ul>
 </li>
 </ul>
@@ -641,7 +642,11 @@ Inside the terminal, you can build the documentation:</p>
 <section id="writing-pages">
 <h2><a class="toc-backref" href="#id13" role="doc-backlink">Writing pages</a><a class="headerlink" href="#writing-pages" title="Link to this heading"></a></h2>
 <p>The ROS 2 documentation website uses the <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> format, which is the default plaintext markup language used by Sphinx.
-This section is a brief introduction to <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> concepts, syntax, and best practices.</p>
+This section is a brief introduction to <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> concepts, syntax, and best practices.
+When formatting your <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> file <strong>please make sure to write only one sentence per line as it makes reviewing and modifying your file much easier.</strong>
+Also, be mindful of the use of white space in your file!
+The ROS 2 documentation linter will not accept pull requests with trailing white space.
+We recommend that you enable automatic white space highlighting and or cleanup if your editor supports it.</p>
 <p>You can refer to <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText User Documentation</a> for a detailed technical specification.</p>
 <section id="id1">
 <h3><a class="toc-backref" href="#id14" role="doc-backlink">Table of Contents</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
@@ -728,8 +733,14 @@ Code inside the directive needs to be indented.</p>
 </pre></div>
 </div>
 </section>
+<section id="charts-graphs-and-diagrams">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Charts, Graphs, and Diagrams</a><a class="headerlink" href="#charts-graphs-and-diagrams" title="Link to this heading"></a></h3>
+<p>The ROS 2 Documentation now supports charts, graphs, and diagrams written using <a class="reference external" href="https://mermaid.js.org/intro/">Mermaid Charts.</a>
+We prefer that charts, graphs, and diagrams use Mermaid instead of static image files as it allows us to programmatically update and edit these resources as the project evolves.
+Full documentation of the <a class="reference external" href="https://mermaid.js.org/intro/syntax-reference.html">Mermaid graph language syntax can be found on their website.</a></p>
+</section>
 <section id="references-and-links">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">References and Links</a><a class="headerlink" href="#references-and-links" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">References and Links</a><a class="headerlink" href="#references-and-links" title="Link to this heading"></a></h3>
 <section id="external-links">
 <h4>External links<a class="headerlink" href="#external-links" title="Link to this heading"></a></h4>
 <p>The syntax of creating links to external web pages is shown below.</p>

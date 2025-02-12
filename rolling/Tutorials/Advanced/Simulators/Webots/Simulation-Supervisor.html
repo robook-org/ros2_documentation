@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -455,7 +456,8 @@ These instructions list in details the current implemented features and how to u
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">The <code class="docutils literal notranslate"><span class="pre">Ros2Supervisor</span></code></a><a class="headerlink" href="#the-ros2supervisor" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Ros2Supervisor</span></code> is made of two main parts:</p>
 <ul class="simple">
-<li><p>A Webots Robot node added to the simulation world. Its <code class="docutils literal notranslate"><span class="pre">supervisor</span></code> field is set to TRUE.</p></li>
+<li><p>A Webots Robot node added to the simulation world.
+Its <code class="docutils literal notranslate"><span class="pre">supervisor</span></code> field is set to TRUE.</p></li>
 <li><p>A ROS 2 node that connects to the Webots Robot as an extern controller (in a similar way to your own robot plugin).</p></li>
 </ul>
 <p>The ROS 2 node acts as a controller that calls Supervisor API functions to control or interact with the simulation world.

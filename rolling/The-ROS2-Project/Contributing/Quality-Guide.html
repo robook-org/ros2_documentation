@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -533,7 +534,8 @@ We do not want to provide our own wrapped types as is suggested above.</p>
 However, this step-by-step is a great place to start!</p>
 <ul>
 <li><p>Enabling Analysis for Package/Target</p>
-<p>When the C++ compiler is Clang, enable the <code class="docutils literal notranslate"><span class="pre">-Wthread-safety</span></code> flag. Example below for CMake-based projects</p>
+<p>When the C++ compiler is Clang, enable the <code class="docutils literal notranslate"><span class="pre">-Wthread-safety</span></code> flag.
+Example below for CMake-based projects</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="p">(</span><span class="s">CMAKE_CXX_COMPILER_ID</span><span class="w"> </span><span class="s">MATCHES</span><span class="w"> </span><span class="s2">&quot;Clang&quot;</span><span class="p">)</span>
 <span class="w">  </span><span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-Wthread-safety</span><span class="p">)</span><span class="w">   </span><span class="c"># for your whole package</span>
 <span class="w">  </span><span class="nb">target_compile_options</span><span class="p">(</span><span class="o">${</span><span class="nv">MY_TARGET</span><span class="o">}</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">-Wthread-safety</span><span class="p">)</span><span class="w">  </span><span class="c"># for a single library or executable</span>

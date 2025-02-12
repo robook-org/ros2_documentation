@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Launch/Launch-Main.html">Launch</a><ul>
@@ -691,7 +692,8 @@ We also have methods an initialization method for setting up the ROS components 
 </section>
 <section id="testing-with-ros">
 <h3>Testing with ROS<a class="headerlink" href="#testing-with-ros" title="Link to this heading"></a></h3>
-<p>Compile and launch RViz2 with your panel again. You should see your label and button in the panel now.</p>
+<p>Compile and launch RViz2 with your panel again.
+You should see your label and button in the panel now.</p>
 <a class="reference external image-reference" href="images/RViz1.png"><img alt="screenshot of the RViz panel in its default state" src="../../../../_images/RViz1.png" /></a>
 <p>To change the label, we simply have to publish a message on the <code class="docutils literal notranslate"><span class="pre">/input</span></code> topic, which you can do with this command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/input<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">&quot;{data: &#39;Please be kind.&#39;}&quot;</span>

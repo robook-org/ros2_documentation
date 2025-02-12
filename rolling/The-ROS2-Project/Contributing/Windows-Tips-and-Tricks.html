@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -445,8 +446,10 @@ Practically speaking, 4 of those characters are always used by the drive letter,
 That means that only 256 characters are available for the <em>sum</em> of all parts of the path.
 This has two practical consequences for ROS 2:</p>
 <ul class="simple">
-<li><p>Some of the ROS 2 internal path names are fairly long. Because of this, we always recommend using a short path name for the root of your ROS 2 directory, like <code class="docutils literal notranslate"><span class="pre">C:\dev</span></code>.</p></li>
-<li><p>When building ROS 2 from source, the default isolated build mode of colcon can generate very long path names. To avoid these very long path names, use <code class="docutils literal notranslate"><span class="pre">--merge-install</span></code> when building on Windows.</p></li>
+<li><p>Some of the ROS 2 internal path names are fairly long.
+Because of this, we always recommend using a short path name for the root of your ROS 2 directory, like <code class="docutils literal notranslate"><span class="pre">C:\dev</span></code>.</p></li>
+<li><p>When building ROS 2 from source, the default isolated build mode of colcon can generate very long path names.
+To avoid these very long path names, use <code class="docutils literal notranslate"><span class="pre">--merge-install</span></code> when building on Windows.</p></li>
 </ul>
 <p><strong>Note</strong>: It is possible to change Windows to have much longer maximum path lengths.
 See <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=cmd#enable-long-paths-in-windows-10-version-1607-and-later">this article</a> for more information.</p>
@@ -510,7 +513,8 @@ In another library, <code class="docutils literal notranslate"><span class="pre"
 </pre></div>
 </div>
 <p>For a complete example of this header, see <a class="reference external" href="https://github.com/ros2/rviz/blob/ros2/rviz_rendering/include/rviz_rendering/visibility_control.hpp">rviz_rendering</a>.</p>
-<p>To use the macro, add <code class="docutils literal notranslate"><span class="pre">MY_LIB_PUBLIC</span></code> before symbols which need to be visible to external libraries. For example:</p>
+<p>To use the macro, add <code class="docutils literal notranslate"><span class="pre">MY_LIB_PUBLIC</span></code> before symbols which need to be visible to external libraries.
+For example:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Class</span><span class="w"> </span><span class="n">MY_LIB_PUBLIC</span><span class="w"> </span><span class="n">example_class</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="n">MY_LIB_PUBLIC</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">example_function</span><span class="w"> </span><span class="p">(){}</span>

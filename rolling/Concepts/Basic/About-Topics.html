@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -463,7 +464,10 @@ For instance, if the ROS message contains:</p>
 </div>
 <p>Then the code will ensure that <code class="docutils literal notranslate"><span class="pre">field1</span></code> is always an unsigned integer and that <code class="docutils literal notranslate"><span class="pre">field2</span></code> is always a string.</p>
 </li>
-<li><p>The semantics of each field are well-defined.  There is no automated mechanism to ensure this, but all of the core ROS types have strong semantics associated with them.  For instance, the IMU message contains a 3-dimensional vector for the measured angular velocity, and each of the dimensions is specified to be in radians/second.  Other interpretations should not be placed into the message.</p></li>
+<li><p>The semantics of each field are well-defined.
+There is no automated mechanism to ensure this, but all of the core ROS types have strong semantics associated with them.
+For instance, the IMU message contains a 3-dimensional vector for the measured angular velocity, and each of the dimensions is specified to be in radians/second.
+Other interpretations should not be placed into the message.</p></li>
 </ol>
 </section>
 </section>

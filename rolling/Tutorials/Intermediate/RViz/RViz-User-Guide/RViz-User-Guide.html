@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Launch/Launch-Main.html">Launch</a><ul>
@@ -561,7 +562,8 @@ This information is different for different displays, and the messages should be
 <td><p><a class="reference external" href="https://github.com/ros2/common_interfaces/blob/rolling/nav_msgs/msg/GridCells.msg">nav_msgs/msg/GridCells</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Image</p></td>
-<td><p>Creates a new rendering window with an Image. Unlike the Camera display, this display does not use a CameraInfo</p></td>
+<td><p>Creates a new rendering window with an Image.
+Unlike the Camera display, this display does not use a CameraInfo</p></td>
 <td><p><a class="reference external" href="https://github.com/ros2/common_interfaces/blob/rolling/sensor_msgs/msg/Image.msg">sensor_msgs/msg/Image</a></p></td>
 </tr>
 <tr class="row-even"><td><p>InteractiveMarker</p></td>
@@ -609,7 +611,8 @@ This information is different for different displays, and the messages should be
 <td><p><a class="reference external" href="https://github.com/ros2/common_interfaces/blob/rolling/nav_msgs/msg/Odometry.msg">nav_msgs/msg/Odometry</a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Range</p></td>
-<td><p>Displays cones representing range measurements from sonar or IR range sensors. Version: Electric+</p></td>
+<td><p>Displays cones representing range measurements from sonar or IR range sensors.
+Version: Electric+</p></td>
 <td><p><a class="reference external" href="https://github.com/ros2/common_interfaces/blob/rolling/sensor_msgs/msg/Range.msg">sensor_msgs/msg/Range</a></p></td>
 </tr>
 <tr class="row-even"><td><p>RobotModel</p></td>
@@ -657,8 +660,10 @@ The focal point is visualized as a small disc while you’re moving the camera:<
 <p>Controls:</p>
 <ul class="simple">
 <li><p><strong>Left mouse button</strong>: Click and drag to rotate around the focal point.</p></li>
-<li><p><strong>Middle mouse button</strong>: Click and drag to move the focal point in the plane formed by the camera’s up and right vectors. The distance moved depends on the focal point – if there is an object on the focal point, and you click on top of it, it will stay under your mouse.</p></li>
-<li><p><strong>Right mouse button</strong>: Click and drag to zoom in/out of the focal point. Dragging up zooms in, down zooms out.</p></li>
+<li><p><strong>Middle mouse button</strong>: Click and drag to move the focal point in the plane formed by the camera’s up and right vectors.
+The distance moved depends on the focal point – if there is an object on the focal point, and you click on top of it, it will stay under your mouse.</p></li>
+<li><p><strong>Right mouse button</strong>: Click and drag to zoom in/out of the focal point.
+Dragging up zooms in, down zooms out.</p></li>
 <li><p><strong>Scrollwheel</strong>: Zoom in/out of the focal point</p></li>
 </ul>
 </section>
@@ -667,9 +672,11 @@ The focal point is visualized as a small disc while you’re moving the camera:<
 <p>The FPS camera is a first-person camera, so it rotates as if you’re looking with your head.</p>
 <p>Controls:</p>
 <ul class="simple">
-<li><p><strong>Left mouse button</strong>: Click and drag to rotate. Control-click to pick the object under the mouse and look directly at it.</p></li>
+<li><p><strong>Left mouse button</strong>: Click and drag to rotate.
+Control-click to pick the object under the mouse and look directly at it.</p></li>
 <li><p><strong>Middle mouse button</strong>: Click and drag to move along the plane formed by the camera’s up and right vectors.</p></li>
-<li><p><strong>Right mouse button</strong>: Click and drag to move along the camera’s forward vector. Dragging up moves forward, down moves backward.</p></li>
+<li><p><strong>Right mouse button</strong>: Click and drag to move along the camera’s forward vector.
+Dragging up moves forward, down moves backward.</p></li>
 <li><p><strong>Scrollwheel</strong>: Move forward/backward.</p></li>
 </ul>
 </section>

@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -529,7 +530,8 @@ A multi-machine configuration was also tested with <code class="docutils literal
 <p>Without configuring the kernel’s <code class="docutils literal notranslate"><span class="pre">rmem_max</span></code>, the same Connext QoS profile took up to 12 seconds for the data to be delivered.
 However, it always at least managed to complete the delivery.</p>
 <p><strong>Solution:</strong> Use the <a class="reference external" href="https://github.com/jacobperron/pc_pipe/blob/master/etc/ROS2TEST_QOS_PROFILES.xml">Connext QoS profile</a> <em>without</em> adjusting <code class="docutils literal notranslate"><span class="pre">rmem_max</span></code>.</p>
-<p>The ROS2TEST_QOS_PROFILES.xml file was configured using RTI’s documentation on <a class="reference external" href="https://community.rti.com/forum-topic/transfering-large-data-over-dds">configuring flow controllers</a>. It has slow, medium and fast flow controllers (seen in the Connext QoS profile link).</p>
+<p>The ROS2TEST_QOS_PROFILES.xml file was configured using RTI’s documentation on <a class="reference external" href="https://community.rti.com/forum-topic/transfering-large-data-over-dds">configuring flow controllers</a>.
+It has slow, medium and fast flow controllers (seen in the Connext QoS profile link).</p>
 <p>The medium flow controller produced the best results for our case.
 However, the controllers will still need to be tuned for the particular machine/network/environment they are operating in.
 The Connext flow controllers can be used to tune bandwidth and its aggressiveness for sending out data, though once the bandwidth of a particular setup is passed, performance will start to drop.</p>

@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Launch/Launch-Main.html">Launch</a><ul>
@@ -455,7 +456,8 @@ The test contents and invocation with <code class="docutils literal notranslate"
 </section>
 <section id="test-contents">
 <h2>Test Contents<a class="headerlink" href="#test-contents" title="Link to this heading"></a></h2>
-<p>You can now write tests to your heart’s content. There are <a class="reference external" href="https://docs.pytest.org">plenty of resources on pytest</a>, but in short, you can write functions with the <code class="docutils literal notranslate"><span class="pre">test_</span></code> prefix and include whatever assert statements you’d like.</p>
+<p>You can now write tests to your heart’s content.
+There are <a class="reference external" href="https://docs.pytest.org">plenty of resources on pytest</a>, but in short, you can write functions with the <code class="docutils literal notranslate"><span class="pre">test_</span></code> prefix and include whatever assert statements you’d like.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_math</span><span class="p">():</span>
     <span class="k">assert</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">5</span>   <span class="c1"># This should fail for most mathematical systems</span>
 </pre></div>

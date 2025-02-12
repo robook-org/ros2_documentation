@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -518,8 +519,10 @@ For example, if you wish to scan just a recently modified file you can call <cod
 <h4>2.2 <code class="docutils literal notranslate"><span class="pre">ament_cppcheck</span></code> Options<a class="headerlink" href="#ament-cppcheck-options" title="Link to this heading"></a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">ament_cppcheck</span></code> supports the following options:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--libraries</span> <span class="pre">[LIBRARIES</span> <span class="pre">...]</span></code> - Library configurations to load in addition to the standard libraries of C and C++. Each library is passed to cppcheck as ‘–library=&lt;library_name&gt;’</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--include_dirs</span> <span class="pre">[INCLUDE_DIRS</span> <span class="pre">...]</span></code> - Include directories for C/C++ files being checked.Each directory is passed to cppcheck as ‘-I &lt;include_dir&gt;’ (default: None)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--libraries</span> <span class="pre">[LIBRARIES</span> <span class="pre">...]</span></code> - Library configurations to load in addition to the standard libraries of C and C++.
+Each library is passed to cppcheck as ‘–library=&lt;library_name&gt;’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--include_dirs</span> <span class="pre">[INCLUDE_DIRS</span> <span class="pre">...]</span></code> - Include directories for C/C++ files being checked.
+Each directory is passed to cppcheck as ‘-I &lt;include_dir&gt;’ (default: None)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--cppcheck-version</span></code> - Get the cppcheck version, print it, and then exit.</p></li>
 </ul>
 </section>
@@ -667,7 +670,8 @@ For example, if you wish to scan just one package in your workspace you can call
 <section id="ament-uncrustify-options">
 <h4>5.2 <code class="docutils literal notranslate"><span class="pre">ament_uncrustify</span></code> Options<a class="headerlink" href="#ament-uncrustify-options" title="Link to this heading"></a></h4>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">CFG</span></code> - The config file that Uncrustify should use if you would prefer to use your own settings. We recommend you stick to the defaults</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">CFG</span></code> - The config file that Uncrustify should use if you would prefer to use your own settings.
+We recommend you stick to the defaults</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--linelength</span> <span class="pre">N</span></code> - The maximum line length.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--language</span></code> - One of {C,C++,CPP}, passed to uncrustify as ‘-l &lt;language&gt;’ to force a specific language rather then choosing one based on file extension.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--reformat</span></code> -  Reformat the files in place, i.e. fix the formatting errors encountered. <strong>We recommend you use this option when running ``ament_uncrustify`` as it will save you quite a bit of time!</strong></p></li>

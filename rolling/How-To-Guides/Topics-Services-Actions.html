@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -431,14 +432,19 @@ This is written to provide the reader with guidelines about when to use each typ
 <section id="topics">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Topics</a><a class="headerlink" href="#topics" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Should be used for continuous data streams (sensor data, robot state, …).</p></li>
-<li><p>Are for continuous data flow. Data might be published and subscribed at any time independent of any senders/receivers. Many to many connection. Callbacks receive data once it is available. The publisher decides when data is sent.</p></li>
+<li><p>Should be used for continuous data streams (sensor data, robot state, …)</p></li>
+<li><p>Are for continuous data flow.
+Data might be published and subscribed at any time independent of any senders/receivers.
+Many to many connection.
+Callbacks receive data once it is available.
+The publisher decides when data is sent.</p></li>
 </ul>
 </section>
 <section id="services">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Services</a><a class="headerlink" href="#services" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Should be used for remote procedure calls that terminate quickly, e.g. for querying the state of a node or doing a quick calculation such as IK. They should never be used for longer running processes, in particular processes that might be required to preempt if exceptional situations occur and they should never change or depend on state to avoid unwanted side effects for other nodes.</p></li>
+<li><p>Should be used for remote procedure calls that terminate quickly, e.g. for querying the state of a node or doing a quick calculation such as IK.
+They should never be used for longer running processes, in particular processes that might be required to preempt if exceptional situations occur and they should never change or depend on state to avoid unwanted side effects for other nodes.</p></li>
 </ul>
 </section>
 <section id="actions">
@@ -448,7 +454,9 @@ This is written to provide the reader with guidelines about when to use each typ
 <li><p>The most important property of actions is that they can be preempted and preemption should always be implemented cleanly by action servers.</p></li>
 <li><p>Actions can keep state for the lifetime of a goal, i.e. if executing two action goals in parallel on the same server, for each client a separate state instance can be kept since the goal is uniquely identified by its id.</p></li>
 <li><p>Slow perception routines which take several seconds to terminate or initiating a lower-level control mode are good use cases for actions.</p></li>
-<li><p>More complex non-blocking background processing. Used for longer tasks like execution of robot actions. Semantically for real-world actions.</p></li>
+<li><p>More complex non-blocking background processing.
+Used for longer tasks like execution of robot actions.
+Semantically for real-world actions.</p></li>
 </ul>
 </section>
 </section>

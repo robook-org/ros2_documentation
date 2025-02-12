@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -445,9 +446,13 @@ ROS 2 uses a simplified description language, the interface definition language 
 This description makes it easy for ROS tools to automatically generate source code for the interface type in several target languages.</p>
 <p>In this document we will describe the supported types:</p>
 <ul class="simple">
-<li><p>msg: <code class="docutils literal notranslate"><span class="pre">.msg</span></code> files are simple text files that describe the fields of a ROS message. They are used to generate source code for messages in different languages.</p></li>
-<li><p>srv: <code class="docutils literal notranslate"><span class="pre">.srv</span></code> files describe a service. They are composed of two parts: a request and a response. The request and response are message declarations.</p></li>
-<li><p>action: <code class="docutils literal notranslate"><span class="pre">.action</span></code> files describe actions. They are composed of three parts: a goal, a result, and feedback.
+<li><p>msg: <code class="docutils literal notranslate"><span class="pre">.msg</span></code> files are simple text files that describe the fields of a ROS message.
+They are used to generate source code for messages in different languages.</p></li>
+<li><p>srv: <code class="docutils literal notranslate"><span class="pre">.srv</span></code> files describe a service.
+They are composed of two parts: a request and a response.
+The request and response are message declarations.</p></li>
+<li><p>action: <code class="docutils literal notranslate"><span class="pre">.action</span></code> files describe actions.
+They are composed of three parts: a goal, a result, and feedback.
 Each part is a message declaration itself.</p></li>
 </ul>
 </section>

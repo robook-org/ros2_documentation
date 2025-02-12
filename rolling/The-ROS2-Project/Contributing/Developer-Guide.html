@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -834,7 +835,8 @@ If you contribute regularly we will likely just grant you permission to manage t
 <section id="package-naming-conventions">
 <h3><a class="toc-backref" href="#id16" role="doc-backlink">Package Naming Conventions</a><a class="headerlink" href="#package-naming-conventions" title="Link to this heading"></a></h3>
 <p>Names play an important role in ROS and following naming conventions simplifies the process of learning and understanding large systems.</p>
-<p>The ROS packages occupy a flat namespace, so naming should be done carefully and consistently. There is a standard for package naming in <a class="reference external" href="https://www.ros.org/reps/rep-0144.html">REP-144</a></p>
+<p>The ROS packages occupy a flat namespace, so naming should be done carefully and consistently.
+There is a standard for package naming in <a class="reference external" href="https://www.ros.org/reps/rep-0144.html">REP-144</a></p>
 <ul class="simple">
 <li><p>Package names should follow common C variable naming conventions: lower case, start with a letter, use underscore separators, e.g. laser_viewer</p></li>
 <li><p>Package names should be specific enough to identify what the package does.
@@ -983,7 +985,8 @@ Having both of them enabled can cause mixing of packages which overlap by name b
 <li><p>In the first box “CI_BRANCH_TO_TEST” enter your feature branch name</p></li>
 <li><p>Hit the <code class="docutils literal notranslate"><span class="pre">build</span></code> button</p></li>
 </ul>
-<p>(if you are not a ROS 2 committer, you don’t have access to the CI farm. In that case, ping the reviewer of your PR to run CI for you)</p>
+<p>(if you are not a ROS 2 committer, you don’t have access to the CI farm.
+In that case, ping the reviewer of your PR to run CI for you)</p>
 </li>
 <li><p>If your use case requires running code coverage:</p>
 <ul class="simple">

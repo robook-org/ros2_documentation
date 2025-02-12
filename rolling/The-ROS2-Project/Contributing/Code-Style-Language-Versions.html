@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -490,7 +491,8 @@ For example, everyone should have a PEP8 checker built into their editor to cut 
 </li>
 <li><p>The stuff about documentation strings doesn’t apply</p></li>
 </ul>
-<p>We can use the <a class="reference external" href="https://github.com/mike-perdide/pep7">pep7</a> python module for style checking. The editor integration seems slim, we may need to look into automated checking for C in more detail.</p>
+<p>We can use the <a class="reference external" href="https://github.com/mike-perdide/pep7">pep7</a> python module for style checking.
+The editor integration seems slim, we may need to look into automated checking for C in more detail.</p>
 </section>
 </section>
 <section id="id1">
@@ -671,7 +673,9 @@ For example, everyone should have a PEP8 checker built into their editor to cut 
 <li><p>Exception: when an <code class="docutils literal notranslate"><span class="pre">if</span></code> (or <code class="docutils literal notranslate"><span class="pre">while</span></code>, etc.) condition is long enough to require line-wrapping, then use an open brace (i.e., don’t cuddle).</p></li>
 </ul>
 </li>
-<li><p>When a function call cannot fit on one line, wrap at the open parenthesis (not in between arguments) and start them on the next line with a 2-space indent.  Continue with the 2-space indent on subsequent lines for more arguments.  (Note that the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html#Function_Calls">Google style guide</a> is internally contradictory on this point.)</p>
+<li><p>When a function call cannot fit on one line, wrap at the open parenthesis (not in between arguments) and start them on the next line with a 2-space indent.
+Continue with the 2-space indent on subsequent lines for more arguments.
+(Note that the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html#Function_Calls">Google style guide</a> is internally contradictory on this point.)</p>
 <ul>
 <li><p>Same goes for <code class="docutils literal notranslate"><span class="pre">if</span></code> (and <code class="docutils literal notranslate"><span class="pre">while</span></code>, etc.) conditions that are too long to fit on one line.</p></li>
 </ul>

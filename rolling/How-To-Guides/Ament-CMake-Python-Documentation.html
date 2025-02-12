@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -471,8 +472,8 @@ In this case, it is <code class="docutils literal notranslate"><span class="pre"
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Calling <code class="docutils literal notranslate"><span class="pre">rosidl_generate_interfaces</span></code> and <code class="docutils literal notranslate"><span class="pre">ament_python_install_package</span></code> in the same CMake project does not work.
-See this <a class="reference external" href="https://github.com/ros2/rosidl_python/issues/141">Github issue</a> for more info. It is best practice to instead
-separate out the message generation into a separate package.</p>
+See this <a class="reference external" href="https://github.com/ros2/rosidl_python/issues/141">Github issue</a> for more info.
+It is best practice to instead separate out the message generation into a separate package.</p>
 </div>
 <p>Then, another Python package that correctly depends on <code class="docutils literal notranslate"><span class="pre">my_project</span></code> can use it as a normal Python module:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">my_project.my_script</span> <span class="kn">import</span> <span class="n">my_function</span>

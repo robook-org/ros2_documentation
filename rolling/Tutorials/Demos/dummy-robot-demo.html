@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -422,7 +423,8 @@
 <p>In this demo, we present a simple demo robot with all components from publishing joint states over publishing fake laser data until visualizing the robot model on a map in RViz.</p>
 <section id="launching-the-demo">
 <h2>Launching the demo<a class="headerlink" href="#launching-the-demo" title="Link to this heading"></a></h2>
-<p>We assume your ROS 2 installation dir as <code class="docutils literal notranslate"><span class="pre">~/ros2_ws</span></code>. Please change the directories according to your platform.</p>
+<p>We assume your ROS 2 installation dir as <code class="docutils literal notranslate"><span class="pre">~/ros2_ws</span></code>.
+Please change the directories according to your platform.</p>
 <p>To start the demo, we execute the demo bringup launch file, which we are going to explain in more details in the next section.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-U291cmNlIEJ1aWxk" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-U291cmNlIEJ1aWxk" name="U291cmNlIEJ1aWxk" role="tab" tabindex="0">Source Build</button><button aria-controls="panel-0-ZGViIFBhY2thZ2U=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-ZGViIFBhY2thZ2U=" name="ZGViIFBhY2thZ2U=" role="tab" tabindex="-1">deb Package</button></div><div aria-labelledby="tab-0-U291cmNlIEJ1aWxk" class="sphinx-tabs-panel group-tab" id="panel-0-U291cmNlIEJ1aWxk" name="U291cmNlIEJ1aWxk" role="tabpanel" tabindex="0"><p>mkdir -p ~/ros2_ws/src
@@ -446,12 +448,15 @@ ros2 launch dummy_robot_bringup dummy_robot_bringup_launch.py</p>
 <span class="o">[</span>robot_state_publisher-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1714837459</span>.652977937<span class="o">]</span><span class="w"> </span><span class="o">[</span>robot_state_publisher<span class="o">]</span>:<span class="w"> </span>Robot<span class="w"> </span>initialized
 </pre></div>
 </div>
-<p>If you now open RViz2 in a new terminal, you’ll see your robot. 🎉</p>
+<p>If you now open RViz2 in a new terminal, you’ll see your robot.
+🎉</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
 $<span class="w"> </span>rviz2
 </pre></div>
 </div>
-<p>This opens RViz2. Assuming you have your dummy_robot_bringup still launched, you can now add the TF display plugin and configure your global frame to <code class="docutils literal notranslate"><span class="pre">world</span></code>. Once you did that, you should see a similar picture:</p>
+<p>This opens RViz2.
+Assuming you have your dummy_robot_bringup still launched, you can now add the TF display plugin and configure your global frame to <code class="docutils literal notranslate"><span class="pre">world</span></code>.
+Once you did that, you should see a similar picture:</p>
 <img alt="../../_images/rviz-dummy-robot.png" src="../../_images/rviz-dummy-robot.png" />
 <section id="what-s-happening">
 <h3>What’s happening?<a class="headerlink" href="#what-s-happening" title="Link to this heading"></a></h3>
@@ -462,9 +467,14 @@ $<span class="w"> </span>rviz2
 <li><p>dummy_joint_states</p></li>
 <li><p>robot_state_publisher</p></li>
 </ul>
-<p>The first two packages are relatively simple. The <code class="docutils literal notranslate"><span class="pre">dummy_map_server</span></code> constantly publishes an empty map with a periodic update. The <code class="docutils literal notranslate"><span class="pre">dummy_laser</span></code> does basically the same; publishing dummy fake laser scans.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">dummy_joint_states</span></code> node is publishing fake joint state data. As we are publishing a simple RRbot with only two joints, this node publishes joint states values for these two joints.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code> is doing the actual interesting work. It parses the given URDF file, extracts the robot model and listens to the incoming joint states. With this information, it publishes TF values for our robot which we visualize in RViz.</p>
+<p>The first two packages are relatively simple.
+The <code class="docutils literal notranslate"><span class="pre">dummy_map_server</span></code> constantly publishes an empty map with a periodic update.
+The <code class="docutils literal notranslate"><span class="pre">dummy_laser</span></code> does basically the same; publishing dummy fake laser scans.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dummy_joint_states</span></code> node is publishing fake joint state data.
+As we are publishing a simple RRbot with only two joints, this node publishes joint states values for these two joints.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code> is doing the actual interesting work.
+It parses the given URDF file, extracts the robot model and listens to the incoming joint states.
+With this information, it publishes TF values for our robot which we visualize in RViz.</p>
 <p>Hooray!</p>
 </section>
 </section>

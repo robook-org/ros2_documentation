@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Launch/Launch-Main.html">Launch</a><ul>
@@ -457,14 +458,17 @@ Edit the <code class="docutils literal notranslate"><span class="pre">lookupTran
 </pre></div>
 </div>
 <p>Now if you run this, during the first 5 seconds, the second turtle would not know where to go because we do not yet have a 5-second history of poses of the carrot.
-But what happens after these 5 seconds? Build the package then let’s just give it a try:</p>
+But what happens after these 5 seconds?
+Build the package then let’s just give it a try:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 launch learning_tf2_cpp turtle_tf2_fixed_frame_demo_launch.py</span>
 </pre></div>
 </div>
 <img alt="../../../_images/turtlesim_delay1.png" src="../../../_images/turtlesim_delay1.png" />
-<p>You should now notice that your turtle is driving around uncontrollably like in this screenshot. Let’s try to understand reason behind that behavior.</p>
+<p>You should now notice that your turtle is driving around uncontrollably like in this screenshot.
+Let’s try to understand reason behind that behavior.</p>
 <ol class="arabic simple">
-<li><p>In our code we asked tf2 the following question: “What was the pose of <code class="docutils literal notranslate"><span class="pre">carrot1</span></code> 5 seconds ago, relative to <code class="docutils literal notranslate"><span class="pre">turtle2</span></code> 5 seconds ago?”. This means we are controlling the second turtle based on where it was 5 seconds ago as well as where the first carrot was 5 seconds ago.</p></li>
+<li><p>In our code we asked tf2 the following question: “What was the pose of <code class="docutils literal notranslate"><span class="pre">carrot1</span></code> 5 seconds ago, relative to <code class="docutils literal notranslate"><span class="pre">turtle2</span></code> 5 seconds ago?”.
+This means we are controlling the second turtle based on where it was 5 seconds ago as well as where the first carrot was 5 seconds ago.</p></li>
 <li><p>However, what we really want to ask is: “What was the pose of <code class="docutils literal notranslate"><span class="pre">carrot1</span></code> 5 seconds ago, relative to the current position of the <code class="docutils literal notranslate"><span class="pre">turtle2</span></code>?”.</p></li>
 </ol>
 </section>

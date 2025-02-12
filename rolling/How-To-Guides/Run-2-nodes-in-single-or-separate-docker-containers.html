@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -450,11 +451,13 @@ ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class
 </section>
 <section id="run-two-nodes-in-two-separate-docker-containers">
 <h2>Run two nodes in two separate docker containers<a class="headerlink" href="#run-two-nodes-in-two-separate-docker-containers" title="Link to this heading"></a></h2>
-<p>Open a terminal. Run the image in a container in interactive mode and launch a topic publisher (executable <code class="docutils literal notranslate"><span class="pre">talker</span></code> from the package <code class="docutils literal notranslate"><span class="pre">demo_nodes_cpp</span></code>) with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>:</p>
+<p>Open a terminal.
+Run the image in a container in interactive mode and launch a topic publisher (executable <code class="docutils literal notranslate"><span class="pre">talker</span></code> from the package <code class="docutils literal notranslate"><span class="pre">demo_nodes_cpp</span></code>) with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>osrf/ros:rolling-desktop<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
 </pre></div>
 </div>
-<p>Open a second terminal. Run the image in a container in interactive mode and launch a topic subscriber (executable <code class="docutils literal notranslate"><span class="pre">listener</span></code> from the package <code class="docutils literal notranslate"><span class="pre">demo_nodes_cpp</span></code>)  with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>:</p>
+<p>Open a second terminal.
+Run the image in a container in interactive mode and launch a topic subscriber (executable <code class="docutils literal notranslate"><span class="pre">listener</span></code> from the package <code class="docutils literal notranslate"><span class="pre">demo_nodes_cpp</span></code>)  with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>osrf/ros:rolling-desktop<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>listener
 </pre></div>
 </div>

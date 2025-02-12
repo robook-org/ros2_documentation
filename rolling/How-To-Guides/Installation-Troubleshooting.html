@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -465,7 +466,8 @@ sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </s
 If so, compare the libraries present in the directory with the one mentioned in the error message.
 Assuming a file with a similar name exists (same prefix like <code class="docutils literal notranslate"><span class="pre">_rclpy.</span></code> and same suffix like <code class="docutils literal notranslate"><span class="pre">.so</span></code> but a different Python version / architecture) you are using a different Python interpreter than which was used to build the C extension.
 Be sure to use the same Python interpreter as the one used to build the binary.</p>
-<p>For example, such a mismatch can crop up after an update of the OS. Then, rebuilding the workspace may fix the issue.</p>
+<p>For example, such a mismatch can crop up after an update of the OS.
+Then, rebuilding the workspace may fix the issue.</p>
 </section>
 </section>
 <section id="linux">
@@ -639,7 +641,8 @@ Use this information to install additional dependencies or adjust your path as n
 </section>
 <section id="cmake-error-setting-modification-time">
 <h3>CMake error setting modification time<a class="headerlink" href="#cmake-error-setting-modification-time" title="Link to this heading"></a></h3>
-<p>If you run into the CMake error <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">INSTALL</span> <span class="pre">cannot</span> <span class="pre">set</span> <span class="pre">modification</span> <span class="pre">time</span> <span class="pre">on</span> <span class="pre">...</span></code> when installing files it is likely that an anti virus software or Windows Defender are interfering with the build. E.g. for Windows Defender you can list the workspace location to be excluded to prevent it from scanning those files.</p>
+<p>If you run into the CMake error <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">INSTALL</span> <span class="pre">cannot</span> <span class="pre">set</span> <span class="pre">modification</span> <span class="pre">time</span> <span class="pre">on</span> <span class="pre">...</span></code> when installing files it is likely that an anti virus software or Windows Defender are interfering with the build.
+E.g. for Windows Defender you can list the workspace location to be excluded to prevent it from scanning those files.</p>
 </section>
 <section id="character-path-limit">
 <h3>260 character path limit<a class="headerlink" href="#character-path-limit" title="Link to this heading"></a></h3>
@@ -665,7 +668,8 @@ We’ve not yet been able to identify the root cause, but uninstalling the choco
 <h3>patch.exe opens a new command window and asks for administrator<a class="headerlink" href="#patch-exe-opens-a-new-command-window-and-asks-for-administrator" title="Link to this heading"></a></h3>
 <p>This will also cause the build of packages which need to use patch to fail, even you allow it to use administrator rights.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">choco</span> <span class="pre">uninstall</span> <span class="pre">patch;</span> <span class="pre">colcon</span> <span class="pre">build</span> <span class="pre">--cmake-clean-cache</span></code> - This is a bug in the <a class="reference external" href="https://chocolatey.org/packages/patch">GNU Patch For Windows package</a>. If this package is not installed, the build process will instead use the version of Patch distributed with git.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">choco</span> <span class="pre">uninstall</span> <span class="pre">patch;</span> <span class="pre">colcon</span> <span class="pre">build</span> <span class="pre">--cmake-clean-cache</span></code> - This is a bug in the <a class="reference external" href="https://chocolatey.org/packages/patch">GNU Patch For Windows package</a>.
+If this package is not installed, the build process will instead use the version of Patch distributed with git.</p></li>
 </ul>
 </section>
 <section id="failed-to-load-fast-rtps-shared-library">

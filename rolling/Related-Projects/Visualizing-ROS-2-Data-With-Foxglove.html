@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -421,12 +422,15 @@
 It’s available in the browser or as a standalone desktop app and is free for individual, small team, and academic use.</p>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>To use Foxglove, you’ll need to <a class="reference external" href="https://app.foxglove.dev/signup">create an account</a>. It’s free and all you need is a valid email address.</p>
+<p>To use Foxglove, you’ll need to <a class="reference external" href="https://app.foxglove.dev/signup">create an account</a>.
+It’s free and all you need is a valid email address.</p>
 <p>Once you’ve created an account, you can use Foxglove on the web by opening Google Chrome and navigating to <a class="reference external" href="https://app.foxglove.dev">app.foxglove.dev</a>.</p>
 <p>To use the desktop app for Linux, macOS, or Windows, download it directly from the <a class="reference external" href="https://foxglove.dev/download">Foxglove website</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Foxglove uses specific features of Google Chrome. While some features may work, other browsers are not supported. For the best experience, we recommend using Chrome or the desktop app.</p>
+<p>Foxglove uses specific features of Google Chrome.
+While some features may work, other browsers are not supported.
+For the best experience, we recommend using Chrome or the desktop app.</p>
 </div>
 </section>
 <section id="connect-to-a-live-data-source">
@@ -439,8 +443,10 @@ It’s available in the browser or as a standalone desktop app and is free for i
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>foxglove_bridge<span class="w"> </span>foxglove_bridge_launch.xml
 </pre></div>
 </div>
-<p>With the bridge running on your robot, you’re ready to connect view data in Foxglove. Make sure you are on the same network as your robot, open Foxglove (web or desktop) and click “Open connection”.</p>
-<p>Select the option for “Foxglove WebSocket” and enter your robot’s WebSocket URL. The default is <code class="docutils literal notranslate"><span class="pre">ws://localhost:8765</span></code>, however you can read about configuration options for the ROS Foxglove bridge <a class="reference external" href="https://docs.foxglove.dev/docs/connecting-to-data/ros-foxglove-bridge#configuration-1">here</a>.</p>
+<p>With the bridge running on your robot, you’re ready to connect view data in Foxglove.
+Make sure you are on the same network as your robot, open Foxglove (web or desktop) and click “Open connection”.</p>
+<p>Select the option for “Foxglove WebSocket” and enter your robot’s WebSocket URL.
+The default is <code class="docutils literal notranslate"><span class="pre">ws://localhost:8765</span></code>, however you can read about configuration options for the ROS Foxglove bridge <a class="reference external" href="https://docs.foxglove.dev/docs/connecting-to-data/ros-foxglove-bridge#configuration-1">here</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Foxglove can also connect using rosbridge, however for performance and stability reasons we recommend using the Foxglove bridge.</p>
@@ -448,7 +454,8 @@ It’s available in the browser or as a standalone desktop app and is free for i
 </section>
 <section id="view-and-replay-recorded-data">
 <h2>View and replay recorded data<a class="headerlink" href="#view-and-replay-recorded-data" title="Link to this heading"></a></h2>
-<p>If you’d rather visualize recorded data, you can use Foxglove to replay ROS 2 <code class="docutils literal notranslate"><span class="pre">.mcap</span></code> as well as older ROS 2 <code class="docutils literal notranslate"><span class="pre">.db3</span></code>, and ROS 1 <code class="docutils literal notranslate"><span class="pre">.bag</span></code> files. Foxglove is particularly convenient for recorded data because it does not require ROS 2 to be running to view data.</p>
+<p>If you’d rather visualize recorded data, you can use Foxglove to replay ROS 2 <code class="docutils literal notranslate"><span class="pre">.mcap</span></code> as well as older ROS 2 <code class="docutils literal notranslate"><span class="pre">.db3</span></code>, and ROS 1 <code class="docutils literal notranslate"><span class="pre">.bag</span></code> files.
+Foxglove is particularly convenient for recorded data because it does not require ROS 2 to be running to view data.</p>
 <p>Use the <a class="reference internal" href="../Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html"><span class="doc">ros2 bag command line tool</span></a> to record data from your robot to a <code class="docutils literal notranslate"><span class="pre">.mcap</span></code> file:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>-a
 </pre></div>
@@ -464,7 +471,8 @@ It’s available in the browser or as a standalone desktop app and is free for i
 <p>We’ve highlighted some particularly useful ones below:</p>
 <section id="d-panel-view-3d-data-and-visualization-markers">
 <h3>3D panel: View 3D data and visualization markers<a class="headerlink" href="#d-panel-view-3d-data-and-visualization-markers" title="Link to this heading"></a></h3>
-<p>Open the panel settings by clicking the gear icon in the upper right. Choose the topics you want to display via the topic picker on the left, and configure each topic’s visualization settings in the “Edit topic settings” menu.</p>
+<p>Open the panel settings by clicking the gear icon in the upper right.
+Choose the topics you want to display via the topic picker on the left, and configure each topic’s visualization settings in the “Edit topic settings” menu.</p>
 <p>Publish marker messages to add primitive shapes (arrows, spheres, etc.) and more complex visualizations (occupancy grids, point clouds, etc.) to your 3D panel’s scene.</p>
 <a class="reference internal image-reference" href="../_images/3d.png"><img alt="Foxglove's 3D panel" src="../_images/3d.png" style="width: 500px;" /></a>
 <p>Reference the <a class="reference external" href="https://foxglove.dev/docs/visualization/panels/3d">docs</a> for a full list of <a class="reference external" href="https://foxglove.dev/docs/visualization/panels/3d#supported-messages">supported message types</a> and some useful <a class="reference external" href="https://foxglove.dev/docs/visualization/panels/3d#user-interactions">user interactions</a>.</p>
@@ -477,7 +485,8 @@ It’s available in the browser or as a standalone desktop app and is free for i
 </section>
 <section id="image-panel-view-camera-feed-images">
 <h3>Image panel: View camera feed images<a class="headerlink" href="#image-panel-view-camera-feed-images" title="Link to this heading"></a></h3>
-<p>Display raw and compressed images, as well as compressed videos, with 2D annotations like text labels, circles, and points. Superimpose 3D markers for additional context.</p>
+<p>Display raw and compressed images, as well as compressed videos, with 2D annotations like text labels, circles, and points.
+Superimpose 3D markers for additional context.</p>
 <a class="reference internal image-reference" href="../_images/image.png"><img alt="Foxglove's Image panel" src="../_images/image.png" style="width: 500px;" /></a>
 <p>Reference the <a class="reference external" href="https://foxglove.dev/docs/visualization/panels/image">docs</a> for more details.</p>
 </section>
@@ -492,14 +501,16 @@ If you’ve connected to your ROS stack correctly, you should now see a list of 
 <section id="plot-panel-plot-arbitrary-values-over-time">
 <h3>Plot panel: Plot arbitrary values over time<a class="headerlink" href="#plot-panel-plot-arbitrary-values-over-time" title="Link to this heading"></a></h3>
 <p>Plot arbitrary numeric values from topic <a class="reference external" href="https://docs.foxglove.dev/docs/visualization/message-path-syntax">message paths</a> .</p>
-<p>When playing back local or remote data files, this panel will preload the data belonging to the specified topic message paths for the whole playback timeline. Current playback time is indicated by a vertical gray bar.</p>
+<p>When playing back local or remote data files, this panel will preload the data belonging to the specified topic message paths for the whole playback timeline.
+Current playback time is indicated by a vertical gray bar.</p>
 <a class="reference internal image-reference" href="../_images/plot.png"><img alt="Foxglove's Plot panel" src="../_images/plot.png" style="width: 500px;" /></a>
 <p>Reference the <a class="reference external" href="https://foxglove.dev/docs/visualization/panels/plot">docs</a> for more details.</p>
 </section>
 <section id="raw-messages-panel-view-incoming-topic-messages">
 <h3>Raw Messages panel: View incoming topic messages<a class="headerlink" href="#raw-messages-panel-view-incoming-topic-messages" title="Link to this heading"></a></h3>
 <p>Inspect a particular <a class="reference external" href="https://docs.foxglove.dev/docs/visualization/message-path-syntax">message path</a> in your data source.</p>
-<p>As new messages are received for a given path, the collapsible tree will show just the latest message. You will be able to expand and collapse keys, and have those changes persist across playback.</p>
+<p>As new messages are received for a given path, the collapsible tree will show just the latest message.
+You will be able to expand and collapse keys, and have those changes persist across playback.</p>
 <a class="reference internal image-reference" href="../_images/raw-messages.png"><img alt="Foxglove's Raw Messages panel" src="../_images/raw-messages.png" style="width: 500px;" /></a>
 <p>Reference the <a class="reference external" href="https://foxglove.dev/docs/visualization/panels/raw-messages">docs</a> for more details.</p>
 </section>

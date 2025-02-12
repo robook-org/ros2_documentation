@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -510,7 +511,8 @@ Received<span class="w"> </span>image<span class="w"> </span><span class="c1">#c
 $<span class="w"> </span>sudo<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>net.inet.udp.maxdgram<span class="o">=</span><span class="m">65500</span>
 </pre></div>
 </div>
-<p>These changes will not persist a reboot. If you want the changes to persist, add these lines to <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code> (create the file if it doesn’t exist already):</p>
+<p>These changes will not persist a reboot.
+If you want the changes to persist, add these lines to <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code> (create the file if it doesn’t exist already):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>net.inet.udp.recvspace<span class="o">=</span><span class="m">209715</span>
 net.inet.udp.maxdgram<span class="o">=</span><span class="m">65500</span>
 </pre></div>

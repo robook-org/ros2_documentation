@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Launch/Launch-Main.html">Launch</a><ul>
@@ -517,7 +518,8 @@ We’ll explore that more in the next section.</p>
 <p>Great question, I’m glad you asked!</p>
 <ul class="simple">
 <li><p>If the package you want to depend in your package is ROS-based, AND has been released into the ROS ecosystem <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, e.g. <code class="docutils literal notranslate"><span class="pre">nav2_bt_navigator</span></code>, you may simply use the name of the package. You can find a list of all released ROS packages in <a class="reference external" href="https://github.com/ros/rosdistro">https://github.com/ros/rosdistro</a> at <code class="docutils literal notranslate"><span class="pre">&lt;distro&gt;/distribution.yaml</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">humble/distribution.yaml</span></code>) for your given ROS distribution.</p></li>
-<li><p>If you want to depend on a non-ROS package, something often called “system dependencies”, you will need to find the keys for a particular library. In general, there are two files of interest:</p>
+<li><p>If you want to depend on a non-ROS package, something often called “system dependencies”, you will need to find the keys for a particular library.
+In general, there are two files of interest:</p>
 <ul>
 <li><p><a class="reference external" href="https://github.com/ros/rosdistro/blob/master/rosdep/base.yaml">rosdep/base.yaml</a> contains the <code class="docutils literal notranslate"><span class="pre">apt</span></code> system dependencies</p></li>
 <li><p><a class="reference external" href="https://github.com/ros/rosdistro/blob/master/rosdep/python.yaml">rosdep/python.yaml</a> contains the Python dependencies</p></li>

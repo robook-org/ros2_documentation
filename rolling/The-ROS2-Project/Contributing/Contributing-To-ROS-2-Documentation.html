@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -586,14 +587,17 @@ We’ve found that the easiest way to migrate a page from the ROS Wiki is to con
 <section id="migrating-a-wiki-file">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Migrating a Wiki File</a><a class="headerlink" href="#migrating-a-wiki-file" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
-<li><p>Clone the appropriate repository.  If you are migrating a page to the official documentation hosted here, then you should clone <a class="reference external" href="https://github.com/ros2/ros2_documentation">https://github.com/ros2/ros2_documentation</a>.</p></li>
-<li><p>Create a new Github branch for your migrated page. We suggest something like <code class="docutils literal notranslate"><span class="pre">pagename-migration</span></code>.</p></li>
+<li><p>Clone the appropriate repository.
+If you are migrating a page to the official documentation hosted here, then you should clone <a class="reference external" href="https://github.com/ros2/ros2_documentation">https://github.com/ros2/ros2_documentation</a>.</p></li>
+<li><p>Create a new Github branch for your migrated page.
+We suggest something like <code class="docutils literal notranslate"><span class="pre">pagename-migration</span></code>.</p></li>
 <li><p>Download the appropriate ROS Wiki page to an html file using wget or a similar tool (e.g. <code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-O</span> <span class="pre">urdf.html</span> <span class="pre">https://wiki.ros.org/urdf</span></code>).
 Alternatively you can use your web browser to save the page’s HTML.</p></li>
 <li><p>Next you need to remove the extraneous HTML in the file you downloaded
 Using your browser’s developer mode, find the name of the first useful HTML element in the Wiki page.
 In most cases all of the HTML between the third line of the file, starting with the <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code> tag, through the start of the first <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;</span></code> tag can be safely removed.
-In the case where there is a table of contents, the first useful tag may be an <code class="docutils literal notranslate"><span class="pre">&lt;h2&gt;</span></code> tag.  Similarly, the ROS wiki contains some footer text that starts with <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">id=&quot;pagebottom&quot;&gt;&lt;/div&gt;</span></code> and ends just above <code class="docutils literal notranslate"><span class="pre">&lt;/body&gt;&lt;/html&gt;</span></code> that can also be removed.</p></li>
+In the case where there is a table of contents, the first useful tag may be an <code class="docutils literal notranslate"><span class="pre">&lt;h2&gt;</span></code> tag.
+Similarly, the ROS wiki contains some footer text that starts with <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">id=&quot;pagebottom&quot;&gt;&lt;/div&gt;</span></code> and ends just above <code class="docutils literal notranslate"><span class="pre">&lt;/body&gt;&lt;/html&gt;</span></code> that can also be removed.</p></li>
 <li><p>Convert your html file by running a PanDoc conversion between HTML and restructured text.
 The following command converts an HTML file to the equivalent reStructured text files: <code class="docutils literal notranslate"><span class="pre">pandoc</span> <span class="pre">-f</span> <span class="pre">html</span> <span class="pre">-t</span> <span class="pre">rst</span> <span class="pre">urdf.html</span> <span class="pre">&gt;</span> <span class="pre">URDF.rst</span></code>.</p></li>
 <li><p>Attempt to build your new documentation using the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> command.
@@ -604,7 +608,9 @@ Internal document references must be updated to point to the equivalent ROS 2 ma
 Your updated document should not point to the ROS Wiki unless it is absolutely necessary.
 This process may require you alter the document considerably, and you may need to pull multiple wiki files.
 You should verify that every code sample in the document is working correctly under ROS 2.</p></li>
-<li><p>Find and download any images that may be in the old document. The easiest way to do this is to right click in the browser and download all of the images. Alternatively you can find images by searching for <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">src&gt;</span></code> tags in the HTML file.</p></li>
+<li><p>Find and download any images that may be in the old document.
+The easiest way to do this is to right click in the browser and download all of the images.
+Alternatively you can find images by searching for <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">src&gt;</span></code> tags in the HTML file.</p></li>
 <li><p>For each image files downloaded update the image file links to point to the correct image directory for the ROS Docs.
 If any of the images require updating, or could be replaced with a <a class="reference external" href="https://mermaid.js.org/intro/">Mermaid</a> chart, please make this change.
 Be aware that Mermaid.js is only supported in the core ROS 2 documentation currently.</p></li>
@@ -625,7 +631,8 @@ Then, you need to go to the <a class="reference external" href="https://github.c
 After that, you can open the repository in Codespaces, it can be done just by clicking on the “Code” button on the repository page, then choose “Open with Codespaces” from the dropdown menu.</p>
 <a class="reference internal image-reference" href="../../_images/codespaces.png"><img alt="Codespaces creation" src="../../_images/codespaces.png" style="width: 100%;" /></a>
 <p>After that, you will be redirected to your Codespaces page, where you can see the progress of the Codespaces creation.
-Once it is done, a Visual Studio Code tab will be opened in your browser. You can open the terminal by clicking on the “Terminal” tab in the top panel or by pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">J</kbd></kbd>.</p>
+Once it is done, a Visual Studio Code tab will be opened in your browser.
+You can open the terminal by clicking on the “Terminal” tab in the top panel or by pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">J</kbd></kbd>.</p>
 <p>In this terminal, you can run any command you want, for example, you can run the following command to build the site for just this branch:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make html</span>
 </pre></div>

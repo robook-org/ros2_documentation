@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -503,11 +504,14 @@ Given a list of parameter names, returns a list of parameter types associated wi
 <li><p><code class="docutils literal notranslate"><span class="pre">/node_name/get_parameters</span></code>: Uses a service type of <code class="docutils literal notranslate"><span class="pre">rcl_interfaces/srv/GetParameters</span></code>.
 Given a list of parameter names, returns a list of parameter values associated with the parameters.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">/node_name/list_parameters</span></code>: Uses a service type of <code class="docutils literal notranslate"><span class="pre">rcl_interfaces/srv/ListParameters</span></code>.
-Given an optional list of parameter prefixes, returns a list of the available parameters with that prefix.  If the prefixes are empty, returns all parameters.</p></li>
+Given an optional list of parameter prefixes, returns a list of the available parameters with that prefix.
+If the prefixes are empty, returns all parameters.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">/node_name/set_parameters</span></code>: Uses a service type of <code class="docutils literal notranslate"><span class="pre">rcl_interfaces/srv/SetParameters</span></code>.
-Given a list of parameter names and values, attempts to set the parameters on the node.  Returns a list of results from trying to set each parameter; some of them may have succeeded and some may have failed.</p></li>
+Given a list of parameter names and values, attempts to set the parameters on the node.
+Returns a list of results from trying to set each parameter; some of them may have succeeded and some may have failed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">/node_name/set_parameters_atomically</span></code>: Uses a service type of <code class="docutils literal notranslate"><span class="pre">rcl_interfaces/srv/SetParametersAtomically</span></code>.
-Given a list of parameter names and values, attempts to set the parameters on the node.  Returns a single result from trying to set all parameters, so if one failed, all of them failed.</p></li>
+Given a list of parameter names and values, attempts to set the parameters on the node.
+Returns a single result from trying to set all parameters, so if one failed, all of them failed.</p></li>
 </ul>
 </section>
 <section id="setting-initial-parameter-values-when-running-a-node">

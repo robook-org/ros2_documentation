@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">Launch</a><ul>
@@ -418,7 +419,9 @@
 
   <section id="building-a-real-time-linux-kernel-community-contributed">
 <h1>Building a real-time Linux kernel [community-contributed]<a class="headerlink" href="#building-a-real-time-linux-kernel-community-contributed" title="Link to this heading"></a></h1>
-<p>This tutorial begins with a clean Ubuntu 20.04.1 install on Intel x86_64. Actual kernel is 5.4.0-54-generic, but we will install the Latest Stable RT_PREEMPT Version. To build the kernel you need at least 30GB free disk space.</p>
+<p>This tutorial begins with a clean Ubuntu 20.04.1 install on Intel x86_64.
+Actual kernel is 5.4.0-54-generic, but we will install the Latest Stable RT_PREEMPT Version.
+To build the kernel you need at least 30GB free disk space.</p>
 <p>Check <a class="reference external" href="https://wiki.linuxfoundation.org/realtime/start">https://wiki.linuxfoundation.org/realtime/start</a> for the latest stable version, at the time of writing this is “Latest Stable Version 5.4-rt”.
 If we click on the <a class="reference external" href="http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/">link</a>, we get the exact version.
 Currently it is patch-5.4.78-rt44.patch.gz.</p>
@@ -459,7 +462,8 @@ Currently it is patch-5.4.78-rt44.patch.gz.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>/boot/config-5.4.0-54-generic<span class="w"> </span>.config
 </pre></div>
 </div>
-<p>Open Software &amp; Updates. in the Ubuntu Software menu tick the ‘Source code’ box</p>
+<p>Open Software &amp; Updates.
+in the Ubuntu Software menu tick the ‘Source code’ box</p>
 <p>We need some tools to build kernel, install them with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>build-dep<span class="w"> </span>linux
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libncurses-dev<span class="w"> </span>flex<span class="w"> </span>bison<span class="w"> </span>openssl<span class="w"> </span>libssl-dev<span class="w"> </span>dkms<span class="w"> </span>libelf-dev<span class="w"> </span>libudev-dev<span class="w"> </span>libpci-dev<span class="w"> </span>libiberty-dev<span class="w"> </span>autoconf<span class="w"> </span>fakeroot
@@ -469,7 +473,8 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yes<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>make<span class="w"> </span>oldconfig
 </pre></div>
 </div>
-<p>Then we need to enable rt_preempt in the kernel. We call</p>
+<p>Then we need to enable rt_preempt in the kernel.
+We call</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>menuconfig
 </pre></div>
 </div>
@@ -503,7 +508,8 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 <span class="w">     </span><span class="o">(</span>X<span class="o">)</span><span class="w"> </span>performance
 </pre></div>
 </div>
-<p>Save and exit menuconfig. Now we’re going to build the kernel which will take quite some time. (10-30min on a modern cpu)</p>
+<p>Save and exit menuconfig.
+Now we’re going to build the kernel which will take quite some time. (10-30min on a modern cpu)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>nproc<span class="sb">`</span><span class="w"> </span>deb-pkg
 </pre></div>
 </div>
@@ -517,7 +523,8 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>../*.deb
 </pre></div>
 </div>
-<p>Now the real time kernel should be installed. Reboot the system and check the new kernel version</p>
+<p>Now the real time kernel should be installed.
+Reboot the system and check the new kernel version</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>reboot
 uname<span class="w"> </span>-a
 Linux<span class="w"> </span>ros2host<span class="w"> </span><span class="m">5</span>.4.78-rt44<span class="w"> </span><span class="c1">#1 SMP PREEMPT_RT Fri Nov 6 10:37:59 CET 2020 x86_64 xx</span>

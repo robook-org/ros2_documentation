@@ -154,6 +154,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Writing-an-Action-Server-Client/Py.html">Writing an action server and client (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-Python.html">Monitoring for parameter changes (Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Launch/Launch-Main.html">Launch</a><ul>
@@ -562,7 +563,8 @@ You want to find the relative rotation, <code class="docutils literal notranslat
 </pre></div>
 </div>
 <p>You can solve for <code class="docutils literal notranslate"><span class="pre">q_r</span></code> similarly to solving a matrix equation.
-Invert <code class="docutils literal notranslate"><span class="pre">q_1</span></code> and right-multiply both sides. Again, the order of multiplication is important:</p>
+Invert <code class="docutils literal notranslate"><span class="pre">q_1</span></code> and right-multiply both sides.
+Again, the order of multiplication is important:</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">q_r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q_2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q_1_inverse</span>
 </pre></div>
 </div>

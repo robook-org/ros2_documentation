@@ -513,12 +513,12 @@ The editor integration seems slim, we may need to look into automated checking f
 <section id="file-extensions">
 <h4>File Extensions<a class="headerlink" href="#file-extensions" title="Link to this heading"></a></h4>
 <ul class="simple">
-<li><p>Header files should use the .hpp extension.</p>
+<li><p>Header files should use the <code class="docutils literal notranslate"><span class="pre">.hpp</span></code> extension.</p>
 <ul>
 <li><p>rationale: Allow tools to determine content of files, C++ or C.</p></li>
 </ul>
 </li>
-<li><p>Implementation files should use the .cpp extension.</p>
+<li><p>Implementation files should use the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> extension.</p>
 <ul>
 <li><p>rationale: Allow tools to determine content of files, C++ or C.</p></li>
 </ul>
@@ -810,10 +810,10 @@ Here’s a non-exhaustive list of additional things we try to do on all of our p
 <p>The pycodestyle configuration used in the linter is <a class="reference external" href="https://github.com/ament/ament_lint/blob/rolling/ament_pycodestyle/ament_pycodestyle/configuration/ament_pycodestyle.ini">here</a>.</p>
 <p>Integration with editors:</p>
 <ul class="simple">
-<li><p>atom: <a class="reference external" href="https://atom.io/packages/linter-pycodestyle">https://atom.io/packages/linter-pycodestyle</a></p></li>
-<li><p>emacs: <a class="reference external" href="https://www.emacswiki.org/emacs/PythonProgrammingInEmacs">https://www.emacswiki.org/emacs/PythonProgrammingInEmacs</a></p></li>
-<li><p>Sublime Text: <a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter-flake8">https://sublime.wbond.net/packages/SublimeLinter-flake8</a></p></li>
-<li><p>vim: <a class="reference external" href="https://github.com/nvie/vim-flake8">https://github.com/nvie/vim-flake8</a></p></li>
+<li><p><a class="reference external" href="https://atom.io/packages/linter-pycodestyle">atom</a></p></li>
+<li><p><a class="reference external" href="https://www.emacswiki.org/emacs/PythonProgrammingInEmacs">emacs</a></p></li>
+<li><p><a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter-flake8">Sublime Text</a></p></li>
+<li><p><a class="reference external" href="https://github.com/nvie/vim-flake8">vim</a></p></li>
 </ul>
 </section>
 </section>
@@ -832,7 +832,8 @@ Here’s a non-exhaustive list of additional things we try to do on all of our p
 <li><p>Use empty <code class="docutils literal notranslate"><span class="pre">else()</span></code> and <code class="docutils literal notranslate"><span class="pre">end...()</span></code> commands.</p></li>
 <li><p>No whitespace before <code class="docutils literal notranslate"><span class="pre">(</span></code>‘s.</p></li>
 <li><p>Use two spaces of indentation, do not use tabs.</p></li>
-<li><p>Do not use aligned indentation for parameters of multi-line macro invocations. Use two spaces only.</p></li>
+<li><p>Do not use aligned indentation for parameters of multi-line macro invocations.
+Use two spaces only.</p></li>
 <li><p>Prefer functions with <code class="docutils literal notranslate"><span class="pre">set(PARENT_SCOPE)</span></code> to macros.</p></li>
 <li><p>When using macros prefix local variables with <code class="docutils literal notranslate"><span class="pre">_</span></code> or a reasonable prefix.</p></li>
 </ul>

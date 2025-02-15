@@ -422,7 +422,7 @@
 <p>This tutorial begins with a clean Ubuntu 20.04.1 install on Intel x86_64.
 Actual kernel is 5.4.0-54-generic, but we will install the Latest Stable RT_PREEMPT Version.
 To build the kernel you need at least 30GB free disk space.</p>
-<p>Check <a class="reference external" href="https://wiki.linuxfoundation.org/realtime/start">https://wiki.linuxfoundation.org/realtime/start</a> for the latest stable version, at the time of writing this is “Latest Stable Version 5.4-rt”.
+<p>Check <a class="reference external" href="https://wiki.linuxfoundation.org/realtime/start">this wiki</a> for the latest stable version, at the time of writing this is “Latest Stable Version 5.4-rt”.
 If we click on the <a class="reference external" href="http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/">link</a>, we get the exact version.
 Currently it is patch-5.4.78-rt44.patch.gz.</p>
 <img alt="../../_images/realtime-kernel-patch-version.png" src="../../_images/realtime-kernel-patch-version.png" />
@@ -434,7 +434,9 @@ Currently it is patch-5.4.78-rt44.patch.gz.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/kernel
 </pre></div>
 </div>
-<p>We can go with a browser to <a class="reference external" href="https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/">https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/</a> and see if the version is there. You can download it from the site and move it manually from /Downloads to the /kernel folder, or download it using wget by right clicking the link using “copy link location”. Example:</p>
+<p>We can go with a browser to <a class="reference external" href="https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/">this page</a> and see if the version is there.
+You can download it from the site and move it manually from /Downloads to the /kernel folder, or download it using wget by right clicking the link using “copy link location”.
+Example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.4.78.tar.gz
 </pre></div>
 </div>
@@ -442,7 +444,7 @@ Currently it is patch-5.4.78-rt44.patch.gz.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>-xzf<span class="w"> </span>linux-5.4.78.tar.gz
 </pre></div>
 </div>
-<p>download rt_preempt patch matching the Kernel version we just downloaded over at <a class="reference external" href="http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/">http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/</a></p>
+<p>download rt_preempt patch matching the Kernel version we just downloaded over at <a class="reference external" href="http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/">kernel.org</a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/older/patch-5.4.78-rt44.patch.gz
 </pre></div>
 </div>

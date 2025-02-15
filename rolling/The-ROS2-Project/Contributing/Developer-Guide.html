@@ -631,12 +631,12 @@ Obviously we should avoid repeating ourselves for common workflows, like buildin
 This might include workflows for testing the code using something like <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop</span></code>, or it might mean describing how to make use of extension points provided by your package.</p>
 <p>Examples:</p>
 <ul class="simple">
-<li><p>capabilities: <a class="reference external" href="https://docs.ros.org/hydro/api/capabilities/html/">https://docs.ros.org/hydro/api/capabilities/html/</a></p>
+<li><p><a class="reference external" href="https://docs.ros.org/hydro/api/capabilities/html/">capabilities</a></p>
 <ul>
 <li><p>This one gives an example of docs which describe the public API</p></li>
 </ul>
 </li>
-<li><p>catkin_tools: <a class="reference external" href="https://catkin-tools.readthedocs.org/en/latest/development/extending_the_catkin_command.html">https://catkin-tools.readthedocs.org/en/latest/development/extending_the_catkin_command.html</a></p>
+<li><p><a class="reference external" href="https://catkin-tools.readthedocs.org/en/latest/development/extending_the_catkin_command.html">catkin_tools</a></p>
 <ul>
 <li><p>This is an example of describing an extension point for a package</p></li>
 </ul>
@@ -1318,7 +1318,7 @@ For example, if measuring <code class="docutils literal notranslate"><span class
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lcov<span class="w"> </span>--no-external<span class="w"> </span>--capture<span class="w"> </span>--directory<span class="w"> </span>.<span class="w"> </span>--output-file<span class="w"> </span>~/ros2.info
 </pre></div>
 </div>
-<p>Combine the trace .info files:</p>
+<p>Combine the trace <code class="docutils literal notranslate"><span class="pre">.info</span></code> files:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lcov<span class="w"> </span>--add-tracefile<span class="w"> </span>~/ros2_base.info<span class="w"> </span>--add-tracefile<span class="w"> </span>~/ros2.info<span class="w"> </span>--output-file<span class="w"> </span>~/ros2_coverage.info
 </pre></div>
 </div>

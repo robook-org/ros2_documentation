@@ -891,11 +891,16 @@ As an example, the corresponding call for <code class="docutils literal notransl
 The macro has a number of parameters that can be useful:</p>
 <ul class="simple">
 <li><p>the first (unnamed) parameter is the name of the resource, which amounts to the name of the folder in the resource_index</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CONTENT</span></code>: The content of the marker file as string. This could be a list of relative paths, etc. <code class="docutils literal notranslate"><span class="pre">CONTENT</span></code> cannot be used together with <code class="docutils literal notranslate"><span class="pre">CONTENT_FILE</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CONTENT_FILE</span></code>: The path to a file which will be use to create the marker file. The file can be a plain file or a template file expanded with <code class="docutils literal notranslate"><span class="pre">configure_file()</span></code>.
+<li><p><code class="docutils literal notranslate"><span class="pre">CONTENT</span></code>: The content of the marker file as string.
+This could be a list of relative paths, etc.
+<code class="docutils literal notranslate"><span class="pre">CONTENT</span></code> cannot be used together with <code class="docutils literal notranslate"><span class="pre">CONTENT_FILE</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONTENT_FILE</span></code>: The path to a file which will be use to create the marker file.
+The file can be a plain file or a template file expanded with <code class="docutils literal notranslate"><span class="pre">configure_file()</span></code>.
 <code class="docutils literal notranslate"><span class="pre">CONTENT_FILE</span></code> cannot be used together with <code class="docutils literal notranslate"><span class="pre">CONTENT</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PACKAGE_NAME</span></code>: The name of the package/library exporting the resource, which amounts to the name of the marker file. Defaults to <code class="docutils literal notranslate"><span class="pre">${PROJECT_NAME}</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">AMENT_INDEX_BINARY_DIR</span></code>: The base path of the generated ament index. Unless really necessary, always use the default <code class="docutils literal notranslate"><span class="pre">${CMAKE_BINARY_DIR}/ament_cmake_index</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PACKAGE_NAME</span></code>: The name of the package/library exporting the resource, which amounts to the name of the marker file.
+Defaults to <code class="docutils literal notranslate"><span class="pre">${PROJECT_NAME}</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AMENT_INDEX_BINARY_DIR</span></code>: The base path of the generated ament index.
+Unless really necessary, always use the default <code class="docutils literal notranslate"><span class="pre">${CMAKE_BINARY_DIR}/ament_cmake_index</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SKIP_INSTALL</span></code>: Skip installing the marker file.</p></li>
 </ul>
 <p>Since only one marker file exists per package, it is usually a problem if the CMake function/macro gets called twice by the same project.

@@ -457,7 +457,7 @@ We recommend that ROS developers familiarize themselves with these tools and use
 <p>All ament linting tools use a similar CLI pattern.
 They take in a directory, a list of directories, file, or list of files, analyze the input files, and generate a report.
 All ament linting tools have the following built-in options.
-<strong>The most up to date and accurate documentation for a given ament tool can be found by using the tools built in ``–help`` functionality.</strong></p>
+<strong>The most up to date and accurate documentation for a given ament tool can be found by using the tools built in</strong> <code class="docutils literal notranslate"><span class="pre">--help</span></code> <strong>functionality.</strong></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-h,</span> <span class="pre">--help</span></code> - shows a help message and exit.
 The built-in help messages usually have the most accurate and up-to-date documentation of the tool.</p></li>
@@ -482,7 +482,9 @@ For example, if you wish to scan just source and header files for copyright noti
 <h4>1.2 <code class="docutils literal notranslate"><span class="pre">ament_copyright</span></code> Options<a class="headerlink" href="#ament-copyright-options" title="Link to this heading"></a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">ament_copyright</span></code> supports the following options:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--add-missing</span> <span class="pre">COPYRIGHT_NAME</span> <span class="pre">LICENSE</span></code> - Add missing copyright notice and license information using the passed copyright holder and license. <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> passed to this option is the name of the license to be used. A full list of available licenses can be found by calling <code class="docutils literal notranslate"><span class="pre">ament_copyright</span> <span class="pre">--list-licenses</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--add-missing</span> <span class="pre">COPYRIGHT_NAME</span> <span class="pre">LICENSE</span></code> - Add missing copyright notice and license information using the passed copyright holder and license.
+<code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> passed to this option is the name of the license to be used.
+A full list of available licenses can be found by calling <code class="docutils literal notranslate"><span class="pre">ament_copyright</span> <span class="pre">--list-licenses</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--add-copyright-year</span></code> - Add the current year to existing copyright notices.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--list-copyright-names</span></code> - List names of known copyright holders.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--list-licenses</span></code> - List names of known licenses.</p></li>
@@ -673,8 +675,9 @@ For example, if you wish to scan just one package in your workspace you can call
 <li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">CFG</span></code> - The config file that Uncrustify should use if you would prefer to use your own settings.
 We recommend you stick to the defaults</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--linelength</span> <span class="pre">N</span></code> - The maximum line length.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--language</span></code> - One of {C,C++,CPP}, passed to uncrustify as ‘-l &lt;language&gt;’ to force a specific language rather then choosing one based on file extension.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--reformat</span></code> -  Reformat the files in place, i.e. fix the formatting errors encountered. <strong>We recommend you use this option when running ``ament_uncrustify`` as it will save you quite a bit of time!</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--language</span></code> - One of {C,C++,CPP}, passed to uncrustify as <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">&lt;language&gt;</span></code> to force a specific language rather then choosing one based on file extension.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--reformat</span></code> - Reformat the files in place, i.e. fix the formatting errors encountered.
+<strong>We recommend you use this option when running</strong> <code class="docutils literal notranslate"><span class="pre">ament_uncrustify</span></code> <strong>as it will save you quite a bit of time!</strong></p></li>
 </ul>
 </section>
 <section id="ament-uncrustify-example">

@@ -630,7 +630,7 @@ Here, I used <em>ros2nasr</em>.</p>
 <p>IBM cloud has a lot of shortcuts that would help us get our container onto the cloud right away.
 The command below builds the container and tags it with the name <strong>ros2foxy</strong> and the version of <strong>1</strong>.
 Make sure you use the correct registry name you created and you are free to change the container name as you wish.
-The <strong>.</strong> at the end indicates that the <em>Dockerfile</em> is in the current directory (and it is important), if not,
+The <code class="docutils literal notranslate"><span class="pre">.</span></code> at the end indicates that the <em>Dockerfile</em> is in the current directory (and it is important), if not,
 change it to point to the directory containing the Dockerfile.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ibmcloud<span class="w"> </span>cr<span class="w"> </span>build<span class="w"> </span>--tag<span class="w"> </span>registry.bluemix.net/ros2nasr/ros2foxy:1<span class="w"> </span>.
 </pre></div>
@@ -821,8 +821,8 @@ from IBM Cloud, this is how you should go about it!</p>
 <ol class="arabic simple">
 <li><p>List all the images you have and find all the ones that share the
 <em>IMAGE</em> name corresponding to
-<em>registry.ng.bluemix.net/ros2nasr/ros2foxy:2</em> (in my case). Then
-delete them using their <em>NAMES</em></p></li>
+<em>registry.ng.bluemix.net/ros2nasr/ros2foxy:2</em> (in my case).
+Then delete them using their <em>NAMES</em></p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span>your_docker_NAMES
 </pre></div>

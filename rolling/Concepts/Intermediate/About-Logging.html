@@ -494,7 +494,8 @@ This can be pulled from the node API by calling <code class="docutils literal no
 <li><p><code class="docutils literal notranslate"><span class="pre">rcutils_logging_get_logger_effective_level</span></code> - Given a logger name, return the logger level (which may be unset)</p></li>
 </ul>
 </div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">logger.{debug,info,warning,error,fatal}</span></code> - output the given Python string to the logging infrastructure.  The calls accept the following keyword args to control behavior:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">logger.{debug,info,warning,error,fatal}</span></code> - output the given Python string to the logging infrastructure.
+The calls accept the following keyword args to control behavior:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">throttle_duration_sec</span></code> - if not None, the duration of the throttle interval in floating-point seconds</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">skip_first</span></code> - if True, output the message all but the first time this line is hit</p></li>
@@ -514,12 +515,27 @@ This can be pulled from the node API by calling <code class="docutils literal no
 <p>The following environment variables control some aspects of the ROS 2 loggers.
 For each of the environment settings, note that this is a process-wide setting, so it applies to all nodes in that process.</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">ROS_LOG_DIR</span></code> - Control the logging directory that is used for writing logging messages to disk (if that is enabled).  If non-empty, use the exact directory as specified in this variable.  If empty, use the contents of the <code class="docutils literal notranslate"><span class="pre">ROS_HOME</span></code> environment variable to construct a path of the form <code class="docutils literal notranslate"><span class="pre">$ROS_HOME/.log</span></code>.  In all cases, the <code class="docutils literal notranslate"><span class="pre">~</span></code> character is expanded to the user’s HOME directory.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ROS_HOME</span></code> - Control the home directory that is used for various ROS files, including logging and config files.  In the context of logging, this variable is used to construct a path to a directory for log files.  If non-empty, use the contents of this variable for the ROS_HOME path.  In all cases, the <code class="docutils literal notranslate"><span class="pre">~</span></code> character is expanded to the users’s HOME directory.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RCUTILS_LOGGING_USE_STDOUT</span></code> - Control what stream output messages go to.  If this is unset or 0, use stderr.  If this is 1, use stdout.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RCUTILS_LOGGING_BUFFERED_STREAM</span></code> - Control whether the logging stream (as configured in <code class="docutils literal notranslate"><span class="pre">RCUTILS_LOGGING_USE_STDOUT</span></code>) should be line buffered or unbuffered.  If this is unset, use the default of the stream (generally line buffered for stdout, and unbuffered for stderr).  If this is 0, force the stream to be unbuffered.  If this is 1, force the stream to be line buffered.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RCUTILS_COLORIZED_OUTPUT</span></code> - Control whether colors are used when outputting messages.  If unset, automatically determine based on the platform and whether the console is a TTY.  If 0, force disable using colors for output.  If 1, force enable using colors for output.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RCUTILS_CONSOLE_OUTPUT_FORMAT</span></code> - Control the fields that are output for each log message.  The available fields are:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROS_LOG_DIR</span></code> - Control the logging directory that is used for writing logging messages to disk (if that is enabled).
+If non-empty, use the exact directory as specified in this variable.
+If empty, use the contents of the <code class="docutils literal notranslate"><span class="pre">ROS_HOME</span></code> environment variable to construct a path of the form <code class="docutils literal notranslate"><span class="pre">$ROS_HOME/.log</span></code>.
+In all cases, the <code class="docutils literal notranslate"><span class="pre">~</span></code> character is expanded to the user’s HOME directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROS_HOME</span></code> - Control the home directory that is used for various ROS files, including logging and config files.
+In the context of logging, this variable is used to construct a path to a directory for log files.
+If non-empty, use the contents of this variable for the ROS_HOME path.
+In all cases, the <code class="docutils literal notranslate"><span class="pre">~</span></code> character is expanded to the users’s HOME directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RCUTILS_LOGGING_USE_STDOUT</span></code> - Control what stream output messages go to.
+If this is unset or 0, use stderr.
+If this is 1, use stdout.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RCUTILS_LOGGING_BUFFERED_STREAM</span></code> - Control whether the logging stream (as configured in <code class="docutils literal notranslate"><span class="pre">RCUTILS_LOGGING_USE_STDOUT</span></code>) should be line buffered or unbuffered.
+If this is unset, use the default of the stream (generally line buffered for stdout, and unbuffered for stderr).
+If this is 0, force the stream to be unbuffered.
+If this is 1, force the stream to be line buffered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RCUTILS_COLORIZED_OUTPUT</span></code> - Control whether colors are used when outputting messages.
+If unset, automatically determine based on the platform and whether the console is a TTY.
+If 0, force disable using colors for output.
+If 1, force enable using colors for output.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RCUTILS_CONSOLE_OUTPUT_FORMAT</span></code> - Control the fields that are output for each log message.
+The available fields are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{severity}</span></code> - The severity level.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">{name}</span></code> - The name of the logger (may be empty).</p></li>
@@ -565,11 +581,20 @@ For each of the environment settings, note that this is a process-wide setting, 
 <p>When initializing a ROS 2 node, it is possible to control some aspects of the behavior via node options.
 Since these are per-node options, they can be set differently for different nodes even when the nodes are composed into a single process.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">log_levels</span></code> - The log level to use for a component within this particular node.  This can be set with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--log-level</span> <span class="pre">talker:=DEBUG</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">external_log_config_file</span></code> - The external file to use to configure the backend logger.  If it is NULL, the default configuration will be used.  Note that the format of this file is backend-specific (and is currently unimplemented for the default backend logger of spdlog).  This can be set with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--log-config-file</span> <span class="pre">log-config.txt</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">log_stdout_disabled</span></code> - Whether to disable writing log messages to the console.  This can be done with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--disable-stdout-logs</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">log_rosout_disabled</span></code> - Whether to disable writing log messages out to <code class="docutils literal notranslate"><span class="pre">/rosout</span></code>.  This can significantly save on network bandwidth, but external observers will not be able to monitor logging.  This can be done with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--disable-rosout-logs</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">log_ext_lib_disabled</span></code> - Whether to completely disable the use of an external logger.  This may be faster in some cases, but means that logs will not be written to disk.  This can be done with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--disable-external-lib-logs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log_levels</span></code> - The log level to use for a component within this particular node.
+This can be set with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--log-level</span> <span class="pre">talker:=DEBUG</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">external_log_config_file</span></code> - The external file to use to configure the backend logger.
+If it is NULL, the default configuration will be used.
+Note that the format of this file is backend-specific (and is currently unimplemented for the default backend logger of spdlog).
+This can be set with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--log-config-file</span> <span class="pre">log-config.txt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log_stdout_disabled</span></code> - Whether to disable writing log messages to the console.
+This can be done with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--disable-stdout-logs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log_rosout_disabled</span></code> - Whether to disable writing log messages out to <code class="docutils literal notranslate"><span class="pre">/rosout</span></code>.
+This can significantly save on network bandwidth, but external observers will not be able to monitor logging.
+This can be done with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--disable-rosout-logs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log_ext_lib_disabled</span></code> - Whether to completely disable the use of an external logger.
+This may be faster in some cases, but means that logs will not be written to disk.
+This can be done with the following: <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span> <span class="pre">demo_nodes_cpp</span> <span class="pre">talker</span> <span class="pre">--ros-args</span> <span class="pre">--disable-external-lib-logs</span></code></p></li>
 </ul>
 </section>
 </section>

@@ -536,9 +536,9 @@ Degrading the loopback interface throughput won’t affect shared memory, thus t
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This next section is Linux-specific.</p>
-<p>However, for macOS and Windows you can achieve a similar effect with the utilities “Network Link Conditioner” (part of the xcode tool suite) and “Clumsy” (<a class="reference external" href="http://jagt.github.io/clumsy/index.html">http://jagt.github.io/clumsy/index.html</a>), respectively, but they will not be covered in this tutorial.</p>
+<p>However, for macOS and Windows you can achieve a similar effect with the utilities “Network Link Conditioner” (part of the xcode tool suite) and <a class="reference external" href="http://jagt.github.io/clumsy/index.html">“Clumsy”</a>, respectively, but they will not be covered in this tutorial.</p>
 </div>
-<p>We are going to use the Linux network traffic control utility, <code class="docutils literal notranslate"><span class="pre">tc</span></code> (<a class="reference external" href="http://linux.die.net/man/8/tc">http://linux.die.net/man/8/tc</a>).</p>
+<p>We are going to use the Linux network traffic control utility, <code class="docutils literal notranslate"><span class="pre">tc</span></code> (<a class="reference external" href="http://linux.die.net/man/8/tc">man page</a>) .</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>tc<span class="w"> </span>qdisc<span class="w"> </span>add<span class="w"> </span>dev<span class="w"> </span>lo<span class="w"> </span>root<span class="w"> </span>netem<span class="w"> </span>loss<span class="w"> </span><span class="m">5</span>%
 </pre></div>
 </div>

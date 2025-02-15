@@ -568,7 +568,8 @@ Firstly, we define and acquire a single parameter <code class="docutils literal 
 </div>
 <p>Now, we create a <code class="docutils literal notranslate"><span class="pre">TransformStamped</span></code> object and give it the appropriate metadata.</p>
 <ol class="arabic simple">
-<li><p>We need to give the transform being published a timestamp, and we’ll just stamp it with the current time by calling <code class="docutils literal notranslate"><span class="pre">this-&gt;get_clock()-&gt;now()</span></code>. This will return the current time used by the <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p></li>
+<li><p>We need to give the transform being published a timestamp, and we’ll just stamp it with the current time by calling <code class="docutils literal notranslate"><span class="pre">this-&gt;get_clock()-&gt;now()</span></code>.
+This will return the current time used by the <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p></li>
 <li><p>Then we need to set the name of the parent frame of the link we’re creating, in this case <code class="docutils literal notranslate"><span class="pre">world</span></code>.</p></li>
 <li><p>Finally, we need to set the name of the child node of the link we’re creating, in this case this is the name of the turtle itself.</p></li>
 </ol>

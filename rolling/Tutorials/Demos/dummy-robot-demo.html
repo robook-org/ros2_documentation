@@ -427,14 +427,18 @@
 Please change the directories according to your platform.</p>
 <p>To start the demo, we execute the demo bringup launch file, which we are going to explain in more details in the next section.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-U291cmNlIEJ1aWxk" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-U291cmNlIEJ1aWxk" name="U291cmNlIEJ1aWxk" role="tab" tabindex="0">Source Build</button><button aria-controls="panel-0-ZGViIFBhY2thZ2U=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-ZGViIFBhY2thZ2U=" name="ZGViIFBhY2thZ2U=" role="tab" tabindex="-1">deb Package</button></div><div aria-labelledby="tab-0-U291cmNlIEJ1aWxk" class="sphinx-tabs-panel group-tab" id="panel-0-U291cmNlIEJ1aWxk" name="U291cmNlIEJ1aWxk" role="tabpanel" tabindex="0"><p>mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
-git clone -b ${ROS_DISTRO} <a class="reference external" href="https://github.com/ros2/demos">https://github.com/ros2/demos</a>
-cd .. &amp;&amp; colcon build –packages-up-to dummy_robot_bringup
-source ~/ros2_ws/install/setup.bash
-ros2 launch dummy_robot_bringup dummy_robot_bringup_launch.py</p>
-</div><div aria-labelledby="tab-0-ZGViIFBhY2thZ2U=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-ZGViIFBhY2thZ2U=" name="ZGViIFBhY2thZ2U=" role="tabpanel" tabindex="0"><p>sudo apt install ros-${ROS_DISTRO}-dummy-robot-bringup
-ros2 launch dummy_robot_bringup dummy_robot_bringup_launch.py</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-U291cmNlIEJ1aWxk" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-U291cmNlIEJ1aWxk" name="U291cmNlIEJ1aWxk" role="tab" tabindex="0">Source Build</button><button aria-controls="panel-0-ZGViIFBhY2thZ2U=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-ZGViIFBhY2thZ2U=" name="ZGViIFBhY2thZ2U=" role="tab" tabindex="-1">deb Package</button></div><div aria-labelledby="tab-0-U291cmNlIEJ1aWxk" class="sphinx-tabs-panel group-tab" id="panel-0-U291cmNlIEJ1aWxk" name="U291cmNlIEJ1aWxk" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/ros2_ws/src
+<span class="nb">cd</span><span class="w"> </span>~/ros2_ws/src
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span><span class="w"> </span>https://github.com/ros2/demos
+<span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--packages-up-to<span class="w"> </span>dummy_robot_bringup
+<span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
+ros2<span class="w"> </span>launch<span class="w"> </span>dummy_robot_bringup<span class="w"> </span>dummy_robot_bringup_launch.py
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-ZGViIFBhY2thZ2U=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-ZGViIFBhY2thZ2U=" name="ZGViIFBhY2thZ2U=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-dummy-robot-bringup
+ros2<span class="w"> </span>launch<span class="w"> </span>dummy_robot_bringup<span class="w"> </span>dummy_robot_bringup_launch.py
+</pre></div>
+</div>
 </div></div>
 <p>You should see some prints inside your terminal along the lines of the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>launch<span class="o">]</span>:<span class="w"> </span>Default<span class="w"> </span>logging<span class="w"> </span>verbosity<span class="w"> </span>is<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>INFO

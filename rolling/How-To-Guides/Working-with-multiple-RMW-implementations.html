@@ -538,7 +538,9 @@ As a result, the <code class="docutils literal notranslate"><span class="pre">Do
 <span class="go">/usr/sbin/sysctl -w kern.sysv.shmall=262144</span>
 </pre></div>
 </div>
-<p>To increase the settings permanently, you will need to edit or create the file <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code>. Creating or editing this file will require root permissions. Either add to your existing <code class="docutils literal notranslate"><span class="pre">etc/sysctl.conf</span></code> file or create <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code> with the following lines:</p>
+<p>To increase the settings permanently, you will need to edit or create the file <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code>.
+Creating or editing this file will require root permissions.
+Either add to your existing <code class="docutils literal notranslate"><span class="pre">etc/sysctl.conf</span></code> file or create <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code> with the following lines:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">kern.sysv.shmmax=419430400</span>
 <span class="go">kern.sysv.shmmin=1</span>
 <span class="go">kern.sysv.shmmni=128</span>

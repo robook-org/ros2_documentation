@@ -612,7 +612,10 @@ Inside the terminal do the following:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There might be a problem with displaying RVIZ. Please make sure to allow the user to access X window system with <code class="docutils literal notranslate"><span class="pre">xhost</span> <span class="pre">+local:&lt;USERNAME&gt;</span></code>. If no window still pops up, then check the value of <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$DISPLAY</span></code> - if the output is 1, you can fix this problem with <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;export</span> <span class="pre">DISPLAY=unix:1&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">/etc/bash.bashrc</span></code> and then test it again. You can also change the DISPLAY value in the devcontainer.json and rebuild it.</p>
+<p>There might be a problem with displaying RVIZ.
+Please make sure to allow the user to access X window system with <code class="docutils literal notranslate"><span class="pre">xhost</span> <span class="pre">+local:&lt;USERNAME&gt;</span></code>.
+If no window still pops up, then check the value of <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$DISPLAY</span></code> - if the output is 1, you can fix this problem with <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;export</span> <span class="pre">DISPLAY=unix:1&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">/etc/bash.bashrc</span></code> and then test it again.
+You can also change the DISPLAY value in the devcontainer.json and rebuild it.</p>
 </div>
 </section>
 </section>

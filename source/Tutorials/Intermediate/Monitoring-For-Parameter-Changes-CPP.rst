@@ -239,7 +239,7 @@ Now run the node:
      ros2 run cpp_parameter_event_handler parameter_event_handler
 
 The node is now active and has a single parameter and will print a message whenever this parameter is updated.
-To test this, open up another terminal and source the ROS setup file as before (. install/setup.bash) and execute the following command:
+To test this, open up another terminal and source the ROS setup file as before (``. install/setup.bash``) and execute the following command:
 
 .. code-block:: console
 
@@ -324,7 +324,7 @@ Now, to test monitoring of remote parameters, first run the newly-built paramete
 
      ros2 run cpp_parameter_event_handler parameter_event_handler
 
-Next, from another teminal (with ROS initialized), run the parameter_blackboard demo application, as follows:
+Next, from another terminal (with ROS initialized), run the parameter_blackboard demo application, as follows:
 
 .. code-block:: console
 

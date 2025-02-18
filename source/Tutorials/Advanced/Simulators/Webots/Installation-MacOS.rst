@@ -47,7 +47,7 @@ In the :ref:`Preconfigured Images` section, you can find already configured imag
 Install UTM on your macOS machine.
 The link can be found on the `official UTM website <https://mac.getutm.app/>`_.
 
-Download the .iso image of `Ubuntu 22.04 <https://cdimage.ubuntu.com/jammy/daily-live/current/>`_ for Humble and Rolling or `Ubuntu 20.04 <https://cdimage.ubuntu.com/focal/daily-live/pending/>`_ for Foxy.
+Download the ``.iso`` image of `Ubuntu 22.04 <https://cdimage.ubuntu.com/jammy/daily-live/current/>`_ for Humble and Rolling or `Ubuntu 20.04 <https://cdimage.ubuntu.com/focal/daily-live/pending/>`_ for Foxy.
 Be sure to download the image corresponding to your CPU architecture.
 
 In the UTM software:
@@ -60,7 +60,8 @@ In the UTM software:
 * Leave all the remaining parameters as default.
 * Start the VM.
   Note that you can select another shared folder each time you start the VM.
-* During the first launch of the VM, install Ubuntu and choose a username for your account. In this example, the username is ``ubuntu``.
+* During the first launch of the VM, install Ubuntu and choose a username for your account.
+  In this example, the username is ``ubuntu``.
 * Once Ubuntu is installed, close the VM, remove the iso image from the CD/DVD field and restart the VM.
 
 2 Configure the VM

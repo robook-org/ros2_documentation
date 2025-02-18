@@ -50,7 +50,7 @@
    sudo ufw allow in proto udp to 224.0.0.0/4
    sudo ufw allow in proto udp from 224.0.0.0/4
 
-你可以使用 :code:`ifconfig` 工具来检查网络接口是否已经使能了 multicast 标志，查看 flags 部分是否包含 :code:`MULITCAST`：
+你可以使用 :code:`ifconfig` 工具来检查网络接口是否已经使能了 multicast 标志，查看 flags 部分是否包含 :code:`MULTICAST`：
 
 .. code-block:: bash
 

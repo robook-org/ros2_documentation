@@ -553,12 +553,12 @@ Usually they go at the top.</p></li>
 </ul>
 <p>The value of the contents of the ${} construct are then used to replace the ${}.
 This means you can combine it with other text in the attribute.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:property</span><span class="w"> </span><span class="na">name=</span><span class="s">”robotname”</span><span class="w"> </span><span class="na">value=</span><span class="s">”marvin”</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">”${robotname}s_leg”</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;xacro:property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robotname&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;marvin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${robotname}s_leg&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>This will generate</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">”marvins_leg”</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;marvins_leg&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>However, the contents in the ${} don’t have to only be a property, which brings us to our next point…</p>

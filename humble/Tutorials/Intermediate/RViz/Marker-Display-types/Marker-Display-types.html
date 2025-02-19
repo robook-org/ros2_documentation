@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../RViz-Main.html">RViz</a></li>
       <li class="breadcrumb-item active">Marker: Display types</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/RViz/Marker-Display-types/Marker-Display-types.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/RViz/Marker-Display-types/Marker-Display-types.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -498,17 +499,20 @@ The messages in this package include comments that are helpful in understanding 
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">ns</span></code>:</p>
 <blockquote>
-<div><p>Namespace for these markers. This plus the id form a unique identifier.</p>
+<div><p>Namespace for these markers.
+This plus the id form a unique identifier.</p>
 </div></blockquote>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>:</p>
 <blockquote>
-<div><p>Unique id assigned to this marker. It is your responsibility to keep these unique within your namespace.</p>
+<div><p>Unique id assigned to this marker.
+It is your responsibility to keep these unique within your namespace.</p>
 </div></blockquote>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>:</p>
 <blockquote>
-<div><p>Type of marker (Arrow, Sphere, …). The available types are specified in the message definition.</p>
+<div><p>Type of marker (Arrow, Sphere, …).
+The available types are specified in the message definition.</p>
 </div></blockquote>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">action</span></code>:</p>
@@ -523,12 +527,17 @@ The messages in this package include comments that are helpful in understanding 
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>:</p>
 <blockquote>
-<div><p>Scale of the marker. Applied before the position/orientation. A scale of [1, 1, 1] means the object will be 1m by 1m by 1m.</p>
+<div><p>Scale of the marker.
+Applied before the position/orientation.
+A scale of [1, 1, 1] means the object will be 1m by 1m by 1m.</p>
 </div></blockquote>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>:</p>
 <blockquote>
-<div><p>Color of the object, specified as r/g/b/a, with values in the range of [0, 1]. The, <code class="docutils literal notranslate"><span class="pre">a</span></code> or alpha value, denotes the opacity of the marker with 1 indicating opaque and 0 indicating completely transparent. The default value is 0, or completely transparent. <strong>You must set the a value of your marker to a non-zero value or it will be transparent by default!</strong></p>
+<div><p>Color of the object, specified as r/g/b/a, with values in the range of [0, 1].
+The, <code class="docutils literal notranslate"><span class="pre">a</span></code> or alpha value, denotes the opacity of the marker with 1 indicating opaque and 0 indicating completely transparent.
+The default value is 0, or completely transparent.
+<strong>You must set the a value of your marker to a non-zero value or it will be transparent by default!</strong></p>
 </div></blockquote>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">points</span></code>:</p>
@@ -540,7 +549,8 @@ This entry represents a list of <code class="docutils literal notranslate"><span
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">colors</span></code>:</p>
 <blockquote>
-<div><p>This field is only used for markers that use the points member. This field specifies per-vertex color r/g/b/ color  (no alpha yet) for each entry in <code class="docutils literal notranslate"><span class="pre">points</span></code>.</p>
+<div><p>This field is only used for markers that use the points member.
+This field specifies per-vertex color r/g/b/ color  (no alpha yet) for each entry in <code class="docutils literal notranslate"><span class="pre">points</span></code>.</p>
 </div></blockquote>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">lifetime</span></code>:</p>
@@ -562,7 +572,8 @@ Setting this parameter tells RViz to retransform the marker to the new current l
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mesh_resource</span></code>:</p>
 <blockquote>
-<div><p>The resource location for the <code class="docutils literal notranslate"><span class="pre">MESH_RESOURCE</span></code> marker type. Can be any mesh type supported by RViz (<code class="docutils literal notranslate"><span class="pre">.stl</span></code> or Ogre <code class="docutils literal notranslate"><span class="pre">.mesh</span></code> in 1.0, with the addition of COLLADA in 1.1).
+<div><p>The resource location for the <code class="docutils literal notranslate"><span class="pre">MESH_RESOURCE</span></code> marker type.
+Can be any mesh type supported by RViz (<code class="docutils literal notranslate"><span class="pre">.stl</span></code> or Ogre <code class="docutils literal notranslate"><span class="pre">.mesh</span></code> in 1.0, with the addition of COLLADA in 1.1).
 The format is the URI-form used by <a class="reference external" href="https://github.com/ros/resource_retriever/tree/humble">resource_retriever</a>, including the package:// syntax.</p>
 </div></blockquote>
 </li>
@@ -577,15 +588,19 @@ The format is the URI-form used by <a class="reference external" href="https://g
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">Position/Orientation</span></code>:</p>
 <blockquote>
-<div><p>Pivot point is around the tip of its tail. Identity orientation points it along the +X axis. <code class="docutils literal notranslate"><span class="pre">scale.x</span></code> is the arrow length, <code class="docutils literal notranslate"><span class="pre">scale.y</span></code> is the arrow width and <code class="docutils literal notranslate"><span class="pre">scale.z</span></code> is the arrow height.</p>
+<div><p>Pivot point is around the tip of its tail.
+Identity orientation points it along the +X axis.
+<code class="docutils literal notranslate"><span class="pre">scale.x</span></code> is the arrow length, <code class="docutils literal notranslate"><span class="pre">scale.y</span></code> is the arrow width and <code class="docutils literal notranslate"><span class="pre">scale.z</span></code> is the arrow height.</p>
 </div></blockquote>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Start/End</span> <span class="pre">Points</span></code>:</p>
 <blockquote>
-<div><p>You can also specify a start/end point for the arrow, using the points member. If you put points into the points member, it will assume you want to do things this way.</p>
+<div><p>You can also specify a start/end point for the arrow, using the points member.
+If you put points into the points member, it will assume you want to do things this way.</p>
 <ul class="simple">
 <li><p>The point at index 0 is assumed to be the start point, and the point at index 1 is assumed to be the end.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">scale.x</span></code> is the shaft diameter, and <code class="docutils literal notranslate"><span class="pre">scale.y</span></code> is the head diameter. If <code class="docutils literal notranslate"><span class="pre">scale.z</span></code> is not zero, it specifies the head length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale.x</span></code> is the shaft diameter, and <code class="docutils literal notranslate"><span class="pre">scale.y</span></code> is the head diameter.
+If <code class="docutils literal notranslate"><span class="pre">scale.z</span></code> is not zero, it specifies the head length.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -621,7 +636,8 @@ It will draw a line between every two consecutive points, so 0-1, 1-2, 2-3, 3-4,
 <section id="line-list-line-list-5">
 <h4>3.6 Line List (LINE_LIST=5)<a class="headerlink" href="#line-list-line-list-5" title="Link to this heading"></a></h4>
 <img alt="../../../../_images/LineListMarker.png" src="../../../../_images/LineListMarker.png" />
-<p>Line lists use the points member of the <a class="reference external" href="https://github.com/ros2/common_interfaces/blob/humble/visualization_msgs/msg/Marker.msg">visualization_msgs/msg/Marker</a> message. It will draw a line between each pair of points, so 0-1, 2-3, 4-5, …</p>
+<p>Line lists use the points member of the <a class="reference external" href="https://github.com/ros2/common_interfaces/blob/humble/visualization_msgs/msg/Marker.msg">visualization_msgs/msg/Marker</a> message.
+It will draw a line between each pair of points, so 0-1, 2-3, 4-5, …</p>
 <p>Line lists also have some special handling for scale: only <code class="docutils literal notranslate"><span class="pre">scale.x</span></code> is used and it controls the width of the line segments.</p>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">pose</span></code> is still used (the points in the line will be transformed by them), and the lines will be correct relative to the <code class="docutils literal notranslate"><span class="pre">frame</span> <span class="pre">id</span></code> specified in the header.</p>
 </section>
@@ -655,8 +671,10 @@ The caveat is that they all must have the same scale.</p>
 <h4>3.10 View-Oriented Text (TEXT_VIEW_FACING=9)<a class="headerlink" href="#view-oriented-text-text-view-facing-9" title="Link to this heading"></a></h4>
 <img alt="../../../../_images/text_view_facing_marker.png" src="../../../../_images/text_view_facing_marker.png" />
 <p>This marker displays text in a 3D spot in the world.
-The text always appears oriented correctly for the RViZ user to see the included text. Uses the <code class="docutils literal notranslate"><span class="pre">text</span></code> field in the marker.</p>
-<p>Only <code class="docutils literal notranslate"><span class="pre">scale.z</span></code> is used. <code class="docutils literal notranslate"><span class="pre">scale.z</span></code> specifies the height of an uppercase “A”.</p>
+The text always appears oriented correctly for the RViZ user to see the included text.
+Uses the <code class="docutils literal notranslate"><span class="pre">text</span></code> field in the marker.</p>
+<p>Only <code class="docutils literal notranslate"><span class="pre">scale.z</span></code> is used.
+<code class="docutils literal notranslate"><span class="pre">scale.z</span></code> specifies the height of an uppercase “A”.</p>
 </section>
 <section id="mesh-resource-mesh-resource-10">
 <h4>3.11 Mesh Resource (MESH_RESOURCE=10)<a class="headerlink" href="#mesh-resource-mesh-resource-10" title="Link to this heading"></a></h4>
@@ -742,13 +760,13 @@ For example, a single cube list can handle thousands of cubes, where we will not
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

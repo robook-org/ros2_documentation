@@ -156,6 +156,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Advanced.html">高级教程</a></li>
       <li class="breadcrumb-item active">Reading from a bag file (C++)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Advanced/Reading-From-A-Bag-File-CPP.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Advanced/Reading-From-A-Bag-File-CPP.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -599,7 +600,7 @@ Then, we can pass both these objects to the <code class="docutils literal notran
 </pre></div>
 </div>
 <p>Finally, we publish the deserialized message and print out the xy coordinate to the terminal.
-We also break out of the loop so that we publish the next message during the next timer calback.</p>
+We also break out of the loop so that we publish the next message during the next timer callback.</p>
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">publisher_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="o">*</span><span class="n">ros_msg</span><span class="p">);</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;(&#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ros_msg</span><span class="o">-&gt;</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ros_msg</span><span class="o">-&gt;</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 
@@ -737,13 +738,13 @@ You then compiled and ran the executable which printed some information from the
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

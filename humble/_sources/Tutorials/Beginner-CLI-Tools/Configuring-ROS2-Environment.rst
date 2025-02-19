@@ -109,7 +109,7 @@ ROS 2 的核心工作空间称为底层(underlay)工作空间。
 
         C:\dev\ros2_{DISTRO}\local_setup.ps1
 
-      PowerShell will request permission to run this script everytime a new shell is opened.
+      PowerShell will request permission to run this script every time a new shell is opened.
       To avoid that issue you can run:
 
       .. code-block:: console

@@ -32,7 +32,8 @@ The ``Ros2Supervisor``
 
 The ``Ros2Supervisor`` is made of two main parts:
 
-* A Webots Robot node added to the simulation world. Its ``supervisor`` field is set to TRUE.
+* A Webots Robot node added to the simulation world.
+  Its ``supervisor`` field is set to TRUE.
 * A ROS 2 node that connects to the Webots Robot as an extern controller (in a similar way to your own robot plugin).
 
 The ROS 2 node acts as a controller that calls Supervisor API functions to control or interact with the simulation world.
@@ -95,7 +96,7 @@ Here is an example to import a simple Robot named ``imported_robot``:
     ros2 service call /Ros2Supervisor/spawn_node_from_string webots_ros2_msgs/srv/SpawnNodeFromString "data: Robot { name \"imported_robot\" }"
 
 .. note::
-    If you try to import some PROTOs in the node string, their respective URLs must be declared in the .wbt world file as EXTERNPROTO or as IMPORTABLE EXTERNPROTO.
+    If you try to import some PROTOs in the node string, their respective URLs must be declared in the ``.wbt`` world file as EXTERNPROTO or as IMPORTABLE EXTERNPROTO.
 
 .. _Remove a Webots imported node:
 

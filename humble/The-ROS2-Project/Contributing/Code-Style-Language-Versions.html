@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -405,7 +406,7 @@
           <li class="breadcrumb-item"><a href="../Contributing.html">Contributing</a></li>
       <li class="breadcrumb-item active">Code style and language versions</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/The-ROS2-Project/Contributing/Code-Style-Language-Versions.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/The-ROS2-Project/Contributing/Code-Style-Language-Versions.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -489,7 +490,8 @@ For example, everyone should have a PEP8 checker built into their editor to cut 
 </li>
 <li><p>The stuff about documentation strings doesn’t apply</p></li>
 </ul>
-<p>We can use the <a class="reference external" href="https://github.com/mike-perdide/pep7">pep7</a> python module for style checking. The editor integration seems slim, we may need to look into automated checking for C in more detail.</p>
+<p>We can use the <a class="reference external" href="https://github.com/mike-perdide/pep7">pep7</a> python module for style checking.
+The editor integration seems slim, we may need to look into automated checking for C in more detail.</p>
 </section>
 </section>
 <section id="id1">
@@ -510,12 +512,12 @@ For example, everyone should have a PEP8 checker built into their editor to cut 
 <section id="file-extensions">
 <h4>File Extensions<a class="headerlink" href="#file-extensions" title="Link to this heading"></a></h4>
 <ul class="simple">
-<li><p>Header files should use the .hpp extension.</p>
+<li><p>Header files should use the <code class="docutils literal notranslate"><span class="pre">.hpp</span></code> extension.</p>
 <ul>
 <li><p>rationale: Allow tools to determine content of files, C++ or C.</p></li>
 </ul>
 </li>
-<li><p>Implementation files should use the .cpp extension.</p>
+<li><p>Implementation files should use the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> extension.</p>
 <ul>
 <li><p>rationale: Allow tools to determine content of files, C++ or C.</p></li>
 </ul>
@@ -632,9 +634,9 @@ For example, everyone should have a PEP8 checker built into their editor to cut 
 <section id="class-privacy-keywords">
 <h4>Class Privacy Keywords<a class="headerlink" href="#class-privacy-keywords" title="Link to this heading"></a></h4>
 <ul class="simple">
-<li><p>Do not put 1 space before <code class="docutils literal notranslate"><span class="pre">public:</span></code>, <code class="docutils literal notranslate"><span class="pre">private:</span></code>, or <code class="docutils literal notranslate"><span class="pre">protected:</span></code>, it is more consistent for all indentions to be a multiple of 2</p>
+<li><p>Do not put 1 space before <code class="docutils literal notranslate"><span class="pre">public:</span></code>, <code class="docutils literal notranslate"><span class="pre">private:</span></code>, or <code class="docutils literal notranslate"><span class="pre">protected:</span></code>, it is more consistent for all indentations to be a multiple of 2</p>
 <ul>
-<li><p>rationale: most editors don’t like indentions which are not a multiple of the (soft) tab size</p></li>
+<li><p>rationale: most editors don’t like indentations which are not a multiple of the (soft) tab size</p></li>
 <li><p>Use zero spaces before <code class="docutils literal notranslate"><span class="pre">public:</span></code>, <code class="docutils literal notranslate"><span class="pre">private:</span></code>, or <code class="docutils literal notranslate"><span class="pre">protected:</span></code>, or 2 spaces</p></li>
 <li><p>If you use 2 spaces before, indent other class statements by 2 additional spaces</p></li>
 <li><p>Prefer zero spaces, i.e. <code class="docutils literal notranslate"><span class="pre">public:</span></code>, <code class="docutils literal notranslate"><span class="pre">private:</span></code>, or <code class="docutils literal notranslate"><span class="pre">protected:</span></code> in the same column as the class</p></li>
@@ -670,7 +672,9 @@ For example, everyone should have a PEP8 checker built into their editor to cut 
 <li><p>Exception: when an <code class="docutils literal notranslate"><span class="pre">if</span></code> (or <code class="docutils literal notranslate"><span class="pre">while</span></code>, etc.) condition is long enough to require line-wrapping, then use an open brace (i.e., don’t cuddle).</p></li>
 </ul>
 </li>
-<li><p>When a function call cannot fit on one line, wrap at the open parenthesis (not in between arguments) and start them on the next line with a 2-space indent.  Continue with the 2-space indent on subsequent lines for more arguments.  (Note that the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html#Function_Calls">Google style guide</a> is internally contradictory on this point.)</p>
+<li><p>When a function call cannot fit on one line, wrap at the open parenthesis (not in between arguments) and start them on the next line with a 2-space indent.
+Continue with the 2-space indent on subsequent lines for more arguments.
+(Note that the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html#Function_Calls">Google style guide</a> is internally contradictory on this point.)</p>
 <ul>
 <li><p>Same goes for <code class="docutils literal notranslate"><span class="pre">if</span></code> (and <code class="docutils literal notranslate"><span class="pre">while</span></code>, etc.) conditions that are too long to fit on one line.</p></li>
 </ul>
@@ -727,7 +731,7 @@ For example, everyone should have a PEP8 checker built into their editor to cut 
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Use open braces rather than excessive indention, e.g. for distinguishing constructor code from constructor initializer lists</p>
+<p>Use open braces rather than excessive indentation, e.g. for distinguishing constructor code from constructor initializer lists</p>
 <p>This is OK:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ReturnType</span><span class="w"> </span><span class="nf">LongClassName::ReallyReallyReallyLongFunctionName</span><span class="p">(</span>
 <span class="w">  </span><span class="n">Type</span><span class="w"> </span><span class="n">par_name1</span><span class="p">,</span><span class="w">  </span><span class="c1">// 2 space indent</span>
@@ -805,10 +809,10 @@ Here’s a non-exhaustive list of additional things we try to do on all of our p
 <p>The pycodestyle configuration used in the linter is <a class="reference external" href="https://github.com/ament/ament_lint/blob/humble/ament_pycodestyle/ament_pycodestyle/configuration/ament_pycodestyle.ini">here</a>.</p>
 <p>Integration with editors:</p>
 <ul class="simple">
-<li><p>atom: <a class="reference external" href="https://atom.io/packages/linter-pycodestyle">https://atom.io/packages/linter-pycodestyle</a></p></li>
-<li><p>emacs: <a class="reference external" href="https://www.emacswiki.org/emacs/PythonProgrammingInEmacs">https://www.emacswiki.org/emacs/PythonProgrammingInEmacs</a></p></li>
-<li><p>Sublime Text: <a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter-flake8">https://sublime.wbond.net/packages/SublimeLinter-flake8</a></p></li>
-<li><p>vim: <a class="reference external" href="https://github.com/nvie/vim-flake8">https://github.com/nvie/vim-flake8</a></p></li>
+<li><p><a class="reference external" href="https://atom.io/packages/linter-pycodestyle">atom</a></p></li>
+<li><p><a class="reference external" href="https://www.emacswiki.org/emacs/PythonProgrammingInEmacs">emacs</a></p></li>
+<li><p><a class="reference external" href="https://sublime.wbond.net/packages/SublimeLinter-flake8">Sublime Text</a></p></li>
+<li><p><a class="reference external" href="https://github.com/nvie/vim-flake8">vim</a></p></li>
 </ul>
 </section>
 </section>
@@ -826,8 +830,9 @@ Here’s a non-exhaustive list of additional things we try to do on all of our p
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> identifiers (variables, functions, macros).</p></li>
 <li><p>Use empty <code class="docutils literal notranslate"><span class="pre">else()</span></code> and <code class="docutils literal notranslate"><span class="pre">end...()</span></code> commands.</p></li>
 <li><p>No whitespace before <code class="docutils literal notranslate"><span class="pre">(</span></code>‘s.</p></li>
-<li><p>Use two spaces of indention, do not use tabs.</p></li>
-<li><p>Do not use aligned indentation for parameters of multi-line macro invocations. Use two spaces only.</p></li>
+<li><p>Use two spaces of indentation, do not use tabs.</p></li>
+<li><p>Do not use aligned indentation for parameters of multi-line macro invocations.
+Use two spaces only.</p></li>
 <li><p>Prefer functions with <code class="docutils literal notranslate"><span class="pre">set(PARENT_SCOPE)</span></code> to macros.</p></li>
 <li><p>When using macros prefix local variables with <code class="docutils literal notranslate"><span class="pre">_</span></code> or a reasonable prefix.</p></li>
 </ul>
@@ -930,13 +935,13 @@ Following these instructions will ensure that highlighting works properly and co
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

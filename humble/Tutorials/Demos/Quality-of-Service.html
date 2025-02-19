@@ -156,6 +156,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Demos.html">Demos</a></li>
       <li class="breadcrumb-item active">Using quality-of-service settings for lossy networks</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Demos/Quality-of-Service.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Demos/Quality-of-Service.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -506,7 +507,8 @@ Received<span class="w"> </span>image<span class="w"> </span><span class="c1">#3
 $<span class="w"> </span>sudo<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>net.inet.udp.maxdgram<span class="o">=</span><span class="m">65500</span>
 </pre></div>
 </div>
-<p>These changes will not persist a reboot. If you want the changes to persist, add these lines to <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code> (create the file if it doesn’t exist already):</p>
+<p>These changes will not persist a reboot.
+If you want the changes to persist, add these lines to <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code> (create the file if it doesn’t exist already):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>net.inet.udp.recvspace<span class="o">=</span><span class="m">209715</span>
 net.inet.udp.maxdgram<span class="o">=</span><span class="m">65500</span>
 </pre></div>
@@ -530,9 +532,9 @@ Degrading the loopback interface throughput won’t affect shared memory, thus t
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This next section is Linux-specific.</p>
-<p>However, for macOS and Windows you can achieve a similar effect with the utilities “Network Link Conditioner” (part of the xcode tool suite) and “Clumsy” (<a class="reference external" href="http://jagt.github.io/clumsy/index.html">http://jagt.github.io/clumsy/index.html</a>), respectively, but they will not be covered in this tutorial.</p>
+<p>However, for macOS and Windows you can achieve a similar effect with the utilities “Network Link Conditioner” (part of the xcode tool suite) and <a class="reference external" href="http://jagt.github.io/clumsy/index.html">“Clumsy”</a>, respectively, but they will not be covered in this tutorial.</p>
 </div>
-<p>We are going to use the Linux network traffic control utility, <code class="docutils literal notranslate"><span class="pre">tc</span></code> (<a class="reference external" href="http://linux.die.net/man/8/tc">http://linux.die.net/man/8/tc</a>).</p>
+<p>We are going to use the Linux network traffic control utility, <code class="docutils literal notranslate"><span class="pre">tc</span></code> (<a class="reference external" href="http://linux.die.net/man/8/tc">man page</a>) .</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>tc<span class="w"> </span>qdisc<span class="w"> </span>add<span class="w"> </span>dev<span class="w"> </span>lo<span class="w"> </span>root<span class="w"> </span>netem<span class="w"> </span>loss<span class="w"> </span><span class="m">5</span>%
 </pre></div>
 </div>
@@ -602,13 +604,13 @@ We see now that some of the frames on the <code class="docutils literal notransl
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

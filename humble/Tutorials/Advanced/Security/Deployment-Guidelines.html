@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="Security-Main.html">Security</a></li>
       <li class="breadcrumb-item active">Deployment Guidelines</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Advanced/Security/Deployment-Guidelines.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Advanced/Security/Deployment-Guidelines.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -443,7 +444,7 @@
 <section id="id1">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">背景</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>Typical deployment scenarios often involve shipping containerized applications, or packages, into remote systems.
-Special attention should be payed when deploying security enabled applications, requiring users to reason about the sensitivity of packaged files.</p>
+Special attention should be paid when deploying security enabled applications, requiring users to reason about the sensitivity of packaged files.</p>
 <p>Complying with the <a class="reference external" href="https://www.omg.org/spec/DDS-SECURITY/1.1/About-DDS-SECURITY/">DDS Security standard</a>,
 the <code class="docutils literal notranslate"><span class="pre">sros2</span></code> package provides a collection of utilities for managing security under ROS 2 environments in a highly modular and flexible fashion.</p>
 <p>Basic core guidelines on how to organize the different certificates, keys and directories remains a critical factor to avoid compromising the security of the system.
@@ -455,7 +456,8 @@ This includes protection-awareness and criteria for selecting the minimum set of
 <li><p>A docker installation with the compose plugin.
 Please refer to the installation steps detailed in <a class="reference external" href="https://docs.docker.com/engine/install/">Docker installation</a> and <a class="reference external" href="https://docs.docker.com/compose/install">Compose Plugin</a>.</p></li>
 <li><p>(Recommended) A basic understanding on <a class="reference external" href="https://design.ros2.org/articles/ros2_dds_security.html">ROS 2 Security design</a>.</p></li>
-<li><p>(Recommended) Previous security tutorials completion. In particular:</p>
+<li><p>(Recommended) Previous security tutorials completion.
+In particular:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="Introducing-ros2-security.html"><span class="doc">Setting up security</span></a></p></li>
@@ -560,7 +562,7 @@ docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </
 </section>
 <section id="understanding-the-compose-file">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Understanding the compose file</a><a class="headerlink" href="#understanding-the-compose-file" title="Link to this heading"></a></h3>
-<p>A compose configration file takes an image to create containers as services.
+<p>A compose configuration file takes an image to create containers as services.
 In this tutorial, three services are defined within the configuration:</p>
 <ul class="simple">
 <li><p><em>keystore-creator</em>: That, similarly to previous tutorials, it internally initializes a new keystore tree directory.
@@ -705,13 +707,13 @@ keystore
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

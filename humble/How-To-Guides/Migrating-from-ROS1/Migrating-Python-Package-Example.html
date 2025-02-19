@@ -156,6 +156,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Migrating-from-ROS1.html">Migrating from ROS 1 to ROS 2</a></li>
       <li class="breadcrumb-item active">Migrating a Python Package Example</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/How-To-Guides/Migrating-from-ROS1/Migrating-Python-Package-Example.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/How-To-Guides/Migrating-from-ROS1/Migrating-Python-Package-Example.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -441,7 +442,7 @@
 <li><p><a class="reference internal" href="#build-and-run-talker-py-node" id="id16">Build and run <code class="docutils literal notranslate"><span class="pre">talker_py_node</span></code></a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#refactor-code-to-use-ros-2-convensions" id="id17">Refactor code to use ROS 2 convensions</a></p></li>
+<li><p><a class="reference internal" href="#refactor-code-to-use-ros-2-conventions" id="id17">Refactor code to use ROS 2 conventions</a></p></li>
 <li><p><a class="reference internal" href="#conclusion" id="id18">Conclusion</a></p></li>
 </ul>
 </nav>
@@ -818,7 +819,7 @@ You must do two things to use <code class="docutils literal notranslate"><span c
 <span class="kn">import</span> <span class="nn">rospy</span>
 </pre></div>
 </div>
-<p>Rplace it with a statement that imports <code class="docutils literal notranslate"><span class="pre">rclpy</span></code>.</p>
+<p>Replace it with a statement that imports <code class="docutils literal notranslate"><span class="pre">rclpy</span></code>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 </pre></div>
 </div>
@@ -1057,8 +1058,8 @@ ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</
 <p>You should see messages with the current time being published in the second terminal, and those same messages received in the third.</p>
 </section>
 </section>
-<section id="refactor-code-to-use-ros-2-convensions">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">Refactor code to use ROS 2 convensions</a><a class="headerlink" href="#refactor-code-to-use-ros-2-convensions" title="Link to this heading"></a></h2>
+<section id="refactor-code-to-use-ros-2-conventions">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Refactor code to use ROS 2 conventions</a><a class="headerlink" href="#refactor-code-to-use-ros-2-conventions" title="Link to this heading"></a></h2>
 <p>You have successfully migrated a ROS 1 Python package to ROS 2!
 Now that you have something working, consider refactoring it to align better with ROS 2’s Python APIs.
 Follow these two principles.</p>
@@ -1158,13 +1159,13 @@ From now on, refer to the <a class="reference internal" href="Migrating-Python-P
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

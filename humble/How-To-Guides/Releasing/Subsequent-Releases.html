@@ -156,6 +156,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../Tutorials/Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="Releasing-a-Package.html">Releasing a Package</a></li>
       <li class="breadcrumb-item active">Subsequent Releases</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/How-To-Guides/Releasing/Subsequent-Releases.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/How-To-Guides/Releasing/Subsequent-Releases.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -440,10 +441,10 @@
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Install dependencies</a><a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h2>
 <p>Install tools that you will use in the upcoming steps according to your platform:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-ZGViIChlZy4gVWJ1bnR1KQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-ZGViIChlZy4gVWJ1bnR1KQ==" name="ZGViIChlZy4gVWJ1bnR1KQ==" role="tab" tabindex="0">deb (eg. Ubuntu)</button><button aria-controls="panel-0-UlBNIChlZy4gUkhFTCk=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UlBNIChlZy4gUkhFTCk=" name="UlBNIChlZy4gUkhFTCk=" role="tab" tabindex="-1">RPM (eg. RHEL)</button><button aria-controls="panel-0-T3RoZXI=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-T3RoZXI=" name="T3RoZXI=" role="tab" tabindex="-1">Other</button></div><div aria-labelledby="tab-0-ZGViIChlZy4gVWJ1bnR1KQ==" class="sphinx-tabs-panel group-tab" id="panel-0-ZGViIChlZy4gVWJ1bnR1KQ==" name="ZGViIChlZy4gVWJ1bnR1KQ==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-bloom<span class="w"> </span>python3-catkin-pkg
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-ZGViIChlLmcuIFVidW50dSk=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-ZGViIChlLmcuIFVidW50dSk=" name="ZGViIChlLmcuIFVidW50dSk=" role="tab" tabindex="0">deb (e.g. Ubuntu)</button><button aria-controls="panel-0-UlBNIChlLmcuIFJIRUwp" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UlBNIChlLmcuIFJIRUwp" name="UlBNIChlLmcuIFJIRUwp" role="tab" tabindex="-1">RPM (e.g. RHEL)</button><button aria-controls="panel-0-T3RoZXI=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-T3RoZXI=" name="T3RoZXI=" role="tab" tabindex="-1">Other</button></div><div aria-labelledby="tab-0-ZGViIChlLmcuIFVidW50dSk=" class="sphinx-tabs-panel group-tab" id="panel-0-ZGViIChlLmcuIFVidW50dSk=" name="ZGViIChlLmcuIFVidW50dSk=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-bloom<span class="w"> </span>python3-catkin-pkg
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-UlBNIChlZy4gUkhFTCk=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UlBNIChlZy4gUkhFTCk=" name="UlBNIChlZy4gUkhFTCk=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>python3-bloom<span class="w"> </span>python3-catkin_pkg
+</div><div aria-labelledby="tab-0-UlBNIChlLmcuIFJIRUwp" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UlBNIChlLmcuIFJIRUwp" name="UlBNIChlLmcuIFJIRUwp" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>python3-bloom<span class="w"> </span>python3-catkin_pkg
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-T3RoZXI=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-T3RoZXI=" name="T3RoZXI=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>bloom<span class="w"> </span>catkin_pkg
@@ -526,9 +527,9 @@ Run:</p>
 <p>which performs the following:</p>
 <ol class="arabic simple">
 <li><p>increases the package version in <code class="docutils literal notranslate"><span class="pre">package.xml</span></code></p></li>
-<li><p>replaces the heading <code class="docutils literal notranslate"><span class="pre">Forthcoming</span></code> with <code class="docutils literal notranslate"><span class="pre">version</span> <span class="pre">(date)</span></code> (eg. <code class="docutils literal notranslate"><span class="pre">0.0.1</span> <span class="pre">(2022-01-08)</span></code>) in <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code></p></li>
+<li><p>replaces the heading <code class="docutils literal notranslate"><span class="pre">Forthcoming</span></code> with <code class="docutils literal notranslate"><span class="pre">version</span> <span class="pre">(date)</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">0.0.1</span> <span class="pre">(2022-01-08)</span></code>) in <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code></p></li>
 <li><p>commits those changes</p></li>
-<li><p>creates a tag (eg. <code class="docutils literal notranslate"><span class="pre">0.0.1</span></code>)</p></li>
+<li><p>creates a tag (e.g. <code class="docutils literal notranslate"><span class="pre">0.0.1</span></code>)</p></li>
 <li><p>pushes the changes and the tag to your remote repository</p></li>
 </ol>
 <div class="admonition note">
@@ -611,13 +612,13 @@ To get updates on when the next synchronization (sync) is coming, subscribe to t
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

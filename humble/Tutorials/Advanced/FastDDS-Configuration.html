@@ -156,6 +156,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Advanced.html">高级教程</a></li>
       <li class="breadcrumb-item active">Unlocking the potential of Fast DDS middleware [community-contributed]</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Advanced/FastDDS-Configuration.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Advanced/FastDDS-Configuration.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -820,7 +821,7 @@ By default, these values are set to <code class="docutils literal notranslate"><
 In order to use the values in the XML file, the environment variable <code class="docutils literal notranslate"><span class="pre">RMW_FASTRTPS_USE_QOS_FROM_XML</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 <p>However, this entails <strong>another caveat</strong>: If <code class="docutils literal notranslate"><span class="pre">RMW_FASTRTPS_USE_QOS_FROM_XML</span></code> is set, but the XML file does not define
 <code class="docutils literal notranslate"><span class="pre">publishMode</span></code> or <code class="docutils literal notranslate"><span class="pre">historyMemoryPolicy</span></code>, these attributes take the <em>Fast DDS</em> default value instead of the <code class="docutils literal notranslate"><span class="pre">rmw_fastrtps</span></code> default value.
-This is important, especially for <code class="docutils literal notranslate"><span class="pre">historyMemoryPolicy</span></code>, because the <em>Fast DDS</em> deafult value is <code class="docutils literal notranslate"><span class="pre">PREALLOCATED</span></code> which does not work with ROS2 topic data types.
+This is important, especially for <code class="docutils literal notranslate"><span class="pre">historyMemoryPolicy</span></code>, because the <em>Fast DDS</em> default value is <code class="docutils literal notranslate"><span class="pre">PREALLOCATED</span></code> which does not work with ROS2 topic data types.
 Therefore, in the example, a valid value for this policy has been explicitly set (<code class="docutils literal notranslate"><span class="pre">DYNAMIC</span></code>).</p>
 </section>
 <section id="prioritization-of-rmw-qos-profile-t">
@@ -1184,13 +1185,13 @@ Then set the required environment variables for the XML to be loaded:</p>
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

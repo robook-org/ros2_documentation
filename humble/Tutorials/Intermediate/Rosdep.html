@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -405,7 +406,7 @@
           <li class="breadcrumb-item"><a href="../Intermediate.html">中级教程</a></li>
       <li class="breadcrumb-item active">Managing Dependencies with rosdep</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Rosdep.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/Rosdep.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -515,8 +516,10 @@ We’ll explore that more in the next section.</p>
 <h2><a class="toc-backref" href="#id11" role="doc-backlink">How do I know what keys to put in my package.xml?</a><a class="headerlink" href="#how-do-i-know-what-keys-to-put-in-my-package-xml" title="Link to this heading"></a></h2>
 <p>Great question, I’m glad you asked!</p>
 <ul class="simple">
-<li><p>If the package you want to depend in your package is ROS-based, AND has been released into the ROS ecosystem <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, e.g. <code class="docutils literal notranslate"><span class="pre">nav2_bt_navigator</span></code>, you may simply use the name of the package. You can find a list of all released ROS packages in <a class="reference external" href="https://github.com/ros/rosdistro">https://github.com/ros/rosdistro</a> at <code class="docutils literal notranslate"><span class="pre">&lt;distro&gt;/distribution.yaml</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">humble/distribution.yaml</span></code>) for your given ROS distribution.</p></li>
-<li><p>If you want to depend on a non-ROS package, something often called “system dependencies”, you will need to find the keys for a particular library. In general, there are two files of interest:</p>
+<li><p>If the package you want to depend in your package is ROS-based, AND has been released into the ROS ecosystem <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, e.g. <code class="docutils literal notranslate"><span class="pre">nav2_bt_navigator</span></code>, you may simply use the name of the package.
+You can find a list of all released ROS packages in <a class="reference external" href="https://github.com/ros/rosdistro">https://github.com/ros/rosdistro</a> at <code class="docutils literal notranslate"><span class="pre">&lt;distro&gt;/distribution.yaml</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">humble/distribution.yaml</span></code>) for your given ROS distribution.</p></li>
+<li><p>If you want to depend on a non-ROS package, something often called “system dependencies”, you will need to find the keys for a particular library.
+In general, there are two files of interest:</p>
 <ul>
 <li><p><a class="reference external" href="https://github.com/ros/rosdistro/blob/master/rosdep/base.yaml">rosdep/base.yaml</a> contains the <code class="docutils literal notranslate"><span class="pre">apt</span></code> system dependencies</p></li>
 <li><p><a class="reference external" href="https://github.com/ros/rosdistro/blob/master/rosdep/python.yaml">rosdep/python.yaml</a> contains the Python dependencies</p></li>
@@ -653,13 +656,13 @@ Use <code class="docutils literal notranslate"><span class="pre">rosdep</span> <
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

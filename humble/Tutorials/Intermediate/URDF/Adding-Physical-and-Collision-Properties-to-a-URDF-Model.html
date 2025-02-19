@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="URDF-Main.html">URDF</a></li>
       <li class="breadcrumb-item active">Adding physical and collision properties</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/URDF/Adding-Physical-and-Collision-Properties-to-a-URDF-Model.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/URDF/Adding-Physical-and-Collision-Properties-to-a-URDF-Model.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -470,17 +471,16 @@ The format for the geometry tag is exactly the same here as with the visual.</p>
 However, there are two main cases where you wouldn’t:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>Quicker Processing</strong>. Doing collision detection for two meshes is a lot more computational complex than for two simple geometries.
+<li><p><strong>Quicker Processing</strong> Doing collision detection for two meshes is a lot more computational complex than for two simple geometries.
 Hence, you may want to replace the meshes with simpler geometries in the collision element.</p></li>
-<li><p><strong>Safe Zones</strong>. You may want to restrict movement close to sensitive equipment.
+<li><p><strong>Safe Zones</strong> You may want to restrict movement close to sensitive equipment.
 For instance, if we didn’t want anything to collide with R2D2’s head, we might define the collision geometry to be a cylinder encasing his head to prevent anything from getting too close to his head.</p></li>
 </ul>
 </div></blockquote>
 </section>
 <section id="physical-properties">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Physical Properties</a><a class="headerlink" href="#physical-properties" title="Link to this heading"></a></h2>
-<p>In order to get your model to simulate properly, you need to define several physical properties of your robot, i.e.
-the properties that a physics engine like Gazebo would need.</p>
+<p>In order to get your model to simulate properly, you need to define several physical properties of your robot, i.e. the properties that a physics engine like Gazebo would need.</p>
 <section id="inertia">
 <h3><a class="toc-backref" href="#id4" role="doc-backlink">Inertia</a><a class="headerlink" href="#inertia" title="Link to this heading"></a></h3>
 <p>Every link element being simulated needs an inertial tag.
@@ -535,7 +535,8 @@ The inertia of geometric primitives (cylinder, box, sphere) can be computed usin
 <li><p>The inertia tensor depends on both the mass and the distribution of mass of the object.
 A good first approximation is to assume equal distribution of mass in the volume of the object and compute the inertia tensor based on the object’s shape, as outlined above.</p></li>
 <li><p>If unsure what to put, a matrix with ixx/iyy/izz=1e-3 or smaller is often a reasonable default for a mid-sized link (it corresponds to a box of 0.1 m side length with a mass of 0.6 kg).
-The identity matrix is a particularly bad choice, since it is often much too high (it corresponds to a box of 0.1 m side length with a mass of 600 kg!).</p></li>
+The identity matrix is a particularly bad choice, since it is often much too high.
+(it corresponds to a box of 0.1 m side length with a mass of 600 kg!)</p></li>
 <li><p>You can also specify an origin tag to specify the center of gravity and the inertial reference frame (relative to the link’s reference frame).</p></li>
 <li><p>When using realtime controllers, inertia elements of zero (or almost zero) can cause the robot model to collapse without warning, and all links will appear with their origins coinciding with the world origin.</p></li>
 </ul>
@@ -629,13 +630,13 @@ Check out the <a class="reference external" href="https://wiki.ros.org/urdf/XML/
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

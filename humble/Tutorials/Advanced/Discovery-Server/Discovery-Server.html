@@ -156,6 +156,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../../Advanced.html">高级教程</a></li>
       <li class="breadcrumb-item active">Using Fast DDS Discovery Server as discovery protocol [community-contributed]</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Advanced/Discovery-Server/Discovery-Server.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Advanced/Discovery-Server/Discovery-Server.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -490,7 +491,8 @@ Thus, in order to use the Discovery Server, you can update your repository to us
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Run this tutorial</a><a class="headerlink" href="#run-this-tutorial" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">talker-listener</span></code> ROS 2 demo creates a <code class="docutils literal notranslate"><span class="pre">talker</span></code> node that publishes a “hello world” message every second, and a <code class="docutils literal notranslate"><span class="pre">listener</span></code> node that listens to these messages.</p>
 <p>By <a class="reference internal" href="../../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">sourcing ROS 2</span></a> you will get access to the CLI tool <code class="docutils literal notranslate"><span class="pre">fastdds</span></code>.
-This tool gives access to the <a class="reference external" href="https://fast-dds.docs.eprosima.com/en/v2.1.0/fastddscli/cli/cli.html#discovery">discovery tool</a>, which can be used to launch a discovery server. This server will manage the discovery process for the nodes that connect to it.</p>
+This tool gives access to the <a class="reference external" href="https://fast-dds.docs.eprosima.com/en/v2.1.0/fastddscli/cli/cli.html#discovery">discovery tool</a>, which can be used to launch a discovery server.
+This server will manage the discovery process for the nodes that connect to it.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Do not forget to <a class="reference internal" href="../../Beginner-CLI-Tools/Configuring-ROS2-Environment.html"><span class="doc">source ROS 2</span></a> in every new terminal opened.</p>
@@ -516,7 +518,8 @@ This tool gives access to the <a class="reference external" href="https://fast-d
 </pre></div>
 </div>
 </div></div>
-<p>Launch the listener node. Use the argument <code class="docutils literal notranslate"><span class="pre">--remap</span> <span class="pre">__node:=listener_discovery_server</span></code> to change the node’s name for this tutorial.</p>
+<p>Launch the listener node.
+Use the argument <code class="docutils literal notranslate"><span class="pre">--remap</span> <span class="pre">__node:=listener_discovery_server</span></code> to change the node’s name for this tutorial.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run demo_nodes_cpp listener --ros-args --remap __node:=listener_discovery_server</span>
 </pre></div>
 </div>
@@ -650,7 +653,9 @@ But <code class="docutils literal notranslate"><span class="pre">Listener</span>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">fastdds discovery --server-id 1 --ip-address 127.0.0.1 --port 11888</span>
 </pre></div>
 </div>
-<p>Now, run each node in a different terminal. Use <code class="docutils literal notranslate"><span class="pre">ROS_DISCOVERY_SERVER</span></code> environment variable to decide which server they are connected to. Be aware that the <a class="reference external" href="https://fast-dds.docs.eprosima.com/en/v2.1.0/fastdds/env_vars/env_vars.html">ids must match</a>.</p>
+<p>Now, run each node in a different terminal.
+Use <code class="docutils literal notranslate"><span class="pre">ROS_DISCOVERY_SERVER</span></code> environment variable to decide which server they are connected to.
+Be aware that the <a class="reference external" href="https://fast-dds.docs.eprosima.com/en/v2.1.0/fastdds/env_vars/env_vars.html">ids must match</a>.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-6-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-6-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-6-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export ROS_DISCOVERY_SERVER=&quot;127.0.0.1:11811;127.0.0.1:11888&quot;</span>
 </pre></div>
@@ -714,7 +719,8 @@ As most ROS 2 CLIs need a node in the network (some of them rely on a running RO
 In this sense, ROS 2 introspection tools can be configured as <strong>Super Client</strong>, thus being able to discover every entity that is using the Discovery Server protocol within the network.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In this section we use the term <em>Participant</em> as a DDS entity. Each DDS <em>Participant</em> corresponds with a ROS 2 <em>Context</em>, a ROS 2 abstraction over DDS.
+<p>In this section we use the term <em>Participant</em> as a DDS entity.
+Each DDS <em>Participant</em> corresponds with a ROS 2 <em>Context</em>, a ROS 2 abstraction over DDS.
 <a class="reference internal" href="../../Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html#ros2nodes"><span class="std std-ref">Nodes</span></a> are ROS 2 entities that rely on DDS communication interfaces: <code class="docutils literal notranslate"><span class="pre">DataWriter</span></code> and <code class="docutils literal notranslate"><span class="pre">DataReader</span></code>.
 Each <em>Participant</em> can hold multiple ROS 2 Nodes.
 For further details about these concepts, please visit the <a class="reference external" href="http://design.ros2.org/articles/Node_to_Participant_mapping.html">Node to Participant mapping design document</a></p>
@@ -960,13 +966,13 @@ The experiment above does not show this case, but even so the massive reduction 
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

@@ -156,6 +156,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Tutorials/Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Tutorials/Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -405,7 +406,7 @@
           <li class="breadcrumb-item"><a href="../The-ROS2-Project.html">ROS 2 项目</a></li>
       <li class="breadcrumb-item active">ROSCon Talks</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/The-ROS2-Project/ROSCon-Content.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/The-ROS2-Project/ROSCon-Content.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -419,8 +420,7 @@
 <span id="roscon"></span><h1>ROSCon Talks<a class="headerlink" href="#roscon-talks" title="Link to this heading"></a></h1>
 <p>The following <a class="reference external" href="https://roscon.ros.org">ROSCon</a> talks have been given on ROS 2 and provide information about the workings of ROS 2 and various demos:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-MjAyNA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyNA==" name="MjAyNA==" role="tab" tabindex="0">2024</button><button aria-controls="panel-0-MjAyMw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyMw==" name="MjAyMw==" role="tab" tabindex="-1">2023</button><button aria-controls="panel-0-MjAyMg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyMg==" name="MjAyMg==" role="tab" tabindex="-1">2022</button><button aria-controls="panel-0-MjAyMQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyMQ==" name="MjAyMQ==" role="tab" tabindex="-1">2021</button><button aria-controls="panel-0-MjAyMA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyMA==" name="MjAyMA==" role="tab" tabindex="-1">2020</button><button aria-controls="panel-0-MjAxOQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxOQ==" name="MjAxOQ==" role="tab" tabindex="-1">2019</button><button aria-controls="panel-0-MjAxOA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxOA==" name="MjAxOA==" role="tab" tabindex="-1">2018</button><button aria-controls="panel-0-MjAxNw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxNw==" name="MjAxNw==" role="tab" tabindex="-1">2017</button><button aria-controls="panel-0-MjAxNg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxNg==" name="MjAxNg==" role="tab" tabindex="-1">2016</button><button aria-controls="panel-0-MjAxNQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxNQ==" name="MjAxNQ==" role="tab" tabindex="-1">2015</button><button aria-controls="panel-0-MjAxNA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxNA==" name="MjAxNA==" role="tab" tabindex="-1">2014</button></div><blockquote>
-<div><div aria-labelledby="tab-0-MjAyNA==" class="sphinx-tabs-panel group-tab" id="panel-0-MjAyNA==" name="MjAyNA==" role="tabpanel" tabindex="0"><table class="docutils align-default">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-MjAyNA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyNA==" name="MjAyNA==" role="tab" tabindex="0">2024</button><button aria-controls="panel-0-MjAyMw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyMw==" name="MjAyMw==" role="tab" tabindex="-1">2023</button><button aria-controls="panel-0-MjAyMg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyMg==" name="MjAyMg==" role="tab" tabindex="-1">2022</button><button aria-controls="panel-0-MjAyMQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyMQ==" name="MjAyMQ==" role="tab" tabindex="-1">2021</button><button aria-controls="panel-0-MjAyMA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAyMA==" name="MjAyMA==" role="tab" tabindex="-1">2020</button><button aria-controls="panel-0-MjAxOQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxOQ==" name="MjAxOQ==" role="tab" tabindex="-1">2019</button><button aria-controls="panel-0-MjAxOA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxOA==" name="MjAxOA==" role="tab" tabindex="-1">2018</button><button aria-controls="panel-0-MjAxNw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxNw==" name="MjAxNw==" role="tab" tabindex="-1">2017</button><button aria-controls="panel-0-MjAxNg==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxNg==" name="MjAxNg==" role="tab" tabindex="-1">2016</button><button aria-controls="panel-0-MjAxNQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxNQ==" name="MjAxNQ==" role="tab" tabindex="-1">2015</button><button aria-controls="panel-0-MjAxNA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-MjAxNA==" name="MjAxNA==" role="tab" tabindex="-1">2014</button></div><div aria-labelledby="tab-0-MjAyNA==" class="sphinx-tabs-panel group-tab" id="panel-0-MjAyNA==" name="MjAyNA==" role="tabpanel" tabindex="0"><table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Title</p></th>
 <th class="head"><p>Links</p></th>
@@ -574,7 +574,7 @@
 <tr class="row-even"><td><p>Building Foundation Model-powered Robots with ROS: A Survey</p></td>
 <td><p><a class="reference external" href="https://vimeo.com/1026027743">video</a></p></td>
 </tr>
-<tr class="row-odd"><td><p>Scenic for ROS: A Probabilistic Programming Language for World Modelin…</p></td>
+<tr class="row-odd"><td><p>Scenic for ROS: A Probabilistic Programming Language for World Modeling…</p></td>
 <td><p><a class="reference external" href="https://vimeo.com/1026032775">video</a></p></td>
 </tr>
 <tr class="row-even"><td><p>Software Platform Design and SDK Development for ROS 2-based LG AI Com…</p></td>
@@ -768,8 +768,7 @@
 </tr>
 </tbody>
 </table>
-</div></div></blockquote>
-<div aria-labelledby="tab-0-MjAyMg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-MjAyMg==" name="MjAyMg==" role="tabpanel" tabindex="0"><table class="docutils align-default">
+</div><div aria-labelledby="tab-0-MjAyMg==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-MjAyMg==" name="MjAyMg==" role="tabpanel" tabindex="0"><table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Title</p></th>
 <th class="head"><p>Links</p></th>
@@ -1195,13 +1194,13 @@
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

@@ -34,7 +34,7 @@ Ament Lint CLI Tools
 All ament linting tools use a similar CLI pattern.
 They take in a directory, a list of directories, file, or list of files, analyze the input files, and generate a report.
 All ament linting tools have the following built-in options.
-**The most up to date and accurate documentation for a given ament tool can be found by using the tools built in ``--help`` functionality.**
+**The most up to date and accurate documentation for a given ament tool can be found by using the tools built in** ``--help`` **functionality.**
 
 * ``-h, --help`` - shows a help message and exit.
   The built-in help messages usually have the most accurate and up-to-date documentation of the tool.
@@ -66,7 +66,9 @@ For example, if you wish to scan just source and header files for copyright noti
 
 ``ament_copyright`` supports the following options:
 
-* ``--add-missing COPYRIGHT_NAME LICENSE`` - Add missing copyright notice and license information using the passed copyright holder and license. ``LICENSE`` passed to this option is the name of the license to be used. A full list of available licenses can be found by calling ``ament_copyright --list-licenses``
+* ``--add-missing COPYRIGHT_NAME LICENSE`` - Add missing copyright notice and license information using the passed copyright holder and license.
+  ``LICENSE`` passed to this option is the name of the license to be used.
+  A full list of available licenses can be found by calling ``ament_copyright --list-licenses``
 * ``--add-copyright-year`` - Add the current year to existing copyright notices.
 * ``--list-copyright-names`` - List names of known copyright holders.
 * ``--list-licenses`` - List names of known licenses.
@@ -109,8 +111,10 @@ For example, if you wish to scan just a recently modified file you can call ``am
 
 ``ament_cppcheck`` supports the following options:
 
-* ``--libraries [LIBRARIES ...]`` - Library configurations to load in addition to the standard libraries of C and C++. Each library is passed to cppcheck as '--library=<library_name>'
-* ``--include_dirs [INCLUDE_DIRS ...]`` - Include directories for C/C++ files being checked.Each directory is passed to cppcheck as '-I <include_dir>' (default: None)
+* ``--libraries [LIBRARIES ...]`` - Library configurations to load in addition to the standard libraries of C and C++.
+  Each library is passed to cppcheck as '--library=<library_name>'
+* ``--include_dirs [INCLUDE_DIRS ...]`` - Include directories for C/C++ files being checked.
+  Each directory is passed to cppcheck as '-I <include_dir>' (default: None)
 * ``--cppcheck-version`` - Get the cppcheck version, print it, and then exit.
 
 2.3 ``ament_cppcheck`` Example
@@ -283,10 +287,12 @@ For example, if you wish to scan just one package in your workspace you can call
 5.2 ``ament_uncrustify`` Options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* ``-c CFG`` - The config file that Uncrustify should use if you would prefer to use your own settings. We recommend you stick to the defaults
+* ``-c CFG`` - The config file that Uncrustify should use if you would prefer to use your own settings.
+  We recommend you stick to the defaults
 * ``--linelength N`` - The maximum line length.
-* ``--language`` - One of {C,C++,CPP}, passed to uncrustify as '-l <language>' to force a specific language rather then choosing one based on file extension.
-* ``--reformat`` -  Reformat the files in place, i.e. fix the formatting errors encountered. **We recommend you use this option when running ``ament_uncrustify`` as it will save you quite a bit of time!**
+* ``--language`` - One of {C,C++,CPP}, passed to uncrustify as ``-l <language>`` to force a specific language rather then choosing one based on file extension.
+* ``--reformat`` - Reformat the files in place, i.e. fix the formatting errors encountered.
+  **We recommend you use this option when running** ``ament_uncrustify`` **as it will save you quite a bit of time!**
 
 5.3 ``ament_uncrustify`` Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

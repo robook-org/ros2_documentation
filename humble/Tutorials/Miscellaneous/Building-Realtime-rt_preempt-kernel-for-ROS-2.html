@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -405,7 +406,7 @@
           <li class="breadcrumb-item"><a href="../Miscellaneous.html">杂项</a></li>
       <li class="breadcrumb-item active">Building a real-time Linux kernel [community-contributed]</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Miscellaneous/Building-Realtime-rt_preempt-kernel-for-ROS-2.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Miscellaneous/Building-Realtime-rt_preempt-kernel-for-ROS-2.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -417,8 +418,10 @@
 
   <section id="building-a-real-time-linux-kernel-community-contributed">
 <h1>Building a real-time Linux kernel [community-contributed]<a class="headerlink" href="#building-a-real-time-linux-kernel-community-contributed" title="Link to this heading"></a></h1>
-<p>This tutorial begins with a clean Ubuntu 20.04.1 install on Intel x86_64. Actual kernel is 5.4.0-54-generic, but we will install the Latest Stable RT_PREEMPT Version. To build the kernel you need at least 30GB free disk space.</p>
-<p>Check <a class="reference external" href="https://wiki.linuxfoundation.org/realtime/start">https://wiki.linuxfoundation.org/realtime/start</a> for the latest stable version, at the time of writing this is “Latest Stable Version 5.4-rt”.
+<p>This tutorial begins with a clean Ubuntu 20.04.1 install on Intel x86_64.
+Actual kernel is 5.4.0-54-generic, but we will install the Latest Stable RT_PREEMPT Version.
+To build the kernel you need at least 30GB free disk space.</p>
+<p>Check <a class="reference external" href="https://wiki.linuxfoundation.org/realtime/start">this wiki</a> for the latest stable version, at the time of writing this is “Latest Stable Version 5.4-rt”.
 If we click on the <a class="reference external" href="http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/">link</a>, we get the exact version.
 Currently it is patch-5.4.78-rt44.patch.gz.</p>
 <img alt="../../_images/realtime-kernel-patch-version.png" src="../../_images/realtime-kernel-patch-version.png" />
@@ -430,7 +433,9 @@ Currently it is patch-5.4.78-rt44.patch.gz.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/kernel
 </pre></div>
 </div>
-<p>We can go with a browser to <a class="reference external" href="https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/">https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/</a> and see if the version is there. You can download it from the site and move it manually from /Downloads to the /kernel folder, or download it using wget by right clicking the link using “copy link location”. Example:</p>
+<p>We can go with a browser to <a class="reference external" href="https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/">this page</a> and see if the version is there.
+You can download it from the site and move it manually from /Downloads to the /kernel folder, or download it using wget by right clicking the link using “copy link location”.
+Example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-5.4.78.tar.gz
 </pre></div>
 </div>
@@ -438,7 +443,7 @@ Currently it is patch-5.4.78-rt44.patch.gz.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>-xzf<span class="w"> </span>linux-5.4.78.tar.gz
 </pre></div>
 </div>
-<p>download rt_preempt patch matching the Kernel version we just downloaded over at <a class="reference external" href="http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/">http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/</a></p>
+<p>download rt_preempt patch matching the Kernel version we just downloaded over at <a class="reference external" href="http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/">kernel.org</a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/older/patch-5.4.78-rt44.patch.gz
 </pre></div>
 </div>
@@ -458,7 +463,8 @@ Currently it is patch-5.4.78-rt44.patch.gz.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>/boot/config-5.4.0-54-generic<span class="w"> </span>.config
 </pre></div>
 </div>
-<p>Open Software &amp; Updates. in the Ubuntu Software menu tick the ‘Source code’ box</p>
+<p>Open Software &amp; Updates.
+in the Ubuntu Software menu tick the ‘Source code’ box</p>
 <p>We need some tools to build kernel, install them with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>build-dep<span class="w"> </span>linux
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libncurses-dev<span class="w"> </span>flex<span class="w"> </span>bison<span class="w"> </span>openssl<span class="w"> </span>libssl-dev<span class="w"> </span>dkms<span class="w"> </span>libelf-dev<span class="w"> </span>libudev-dev<span class="w"> </span>libpci-dev<span class="w"> </span>libiberty-dev<span class="w"> </span>autoconf<span class="w"> </span>fakeroot
@@ -468,7 +474,8 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yes<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>make<span class="w"> </span>oldconfig
 </pre></div>
 </div>
-<p>Then we need to enable rt_preempt in the kernel. We call</p>
+<p>Then we need to enable rt_preempt in the kernel.
+We call</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>menuconfig
 </pre></div>
 </div>
@@ -502,7 +509,8 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 <span class="w">     </span><span class="o">(</span>X<span class="o">)</span><span class="w"> </span>performance
 </pre></div>
 </div>
-<p>Save and exit menuconfig. Now we’re going to build the kernel which will take quite some time. (10-30min on a modern cpu)</p>
+<p>Save and exit menuconfig.
+Now we’re going to build the kernel which will take quite some time. (10-30min on a modern cpu)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>nproc<span class="sb">`</span><span class="w"> </span>deb-pkg
 </pre></div>
 </div>
@@ -516,7 +524,8 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>../*.deb
 </pre></div>
 </div>
-<p>Now the real time kernel should be installed. Reboot the system and check the new kernel version</p>
+<p>Now the real time kernel should be installed.
+Reboot the system and check the new kernel version</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>reboot
 uname<span class="w"> </span>-a
 Linux<span class="w"> </span>ros2host<span class="w"> </span><span class="m">5</span>.4.78-rt44<span class="w"> </span><span class="c1">#1 SMP PREEMPT_RT Fri Nov 6 10:37:59 CET 2020 x86_64 xx</span>
@@ -572,13 +581,13 @@ Linux<span class="w"> </span>ros2host<span class="w"> </span><span class="m">5</
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

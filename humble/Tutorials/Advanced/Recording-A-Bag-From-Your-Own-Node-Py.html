@@ -156,6 +156,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Intermediate/Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Intermediate/Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../Intermediate/Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Advanced.html">高级教程</a></li>
       <li class="breadcrumb-item active">Recording a bag from a node (Python)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Advanced/Recording-A-Bag-From-Your-Own-Node-Py.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Advanced/Recording-A-Bag-From-Your-Own-Node-Py.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -505,13 +506,13 @@ As always, though, make sure to add the description, maintainer email and name, 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;simple_bag_recorder&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">SequentialWriter</span><span class="p">()</span>
 
-        <span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
+        <span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
             <span class="n">uri</span><span class="o">=</span><span class="s1">&#39;my_bag&#39;</span><span class="p">,</span>
             <span class="n">storage_id</span><span class="o">=</span><span class="s1">&#39;sqlite3&#39;</span><span class="p">)</span>
-        <span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">converter_options</span><span class="p">)</span>
 
-        <span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
+        <span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s1">&#39;chatter&#39;</span><span class="p">,</span>
             <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;std_msgs/msg/String&#39;</span><span class="p">,</span>
             <span class="n">serialization_format</span><span class="o">=</span><span class="s1">&#39;cdr&#39;</span><span class="p">)</span>
@@ -555,17 +556,17 @@ Other writers with different behaviours may be available in <a class="reference 
 <p>Now that we have a writer object, we can open the bag using it.
 We specify the URI of the bag to create and the format (<code class="docutils literal notranslate"><span class="pre">sqlite3</span></code>), leaving other options at their defaults.
 The default conversion options are used, which will perform no conversion and store the messages in the serialization format they are received in.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
     <span class="n">uri</span><span class="o">=</span><span class="s1">&#39;my_bag&#39;</span><span class="p">,</span>
     <span class="n">storage_id</span><span class="o">=</span><span class="s1">&#39;sqlite3&#39;</span><span class="p">)</span>
-<span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">converter_options</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Next, we need to tell the writer about the topics we wish to store.
 This is done by creating a <code class="docutils literal notranslate"><span class="pre">TopicMetadata</span></code> object and registering it with the writer.
 This object specifies the topic name, topic data type, and serialization format used.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;chatter&#39;</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;std_msgs/msg/String&#39;</span><span class="p">,</span>
     <span class="n">serialization_format</span><span class="o">=</span><span class="s1">&#39;cdr&#39;</span><span class="p">)</span>
@@ -689,13 +690,13 @@ The second approach does not use a node; this is the approach you can use when y
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">SequentialWriter</span><span class="p">()</span>
 
-        <span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
+        <span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
             <span class="n">uri</span><span class="o">=</span><span class="s1">&#39;timed_synthetic_bag&#39;</span><span class="p">,</span>
             <span class="n">storage_id</span><span class="o">=</span><span class="s1">&#39;sqlite3&#39;</span><span class="p">)</span>
-        <span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">converter_options</span><span class="p">)</span>
 
-        <span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
+        <span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s1">&#39;synthetic&#39;</span><span class="p">,</span>
             <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;example_interfaces/msg/Int32&#39;</span><span class="p">,</span>
             <span class="n">serialization_format</span><span class="o">=</span><span class="s1">&#39;cdr&#39;</span><span class="p">)</span>
@@ -728,13 +729,13 @@ The second approach does not use a node; this is the approach you can use when y
 <p>Much of this code is the same as the first example.
 The important differences are described here.</p>
 <p>First, the name of the bag is changed.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
     <span class="n">uri</span><span class="o">=</span><span class="s1">&#39;timed_synthetic_bag&#39;</span><span class="p">,</span>
     <span class="n">storage_id</span><span class="o">=</span><span class="s1">&#39;sqlite3&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The name of the topic is also changed, as is the data type stored.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;synthetic&#39;</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;example_interfaces/msg/Int32&#39;</span><span class="p">,</span>
     <span class="n">serialization_format</span><span class="o">=</span><span class="s1">&#39;cdr&#39;</span><span class="p">)</span>
@@ -828,13 +829,13 @@ The advantage of this approach is simpler code and rapid creation of a large qua
 <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">writer</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">SequentialWriter</span><span class="p">()</span>
 
-    <span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
+    <span class="n">storage_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span>
         <span class="n">uri</span><span class="o">=</span><span class="s1">&#39;big_synthetic_bag&#39;</span><span class="p">,</span>
         <span class="n">storage_id</span><span class="o">=</span><span class="s1">&#39;sqlite3&#39;</span><span class="p">)</span>
-    <span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">converter_options</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">converter_options</span><span class="p">)</span>
 
-    <span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
+    <span class="n">topic_info</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">TopicMetadata</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s1">&#39;synthetic&#39;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;example_interfaces/msg/Int32&#39;</span><span class="p">,</span>
         <span class="n">serialization_format</span><span class="o">=</span><span class="s1">&#39;cdr&#39;</span><span class="p">)</span>
@@ -992,13 +993,13 @@ The latter approaches are useful especially for generating synthetic data that c
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

@@ -155,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Writing-an-Action-Server-Client/Py.html">实现 action 服务器和客户端(Python)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Writing-a-Composable-Node.html">Writing a Composable Node (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Composition.html">Composing multiple nodes in a single process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Using-Node-Interfaces-Template-Class.html">Using the Node Interfaces Template Class (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Monitoring-For-Parameter-Changes-CPP.html">Monitoring for parameter changes (C++)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Launch/Launch-Main.html">启动(Launch)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../Launch/Creating-Launch-Files.html">创建启动文件</a></li>
@@ -406,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../RViz-Main.html">RViz</a></li>
       <li class="breadcrumb-item active">Building a Custom RViz Display</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/RViz/RViz-Custom-Display/RViz-Custom-Display.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/RViz/RViz-Custom-Display/RViz-Custom-Display.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -420,7 +421,8 @@
 <h1>Building a Custom RViz Display<a class="headerlink" href="#building-a-custom-rviz-display" title="Link to this heading"></a></h1>
 <section id="id1">
 <h2>背景<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<p>There are many types of data that have existing visualizations in RViz. However, if there is a message type that does
+<p>There are many types of data that have existing visualizations in RViz.
+However, if there is a message type that does
 not yet have a plugin to display it, there are two choices to see it in RViz.</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -428,8 +430,10 @@ not yet have a plugin to display it, there are two choices to see it in RViz.</p
 <li><p>Write a Custom RViz Display.</p></li>
 </ol>
 </div></blockquote>
-<p>With the first option, there is more network traffic and limitations to how the data can be represented. It is also quick and flexible.
-The latter option is explained in this tutorial. It takes a bit of work, but can lead to much richer visualizations.</p>
+<p>With the first option, there is more network traffic and limitations to how the data can be represented.
+It is also quick and flexible.
+The latter option is explained in this tutorial.
+It takes a bit of work, but can lead to much richer visualizations.</p>
 <p>All of the code for this tutorial can be found in <a class="reference external" href="https://github.com/MetroRobots/rviz_plugin_tutorial">this repository</a>.
 In order to see the incremental progress of the plugin written in this tutorial,
 the repository has different branches (<code class="docutils literal notranslate"><span class="pre">step2</span></code>, <code class="docutils literal notranslate"><span class="pre">step3</span></code>…) that can each be compiled and run as you go.</p>
@@ -608,7 +612,8 @@ You should be able to add your new plugin by clicking <code class="docutils lite
 <p>First, you need to add a dependency in <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> on the package <code class="docutils literal notranslate"><span class="pre">rviz_rendering</span></code>.</p>
 <p>We need to add three lines to the header file:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;rviz_rendering/objects/shape.hpp&gt;</span></code> - There’s <a class="reference external" href="https://github.com/ros2/rviz/tree/ros2/rviz_rendering/include/rviz_rendering/objects">lots of options in the rviz_rendering package</a> for objects to build your visualization on. Here we’re using a simple shape.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;rviz_rendering/objects/shape.hpp&gt;</span></code> - There’s <a class="reference external" href="https://github.com/ros2/rviz/tree/ros2/rviz_rendering/include/rviz_rendering/objects">lots of options in the rviz_rendering package</a> for objects to build your visualization on.
+Here we’re using a simple shape.</p></li>
 <li><p>In the class, we’ll add a new <code class="docutils literal notranslate"><span class="pre">protected</span></code> virtual method: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">onInitialize()</span> <span class="pre">override;</span></code></p></li>
 <li><p>We also add a pointer to our shape object: <code class="docutils literal notranslate"><span class="pre">std::unique_ptr&lt;rviz_rendering::Shape&gt;</span> <span class="pre">point_shape_;</span></code></p></li>
 </ul>
@@ -745,11 +750,13 @@ You can view the full version of this step with the branch name <code class="doc
 <li><p>We add the <code class="docutils literal notranslate"><span class="pre">name</span></code> field to the <code class="docutils literal notranslate"><span class="pre">class</span></code> tag.
 This changes the name that is displayed in RViz.
 In code, it makes sense to call it a <code class="docutils literal notranslate"><span class="pre">PointDisplay</span></code> but in RViz, we want to simplify.</p></li>
-<li><p>We put actual text into the description. Don’t be lazy.</p></li>
+<li><p>We put actual text into the description.
+Don’t be lazy.</p></li>
 <li><p>By declaring the specific message type here, when you attempt to add a Display by Topic, it will suggest this plugin for the topics of that type.</p></li>
 </ul>
 <p>We also add an icon for the plugin at <code class="docutils literal notranslate"><span class="pre">icons/classes/Point2D.png</span></code>.
-The folder is hardcoded, and the filename should match the name from the plugin declaration (or the name of the class if not specified). <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Free_software_icon.svg">[icon source]</a></p>
+The folder is hardcoded, and the filename should match the name from the plugin declaration (or the name of the class if not specified).
+<a class="reference external" href="https://commons.wikimedia.org/wiki/File:Free_software_icon.svg">[icon source]</a></p>
 <p>We need to install the image file in the CMake.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span><span class="s">FILES</span><span class="w"> </span><span class="s">icons/classes/Point2D.png</span>
 <span class="w">        </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">share/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">/icons/classes</span>
@@ -814,13 +821,13 @@ The folder is hardcoded, and the filename should match the name from the plugin 
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

@@ -20,7 +20,8 @@ ISAAC ROS Projects
 * `Isaac ROS Depth Segmentation <https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_depth_segmentation>`__: Hardware-accelerated packages for depth segmentation.
 * `Isaac ROS Nvblox <https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_nvblox>`__ : Hardware-accelerated 3D scene reconstruction and Nav2 local costmap provider using nvblox.
 * `Isaac ROS Object Detection <https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_object_detection>`__ : Deep learning model support for object detection including DetectNet.
-* `Isaac ROS DNN Inference <https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_dnn_inference>`__ : This repository provides two NVIDIA GPU-accelerated ROS 2 nodes that perform deep learning inference using custom models. One node uses the TensorRT SDK, while the other uses the Triton SDK.
+* `Isaac ROS DNN Inference <https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_dnn_inference>`__ : This repository provides two NVIDIA GPU-accelerated ROS 2 nodes that perform deep learning inference using custom models.
+  One node uses the TensorRT SDK, while the other uses the Triton SDK.
 * `Isaac ROS Visual SLAM <https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_visual_slam>`__ : This repository provides a ROS 2 package that estimates stereo visual inertial odometry using the Isaac Elbrus GPU-accelerated library.
 * `Isaac ROS Mission Client <http://github.com/NVIDIA-ISAAC-ROS/isaac_ros_mission_client>`__ : This repository receives state and error updates from ROS and converts them to VDA5050 JSON messages for transmission by the ROS 2 -> MQTT node to Mission Dispatch.
 * `Isaac ROS Argus Camera <https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_argus_camera>`__ : This repository provides monocular and stereo nodes that enable ROS developers to use cameras connected to Jetson platforms over a CSI interface.

@@ -79,7 +79,8 @@ C++ 和 Python 客户端库由 ROS 2 核心团队维护，而ROS 2 社区的成�
 * `C <https://github.com/ros2/rclc>`__  ``rclc`` does not put a layer on top of rcl but complements rcl to make rcl+rclc a feature-complete client library in C. See `micro.ros.org <https://micro.ros.org/>`__ for tutorials.
 * `JVM and Android <https://github.com/ros2-java>`__ Java and Android bindings for ROS 2.
 * `.NET Core, UWP and C# <https://github.com/esteve/ros2_dotnet>`__ This is a collection of projects (bindings, code generator, examples and more) for writing ROS 2 applications for .NET Core and .NET Standard.
-* `Node.js <https://www.npmjs.com/package/rclnodejs>`__ rclnodejs is a Node.js client for ROS 2. It provides a simple and easy JavaScript API for ROS 2 programming.
+* `Node.js <https://www.npmjs.com/package/rclnodejs>`__ rclnodejs is a Node.js client for ROS 2.
+  It provides a simple and easy JavaScript API for ROS 2 programming.
 * `Rust <https://github.com/ros2-rust/ros2_rust>`__ This is a set of projects (the rclrs client library, code generator, examples and more) that enables developers to write ROS 2 applications in Rust.
 * `Flutter and Dart <https://github.com/rcldart>`__ Flutter and Dart bindings for ROS 2.
 

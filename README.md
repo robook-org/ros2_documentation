@@ -54,6 +54,15 @@ pip install -r requirements.txt -c constraints.txt
 
 `sensible-browser build/html/index.html`
 
+### Spelling Check
+
+To check the spelling, use:
+
+`make spellcheck`
+
+> [!NOTE]
+> If that detects specific words that need to be ignored, add it to [codespell_whitelist](./codespell_whitelist.txt).
+
 ### 部署测试
 
 对多站点版本的构建进行测试：

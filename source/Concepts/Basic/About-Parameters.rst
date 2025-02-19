@@ -114,15 +114,3 @@ ROS 2 节点可以通过节点 API操作参数，如 :doc:`../../Tutorials/Begin
 :doc:`Launch 文件迁移指南 <../../How-To-Guides/Migrating-from-ROS1/Migrating-Launch-Files>` 解释了如何从 ROS 1 迁移 ``param`` 和 ``rosparam`` launch 标签到 ROS 2。
 
 :doc:`YAML 参数文件迁移指南 <../../How-To-Guides/Migrating-from-ROS1/Migrating-Parameters>` 解释了如何从 ROS 1 迁移参数文件到 ROS 2。
-
-在 ROS 1 中，``roscore`` 就像一个全局参数黑板(global parameter blackboard)，所有节点都可以从中获取和设置参数。
-由于 ROS 2 中没有中心化的 ``roscore``，这种功能不再存在。
-ROS 2 中推荐的方法是节点只使用与之紧密相关的节点参数。
-如果仍然需要全局黑板，可以为此目的创建一个专用节点。
-ROS 2 中的 ``ros-{DISTRO}-demo-nodes-cpp`` 包中附带一个名为 ``parameter_blackboard`` 的节点；可以通过以下命令运行：
-
-.. code-block:: console
-
-   ros2 run demo_nodes_cpp parameter_blackboard
-
-``parameter_blackboard`` 的代码在 `这里 <https://github.com/ros2/demos/blob/{REPOS_FILE_BRANCH}/demo_nodes_cpp/src/parameters/parameter_blackboard.cpp>`__.

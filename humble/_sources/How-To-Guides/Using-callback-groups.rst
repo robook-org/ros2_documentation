@@ -68,7 +68,7 @@ Callback groups 可以通过 rclcpp 的 ``create_callback_group`` 函数或是 r
 * timer callbacks,
 * service callbacks (用于在服务端处理 service requests),
 * action 服务端和客户端的不同 callbacks,
-* Futures 的 done-callbacks. (译者注： “Future” 是异步编程中的一个概念，并非ROS 2特有，若需要了解这个例子的含义请先学习异步编程有关的知识)
+* Futures 的 done-callbacks. (译者注： "Future" 是异步编程中的一个概念，并非ROS 2特有，若需要了解这个例子的含义请先学习异步编程有关的知识)
 
 在处理回调组时，有几个关于回调的重要信息应该牢记在心。
 
@@ -76,7 +76,7 @@ Callback groups 可以通过 rclcpp 的 ``create_callback_group`` 函数或是 r
   由执行器执行的每个函数都是回调。
   ROS 2 系统中的非回调函数主要位于系统的边缘（用户和传感器输入等）。
 * 有些时候从用户/开发者 API 中可能看不到回调的存在。
-  这种情况尤其出现在任何类型的“同步”调用(“synchronous” call) service 或 action 时（在 rclpy 中）。
+  这种情况尤其出现在任何类型的"同步"调用("synchronous" call) service 或 action 时（在 rclpy 中）。
   例如，对服务的同步调用 ``Client.call(request)`` 会添加一个 Future 的 done-callback，这个 callback 需要在函数调用期间执行，但这个回调对用户来说并不直接可见。
   (译者注：也就是说即使在用户看来， ``call()`` 这个过程是同步发生的，但其实背后也是用回调实现的，只是这个回调会阻塞 ``call()`` 到结果返回，而一般这个回调消耗的时间并不多，所以看起来也像是一个同步执行的函数。)
 

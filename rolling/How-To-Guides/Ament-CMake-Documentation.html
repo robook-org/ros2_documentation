@@ -409,7 +409,7 @@
           <li class="breadcrumb-item"><a href="../How-To-Guides.html">How-to Guides</a></li>
       <li class="breadcrumb-item active">ament_cmake user documentation</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/How-To-Guides/Ament-CMake-Documentation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/How-To-Guides/Ament-CMake-Documentation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -456,6 +456,12 @@ An official tutorial can be found <a class="reference external" href="https://cm
 <li><p><a class="reference internal" href="#the-ament-index-explained" id="id16">The ament index explained</a></p></li>
 <li><p><a class="reference internal" href="#querying-the-ament-index" id="id17">Querying the ament index</a></p></li>
 <li><p><a class="reference internal" href="#adding-to-the-ament-index" id="id18">Adding to the ament index</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#setting-environment-variables" id="id19">Setting environment variables</a></p>
+<ul>
+<li><p><a class="reference internal" href="#about-environment-hooks" id="id20">About environment hooks</a></p></li>
+<li><p><a class="reference internal" href="#defining-persistent-environment-variables-through-hooks" id="id21">Defining Persistent Environment Variables through Hooks</a></p></li>
 </ul>
 </li>
 </ul>
@@ -925,6 +931,57 @@ In the case of <code class="docutils literal notranslate"><span class="pre">rviz
 </ul>
 </section>
 </section>
+<section id="setting-environment-variables">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Setting environment variables</a><a class="headerlink" href="#setting-environment-variables" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ament_cmake</span></code> provides a mechanism to automatically set environment variables for a ROS 2 workspace when it is sourced.
+This can be useful in configuring:</p>
+<ul class="simple">
+<li><p>RMW implementations (setting up CycloneDDS, FastDDS, etc.)</p></li>
+<li><p>Gazebo Simulations (setting up paths to plugins and resources)</p></li>
+<li><p>Other custom robot-specific setting configurations</p></li>
+</ul>
+<p>This can be implemented through <code class="docutils literal notranslate"><span class="pre">ament_environment_hooks</span></code>, which allows packages to define persistent environment variables that are set when the workspace is sourced.</p>
+<section id="about-environment-hooks">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">About environment hooks</a><a class="headerlink" href="#about-environment-hooks" title="Link to this heading"></a></h3>
+<p>Environment hooks are shell scripts provided by a ROS 2 package.
+When the setup file in the workspace is sourced, the hooks are also sourced.
+These scripts allow you to set or extend environment variables with requiring manual modifications to the <code class="docutils literal notranslate"><span class="pre">setup.bash</span></code> or <code class="docutils literal notranslate"><span class="pre">setup.zsh</span></code> files.</p>
+<p>These environment hooks can be implemented by creating two types of script files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.dsv.in</span></code> files: These are machine-readable files that specify expected environment variable changes.
+Ament processes these files more efficiently than traditional shell scripts, improving performance when setting up the environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.sh.in</span></code> files: These are shell scripts executed by Linux/macOS shells such as sh, bash, and zsh.
+They set environment variables at runtime when sourcing the workspace.</p></li>
+</ul>
+<p>These files are processed by <code class="docutils literal notranslate"><span class="pre">colcon</span></code> to generate the final environment hook scripts.</p>
+<p>The actual implementation of <code class="docutils literal notranslate"><span class="pre">ament_environment_hooks</span></code> can be found in the official <a class="reference external" href="https://github.com/ament/ament_cmake/tree/master/ament_cmake_core/cmake/environment_hooks">ament-cmake repository</a>.</p>
+</section>
+<section id="defining-persistent-environment-variables-through-hooks">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Defining Persistent Environment Variables through Hooks</a><a class="headerlink" href="#defining-persistent-environment-variables-through-hooks" title="Link to this heading"></a></h3>
+<p>This section provides a quick example on how to use environment hooks to configure FastDDS XML profiles for your ROS 2 package.</p>
+<p>A recommended best practice when defining environment hooks is to place them within a dedicated <code class="docutils literal notranslate"><span class="pre">hooks</span></code> directory inside the package workspace.</p>
+<p>Inside your created <code class="docutils literal notranslate"><span class="pre">hooks</span></code> folder, create a <code class="docutils literal notranslate"><span class="pre">my_package.sh.in</span></code> as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_fastrtps_cpp
+<span class="nb">export</span><span class="w"> </span><span class="nv">RMW_FASTRTPS_USE_QOS_FROM_XML</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">FASTRTPS_DEFAULT_PROFILES_FILE</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$COLCON_CURRENT_PREFIX</span><span class="s2">/my_dds_profile.xml&quot;</span>
+</pre></div>
+</div>
+<p>In the same folder, create a <code class="docutils literal notranslate"><span class="pre">my_package.dsv.in</span></code> file as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>set<span class="p">;</span>RMW_IMPLEMENTATION<span class="p">;</span>rmw_fastrtps_cpp
+set<span class="p">;</span>RMW_FASTRTPS_USE_QOS_FROM_XML<span class="p">;</span><span class="m">1</span>
+set<span class="p">;</span>FASTRTPS_DEFAULT_PROFILES_FILE<span class="p">;</span>my_dds_profile.xml
+</pre></div>
+</div>
+<p>Once added, you can register them using the ament_environment_hooks function in your <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ament_environment_hooks<span class="o">(</span>
+<span class="w">  </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="si">}</span><span class="s2">/hooks/my_package.dsv.in&quot;</span>
+<span class="w">  </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="si">}</span><span class="s2">/hooks/my_package.sh.in&quot;</span>
+<span class="o">)</span>
+</pre></div>
+</div>
+<p>Another example of using environment hooks for Gazebo plugin paths can be found in the official <a class="reference external" href="https://github.com/gazebosim/ros_gz_project_template/tree/main/ros_gz_example_gazebo/hooks">ros_gz_project_template</a>.</p>
+</section>
+</section>
 </section>
 
 
@@ -975,13 +1032,13 @@ In the case of <code class="docutils literal notranslate"><span class="pre">rviz
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GTM-NFW6MLHB', {
+      gtag('config', 'G-EVD5Z6G6NH', {
           'anonymize_ip': false,
       });
     </script> 

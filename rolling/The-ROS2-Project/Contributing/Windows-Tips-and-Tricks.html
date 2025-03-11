@@ -409,7 +409,7 @@
           <li class="breadcrumb-item"><a href="../Contributing.html">Contributing</a></li>
       <li class="breadcrumb-item active">Windows Tips and Tricks</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/The-ROS2-Project/Contributing/Windows-Tips-and-Tricks.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/The-ROS2-Project/Contributing/Windows-Tips-and-Tricks.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -431,11 +431,9 @@
 <li><p><a class="reference internal" href="#windows-export-all-symbols-target-property" id="id4">WINDOWS_EXPORT_ALL_SYMBOLS Target Property</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#debug-builds" id="id5">Debug builds</a></p></li>
-<li><p><a class="reference internal" href="#forward-slash-vs-back-slash" id="id6">Forward-slash vs. back-slash</a></p></li>
-<li><p><a class="reference internal" href="#patching-vendored-packages" id="id7">Patching vendored packages</a></p></li>
-<li><p><a class="reference internal" href="#windows-slow-timers-slowness-in-general" id="id8">Windows slow timers (slowness in general)</a></p></li>
-<li><p><a class="reference internal" href="#shells" id="id9">Shells</a></p></li>
+<li><p><a class="reference internal" href="#forward-slash-vs-back-slash" id="id5">Forward-slash vs. back-slash</a></p></li>
+<li><p><a class="reference internal" href="#windows-slow-timers-slowness-in-general" id="id6">Windows slow timers (slowness in general)</a></p></li>
+<li><p><a class="reference internal" href="#shells" id="id7">Shells</a></p></li>
 </ul>
 </nav>
 <p>ROS 2 supports Windows 10 as a Tier 1 platform, which means that all code that goes into the ROS 2 core must support Windows.
@@ -553,58 +551,22 @@ This can be done using generate_export_header as described in the following arti
 Otherwise the symbols will still not be callable.</p>
 </section>
 </section>
-<section id="debug-builds">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Debug builds</a><a class="headerlink" href="#debug-builds" title="Link to this heading"></a></h2>
-<p>When building in Debug mode on Windows, several very important things change.
-The first is that all DLLs get <code class="docutils literal notranslate"><span class="pre">_d</span></code> automatically appended to the library name.
-So if the library is called <code class="docutils literal notranslate"><span class="pre">libfoo.dll</span></code>, in Debug mode it will be <code class="docutils literal notranslate"><span class="pre">libfoo_d.dll</span></code>.
-The dynamic linker on Windows also knows to look for libraries of that form, so it will not find libraries without the <code class="docutils literal notranslate"><span class="pre">_d</span></code> prefix.
-Additionally, Windows turns on a whole set of compile-time and run-time checks in Debug mode that is far more strict than Release builds.
-For these reasons, it is a good idea to run a Windows Debug build and test on many pull requests.</p>
-</section>
 <section id="forward-slash-vs-back-slash">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Forward-slash vs. back-slash</a><a class="headerlink" href="#forward-slash-vs-back-slash" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Forward-slash vs. back-slash</a><a class="headerlink" href="#forward-slash-vs-back-slash" title="Link to this heading"></a></h2>
 <p>In Windows the default path separator is a backslash (<code class="docutils literal notranslate"><span class="pre">\</span></code>), which differs from the forward-slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>) used in Linux and macOS.
 Most of the Windows APIs can deal with either as a path separator, but this is not universally true.
 For instance, the <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> shell can only do tab-completion when using the backslash character, not the forward-slash.
 For maximum compatibility on Windows, a backslash should always be used as the path separator on Windows.</p>
 </section>
-<section id="patching-vendored-packages">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Patching vendored packages</a><a class="headerlink" href="#patching-vendored-packages" title="Link to this heading"></a></h2>
-<p>When vendoring a package in ROS 2, it is often necessary to apply a patch to fix a bug, add a feature, etc.
-The typical way to do this is to modify the <code class="docutils literal notranslate"><span class="pre">ExternalProject_add</span></code> call to add a <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> command, using the <code class="docutils literal notranslate"><span class="pre">patch</span></code> executable.
-Unfortunately, the <code class="docutils literal notranslate"><span class="pre">patch</span></code> executable as delivered by chocolatey requires Administrator access to run.
-The workaround is to use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">apply-patch</span></code> when applying patches to external projects.</p>
-<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">apply-patch</span></code> has its own issues in that it only works properly when applied to a git repository.
-For that reason, external projects should always use the <code class="docutils literal notranslate"><span class="pre">GIT</span></code> method to obtain the project and then use the <code class="docutils literal notranslate"><span class="pre">PATCH_COMMAND</span></code> to invoke <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">apply-patch</span></code>.</p>
-<p>An example usage of all of the above looks something like:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">ExternalProject_Add</span><span class="p">(</span><span class="s">mylibrary-</span><span class="o">${</span><span class="nv">version</span><span class="o">}</span>
-<span class="w">  </span><span class="s">GIT_REPOSITORY</span><span class="w"> </span><span class="s">https://github.com/lib/mylibrary.git</span>
-<span class="w">  </span><span class="s">GIT_TAG</span><span class="w"> </span><span class="o">${</span><span class="nv">version</span><span class="o">}</span>
-<span class="w">  </span><span class="s">GIT_CONFIG</span><span class="w"> </span><span class="s">advice.detachedHead=false</span>
-<span class="w">  </span><span class="c"># Suppress git update due to https://gitlab.kitware.com/cmake/cmake/-/issues/16419</span>
-<span class="w">  </span><span class="c"># See https://github.com/ament/uncrustify_vendor/pull/22 for details</span>
-<span class="w">  </span><span class="s">UPDATE_COMMAND</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="w">  </span><span class="s">TIMEOUT</span><span class="w"> </span><span class="s">600</span>
-<span class="w">  </span><span class="s">CMAKE_ARGS</span>
-<span class="w">    </span><span class="s">-DCMAKE_INSTALL_PREFIX=</span><span class="o">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="o">}</span><span class="s">/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_install</span>
-<span class="w">    </span><span class="o">${</span><span class="nv">extra_cmake_args</span><span class="o">}</span>
-<span class="w">    </span><span class="s">-Wno-dev</span>
-<span class="w">  </span><span class="s">PATCH_COMMAND</span>
-<span class="w">    </span><span class="o">${</span><span class="nv">CMAKE_COMMAND</span><span class="o">}</span><span class="w"> </span><span class="s">-E</span><span class="w"> </span><span class="s">chdir</span><span class="w"> </span><span class="s">&lt;SOURCE_DIR&gt;</span><span class="w"> </span><span class="s">git</span><span class="w"> </span><span class="s">apply</span><span class="w"> </span><span class="s">-p1</span><span class="w"> </span><span class="s">--ignore-space-change</span><span class="w"> </span><span class="s">--whitespace=nowarn</span><span class="w"> </span><span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/install-patch.diff</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
 <section id="windows-slow-timers-slowness-in-general">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Windows slow timers (slowness in general)</a><a class="headerlink" href="#windows-slow-timers-slowness-in-general" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Windows slow timers (slowness in general)</a><a class="headerlink" href="#windows-slow-timers-slowness-in-general" title="Link to this heading"></a></h2>
 <p>Software running on Windows is, in general, much slower than that running on Linux.
 This is due to a number of factors, from the default time slice (every 20 ms, according to the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/win32/procthread/multitasking">documentation</a>), to the number of anti-virus and anti-malware processes running, to the number of background processes running.
 Because of all of this, tests should <em>never</em> expect tight timing on Windows.
 All tests should have generous timeouts, and only expect events to happen eventually (this will also prevent tests from being flakey on Linux).</p>
 </section>
 <section id="shells">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Shells</a><a class="headerlink" href="#shells" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Shells</a><a class="headerlink" href="#shells" title="Link to this heading"></a></h2>
 <p>There are two main command-line shells on Windows: the venerable <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code>, and PowerShell.</p>
 <p><code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> is the command shell that most closely emulates the old DOS shell, though with greatly enhanced capabilities.
 It is completely text based, and only understands DOS/Windows <code class="docutils literal notranslate"><span class="pre">batch</span></code> files.</p>
@@ -662,13 +624,13 @@ It understands <code class="docutils literal notranslate"><span class="pre">ps1<
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GTM-NFW6MLHB', {
+      gtag('config', 'G-EVD5Z6G6NH', {
           'anonymize_ip': false,
       });
     </script> 

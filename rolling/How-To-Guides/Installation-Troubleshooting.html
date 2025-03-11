@@ -408,7 +408,7 @@
           <li class="breadcrumb-item"><a href="../How-To-Guides.html">How-to Guides</a></li>
       <li class="breadcrumb-item active">Installation troubleshooting</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/How-To-Guides/Installation-Troubleshooting.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/How-To-Guides/Installation-Troubleshooting.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -661,19 +661,6 @@ Right click <code class="docutils literal notranslate"><span class="pre">Enable<
 In the dialog, select Enabled and click OK.</p>
 <p>Close and open your terminal to reset the environment and try building again.</p>
 </section>
-<section id="cmake-packages-unable-to-find-asio-tinyxml2-tinyxml-or-eigen">
-<h3>CMake packages unable to find asio, tinyxml2, tinyxml, or eigen<a class="headerlink" href="#cmake-packages-unable-to-find-asio-tinyxml2-tinyxml-or-eigen" title="Link to this heading"></a></h3>
-<p>We’ve seen that sometimes the chocolatey packages for <code class="docutils literal notranslate"><span class="pre">asio</span></code>, <code class="docutils literal notranslate"><span class="pre">tinyxml2</span></code>, etc. do not add important registry entries and CMake will be unable to find them when building ROS 2.
-We’ve not yet been able to identify the root cause, but uninstalling the chocolatey packages (with <code class="docutils literal notranslate"><span class="pre">-n</span></code> if the uninstall fails the first time), and then reinstalling them will fix the issue.</p>
-</section>
-<section id="patch-exe-opens-a-new-command-window-and-asks-for-administrator">
-<h3>patch.exe opens a new command window and asks for administrator<a class="headerlink" href="#patch-exe-opens-a-new-command-window-and-asks-for-administrator" title="Link to this heading"></a></h3>
-<p>This will also cause the build of packages which need to use patch to fail, even you allow it to use administrator rights.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">choco</span> <span class="pre">uninstall</span> <span class="pre">patch;</span> <span class="pre">colcon</span> <span class="pre">build</span> <span class="pre">--cmake-clean-cache</span></code> - This is a bug in the <a class="reference external" href="https://chocolatey.org/packages/patch">GNU Patch For Windows package</a>.
-If this package is not installed, the build process will instead use the version of Patch distributed with git.</p></li>
-</ul>
-</section>
 <section id="failed-to-load-fast-rtps-shared-library">
 <h3>Failed to load Fast RTPS shared library<a class="headerlink" href="#failed-to-load-fast-rtps-shared-library" title="Link to this heading"></a></h3>
 <p>Fast RTPS requires <code class="docutils literal notranslate"><span class="pre">msvcr20.dll</span></code>, which is part of the <code class="docutils literal notranslate"><span class="pre">Visual</span> <span class="pre">C++</span> <span class="pre">Redistributable</span> <span class="pre">Packages</span> <span class="pre">for</span> <span class="pre">Visual</span> <span class="pre">Studio</span> <span class="pre">2013</span></code>.
@@ -764,13 +751,13 @@ For each executable, the shebang (first line) of the accompanying script is used
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GTM-NFW6MLHB', {
+      gtag('config', 'G-EVD5Z6G6NH', {
           'anonymize_ip': false,
       });
     </script> 

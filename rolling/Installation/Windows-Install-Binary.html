@@ -408,7 +408,7 @@
           <li class="breadcrumb-item"><a href="../Installation.html">Installation</a></li>
       <li class="breadcrumb-item active">Windows (binary)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/Installation/Windows-Install-Binary.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/Installation/Windows-Install-Binary.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -424,31 +424,28 @@
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#system-requirements" id="id1">System requirements</a></p></li>
-<li><p><a class="reference internal" href="#system-setup" id="id2">System setup</a></p>
+<li><p><a class="reference internal" href="#create-a-location-for-the-ros-2-installation" id="id2">Create a location for the ROS 2 installation</a></p></li>
+<li><p><a class="reference internal" href="#install-prerequisites" id="id3">Install prerequisites</a></p>
 <ul>
-<li><p><a class="reference internal" href="#install-chocolatey" id="id3">Install Chocolatey</a></p></li>
-<li><p><a class="reference internal" href="#install-python" id="id4">Install Python</a></p></li>
-<li><p><a class="reference internal" href="#install-visual-c-redistributables" id="id5">Install Visual C++ Redistributables</a></p></li>
-<li><p><a class="reference internal" href="#install-openssl" id="id6">Install OpenSSL</a></p></li>
-<li><p><a class="reference internal" href="#install-visual-studio" id="id7">Install Visual Studio</a></p></li>
-<li><p><a class="reference internal" href="#install-opencv" id="id8">Install OpenCV</a></p></li>
-<li><p><a class="reference internal" href="#install-dependencies" id="id9">Install dependencies</a></p></li>
-<li><p><a class="reference internal" href="#install-miscellaneous-prerequisites" id="id10">Install miscellaneous prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#install-qt5" id="id11">Install Qt5</a></p></li>
-<li><p><a class="reference internal" href="#rqt-dependencies" id="id12">RQt dependencies</a></p></li>
+<li><p><a class="reference internal" href="#install-pixi" id="id4">Install pixi</a></p></li>
+<li><p><a class="reference internal" href="#install-dependencies" id="id5">Install dependencies</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#install-ros-2" id="id13">Install ROS 2</a></p>
+<li><p><a class="reference internal" href="#install-ros-2" id="id6">Install ROS 2</a></p>
 <ul>
-<li><p><a class="reference internal" href="#install-additional-rmw-implementations-optional" id="id14">Install additional RMW implementations (optional)</a></p></li>
+<li><p><a class="reference internal" href="#install-additional-rmw-implementations-optional" id="id7">Install additional RMW implementations (optional)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#setup-environment" id="id15">Setup environment</a></p></li>
-<li><p><a class="reference internal" href="#try-some-examples" id="id16">Try some examples</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id17">Next steps</a></p></li>
-<li><p><a class="reference internal" href="#troubleshoot" id="id18">Troubleshoot</a></p></li>
-<li><p><a class="reference internal" href="#uninstall" id="id19">Uninstall</a></p></li>
-<li><p><a class="reference internal" href="#extra-stuff-for-debug" id="id20">Extra Stuff for Debug</a></p></li>
+<li><p><a class="reference internal" href="#setup-environment" id="id8">Setup environment</a></p>
+<ul>
+<li><p><a class="reference internal" href="#source-the-pixi-environment" id="id9">Source the pixi environment</a></p></li>
+<li><p><a class="reference internal" href="#source-the-ros-2-environment" id="id10">Source the ROS 2 environment</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#try-some-examples" id="id11">Try some examples</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id12">Next steps</a></p></li>
+<li><p><a class="reference internal" href="#troubleshoot" id="id13">Troubleshoot</a></p></li>
+<li><p><a class="reference internal" href="#uninstall" id="id14">Uninstall</a></p></li>
 </ul>
 </nav>
 <p>This page explains how to install ROS 2 on Windows from a pre-built binary package.</p>
@@ -462,138 +459,40 @@ The exact list of packages are described by the repositories listed in <a class=
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">System requirements</a><a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
 <p>Only Windows 10 is supported.</p>
 </section>
-<section id="system-setup">
-<span id="windows-install-binary-installing-prerequisites"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">System setup</a><a class="headerlink" href="#system-setup" title="Link to this heading"></a></h2>
-<section id="install-chocolatey">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Install Chocolatey</a><a class="headerlink" href="#install-chocolatey" title="Link to this heading"></a></h3>
-<p>Chocolatey is a package manager for Windows, install it by following their installation instructions:</p>
-<p><a class="reference external" href="https://chocolatey.org/install">https://chocolatey.org/install</a></p>
-<p>You’ll use Chocolatey to install some other developer tools.</p>
-</section>
-<section id="install-python">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Install Python</a><a class="headerlink" href="#install-python" title="Link to this heading"></a></h3>
-<p>Open a Command Prompt and type the following to install Python via Chocolatey:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python<span class="w"> </span>--version<span class="w"> </span><span class="m">3</span>.8.3
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Chocolatey will install Python in <code class="docutils literal notranslate"><span class="pre">C:\Python38</span></code>, and the rest of the installation expects it to be there.
-If you’ve installed Python somewhere else, you must copy or link it to that location.</p>
-</div>
-</section>
-<section id="install-visual-c-redistributables">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Install Visual C++ Redistributables</a><a class="headerlink" href="#install-visual-c-redistributables" title="Link to this heading"></a></h3>
-<p>Open a Command Prompt and type the following to install them via Chocolatey:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vcredist2013<span class="w"> </span>vcredist140
+<section id="create-a-location-for-the-ros-2-installation">
+<span id="windows-install-binary-installing-prerequisites"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Create a location for the ROS 2 installation</a><a class="headerlink" href="#create-a-location-for-the-ros-2-installation" title="Link to this heading"></a></h2>
+<p>This location will contain both the installed binary packages, plus the ROS 2 installation itself.</p>
+<p>Start a powershell session (usually by clicking on the start menu, then typing <code class="docutils literal notranslate"><span class="pre">powershell</span></code>).</p>
+<p>Then create a directory to store the installation.
+Because of Windows path-length limitations, this should be as short as possible.
+We’ll use <code class="docutils literal notranslate"><span class="pre">C:\dev</span></code> for the rest of these instructions.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">md C:\dev</span>
 </pre></div>
 </div>
 </section>
-<section id="install-openssl">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Install OpenSSL</a><a class="headerlink" href="#install-openssl" title="Link to this heading"></a></h3>
-<p>Open a Command Prompt and type the following to install OpenSSL via Chocolatey:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openssl<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.1.1.2100
-</pre></div>
-</div>
-<p>This command sets an environment variable that persists over sessions:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setx<span class="w"> </span>/m<span class="w"> </span>OPENSSL_CONF<span class="w"> </span><span class="s2">&quot;C:\Program Files\OpenSSL-Win64\bin\openssl.cfg&quot;</span>
-</pre></div>
-</div>
-<p>You will need to append the OpenSSL-Win64 bin folder to your PATH.
-You can do this by clicking the Windows icon, typing “Environment Variables”, then clicking on “Edit the system environment variables”.
-In the resulting dialog, click “Environment Variables”, then click “Path” on the bottom pane, finally click “Edit” and add the path below.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\OpenSSL-Win64\bin\</span></code></p></li>
-</ul>
-</section>
-<section id="install-visual-studio">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Install Visual Studio</a><a class="headerlink" href="#install-visual-studio" title="Link to this heading"></a></h3>
-<p>Install Visual Studio 2019.</p>
-<p>If you already have a paid version of Visual Studio 2019 (Professional, Enterprise), skip this step.</p>
-<p>Microsoft provides a free of charge version of Visual Studio 2019, named Community, which can be used to build applications that use ROS 2.
-<a class="reference external" href="https://aka.ms/vs/16/release/vs_community.exe">You can download the installer directly through this link.</a></p>
-<p>Make sure that the Visual C++ features are installed.</p>
-<p>An easy way to make sure they’re installed is to select the <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code> workflow during the install.</p>
-<blockquote>
-<div><img alt="../_images/windows-vs-studio-install.png" src="../_images/windows-vs-studio-install.png" />
-</div></blockquote>
-<p>Make sure that no C++ CMake tools are installed by unselecting them in the list of components to be installed.</p>
-</section>
-<section id="install-opencv">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Install OpenCV</a><a class="headerlink" href="#install-opencv" title="Link to this heading"></a></h3>
-<p>Some of the examples require OpenCV to be installed.</p>
-<p>You can download a precompiled version of OpenCV 3.4.6 from <a class="reference external" href="https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.6-vc16.VS2019.zip">https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.6-vc16.VS2019.zip</a> .</p>
-<p>Assuming you unpacked it to <code class="docutils literal notranslate"><span class="pre">C:\opencv</span></code>, type the following on a Command Prompt (requires Admin privileges):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setx<span class="w"> </span>/m<span class="w"> </span>OpenCV_DIR<span class="w"> </span>C:<span class="se">\o</span>pencv
-</pre></div>
-</div>
-<p>Since you are using a precompiled ROS version, we have to tell it where to find the OpenCV libraries.
-You have to extend the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable to <code class="docutils literal notranslate"><span class="pre">C:\opencv\x64\vc16\bin</span></code>.</p>
+<section id="install-prerequisites">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Install prerequisites</a><a class="headerlink" href="#install-prerequisites" title="Link to this heading"></a></h2>
+<p>ROS 2 uses <a class="reference external" href="https://conda-forge.org/">conda-forge</a> as a backend for packages, with <a class="reference external" href="https://pixi.sh/latest/">pixi</a> as the frontend.</p>
+<section id="install-pixi">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Install pixi</a><a class="headerlink" href="#install-pixi" title="Link to this heading"></a></h3>
+<p>Continue using the previous powershell session, and use the instructions on <a class="reference external" href="https://pixi.sh/latest/">https://pixi.sh/latest/</a> to install <code class="docutils literal notranslate"><span class="pre">pixi</span></code>.
+Once <code class="docutils literal notranslate"><span class="pre">pixi</span></code> has been installed, close the powershell session and start it again, which will ensure <code class="docutils literal notranslate"><span class="pre">pixi</span></code> is on the PATH.</p>
 </section>
 <section id="install-dependencies">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Install dependencies</a><a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h3>
-<p>There are a few dependencies not available in the Chocolatey package database.
-In order to ease the manual installation process, we provide the necessary Chocolatey packages.</p>
-<p>As some chocolatey packages rely on it, we start by installing CMake</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cmake
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Install dependencies</a><a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h3>
+<p>Download the pixi configuration file in the existing powershell session:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\dev</span>
+<span class="go">irm https://raw.githubusercontent.com/ros2/ros2/refs/heads/rolling/pixi.toml -OutFile pixi.toml</span>
 </pre></div>
 </div>
-<p>You will need to append the CMake bin folder <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\CMake\bin</span></code> to your PATH.</p>
-<p>Please download these packages from <a class="reference external" href="https://github.com/ros2/choco-packages/releases/latest">this</a> GitHub repository.</p>
-<ul class="simple">
-<li><p>asio.1.12.1.nupkg</p></li>
-<li><p>bullet.3.17.nupkg</p></li>
-<li><p>cunit.2.1.3.nupkg</p></li>
-<li><p>eigen.3.3.4.nupkg</p></li>
-<li><p>tinyxml2.6.0.0.nupkg</p></li>
-</ul>
-<p>Once these packages are downloaded, open an administrative shell and execute the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-s<span class="w"> </span>&lt;PATH<span class="se">\T</span>O<span class="se">\D</span>OWNLOADS<span class="se">\&gt;</span><span class="w"> </span>asio<span class="w"> </span>cunit<span class="w"> </span>eigen<span class="w"> </span>tinyxml2<span class="w"> </span>bullet
+<p>Install dependencies:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pixi install</span>
 </pre></div>
 </div>
-<p>Please replace <code class="docutils literal notranslate"><span class="pre">&lt;PATH\TO\DOWNLOADS&gt;</span></code> with the folder you downloaded the packages to.</p>
-<p>First upgrade pip and setuptools:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span><span class="nv">setuptools</span><span class="o">==</span><span class="m">59</span>.6.0
-</pre></div>
-</div>
-<p>Now install some additional python dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>catkin_pkg<span class="w"> </span>cryptography<span class="w"> </span>empy<span class="w"> </span><span class="nv">fastjsonschema</span><span class="o">==</span><span class="m">2</span>.19.0<span class="w"> </span>importlib-metadata<span class="w"> </span>jsonschema<span class="w"> </span><span class="nv">lark</span><span class="o">==</span><span class="m">1</span>.1.1<span class="w"> </span>lxml<span class="w"> </span>matplotlib<span class="w"> </span>netifaces<span class="w"> </span>numpy<span class="w"> </span>opencv-python<span class="w"> </span>PyQt5<span class="w"> </span>pillow<span class="w"> </span>psutil<span class="w"> </span>pycairo<span class="w"> </span>pydot<span class="w"> </span><span class="nv">pyparsing</span><span class="o">==</span><span class="m">2</span>.4.7<span class="w"> </span>pytest<span class="w"> </span>pyyaml<span class="w"> </span>rosdistro
-</pre></div>
-</div>
-</section>
-<section id="install-miscellaneous-prerequisites">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Install miscellaneous prerequisites</a><a class="headerlink" href="#install-miscellaneous-prerequisites" title="Link to this heading"></a></h3>
-<p>Next install xmllint:</p>
-<ul class="simple">
-<li><p>Download the <a class="reference external" href="https://www.zlatkovic.com/pub/libxml/64bit/">64 bit binary archives</a> of <code class="docutils literal notranslate"><span class="pre">libxml2</span></code> (and its dependencies <code class="docutils literal notranslate"><span class="pre">iconv</span></code> and <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) from <a class="reference external" href="https://www.zlatkovic.com/projects/libxml/">https://www.zlatkovic.com/projects/libxml/</a></p></li>
-<li><p>Unpack all archives into e.g. <code class="docutils literal notranslate"><span class="pre">C:\xmllint</span></code></p></li>
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">C:\xmllint\bin</span></code> to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p></li>
-</ul>
-</section>
-<section id="install-qt5">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Install Qt5</a><a class="headerlink" href="#install-qt5" title="Link to this heading"></a></h3>
-<p>Download the <a class="reference external" href="https://www.qt.io/offline-installers">5.12.X offline installer</a> from Qt’s website.
-Run the installer.
-Make sure to select the <code class="docutils literal notranslate"><span class="pre">MSVC</span> <span class="pre">2017</span> <span class="pre">64-bit</span></code> component under the <code class="docutils literal notranslate"><span class="pre">Qt</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Qt</span> <span class="pre">5.12.12</span></code> tree.</p>
-<p>Finally, in an administrator <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> window set these environment variables.
-The commands below assume you installed it to the default location of <code class="docutils literal notranslate"><span class="pre">C:\Qt</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setx<span class="w"> </span>/m<span class="w"> </span>Qt5_DIR<span class="w"> </span>C:<span class="se">\Q</span>t<span class="se">\Q</span>t5.12.12<span class="se">\5</span>.12.12<span class="se">\m</span>svc2017_64
-setx<span class="w"> </span>/m<span class="w"> </span>QT_QPA_PLATFORM_PLUGIN_PATH<span class="w"> </span>C:<span class="se">\Q</span>t<span class="se">\Q</span>t5.12.12<span class="se">\5</span>.12.12<span class="se">\m</span>svc2017_64<span class="se">\p</span>lugins<span class="se">\p</span>latforms
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This path might change based on the installed MSVC version, the directory Qt was installed to, and the version of Qt installed.</p>
-</div>
-</section>
-<section id="rqt-dependencies">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">RQt dependencies</a><a class="headerlink" href="#rqt-dependencies" title="Link to this heading"></a></h3>
-<p>To run rqt_graph you need to <a class="reference external" href="https://graphviz.gitlab.io/_pages/Download/Download_windows.html">download</a> and install <a class="reference external" href="https://graphviz.gitlab.io/">Graphviz</a>.
-The installer will ask if to add graphviz to PATH, choose to either add it to the current user or all users.</p>
 </section>
 </section>
 <section id="install-ros-2">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Install ROS 2</a><a class="headerlink" href="#install-ros-2" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Install ROS 2</a><a class="headerlink" href="#install-ros-2" title="Link to this heading"></a></h2>
 <p>Binary releases of Rolling Ridley are not provided.
 Instead you may download nightly <a class="reference internal" href="Testing.html#prerelease-binaries"><span class="std std-ref">prerelease binaries</span></a>.</p>
 <ul class="simple">
@@ -603,31 +502,38 @@ Instead you may download nightly <a class="reference internal" href="Testing.htm
 <p class="admonition-title">Note</p>
 <p>There may be more than one binary download option which might cause the file name to differ.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To install debug libraries for ROS 2, see <a class="reference internal" href="#extra-stuff-for-debug">Extra Stuff for Debug</a>.
-Then continue on with downloading <code class="docutils literal notranslate"><span class="pre">ros2-package-windows-debug-AMD64.zip</span></code>.</p>
-</div>
 <ul class="simple">
 <li><p>Unpack the zip file somewhere (we’ll assume <code class="docutils literal notranslate"><span class="pre">C:\dev\ros2_rolling</span></code>).</p></li>
 </ul>
 <section id="install-additional-rmw-implementations-optional">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Install additional RMW implementations (optional)</a><a class="headerlink" href="#install-additional-rmw-implementations-optional" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Install additional RMW implementations (optional)</a><a class="headerlink" href="#install-additional-rmw-implementations-optional" title="Link to this heading"></a></h3>
 <p>The default middleware that ROS 2 uses is <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">DDS</span></code>, but the middleware (RMW) can be replaced at runtime.
 See the <a class="reference internal" href="../How-To-Guides/Working-with-multiple-RMW-implementations.html"><span class="doc">guide</span></a> on how to work with multiple RMWs.</p>
 </section>
 </section>
 <section id="setup-environment">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Setup environment</a><a class="headerlink" href="#setup-environment" title="Link to this heading"></a></h2>
-<p>Start a command shell and source the ROS 2 setup file to set up the workspace:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>call<span class="w"> </span>C:<span class="se">\d</span>ev<span class="se">\r</span>os2_rolling<span class="se">\l</span>ocal_setup.bat
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Setup environment</a><a class="headerlink" href="#setup-environment" title="Link to this heading"></a></h2>
+<p>Start a new Windows command prompt, which will be used in the examples.</p>
+<section id="source-the-pixi-environment">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Source the pixi environment</a><a class="headerlink" href="#source-the-pixi-environment" title="Link to this heading"></a></h3>
+<p>Source the pixi environment to set up dependencies:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\dev</span>
+<span class="go">pixi shell</span>
+</pre></div>
+</div>
+</section>
+<section id="source-the-ros-2-environment">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Source the ROS 2 environment</a><a class="headerlink" href="#source-the-ros-2-environment" title="Link to this heading"></a></h3>
+<p>This is required in every command prompt you open to setup the ROS 2 workspace:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">call ros2_rolling\local_setup.bat</span>
 </pre></div>
 </div>
 <p>It is normal that the previous command, if nothing else went wrong, outputs “The system cannot find the path specified.” exactly once.</p>
 </section>
+</section>
 <section id="try-some-examples">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">Try some examples</a><a class="headerlink" href="#try-some-examples" title="Link to this heading"></a></h2>
-<p>In a command shell, set up the ROS 2 environment as described above and then run a C++ <code class="docutils literal notranslate"><span class="pre">talker</span></code>:</p>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Try some examples</a><a class="headerlink" href="#try-some-examples" title="Link to this heading"></a></h2>
+<p>In a command prompt, set up the ROS 2 environment as described above and then run a C++ <code class="docutils literal notranslate"><span class="pre">talker</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
 </pre></div>
 </div>
@@ -640,50 +546,24 @@ This verifies both the C++ and Python APIs are working properly.
 Hooray!</p>
 </section>
 <section id="next-steps">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
 <p>Continue with the <a class="reference internal" href="../Tutorials.html"><span class="doc">tutorials and demos</span></a> to configure your environment, create your own workspace and packages, and learn ROS 2 core concepts.</p>
 </section>
 <section id="troubleshoot">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">Troubleshoot</a><a class="headerlink" href="#troubleshoot" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Troubleshoot</a><a class="headerlink" href="#troubleshoot" title="Link to this heading"></a></h2>
 <p>Troubleshooting techniques can be found <a class="reference internal" href="../How-To-Guides/Installation-Troubleshooting.html#windows-troubleshooting"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="uninstall">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">Uninstall</a><a class="headerlink" href="#uninstall" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Uninstall</a><a class="headerlink" href="#uninstall" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>If you installed your workspace with colcon as instructed above, “uninstalling” could be just a matter of opening a new terminal and not sourcing the workspace’s <code class="docutils literal notranslate"><span class="pre">setup</span></code> file.
 This way, your environment will behave as though there is no Rolling install on your system.</p></li>
 <li><p>If you’re also trying to free up space, you can delete the entire workspace directory with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rmdir<span class="w"> </span>/s<span class="w"> </span>/q<span class="w"> </span><span class="se">\r</span>os2_rolling
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rmdir<span class="w"> </span>/s<span class="w"> </span>/q<span class="w"> </span>C:<span class="se">\d</span>ev
 </pre></div>
 </div>
 </li>
 </ol>
-</section>
-<section id="extra-stuff-for-debug">
-<h2><a class="toc-backref" href="#id20" role="doc-backlink">Extra Stuff for Debug</a><a class="headerlink" href="#extra-stuff-for-debug" title="Link to this heading"></a></h2>
-<p>To download the ROS 2 debug libraries you’ll need to download <code class="docutils literal notranslate"><span class="pre">ros2-rolling-*-windows-debug-AMD64.zip</span></code>.
-Please note that debug libraries require some more additional configuration/setup to work as given below.</p>
-<p>Python installation may require modification to enable debugging symbols and debug binaries:</p>
-<ul>
-<li><p>Search in windows <strong>Search Bar</strong> and open <strong>Apps and Features</strong>.</p></li>
-<li><p>Search for the installed Python version.</p></li>
-<li><p>Click Modify.</p>
-<blockquote>
-<div><a class="reference internal image-reference" href="../_images/python_installation_modify.png"><img alt="../_images/python_installation_modify.png" src="../_images/python_installation_modify.png" style="width: 500px;" /></a>
-</div></blockquote>
-</li>
-<li><p>Click Next to go to <strong>Advanced Options</strong>.</p>
-<blockquote>
-<div><a class="reference internal image-reference" href="../_images/python_installation_next.png"><img alt="../_images/python_installation_next.png" src="../_images/python_installation_next.png" style="width: 500px;" /></a>
-</div></blockquote>
-</li>
-<li><p>Make sure <strong>Download debugging symbols</strong> and <strong>Download debug binaries</strong> are checked.</p>
-<blockquote>
-<div><a class="reference internal image-reference" href="../_images/python_installation_enable_debug.png"><img alt="../_images/python_installation_enable_debug.png" src="../_images/python_installation_enable_debug.png" style="width: 500px;" /></a>
-</div></blockquote>
-</li>
-<li><p>Click Install.</p></li>
-</ul>
 </section>
 </section>
 
@@ -735,13 +615,13 @@ Please note that debug libraries require some more additional configuration/setu
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GTM-NFW6MLHB', {
+      gtag('config', 'G-EVD5Z6G6NH', {
           'anonymize_ip': false,
       });
     </script> 

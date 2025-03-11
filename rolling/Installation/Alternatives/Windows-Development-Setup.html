@@ -409,7 +409,7 @@
           <li class="breadcrumb-item"><a href="../Alternatives.html">Alternatives</a></li>
       <li class="breadcrumb-item active">Windows (source)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/Installation/Alternatives/Windows-Development-Setup.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/Installation/Alternatives/Windows-Development-Setup.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -424,211 +424,136 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#system-requirements" id="id1">System requirements</a></p>
+<li><p><a class="reference internal" href="#system-requirements" id="id2">System requirements</a></p>
 <ul>
-<li><p><a class="reference internal" href="#language-support" id="id2">Language support</a></p></li>
+<li><p><a class="reference internal" href="#language-support" id="id3">Language support</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#system-setup" id="id3">System setup</a></p>
+<li><p><a class="reference internal" href="#create-a-location-for-the-ros-2-installation" id="id4">Create a location for the ROS 2 installation</a></p></li>
+<li><p><a class="reference internal" href="#increase-the-windows-maximum-path-length" id="id5">Increase the Windows maximum path length</a></p></li>
+<li><p><a class="reference internal" href="#install-prerequisites" id="id6">Install prerequisites</a></p>
 <ul>
-<li><p><a class="reference internal" href="#install-chocolatey" id="id4">Install Chocolatey</a></p></li>
-<li><p><a class="reference internal" href="#install-python" id="id5">Install Python</a></p></li>
-<li><p><a class="reference internal" href="#install-visual-c-redistributables" id="id6">Install Visual C++ Redistributables</a></p></li>
-<li><p><a class="reference internal" href="#install-openssl" id="id7">Install OpenSSL</a></p></li>
-<li><p><a class="reference internal" href="#install-visual-studio" id="id8">Install Visual Studio</a></p></li>
-<li><p><a class="reference internal" href="#install-opencv" id="id9">Install OpenCV</a></p></li>
-<li><p><a class="reference internal" href="#install-dependencies" id="id10">Install dependencies</a></p></li>
-<li><p><a class="reference internal" href="#install-miscellaneous-prerequisites" id="id11">Install miscellaneous prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#install-qt5" id="id12">Install Qt5</a></p></li>
-<li><p><a class="reference internal" href="#rqt-dependencies" id="id13">RQt dependencies</a></p></li>
-<li><p><a class="reference internal" href="#install-additional-prerequisites-from-chocolatey" id="id14">Install additional prerequisites from Chocolatey</a></p></li>
-<li><p><a class="reference internal" href="#install-python-prerequisites" id="id15">Install Python prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#install-msvc" id="id7">Install MSVC</a></p></li>
+<li><p><a class="reference internal" href="#install-pixi" id="id8">Install pixi</a></p></li>
+<li><p><a class="reference internal" href="#install-dependencies" id="id9">Install dependencies</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#build-ros-2" id="id16">Build ROS 2</a></p>
+<li><p><a class="reference internal" href="#build-ros-2" id="id10">Build ROS 2</a></p>
 <ul>
-<li><p><a class="reference internal" href="#get-ros-2-code" id="id17">Get ROS 2 code</a></p></li>
-<li><p><a class="reference internal" href="#install-additional-rmw-implementations-optional" id="id18">Install additional RMW implementations (optional)</a></p></li>
-<li><p><a class="reference internal" href="#build-the-code-in-the-workspace" id="id19">Build the code in the workspace</a></p></li>
+<li><p><a class="reference internal" href="#source-the-msvc-compiler" id="id11">Source the MSVC compiler</a></p></li>
+<li><p><a class="reference internal" href="#source-the-pixi-environment" id="id12">Source the pixi environment</a></p></li>
+<li><p><a class="reference internal" href="#get-ros-2-code" id="id13">Get ROS 2 code</a></p></li>
+<li><p><a class="reference internal" href="#install-additional-rmw-implementations-optional" id="id14">Install additional RMW implementations (optional)</a></p></li>
+<li><p><a class="reference internal" href="#build-the-code-in-the-workspace" id="id15">Build the code in the workspace</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#setup-environment" id="id20">Setup environment</a></p></li>
-<li><p><a class="reference internal" href="#try-some-examples" id="id21">Try some examples</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id22">Next steps</a></p></li>
-<li><p><a class="reference internal" href="#extra-stuff-for-debug-mode" id="id23">Extra stuff for Debug mode</a></p></li>
-<li><p><a class="reference internal" href="#stay-up-to-date" id="id24">Stay up to date</a></p></li>
-<li><p><a class="reference internal" href="#troubleshoot" id="id25">Troubleshoot</a></p></li>
-<li><p><a class="reference internal" href="#uninstall" id="id26">Uninstall</a></p></li>
+<li><p><a class="reference internal" href="#setup-environment" id="id16">Setup environment</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id17">Source the pixi environment</a></p></li>
+<li><p><a class="reference internal" href="#source-the-ros-2-environment" id="id18">Source the ROS 2 environment</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#try-some-examples" id="id19">Try some examples</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id20">Next steps</a></p></li>
+<li><p><a class="reference internal" href="#stay-up-to-date" id="id21">Stay up to date</a></p></li>
+<li><p><a class="reference internal" href="#troubleshoot" id="id22">Troubleshoot</a></p></li>
+<li><p><a class="reference internal" href="#uninstall" id="id23">Uninstall</a></p></li>
 </ul>
 </nav>
-<p>This guide is about how to setup a development environment for ROS 2 on Windows.</p>
+<p>This page explains how to setup a development environment for ROS 2 on Windows.</p>
 <section id="system-requirements">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">System requirements</a><a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">System requirements</a><a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
 <p>Only Windows 10 is supported.</p>
 <section id="language-support">
-<h3><a class="toc-backref" href="#id2" role="doc-backlink">Language support</a><a class="headerlink" href="#language-support" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Language support</a><a class="headerlink" href="#language-support" title="Link to this heading"></a></h3>
 <p>Make sure you have a locale which supports <code class="docutils literal notranslate"><span class="pre">UTF-8</span></code>.
 For example, for a Chinese-language Windows 10 installation, you may need to install an <a class="reference external" href="https://support.microsoft.com/en-us/windows/language-packs-for-windows-a5094319-a92d-18de-5b53-1cfc697cfca8">English language pack</a>.</p>
 </section>
 </section>
-<section id="system-setup">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">System setup</a><a class="headerlink" href="#system-setup" title="Link to this heading"></a></h2>
-<section id="install-chocolatey">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Install Chocolatey</a><a class="headerlink" href="#install-chocolatey" title="Link to this heading"></a></h3>
-<p>Chocolatey is a package manager for Windows, install it by following their installation instructions:</p>
-<p><a class="reference external" href="https://chocolatey.org/install">https://chocolatey.org/install</a></p>
-<p>You’ll use Chocolatey to install some other developer tools.</p>
+<section id="create-a-location-for-the-ros-2-installation">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Create a location for the ROS 2 installation</a><a class="headerlink" href="#create-a-location-for-the-ros-2-installation" title="Link to this heading"></a></h2>
+<p>This location will contain both the installed binary packages, plus the ROS 2 installation itself.</p>
+<p>Start a powershell session (usually by clicking on the start menu, then typing <code class="docutils literal notranslate"><span class="pre">powershell</span></code>).</p>
+<p>Then create a directory to store the installation.
+Because of Windows path-length limitations, this should be as short as possible.
+We’ll use <code class="docutils literal notranslate"><span class="pre">C:\dev</span></code> for the rest of these instructions.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">md C:\dev</span>
+</pre></div>
+</div>
 </section>
-<section id="install-python">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Install Python</a><a class="headerlink" href="#install-python" title="Link to this heading"></a></h3>
-<p>Open a Command Prompt and type the following to install Python via Chocolatey:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python<span class="w"> </span>--version<span class="w"> </span><span class="m">3</span>.8.3
+<section id="increase-the-windows-maximum-path-length">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Increase the Windows maximum path length</a><a class="headerlink" href="#increase-the-windows-maximum-path-length" title="Link to this heading"></a></h2>
+<p>By default, Windows is restricted to a maximum path length (MAX_PATH) of 260 characters.
+The ROS 2 build will use significantly longer path lengths, so we will increase that.
+Using the powershell session you started above, run the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">New-ItemProperty -Path &quot;HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem&quot; -Name &quot;LongPathsEnabled&quot; -Value 1 -PropertyType DWORD -Force</span>
+</pre></div>
+</div>
+<p>You can read more about this limitation at <a class="reference external" href="https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry">https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry</a>.</p>
+</section>
+<section id="install-prerequisites">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Install prerequisites</a><a class="headerlink" href="#install-prerequisites" title="Link to this heading"></a></h2>
+<section id="install-msvc">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Install MSVC</a><a class="headerlink" href="#install-msvc" title="Link to this heading"></a></h3>
+<p>In order to compile the ROS 2 code, the MSVC compiler must be installed.
+Currently it is recommended to use MSVC 2019.</p>
+<p>Continue using the previous powershell session, and run the following command to download it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">irm https://aka.ms/vs/16/release/vs_buildtools.exe -OutFile vs_buildtools_2019.exe</span>
+</pre></div>
+</div>
+<p>Now install MSVC 2019:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">.\vs_buildtools_2019.exe --quiet --wait --norestart --add Microsoft.Component.MSBuild --add Microsoft.Net.Component.4.6.1.TargetingPack --add Microsoft.Net.Component.4.8.SDK --add Microsoft.VisualStudio.Component.CoreBuildTools --add Microsoft.VisualStudio.Component.Roslyn.Compiler --add Microsoft.VisualStudio.Component.TextTemplating --add Microsoft.VisualStudio.Component.VC.CLI.Support --add Microsoft.VisualStudio.Component.VC.CoreBuildTools --add Microsoft.VisualStudio.Component.VC.CoreIde --add Microsoft.VisualStudio.Component.VC.Redist.14.Latest --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows10SDK --add Microsoft.VisualStudio.Component.Windows10SDK.19041 --add Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core --add Microsoft.VisualStudio.Workload.MSBuildTools --add Microsoft.VisualStudio.Workload.VCTools</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Chocolatey will install Python in <code class="docutils literal notranslate"><span class="pre">C:\Python38</span></code>, and the rest of the installation expects it to be there.
-If you’ve installed Python somewhere else, you must copy or link it to that location.</p>
+<p>The installation of MSVC can take a long time, and there is no feedback while it is progressing.</p>
 </div>
 </section>
-<section id="install-visual-c-redistributables">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Install Visual C++ Redistributables</a><a class="headerlink" href="#install-visual-c-redistributables" title="Link to this heading"></a></h3>
-<p>Open a Command Prompt and type the following to install them via Chocolatey:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vcredist2013<span class="w"> </span>vcredist140
-</pre></div>
-</div>
-</section>
-<section id="install-openssl">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Install OpenSSL</a><a class="headerlink" href="#install-openssl" title="Link to this heading"></a></h3>
-<p>Open a Command Prompt and type the following to install OpenSSL via Chocolatey:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openssl<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.1.1.2100
-</pre></div>
-</div>
-<p>This command sets an environment variable that persists over sessions:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setx<span class="w"> </span>/m<span class="w"> </span>OPENSSL_CONF<span class="w"> </span><span class="s2">&quot;C:\Program Files\OpenSSL-Win64\bin\openssl.cfg&quot;</span>
-</pre></div>
-</div>
-<p>You will need to append the OpenSSL-Win64 bin folder to your PATH.
-You can do this by clicking the Windows icon, typing “Environment Variables”, then clicking on “Edit the system environment variables”.
-In the resulting dialog, click “Environment Variables”, then click “Path” on the bottom pane, finally click “Edit” and add the path below.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\OpenSSL-Win64\bin\</span></code></p></li>
-</ul>
-</section>
-<section id="install-visual-studio">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Install Visual Studio</a><a class="headerlink" href="#install-visual-studio" title="Link to this heading"></a></h3>
-<p>Install Visual Studio 2019.</p>
-<p>If you already have a paid version of Visual Studio 2019 (Professional, Enterprise), skip this step.</p>
-<p>Microsoft provides a free of charge version of Visual Studio 2019, named Community, which can be used to build applications that use ROS 2.
-<a class="reference external" href="https://aka.ms/vs/16/release/vs_community.exe">You can download the installer directly through this link.</a></p>
-<p>Make sure that the Visual C++ features are installed.</p>
-<p>An easy way to make sure they’re installed is to select the <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">development</span> <span class="pre">with</span> <span class="pre">C++</span></code> workflow during the install.</p>
-<blockquote>
-<div><img alt="../../_images/windows-vs-studio-install.png" src="../../_images/windows-vs-studio-install.png" />
-</div></blockquote>
-<p>Make sure that no C++ CMake tools are installed by unselecting them in the list of components to be installed.</p>
-</section>
-<section id="install-opencv">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Install OpenCV</a><a class="headerlink" href="#install-opencv" title="Link to this heading"></a></h3>
-<p>Some of the examples require OpenCV to be installed.</p>
-<p>You can download a precompiled version of OpenCV 3.4.6 from <a class="reference external" href="https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.6-vc16.VS2019.zip">https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.6-vc16.VS2019.zip</a> .</p>
-<p>Assuming you unpacked it to <code class="docutils literal notranslate"><span class="pre">C:\opencv</span></code>, type the following on a Command Prompt (requires Admin privileges):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setx<span class="w"> </span>/m<span class="w"> </span>OpenCV_DIR<span class="w"> </span>C:<span class="se">\o</span>pencv
-</pre></div>
-</div>
-<p>Since you are using a precompiled ROS version, we have to tell it where to find the OpenCV libraries.
-You have to extend the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable to <code class="docutils literal notranslate"><span class="pre">C:\opencv\x64\vc16\bin</span></code>.</p>
+<section id="install-pixi">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Install pixi</a><a class="headerlink" href="#install-pixi" title="Link to this heading"></a></h3>
+<p>ROS 2 uses <a class="reference external" href="https://conda-forge.org/">conda-forge</a> as a backend for packages, with <a class="reference external" href="https://pixi.sh/latest/">pixi</a> as the frontend.</p>
+<p>Continue using the previous powershell session, and use the instructions from <a class="reference external" href="https://pixi.sh/latest/">https://pixi.sh/latest/</a> to install <code class="docutils literal notranslate"><span class="pre">pixi</span></code>.
+Once <code class="docutils literal notranslate"><span class="pre">pixi</span></code> has been installed, close the powershell session and start it again, which will ensure <code class="docutils literal notranslate"><span class="pre">pixi</span></code> is on the PATH.</p>
 </section>
 <section id="install-dependencies">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Install dependencies</a><a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h3>
-<p>There are a few dependencies not available in the Chocolatey package database.
-In order to ease the manual installation process, we provide the necessary Chocolatey packages.</p>
-<p>As some chocolatey packages rely on it, we start by installing CMake</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cmake
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Install dependencies</a><a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h3>
+<p>Download the pixi configuration file in the existing powershell session:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\dev</span>
+<span class="go">irm https://raw.githubusercontent.com/ros2/ros2/refs/heads/rolling/pixi.toml -OutFile pixi.toml</span>
 </pre></div>
 </div>
-<p>You will need to append the CMake bin folder <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\CMake\bin</span></code> to your PATH.</p>
-<p>Please download these packages from <a class="reference external" href="https://github.com/ros2/choco-packages/releases/latest">this</a> GitHub repository.</p>
-<ul class="simple">
-<li><p>asio.1.12.1.nupkg</p></li>
-<li><p>bullet.3.17.nupkg</p></li>
-<li><p>cunit.2.1.3.nupkg</p></li>
-<li><p>eigen.3.3.4.nupkg</p></li>
-<li><p>tinyxml2.6.0.0.nupkg</p></li>
-</ul>
-<p>Once these packages are downloaded, open an administrative shell and execute the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-s<span class="w"> </span>&lt;PATH<span class="se">\T</span>O<span class="se">\D</span>OWNLOADS<span class="se">\&gt;</span><span class="w"> </span>asio<span class="w"> </span>cunit<span class="w"> </span>eigen<span class="w"> </span>tinyxml2<span class="w"> </span>bullet
+<p>Install dependencies:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pixi install</span>
 </pre></div>
 </div>
-<p>Please replace <code class="docutils literal notranslate"><span class="pre">&lt;PATH\TO\DOWNLOADS&gt;</span></code> with the folder you downloaded the packages to.</p>
-<p>First upgrade pip and setuptools:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span><span class="nv">setuptools</span><span class="o">==</span><span class="m">59</span>.6.0
-</pre></div>
-</div>
-<p>Now install some additional python dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>catkin_pkg<span class="w"> </span>cryptography<span class="w"> </span>empy<span class="w"> </span><span class="nv">fastjsonschema</span><span class="o">==</span><span class="m">2</span>.19.0<span class="w"> </span>importlib-metadata<span class="w"> </span>jsonschema<span class="w"> </span><span class="nv">lark</span><span class="o">==</span><span class="m">1</span>.1.1<span class="w"> </span>lxml<span class="w"> </span>matplotlib<span class="w"> </span>netifaces<span class="w"> </span>numpy<span class="w"> </span>opencv-python<span class="w"> </span>PyQt5<span class="w"> </span>pillow<span class="w"> </span>psutil<span class="w"> </span>pycairo<span class="w"> </span>pydot<span class="w"> </span><span class="nv">pyparsing</span><span class="o">==</span><span class="m">2</span>.4.7<span class="w"> </span>pytest<span class="w"> </span>pyyaml<span class="w"> </span>rosdistro
-</pre></div>
-</div>
-</section>
-<section id="install-miscellaneous-prerequisites">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Install miscellaneous prerequisites</a><a class="headerlink" href="#install-miscellaneous-prerequisites" title="Link to this heading"></a></h3>
-<p>Next install xmllint:</p>
-<ul class="simple">
-<li><p>Download the <a class="reference external" href="https://www.zlatkovic.com/pub/libxml/64bit/">64 bit binary archives</a> of <code class="docutils literal notranslate"><span class="pre">libxml2</span></code> (and its dependencies <code class="docutils literal notranslate"><span class="pre">iconv</span></code> and <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) from <a class="reference external" href="https://www.zlatkovic.com/projects/libxml/">https://www.zlatkovic.com/projects/libxml/</a></p></li>
-<li><p>Unpack all archives into e.g. <code class="docutils literal notranslate"><span class="pre">C:\xmllint</span></code></p></li>
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">C:\xmllint\bin</span></code> to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p></li>
-</ul>
-</section>
-<section id="install-qt5">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Install Qt5</a><a class="headerlink" href="#install-qt5" title="Link to this heading"></a></h3>
-<p>Download the <a class="reference external" href="https://www.qt.io/offline-installers">5.12.X offline installer</a> from Qt’s website.
-Run the installer.
-Make sure to select the <code class="docutils literal notranslate"><span class="pre">MSVC</span> <span class="pre">2017</span> <span class="pre">64-bit</span></code> component under the <code class="docutils literal notranslate"><span class="pre">Qt</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Qt</span> <span class="pre">5.12.12</span></code> tree.</p>
-<p>Finally, in an administrator <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> window set these environment variables.
-The commands below assume you installed it to the default location of <code class="docutils literal notranslate"><span class="pre">C:\Qt</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setx<span class="w"> </span>/m<span class="w"> </span>Qt5_DIR<span class="w"> </span>C:<span class="se">\Q</span>t<span class="se">\Q</span>t5.12.12<span class="se">\5</span>.12.12<span class="se">\m</span>svc2017_64
-setx<span class="w"> </span>/m<span class="w"> </span>QT_QPA_PLATFORM_PLUGIN_PATH<span class="w"> </span>C:<span class="se">\Q</span>t<span class="se">\Q</span>t5.12.12<span class="se">\5</span>.12.12<span class="se">\m</span>svc2017_64<span class="se">\p</span>lugins<span class="se">\p</span>latforms
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This path might change based on the installed MSVC version, the directory Qt was installed to, and the version of Qt installed.</p>
-</div>
-</section>
-<section id="rqt-dependencies">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">RQt dependencies</a><a class="headerlink" href="#rqt-dependencies" title="Link to this heading"></a></h3>
-<p>To run rqt_graph you need to <a class="reference external" href="https://graphviz.gitlab.io/_pages/Download/Download_windows.html">download</a> and install <a class="reference external" href="https://graphviz.gitlab.io/">Graphviz</a>.
-The installer will ask if to add graphviz to PATH, choose to either add it to the current user or all users.</p>
-</section>
-<section id="install-additional-prerequisites-from-chocolatey">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Install additional prerequisites from Chocolatey</a><a class="headerlink" href="#install-additional-prerequisites-from-chocolatey" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cppcheck<span class="w"> </span>curl<span class="w"> </span>git<span class="w"> </span>winflexbison3
-</pre></div>
-</div>
-<p>You will need to append the Git cmd folder <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Git\cmd</span></code> to the PATH (you can do this by clicking the Windows icon, typing “Environment Variables”, then clicking on “Edit the system environment variables”.
-In the resulting dialog, click “Environment Variables”, the click “Path” on the bottom pane, then click “Edit” and add the path).</p>
-</section>
-<section id="install-python-prerequisites">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Install Python prerequisites</a><a class="headerlink" href="#install-python-prerequisites" title="Link to this heading"></a></h3>
-<p>Install additional Python dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>colcon-common-extensions<span class="w"> </span>coverage<span class="w"> </span>flake8<span class="w"> </span>flake8-blind-except<span class="w"> </span>flake8-builtins<span class="w"> </span>flake8-class-newline<span class="w"> </span>flake8-comprehensions<span class="w"> </span>flake8-deprecated<span class="w"> </span>flake8-import-order<span class="w"> </span>flake8-quotes<span class="w"> </span>mock<span class="w"> </span><span class="nv">mypy</span><span class="o">==</span><span class="m">0</span>.931<span class="w"> </span>pytest<span class="w"> </span>pytest-cov<span class="w"> </span>pytest-mock<span class="w"> </span>pytest-repeat<span class="w"> </span>pytest-rerunfailures<span class="w"> </span>pytest-runner<span class="w"> </span>vcstool
-</pre></div>
-</div>
+<p>You should now close the powershell session, as the rest of the instructions will use the Windows command prompt.</p>
 </section>
 </section>
 <section id="build-ros-2">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">Build ROS 2</a><a class="headerlink" href="#build-ros-2" title="Link to this heading"></a></h2>
-<section id="get-ros-2-code">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Get ROS 2 code</a><a class="headerlink" href="#get-ros-2-code" title="Link to this heading"></a></h3>
-<p>Now that we have the development tools we can get the ROS 2 source code.</p>
-<p>First setup a development folder, for example <code class="docutils literal notranslate"><span class="pre">C:\rolling</span></code>:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is very important that the chosen path is short, due to the short default Windows path limits (260 characters).
-To allow longer paths, see <a class="reference external" href="https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry">https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry</a>.</p>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Build ROS 2</a><a class="headerlink" href="#build-ros-2" title="Link to this heading"></a></h2>
+<p>Start a new Windows command prompt, which will be used for the build.</p>
+<section id="source-the-msvc-compiler">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Source the MSVC compiler</a><a class="headerlink" href="#source-the-msvc-compiler" title="Link to this heading"></a></h3>
+<p>This is required in the command prompt you’ll use to compile ROS 2, but it is <em>not</em> required when running:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">call &quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat&quot; x86_amd64</span>
+</pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>md<span class="w"> </span><span class="se">\r</span>olling<span class="se">\s</span>rc
-<span class="nb">cd</span><span class="w"> </span><span class="se">\r</span>olling
+</section>
+<section id="source-the-pixi-environment">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Source the pixi environment</a><a class="headerlink" href="#source-the-pixi-environment" title="Link to this heading"></a></h3>
+<p>This is required in every command prompt you open to set up paths to the dependencies:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\dev</span>
+<span class="go">pixi shell</span>
+</pre></div>
+</div>
+</section>
+<section id="get-ros-2-code">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Get ROS 2 code</a><a class="headerlink" href="#get-ros-2-code" title="Link to this heading"></a></h3>
+<p>Now that we have the development tools we can get the ROS 2 source code.</p>
+<p>Setup a development folder, for example <code class="docutils literal notranslate"><span class="pre">C:\dev\rolling</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>md<span class="w"> </span>C:<span class="se">\d</span>ev<span class="se">\r</span>olling<span class="se">\s</span>rc
+<span class="nb">cd</span><span class="w"> </span>C:<span class="se">\d</span>ev<span class="se">\r</span>olling
 </pre></div>
 </div>
 <p>Get the <code class="docutils literal notranslate"><span class="pre">ros2.repos</span></code> file which defines the repositories to clone from:</p>
@@ -637,14 +562,13 @@ To allow longer paths, see <a class="reference external" href="https://learn.mic
 </div>
 </section>
 <section id="install-additional-rmw-implementations-optional">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Install additional RMW implementations (optional)</a><a class="headerlink" href="#install-additional-rmw-implementations-optional" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Install additional RMW implementations (optional)</a><a class="headerlink" href="#install-additional-rmw-implementations-optional" title="Link to this heading"></a></h3>
 <p>The default middleware that ROS 2 uses is <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">DDS</span></code>, but the middleware (RMW) can be replaced at build or runtime.
 See the <a class="reference internal" href="../../How-To-Guides/Working-with-multiple-RMW-implementations.html"><span class="doc">guide</span></a> on how to work with multiple RMWs.</p>
 </section>
 <section id="build-the-code-in-the-workspace">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">Build the code in the workspace</a><a class="headerlink" href="#build-the-code-in-the-workspace" title="Link to this heading"></a></h3>
-<p id="windows-dev-build-ros2">To build ROS 2 you will need a Visual Studio Command Prompt (“x64 Native Tools Command Prompt for VS 2019”) running as Administrator.</p>
-<p>To build the <code class="docutils literal notranslate"><span class="pre">\rolling</span></code> folder tree:</p>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Build the code in the workspace</a><a class="headerlink" href="#build-the-code-in-the-workspace" title="Link to this heading"></a></h3>
+<p id="windows-dev-build-ros2">To build the <code class="docutils literal notranslate"><span class="pre">\rolling</span></code> folder tree:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--merge-install
 </pre></div>
 </div>
@@ -653,24 +577,31 @@ See the <a class="reference internal" href="../../How-To-Guides/Working-with-mul
 <p>We’re using <code class="docutils literal notranslate"><span class="pre">--merge-install</span></code> here to avoid a <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable that is too long at the end of the build.
 If you’re adapting these instructions to build a smaller workspace then you might be able to use the default behavior which is isolated install, i.e. where each package is installed to a different folder.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are doing a debug build use <code class="docutils literal notranslate"><span class="pre">python_d</span> <span class="pre">path\to\colcon_executable</span></code> <code class="docutils literal notranslate"><span class="pre">colcon</span></code>.
-See <a class="reference internal" href="#extra-stuff-for-debug-mode">Extra stuff for debug mode</a> for more info on running Python code in debug builds on Windows.</p>
-</div>
 </section>
 </section>
 <section id="setup-environment">
-<h2><a class="toc-backref" href="#id20" role="doc-backlink">Setup environment</a><a class="headerlink" href="#setup-environment" title="Link to this heading"></a></h2>
-<p>Start a command shell and source the ROS 2 setup file to set up the workspace:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>call<span class="w"> </span>C:<span class="se">\r</span>olling<span class="se">\i</span>nstall<span class="se">\l</span>ocal_setup.bat
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Setup environment</a><a class="headerlink" href="#setup-environment" title="Link to this heading"></a></h2>
+<p>Start a new Windows command prompt, which will be used in the examples.</p>
+<section id="id1">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Source the pixi environment</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>This is required in every command prompt you open to set up paths to the dependencies:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\dev</span>
+<span class="go">pixi shell</span>
+</pre></div>
+</div>
+</section>
+<section id="source-the-ros-2-environment">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Source the ROS 2 environment</a><a class="headerlink" href="#source-the-ros-2-environment" title="Link to this heading"></a></h3>
+<p>This is required in every command prompt you open to setup the ROS 2 workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>call<span class="w"> </span>C:<span class="se">\d</span>ev<span class="se">\r</span>olling<span class="se">\i</span>nstall<span class="se">\l</span>ocal_setup.bat
 </pre></div>
 </div>
 <p>This will automatically set up the environment for any DDS vendors that support was built for.</p>
 <p>It is normal that the previous command, if nothing else went wrong, outputs “The system cannot find the path specified.” exactly once.</p>
 </section>
+</section>
 <section id="try-some-examples">
-<h2><a class="toc-backref" href="#id21" role="doc-backlink">Try some examples</a><a class="headerlink" href="#try-some-examples" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Try some examples</a><a class="headerlink" href="#try-some-examples" title="Link to this heading"></a></h2>
 <p>Note that the first time you run any executable you will have to allow access to the network through a Windows Firewall popup.</p>
 <p>You can run the tests using this command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--merge-install
@@ -690,7 +621,7 @@ Then, run a C++ <code class="docutils literal notranslate"><span class="pre">tal
 ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
 </pre></div>
 </div>
-<p>In a separate shell you can do the same, but instead run a Python <code class="docutils literal notranslate"><span class="pre">listener</span></code>:</p>
+<p>In a separate command prompt you can do the same, but instead run a Python <code class="docutils literal notranslate"><span class="pre">listener</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>call<span class="w"> </span>install<span class="se">\l</span>ocal_setup.bat
 ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_py<span class="w"> </span>listener
 </pre></div>
@@ -704,103 +635,24 @@ Hooray!</p>
 </div>
 </section>
 <section id="next-steps">
-<h2><a class="toc-backref" href="#id22" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
 <p>Continue with the <a class="reference internal" href="../../Tutorials.html"><span class="doc">tutorials and demos</span></a> to configure your environment, create your own workspace and packages, and learn ROS 2 core concepts.</p>
 </section>
-<section id="extra-stuff-for-debug-mode">
-<h2><a class="toc-backref" href="#id23" role="doc-backlink">Extra stuff for Debug mode</a><a class="headerlink" href="#extra-stuff-for-debug-mode" title="Link to this heading"></a></h2>
-<p>If you want to be able to run all the tests in Debug mode, you’ll need to install a few more things:</p>
-<ul class="simple">
-<li><p>To be able to extract the Python source tarball, you can use PeaZip:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>peazip
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>You’ll also need SVN, since some of the Python source-build dependencies are checked out via SVN:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>svn<span class="w"> </span>hg
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>You’ll need to quit and restart the command prompt after installing the above.</p></li>
-<li><p>Get and extract the Python 3.8.3 source from the <code class="docutils literal notranslate"><span class="pre">tgz</span></code>:</p>
-<ul>
-<li><p><a class="reference external" href="https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz">https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz</a></p></li>
-<li><p>To keep these instructions concise, please extract it to <code class="docutils literal notranslate"><span class="pre">C:\dev\Python-3.8.3</span></code></p></li>
-</ul>
-</li>
-<li><p>Now, build the Python source in debug mode from a Visual Studio command prompt:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>C:<span class="se">\d</span>ev<span class="se">\P</span>ython-3.8.3<span class="se">\P</span>Cbuild
-get_externals.bat
-build.bat<span class="w"> </span>-p<span class="w"> </span>x64<span class="w"> </span>-d
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Finally, copy the build products into the Python38 installation directories, next to the Release-mode Python executable and DLL’s:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>C:<span class="se">\d</span>ev<span class="se">\P</span>ython-3.8.3<span class="se">\P</span>Cbuild<span class="se">\a</span>md64
-copy<span class="w"> </span>python_d.exe<span class="w"> </span>C:<span class="se">\P</span>ython38<span class="w"> </span>/Y
-copy<span class="w"> </span>python38_d.dll<span class="w"> </span>C:<span class="se">\P</span>ython38<span class="w"> </span>/Y
-copy<span class="w"> </span>python3_d.dll<span class="w"> </span>C:<span class="se">\P</span>ython38<span class="w"> </span>/Y
-copy<span class="w"> </span>python38_d.lib<span class="w"> </span>C:<span class="se">\P</span>ython38<span class="se">\l</span>ibs<span class="w"> </span>/Y
-copy<span class="w"> </span>python3_d.lib<span class="w"> </span>C:<span class="se">\P</span>ython38<span class="se">\l</span>ibs<span class="w"> </span>/Y
-copy<span class="w"> </span>sqlite3_d.dll<span class="w"> </span>C:<span class="se">\P</span>ython38<span class="se">\D</span>LLs<span class="w"> </span>/Y
-<span class="k">for</span><span class="w"> </span>%I<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">(</span>*_d.pyd<span class="o">)</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>copy<span class="w"> </span>%I<span class="w"> </span>C:<span class="se">\P</span>ython38<span class="se">\D</span>LLs<span class="w"> </span>/Y
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Now, from a fresh command prompt, make sure that <code class="docutils literal notranslate"><span class="pre">python_d</span></code> works:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python_d<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import _ctypes ; import coverage&quot;</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Once you have verified the operation of <code class="docutils literal notranslate"><span class="pre">python_d</span></code>, it is necessary to reinstall a few dependencies with the debug-enabled libraries:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python_d<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--force-reinstall<span class="w"> </span>https://github.com/ros2/ros2/releases/download/numpy-archives/numpy-1.18.4-cp38-cp38d-win_amd64.whl
-python_d<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--force-reinstall<span class="w"> </span>https://github.com/ros2/ros2/releases/download/lxml-archives/lxml-4.5.1-cp38-cp38d-win_amd64.whl
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>To verify the installation of these dependencies:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python_d<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from lxml import etree ; import numpy&quot;</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>When you wish to return to building release binaries, it is necessary to uninstall the debug variants and use the release variants:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>numpy<span class="w"> </span>lxml
-python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>lxml
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>To create executables python scripts(.exe), python_d should be used to invoke colcon</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python_d<span class="w"> </span>path<span class="se">\t</span>o<span class="se">\c</span>olcon_executable<span class="w"> </span>build
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Hooray, you’re done!</p></li>
-</ul>
-</section>
 <section id="stay-up-to-date">
-<h2><a class="toc-backref" href="#id24" role="doc-backlink">Stay up to date</a><a class="headerlink" href="#stay-up-to-date" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Stay up to date</a><a class="headerlink" href="#stay-up-to-date" title="Link to this heading"></a></h2>
 <p>See <a class="reference internal" href="../Maintaining-a-Source-Checkout.html"><span class="doc">Maintain source checkout</span></a> to periodically refresh your source installation.</p>
 </section>
 <section id="troubleshoot">
-<h2><a class="toc-backref" href="#id25" role="doc-backlink">Troubleshoot</a><a class="headerlink" href="#troubleshoot" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Troubleshoot</a><a class="headerlink" href="#troubleshoot" title="Link to this heading"></a></h2>
 <p>Troubleshooting techniques can be found <a class="reference internal" href="../../How-To-Guides/Installation-Troubleshooting.html#windows-troubleshooting"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="uninstall">
-<h2><a class="toc-backref" href="#id26" role="doc-backlink">Uninstall</a><a class="headerlink" href="#uninstall" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Uninstall</a><a class="headerlink" href="#uninstall" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>If you installed your workspace with colcon as instructed above, “uninstalling” could be just a matter of opening a new terminal and not sourcing the workspace’s <code class="docutils literal notranslate"><span class="pre">setup</span></code> file.
 This way, your environment will behave as though there is no Rolling install on your system.</p></li>
 <li><p>If you’re also trying to free up space, you can delete the entire workspace directory with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rmdir<span class="w"> </span>/s<span class="w"> </span>/q<span class="w"> </span><span class="se">\r</span>os2_rolling
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rmdir<span class="w"> </span>/s<span class="w"> </span>/q<span class="w"> </span>C:<span class="se">\d</span>ev<span class="se">\r</span>os2_rolling
 </pre></div>
 </div>
 </li>
@@ -856,13 +708,13 @@ This way, your environment will behave as though there is no Rolling install on 
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GTM-NFW6MLHB', {
+      gtag('config', 'G-EVD5Z6G6NH', {
           'anonymize_ip': false,
       });
     </script> 

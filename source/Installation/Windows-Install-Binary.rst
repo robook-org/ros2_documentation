@@ -107,7 +107,7 @@ This is required in every command prompt you open to setup the ROS 2 workspace:
 
    call ros2_{DISTRO}\local_setup.bat
 
-It is normal that the previous command, if nothing else went wrong, outputs "The system cannot find the path specified." exactly once.
+It is normal that the previous command, if nothing else went wrong, outputs ``The system cannot find the path specified.`` exactly once.
 
 Try some examples
 -----------------

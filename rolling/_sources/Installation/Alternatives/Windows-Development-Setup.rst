@@ -48,7 +48,7 @@ Using the powershell session you started above, run the following:
 
    New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
 
-You can read more about this limitation at https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry.
+You can read more about this limitation in `Microsoft's documentation <https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry>`__.
 
 
 Install prerequisites
@@ -192,7 +192,7 @@ This is required in every command prompt you open to setup the ROS 2 workspace:
 
 This will automatically set up the environment for any DDS vendors that support was built for.
 
-It is normal that the previous command, if nothing else went wrong, outputs "The system cannot find the path specified." exactly once.
+It is normal that the previous command, if nothing else went wrong, outputs ``The system cannot find the path specified.`` exactly once.
 
 Try some examples
 -----------------

@@ -411,7 +411,7 @@
           <li class="breadcrumb-item"><a href="Security-Main.html">Security</a></li>
       <li class="breadcrumb-item active">Setting up security</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/Tutorials/Advanced/Security/Introducing-ros2-security.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/Tutorials/Advanced/Security/Introducing-ros2-security.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -438,12 +438,12 @@
 </li>
 <li><p><a class="reference internal" href="#run-the-demo" id="id5">Run the demo</a></p>
 <ul>
-<li><p><a class="reference internal" href="#create-a-folder-for-the-security-files" id="id6">1. Create a folder for the security files</a></p></li>
-<li><p><a class="reference internal" href="#generate-a-keystore" id="id7">2. Generate a keystore</a></p></li>
-<li><p><a class="reference internal" href="#generate-keys-and-certificates" id="id8">3. Generate keys and certificates</a></p></li>
-<li><p><a class="reference internal" href="#configure-environment-variables" id="id9">4. Configure environment variables</a></p></li>
-<li><p><a class="reference internal" href="#run-the-talker-listener-demo" id="id10">5. Run the <code class="docutils literal notranslate"><span class="pre">talker/listener</span></code> demo</a></p></li>
-<li><p><a class="reference internal" href="#use-ros2cli-with-security" id="id11">6. Use <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> with security</a></p></li>
+<li><p><a class="reference internal" href="#create-a-folder-for-the-security-files" id="id6">1) Create a folder for the security files</a></p></li>
+<li><p><a class="reference internal" href="#generate-a-keystore" id="id7">2) Generate a keystore</a></p></li>
+<li><p><a class="reference internal" href="#generate-keys-and-certificates" id="id8">3) Generate keys and certificates</a></p></li>
+<li><p><a class="reference internal" href="#configure-environment-variables" id="id9">4) Configure environment variables</a></p></li>
+<li><p><a class="reference internal" href="#run-the-talker-listener-demo" id="id10">5) Run the <code class="docutils literal notranslate"><span class="pre">talker/listener</span></code> demo</a></p></li>
+<li><p><a class="reference internal" href="#use-ros2cli-with-security" id="id11">6) Use <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> with security</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#take-the-quiz" id="id12">Take the Quiz!</a></p></li>
@@ -495,7 +495,7 @@ See <a class="reference internal" href="../../../How-To-Guides/Working-with-mult
 <section id="run-the-demo">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Run the demo</a><a class="headerlink" href="#run-the-demo" title="Link to this heading"></a></h2>
 <section id="create-a-folder-for-the-security-files">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">1. Create a folder for the security files</a><a class="headerlink" href="#create-a-folder-for-the-security-files" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">1) Create a folder for the security files</a><a class="headerlink" href="#create-a-folder-for-the-security-files" title="Link to this heading"></a></h3>
 <blockquote>
 <div><p>Begin by creating folder to store all the files necessary for this demo:</p>
 <div class="sphinx-tabs docutils container">
@@ -512,7 +512,7 @@ See <a class="reference internal" href="../../../How-To-Guides/Working-with-mult
 </div></blockquote>
 </section>
 <section id="generate-a-keystore">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">2. Generate a keystore</a><a class="headerlink" href="#generate-a-keystore" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">2) Generate a keystore</a><a class="headerlink" href="#generate-a-keystore" title="Link to this heading"></a></h3>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">sros2</span></code> utilities to create the keystore.
 Files in the keystore will be used to enable security for all the participants in the ROS 2 graph.</p>
 <div class="sphinx-tabs docutils container">
@@ -531,7 +531,7 @@ ros2 security create_keystore demo_keystore
 </div></div>
 </section>
 <section id="generate-keys-and-certificates">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">3. Generate keys and certificates</a><a class="headerlink" href="#generate-keys-and-certificates" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">3) Generate keys and certificates</a><a class="headerlink" href="#generate-keys-and-certificates" title="Link to this heading"></a></h3>
 <p>Once the keystore is created, create keys and certificates for each node with security enabled.
 For our demo, that includes the talker and listener nodes.
 This command uses the <code class="docutils literal notranslate"><span class="pre">create_enclave</span></code> feature which is covered in more detail in the next tutorial.</p>
@@ -556,7 +556,7 @@ ros2 security create_enclave demo_keystore /talker_listener/listener
 </div></div>
 </section>
 <section id="configure-environment-variables">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">4. Configure environment variables</a><a class="headerlink" href="#configure-environment-variables" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">4) Configure environment variables</a><a class="headerlink" href="#configure-environment-variables" title="Link to this heading"></a></h3>
 <p>Three environment variables allow the middleware to locate encryption materials and enable (and possibly enforce) security.
 These and other security-related environment variables are described in the <a class="reference external" href="https://design.ros2.org/articles/ros2_dds_security.html">ROS 2 DDS-Security Integration design document</a>.</p>
 <div class="sphinx-tabs docutils container">
@@ -580,7 +580,7 @@ These and other security-related environment variables are described in the <a c
 For convenience you can add them to your boot environment.</p>
 </section>
 <section id="run-the-talker-listener-demo">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">5. Run the <code class="docutils literal notranslate"><span class="pre">talker/listener</span></code> demo</a><a class="headerlink" href="#run-the-talker-listener-demo" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">5) Run the <code class="docutils literal notranslate"><span class="pre">talker/listener</span></code> demo</a><a class="headerlink" href="#run-the-talker-listener-demo" title="Link to this heading"></a></h3>
 <p>Begin the demo by launching the talker node.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker<span class="w"> </span>--ros-args<span class="w"> </span>--enclave<span class="w"> </span>/talker_listener/talker
 </pre></div>
@@ -597,7 +597,7 @@ If you look at the packet contents (for example, using <code class="docutils lit
 <p>Leave both nodes running as you use <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> and answer the questions below.</p>
 </section>
 <section id="use-ros2cli-with-security">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">6. Use <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> with security</a><a class="headerlink" href="#use-ros2cli-with-security" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">6) Use <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> with security</a><a class="headerlink" href="#use-ros2cli-with-security" title="Link to this heading"></a></h3>
 <p>To use <code class="docutils literal notranslate"><span class="pre">ros2cli</span></code> to iterate with ROS 2 secured network, you need to provide it with override enclave by <code class="docutils literal notranslate"><span class="pre">ROS_SECURITY_ENCLAVE_OVERRIDE</span></code> environmental variable.
 Open an another terminal and set up the following environmental variables.</p>
 <div class="sphinx-tabs docutils container">
@@ -721,13 +721,13 @@ Be sure to create pull requests and issues here so we can continue improving sec
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GTM-NFW6MLHB', {
+      gtag('config', 'G-EVD5Z6G6NH', {
           'anonymize_ip': false,
       });
     </script> 

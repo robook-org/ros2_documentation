@@ -328,6 +328,8 @@ You can also view the rate at which data is published using:
 回想一下，你使用 ``ros2 topic pub --rate 1`` 设置 ``turtle1/cmd_vel`` 的发布速率为稳定的 1 Hz。
 如果你用 ``turtle1/cmd_vel`` 替换上面的命令，你会看到一个反映这个速率的平均值。
 
+.. Note:: The rate reflects the receiving rate on the subscription created by the ``ros2 topic hz`` command, which might be affected by platform resources and QoS configuration, and may not exactly match the publisher rate.
+
 9 ros2 topic bw
 ^^^^^^^^^^^^^^^
 
@@ -344,6 +346,8 @@ It returns the bandwidth utilization and number of messages being published to t
     Subscribed to [/turtle1/pose]
     1.51 KB/s from 62 messages
         Message size mean: 0.02 KB min: 0.02 KB max: 0.02 KB
+
+.. Note:: The bandwidth reflects the receiving rate on the subscription created by the ``ros2 topic bw`` command, which might be affected by platform resources and QoS configuration, and may not exactly match the publisher's bandwidth.
 
 10 ros2 topic find
 ^^^^^^^^^^^^^^^^^^

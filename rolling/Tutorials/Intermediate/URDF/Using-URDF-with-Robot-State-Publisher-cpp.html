@@ -466,7 +466,7 @@ We then use <code class="docutils literal notranslate"><span class="pre">robot_s
 <h3><a class="toc-backref" href="#id4" role="doc-backlink">1 Create a package</a><a class="headerlink" href="#create-a-package" title="Link to this heading"></a></h3>
 <p>Go to your ROS 2 workplace and create a package names <code class="docutils literal notranslate"><span class="pre">urdf_tutorial_cpp</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd src</span>
-<span class="go">ros2 pkg create --build-type ament_python --license Apache-2.0 urdf_tutorial_cpp --dependencies rclpy</span>
+<span class="go">ros2 pkg create --build-type ament_cmake --license Apache-2.0 urdf_tutorial_cpp --dependencies rclcpp</span>
 <span class="go">cd urdf_tutorial_cpp</span>
 </pre></div>
 </div>

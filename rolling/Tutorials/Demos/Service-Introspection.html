@@ -566,7 +566,7 @@ If you downloaded the archive or built ROS 2 from source, it will already be par
 <span class="p">}</span><span class="w">  </span><span class="c1">// namespace demo_nodes_cpp</span>
 </pre></div>
 </div>
-<p>Service introspection is disable in default, so users need to enable it to call <code class="docutils literal notranslate"><span class="pre">configure_introspection</span></code> on service server.
+<p>Service introspection is disabled by default, so users need to enable it to call <code class="docutils literal notranslate"><span class="pre">configure_introspection</span></code> on service server.
 In this demo, <code class="docutils literal notranslate"><span class="pre">IntrospectionServiceNode</span></code> uses a parameter named <code class="docutils literal notranslate"><span class="pre">`service_configure_introspection</span></code> to configure the service introspection state.</p>
 <p>1st we need to start <code class="docutils literal notranslate"><span class="pre">IntrospectionServiceNode</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>introspection_service

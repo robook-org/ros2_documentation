@@ -518,7 +518,7 @@ When enabled, this allows users to see the metadata associated with the client r
 Optionally, the contents of the client/server requests/responses can also be introspected.
 All of the information is published on a hidden topic generated from the name of the service.
 So if the service is called <code class="docutils literal notranslate"><span class="pre">/myservice</span></code>, then the information will be published on <code class="docutils literal notranslate"><span class="pre">/myservice/_service_event</span></code>.</p>
-<p>Note that this functionality is disabled by default; to enable it, users must call <code class="docutils literal notranslate"><span class="pre">configure_introspection</span></code> after creating a server client or server.
+<p>Note that this functionality is disabled by default; to enable it, users must call <code class="docutils literal notranslate"><span class="pre">configure_introspection</span></code> after creating a service client or server.
 There are examples showing how to do this in <a class="reference external" href="https://github.com/ros2/demos/tree/iron/demo_nodes_cpp/src/services">https://github.com/ros2/demos/tree/iron/demo_nodes_cpp/src/services</a> (C++) and <a class="reference external" href="https://github.com/ros2/demos/blob/iron/demo_nodes_py/demo_nodes_py/services/introspection.py">https://github.com/ros2/demos/blob/iron/demo_nodes_py/demo_nodes_py/services/introspection.py</a> (Python).</p>
 <p>See <a class="reference external" href="https://github.com/ros-infrastructure/rep/pull/360">REP 2012</a> and the tracking bug at <a class="reference external" href="https://github.com/ros2/ros2/issues/1285">https://github.com/ros2/ros2/issues/1285</a> for more information.</p>
 </section>

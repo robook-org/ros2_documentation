@@ -63,18 +63,19 @@ ROS2 的目标是适应这些变、保留 ROS1 的优势并改进不足之处。
 
 * :doc:`联系我们 <Contact>`
 
-  - 找到问题的答案或用来讨论问题的论坛
+  - Answers to your questions or a forum to start a discussion
 
-ROS 2 项目
-------------
 
-如果你对 ROS 2 项目的进展感兴趣：
+The ROS 2 project
+-----------------
 
-* :doc:`贡献 <The-ROS2-Project/Contributing>`
+If you're interested in the advancement of the ROS 2 project:
 
-  - 贡献到 ROS 2 的最佳实践和方法，以及迁移现有 ROS 1 内容到 ROS 2 的方法
+* :doc:`Contributing <The-ROS2-Project/Contributing>`
 
 * :doc:`发行版 <Releases>`
+
+* :doc:`Distributions <Releases>`
 
   - 从过去到现在所有的 ROS 2 发行版本
 
@@ -191,7 +192,8 @@ Miscellaneous
 ----------
 * `ROS Answers <https://answers.ros.org/questions/>`__ (ROS 1, ROS 2)
 
-  - ROS Answers was the ROS community Q&A website, until August, 2023. ROS Answers is currently available as a read-only resource.
+  - ROS Answers was the ROS community Q&A website, until August, 2023.
+  - ROS Answers is currently available as a read-only resource.
 
 * `ROS 2 Docs <https://docs.ros2.org>`_
 

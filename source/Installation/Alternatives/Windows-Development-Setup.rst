@@ -70,7 +70,7 @@ First setup a development folder, for example ``C:\{DISTRO}``:
 .. note::
 
    It is very important that the chosen path is short, due to the short default Windows path limits (260 characters).
-   To allow longer paths, see https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry.
+   To allow longer paths, see `maximum-file-path-limitation <https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry>`__.
 
 .. code-block:: bash
 
@@ -124,7 +124,7 @@ Start a command shell and source the ROS 2 setup file to set up the workspace:
 
 This will automatically set up the environment for any DDS vendors that support was built for.
 
-It is normal that the previous command, if nothing else went wrong, outputs "The system cannot find the path specified." exactly once.
+It is normal that the previous command, if nothing else went wrong, outputs ``The system cannot find the path specified.`` exactly once.
 
 Test and run
 ------------
@@ -204,7 +204,7 @@ If you want to be able to run all the tests in Debug mode, you'll need to instal
 * You'll need to quit and restart the command prompt after installing the above.
 * Get and extract the Python 3.8.3 source from the ``tgz``:
 
-  * https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz
+  * `Python-3.8.3 <https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz>`__
   * To keep these instructions concise, please extract it to ``C:\dev\Python-3.8.3``
 
 * Now, build the Python source in debug mode from a Visual Studio command prompt:
@@ -256,7 +256,7 @@ If you want to be able to run all the tests in Debug mode, you'll need to instal
    python -m pip uninstall numpy lxml
    python -m pip install numpy lxml
 
-* To create executables python scripts(.exe), python_d should be used to invoke colcon
+* To create executables python scripts(``.exe``), python_d should be used to invoke colcon
 
 .. code-block:: bash
 

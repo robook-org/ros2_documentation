@@ -24,7 +24,7 @@
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
         <script src="../../../_static/tabs.js?v=3030b3cb"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -408,7 +408,7 @@
           <li class="breadcrumb-item"><a href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a></li>
       <li class="breadcrumb-item active">使用 <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span></code>, <code class="docutils literal notranslate"><span class="pre">rqt</span></code></li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -517,7 +517,8 @@ rqt 可以做到的事情，使用命令行工具也可以做到，只是 rqt �
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>按下一个方向键只会让小乌龟移动一小段距离然后停下.
-毕竟你应该不希望一个机器人在操作员失去与机器人的连接时继续执行指令.（译者注：这个表现实际上是在模拟真实对机器人的控制，毕竟在真机上丢失控制指令就停止移动也是一个显而易见的简单保护策略。）</p>
+毕竟你应该不希望一个机器人在操作员失去与机器人的连接时继续执行指令.
+（译者注：这个表现实际上是在模拟真实对机器人的控制，毕竟在真机上丢失控制指令就停止移动也是一个显而易见的简单保护策略。）</p>
 </div>
 <p>你可以使用 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">node</span> <span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">service</span> <span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">action</span> <span class="pre">list</span></code> 来查看节点和相关的 topics 、服务、actions.
 （译者注： 你可以这样理解这些指令， ros2 是主指令， node topic service action 这些是组件，而主指令下某个组件的 list 是子指令。在过去或未来的学习中，你应该用过或者可以用这样的思路猜测、记忆、使用或者设计各种各样的命令行工具。）</p>
@@ -562,7 +563,8 @@ rqt 可以做到的事情，使用命令行工具也可以做到，只是 rqt �
 <section id="spawn">
 <h4>5.1 尝试 spawn 服务<a class="headerlink" href="#spawn" title="Link to this heading"></a></h4>
 <p>让我们使用 rqt 来调用 <code class="docutils literal notranslate"><span class="pre">/spawn</span></code> 服务.
-你可以从服务的名字猜到， <code class="docutils literal notranslate"><span class="pre">/spawn</span></code> 会在 turtlesim 窗口中生成一个新的小乌龟.（译者注： spawn 是英文中“生成”的意思）</p>
+你可以从服务的名字猜到， <code class="docutils literal notranslate"><span class="pre">/spawn</span></code> 会在 turtlesim 窗口中生成一个新的小乌龟.
+（译者注： spawn 是英文中“生成”的意思）</p>
 <p>双击 <strong>Expression</strong> 列中的空白单引号中间，给新生成的小乌龟取一个独特的名字，比如 <code class="docutils literal notranslate"><span class="pre">turtle2</span></code>.
 你可以看到这个表达式对应的是 <strong>name</strong> 的值，是一个 <strong>string</strong> 类型的值.</p>
 <p>接下来输入一些有效的坐标来生成新的小乌龟，比如 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">1.0</span></code> 和 <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">1.0</span></code>.</p>
@@ -582,7 +584,9 @@ rqt 可以做到的事情，使用命令行工具也可以做到，只是 rqt �
 <h4>5.2 尝试使用 <code class="docutils literal notranslate"><span class="pre">set_pen</span></code> 服务<a class="headerlink" href="#set-pen" title="Link to this heading"></a></h4>
 <p>现在让我们使用 <code class="docutils literal notranslate"><span class="pre">/set_pen</span></code> 服务给 <code class="docutils literal notranslate"><span class="pre">turtle1</span></code> 设置一个不一样的笔（这样就能留下不一样的轨迹）:</p>
 <img alt="../../../_images/set_pen.png" src="../../../_images/set_pen.png" />
-<p><code class="docutils literal notranslate"><span class="pre">set_pen</span></code> 服务有四个参数: <strong>r</strong>, <strong>g</strong>, <strong>b</strong>, <strong>width</strong>. 这些参数分别对应笔颜色的rgb分量和宽度.其中 <strong>r</strong>, <strong>g</strong>, <strong>b</strong> 的取值范围在 0 到 255 之间。</p>
+<p><code class="docutils literal notranslate"><span class="pre">set_pen</span></code> 服务有四个参数: <strong>r</strong>, <strong>g</strong>, <strong>b</strong>, <strong>width</strong>.
+这些参数分别对应笔颜色的rgb分量和宽度.
+其中 <strong>r</strong>, <strong>g</strong>, <strong>b</strong> 的取值范围在 0 到 255 之间。</p>
 <p>让我们尝试给 <code class="docutils literal notranslate"><span class="pre">turtle1</span></code> 设置一个红色的笔，使它留下红色的轨迹，把 <strong>r</strong> 的值设为 255， <strong>width</strong> 的值设为 5.
 修改完参数之后别忘了点击 <strong>Call</strong> 按键来调用服务.</p>
 <p>如果你返回到 <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code> 运行的终端，按下方向键，你会看到 <code class="docutils literal notranslate"><span class="pre">turtle1</span></code> 的笔已经改变了.</p>
@@ -594,7 +598,7 @@ rqt 可以做到的事情，使用命令行工具也可以做到，只是 rqt �
 <section id="id8">
 <h3><a class="toc-backref" href="#id22" role="doc-backlink">6 重映射</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <p>为了控制 <code class="docutils literal notranslate"><span class="pre">turtle2</span></code>，你需要一个新的遥控节点.
-不过如果你尝试运行之前的指令，你会发现这个遥控节点也会控制 <code class="docutils literal notranslate"><span class="pre">turtle1</span></code>.这是因为 <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code> 默认会发布到 <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> topic.
+不过如果你尝试运行之前的指令，你会发现这个遥控节点也会控制 <code class="docutils literal notranslate"><span class="pre">turtle1</span></code>,这是因为 <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code> 默认会发布到 <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> topic.
 所以如果想控制 <code class="docutils literal notranslate"><span class="pre">turtle2</span></code>，你需要重映射 <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> topic给 <code class="docutils literal notranslate"><span class="pre">turtle2</span></code>.</p>
 <p>在一个新的终端中 source ROS 2(译者注：后续我们可能不再详细描述 source 什么文件或者 source 是什么意思，你需要自己理解对应要 source 的文件，如果不懂可以先理解到此之前的教程)，然后运行:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel</span>
@@ -605,7 +609,8 @@ rqt 可以做到的事情，使用命令行工具也可以做到，只是 rqt �
 </section>
 <section id="id9">
 <h3><a class="toc-backref" href="#id23" role="doc-backlink">7 关闭 turtlesim</a><a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
-<p>如果要停止仿真，你可以在 <code class="docutils literal notranslate"><span class="pre">turtlesim_node</span></code> 终端中输入 <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code>，在 <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code> 终端中输入 <code class="docutils literal notranslate"><span class="pre">q</span></code>.(译者注： <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code> 是 Linux 下终止正在运行的程序的快捷键。而一般程序的设计者如果设计了退出的触发按键，那就很有可能是 <code class="docutils literal notranslate"><span class="pre">q</span></code>，表示 quit。)</p>
+<p>如果要停止仿真，你可以在 <code class="docutils literal notranslate"><span class="pre">turtlesim_node</span></code> 终端中输入 <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code>，在 <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code> 终端中输入 <code class="docutils literal notranslate"><span class="pre">q</span></code>.
+(译者注： <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code> 是 Linux 下终止正在运行的程序的快捷键。而一般程序的设计者如果设计了退出的触发按键，那就很有可能是 <code class="docutils literal notranslate"><span class="pre">q</span></code>，表示 quit。)</p>
 </section>
 </section>
 <section id="id10">
@@ -671,13 +676,13 @@ rqt 可以做到的事情，使用命令行工具也可以做到，只是 rqt �
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

@@ -71,10 +71,10 @@ In your workspace ``src`` directory, create a package ``more_interfaces`` and ma
 
 这个消息由以下字段组成：
 
-* first_name: of type string. 名字。
-* last_name: of type string. 姓氏。
-* phone_number: of type string. 电话号码。
-* phone_type: of type uint8, with several named constant values defined. 电话类型。
+* first_name: of type string, 名字。
+* last_name: of type string, 姓氏。
+* phone_number: of type string, 电话号码。
+* phone_type: of type uint8, with several named constant values defined, 电话类型。
 
 请注意，可以在消息定义中为字段设置默认值。
 查看 :doc:`../../Concepts/Basic/About-Interfaces` 了解更多自定义接口的方法。

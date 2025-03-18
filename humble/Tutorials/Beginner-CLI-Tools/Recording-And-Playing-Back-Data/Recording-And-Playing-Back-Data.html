@@ -24,7 +24,7 @@
         <script src="../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
         <script src="../../../_static/tabs.js?v=3030b3cb"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -408,7 +408,7 @@
           <li class="breadcrumb-item"><a href="../../Beginner-CLI-Tools.html">初级: 命令行交互工具</a></li>
       <li class="breadcrumb-item active">记录和回放数据</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -612,7 +612,7 @@
 <img alt="../../../_images/playback.png" src="../../../_images/playback.png" />
 <p>因为 <code class="docutils literal notranslate"><span class="pre">subset</span></code> 文件记录的是 <code class="docutils literal notranslate"><span class="pre">/turtle1/pose</span></code> 这个 topic，所以只要你不退出 turtlesim， <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span> <span class="pre">play</span></code> 命令就会一直运行。</p>
 <p>这是因为只要 <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> 节点在运行，它就会在固定的时间间隔内（也就是以固定频率）发布数据到 <code class="docutils literal notranslate"><span class="pre">/turtle1/pose</span></code> topic 上。
-你应该已经注意到，前面 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span> <span class="pre">info</span></code> 返回的 <code class="docutils literal notranslate"><span class="pre">/turtle1/pose</span></code> topic 的 <code class="docutils literal notranslate"><span class="pre">Count</span></code> 值只有9.这是我们录制时按下方向键的次数。</p>
+你应该已经注意到，前面 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span> <span class="pre">info</span></code> 返回的 <code class="docutils literal notranslate"><span class="pre">/turtle1/pose</span></code> topic 的 <code class="docutils literal notranslate"><span class="pre">Count</span></code> 值只有9, 这是我们录制时按下方向键的次数。</p>
 <p>不过注意， <code class="docutils literal notranslate"><span class="pre">/turtle1/pose</span></code> 的 <code class="docutils literal notranslate"><span class="pre">Count</span></code> 值是3000多；这意思是，在我们录制时，数据在这个 topic 上发布了3000多次。</p>
 <p>用下面的指令可以查看位置数据发布的频率:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic hz /turtle1/pose</span>
@@ -685,13 +685,13 @@
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

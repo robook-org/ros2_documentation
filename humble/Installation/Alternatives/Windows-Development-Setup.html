@@ -24,7 +24,7 @@
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -407,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Alternatives.html">Alternatives</a></li>
       <li class="breadcrumb-item active">Windows (source)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Installation/Alternatives/Windows-Development-Setup.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Installation/Alternatives/Windows-Development-Setup.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -533,7 +533,7 @@ In the resulting dialog, click “Environment Variables”, then click “Path�
 <section id="install-opencv">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Install OpenCV</a><a class="headerlink" href="#install-opencv" title="Link to this heading"></a></h3>
 <p>Some of the examples require OpenCV to be installed.</p>
-<p>You can download a precompiled version of OpenCV 3.4.6 from <a class="reference external" href="https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.6-vc16.VS2019.zip">https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.6-vc16.VS2019.zip</a> .</p>
+<p>You can download a precompiled version of OpenCV <code class="docutils literal notranslate"><span class="pre">3.4.6</span></code> from <a class="reference external" href="https://github.com/ros2/ros2/releases/download/opencv-archives/opencv-3.4.6-vc16.VS2019.zip">here</a>.</p>
 <p>Assuming you unpacked it to <code class="docutils literal notranslate"><span class="pre">C:\opencv</span></code>, type the following on a Command Prompt (requires Admin privileges):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setx<span class="w"> </span>/m<span class="w"> </span>OpenCV_DIR<span class="w"> </span>C:<span class="se">\o</span>pencv
 </pre></div>
@@ -552,12 +552,12 @@ In order to ease the manual installation process, we provide the necessary Choco
 <p>You will need to append the CMake bin folder <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\CMake\bin</span></code> to your PATH.</p>
 <p>Please download these packages from <a class="reference external" href="https://github.com/ros2/choco-packages/releases/latest">this</a> GitHub repository.</p>
 <ul class="simple">
-<li><p>asio.1.12.1.nupkg</p></li>
-<li><p>bullet.3.17.nupkg</p></li>
-<li><p>cunit.2.1.3.nupkg</p></li>
-<li><p>eigen.3.3.4.nupkg</p></li>
-<li><p>tinyxml-usestl.2.6.2.nupkg</p></li>
-<li><p>tinyxml2.6.0.0.nupkg</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asio.1.12.1.nupkg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bullet.3.17.nupkg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cunit.2.1.3.nupkg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eigen.3.3.4.nupkg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tinyxml-usestl.2.6.2.nupkg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tinyxml2.6.0.0.nupkg</span></code></p></li>
 </ul>
 <p>Once these packages are downloaded, open an administrative shell and execute the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-s<span class="w"> </span>&lt;PATH<span class="se">\T</span>O<span class="se">\D</span>OWNLOADS<span class="se">\&gt;</span><span class="w"> </span>asio<span class="w"> </span>cunit<span class="w"> </span>eigen<span class="w"> </span>tinyxml-usestl<span class="w"> </span>tinyxml2<span class="w"> </span>bullet
@@ -630,7 +630,7 @@ In the resulting dialog, click “Environment Variables”, the click “Path”
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It is very important that the chosen path is short, due to the short default Windows path limits (260 characters).
-To allow longer paths, see <a class="reference external" href="https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry">https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry</a>.</p>
+To allow longer paths, see <a class="reference external" href="https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry">maximum-file-path-limitation</a>.</p>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>md<span class="w"> </span><span class="se">\h</span>umble<span class="se">\s</span>rc
 <span class="nb">cd</span><span class="w"> </span><span class="se">\h</span>umble
@@ -671,7 +671,7 @@ See <a class="reference internal" href="#extra-stuff-for-debug-mode">Extra stuff
 </pre></div>
 </div>
 <p>This will automatically set up the environment for any DDS vendors that support was built for.</p>
-<p>It is normal that the previous command, if nothing else went wrong, outputs “The system cannot find the path specified.” exactly once.</p>
+<p>It is normal that the previous command, if nothing else went wrong, outputs <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">system</span> <span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">the</span> <span class="pre">path</span> <span class="pre">specified.</span></code> exactly once.</p>
 </section>
 <section id="test-and-run">
 <h2><a class="toc-backref" href="#id21" role="doc-backlink">Test and run</a><a class="headerlink" href="#test-and-run" title="Link to this heading"></a></h2>
@@ -735,7 +735,7 @@ See the <a class="reference internal" href="../../How-To-Guides/Working-with-mul
 <li><p>You’ll need to quit and restart the command prompt after installing the above.</p></li>
 <li><p>Get and extract the Python 3.8.3 source from the <code class="docutils literal notranslate"><span class="pre">tgz</span></code>:</p>
 <ul>
-<li><p><a class="reference external" href="https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz">https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz</a></p></li>
+<li><p><a class="reference external" href="https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz">Python-3.8.3</a></p></li>
 <li><p>To keep these instructions concise, please extract it to <code class="docutils literal notranslate"><span class="pre">C:\dev\Python-3.8.3</span></code></p></li>
 </ul>
 </li>
@@ -786,7 +786,7 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>To create executables python scripts(.exe), python_d should be used to invoke colcon</p></li>
+<li><p>To create executables python scripts(<code class="docutils literal notranslate"><span class="pre">.exe</span></code>), python_d should be used to invoke colcon</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python_d<span class="w"> </span>path<span class="se">\t</span>o<span class="se">\c</span>olcon_executable<span class="w"> </span>build
 </pre></div>
@@ -865,13 +865,13 @@ This way, your environment will behave as though there is no Humble install on y
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

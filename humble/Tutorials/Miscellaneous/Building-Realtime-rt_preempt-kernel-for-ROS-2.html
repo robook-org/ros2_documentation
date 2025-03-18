@@ -24,7 +24,7 @@
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -407,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Miscellaneous.html">杂项</a></li>
       <li class="breadcrumb-item active">Building a real-time Linux kernel [community-contributed]</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Miscellaneous/Building-Realtime-rt_preempt-kernel-for-ROS-2.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Miscellaneous/Building-Realtime-rt_preempt-kernel-for-ROS-2.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -424,7 +424,7 @@ Actual kernel is 5.4.0-54-generic, but we will install the Latest Stable RT_PREE
 To build the kernel you need at least 30GB free disk space.</p>
 <p>Check <a class="reference external" href="https://wiki.linuxfoundation.org/realtime/start">this wiki</a> for the latest stable version, at the time of writing this is “Latest Stable Version 5.4-rt”.
 If we click on the <a class="reference external" href="http://cdn.kernel.org/pub/linux/kernel/projects/rt/5.4/">link</a>, we get the exact version.
-Currently it is patch-5.4.78-rt44.patch.gz.</p>
+Currently it is <code class="docutils literal notranslate"><span class="pre">patch-5.4.78-rt44.patch.gz</span></code>.</p>
 <img alt="../../_images/realtime-kernel-patch-version.png" src="../../_images/realtime-kernel-patch-version.png" />
 <p>We create a directory in our home dir with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>~/kernel
@@ -511,7 +511,8 @@ We call</p>
 </pre></div>
 </div>
 <p>Save and exit menuconfig.
-Now we’re going to build the kernel which will take quite some time. (10-30min on a modern cpu)</p>
+Now we’re going to build the kernel which will take quite some time.
+(10-30min on a modern cpu)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-j<span class="w"> </span><span class="sb">`</span>nproc<span class="sb">`</span><span class="w"> </span>deb-pkg
 </pre></div>
 </div>
@@ -582,13 +583,13 @@ Linux<span class="w"> </span>ros2host<span class="w"> </span><span class="m">5</
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

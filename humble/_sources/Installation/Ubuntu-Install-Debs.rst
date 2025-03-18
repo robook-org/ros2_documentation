@@ -119,7 +119,8 @@ Talker-listener
 
 使用 the ROS 1 bridge
 ----------------------
-The ROS 1 bridge 可以将 topic 从 ROS 1 传递至 ROS 2，反之亦然. 请查看 `此文档 <https://github.com/ros2/ros1_bridge/blob/master/README.md>`__ 以知晓如何构建和使用 the ROS 1 bridge.
+The ROS 1 bridge 可以将 topic 从 ROS 1 传递至 ROS 2，反之亦然.
+请查看 `此文档 <https://github.com/ros2/ros1_bridge/blob/master/README.md>`__ 以知晓如何构建和使用 the ROS 1 bridge.
 
 其它 RMW 实现 (可选内容)
 -----------------------------------------

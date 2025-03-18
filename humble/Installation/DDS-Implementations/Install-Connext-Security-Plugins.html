@@ -24,7 +24,7 @@
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -407,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../DDS-Implementations.html">DDS implementations</a></li>
       <li class="breadcrumb-item active">Connext security plugins</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Installation/DDS-Implementations/Install-Connext-Security-Plugins.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Installation/DDS-Implementations/Install-Connext-Security-Plugins.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -421,7 +421,8 @@
 <h1>Connext security plugins<a class="headerlink" href="#connext-security-plugins" title="Link to this heading"></a></h1>
 <p>The Connext DDS Libraries are included with ROS 2 under a <a class="reference external" href="https://www.rti.com/ncl">non-commercial
 license</a> and do not include the security
-plug-in libraries. These libraries are available in the commercial,
+plug-in libraries.
+These libraries are available in the commercial,
 university and research license versions of RTI Connext DDS Pro, which
 is bundled with tools for system debugging, monitoring, record/replay,
 etc.</p>
@@ -429,7 +430,8 @@ etc.</p>
 <p>A video walk-thru of this installation (tools and security plug-ins) is
 available
 <a class="reference external" href="https://www.rti.com/gettingstarted/installwindows_secure">here</a> at
-the RTI website. The steps are:</p>
+the RTI website.
+The steps are:</p>
 <p><strong>Install Connext DDS Pro (Host)</strong>
 This is a host-specific installer application (for Windows, Linux, MacOS) to install a ‘Host’ bundle which includes the Launcher, tools, and other software services.
 At the end of the installation, the RTI ‘Launcher’ program will be started.
@@ -441,25 +443,28 @@ The Launcher is used to install target libraries, security plugins, and other la
 <p><span class="caption-text">Launcher Image</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>The ‘RTI Package Installer’ is used to install ‘.rtipkg’ files – target
-libraries, security plug-ins, etc. Open the Package Installer and select
-all of the .rtipkg files that were included in the Connext DDS Secure
+<p>The ‘RTI Package Installer’ is used to install <code class="docutils literal notranslate"><span class="pre">.rtipkg</span></code> files – target
+libraries, security plug-ins, etc.
+Open the Package Installer and select
+all of the <code class="docutils literal notranslate"><span class="pre">.rtipkg</span></code> files that were included in the Connext DDS Secure
 bundle for installation:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Target Libraries - such as: rti_connext_dds-[version]-pro-target-[toolchain].rtipkg</p></li>
-<li><p>Security Plugin Host - such as: rti_security_plugins-[version]-host-[toolchain].rtipkg</p></li>
-<li><p>Security Plugin Target - such as: rti_security_plugins-[version]-target-[toolchain].rtipkg</p></li>
-<li><p>OpenSSL Host - such as: openssl-1.0.2x-[version]-host-[toolchain].rtipkg</p></li>
+<li><p>Target Libraries - such as: <code class="docutils literal notranslate"><span class="pre">rti_connext_dds-[version]-pro-target-[toolchain].rtipkg</span></code></p></li>
+<li><p>Security Plugin Host - such as: <code class="docutils literal notranslate"><span class="pre">rti_security_plugins-[version]-host-[toolchain].rtipkg</span></code></p></li>
+<li><p>Security Plugin Target - such as: <code class="docutils literal notranslate"><span class="pre">rti_security_plugins-[version]-target-[toolchain].rtipkg</span></code></p></li>
+<li><p>OpenSSL Host - such as: <code class="docutils literal notranslate"><span class="pre">openssl-1.0.2x-[version]-host-[toolchain].rtipkg</span></code></p></li>
 </ul>
 </div></blockquote>
 <p><strong>Extract and Install OpenSSL</strong>
-This is included as an archive (.zip or
+This is included as an archive (<code class="docutils literal notranslate"><span class="pre">.zip</span></code> or
 otherwise) and can be simply extracted and copied to a convenient
-location on your host computer. As a suggestion, this could also be
-installed into the ‘rti_connext_dds-[version]’ directory in your home
+location on your host computer.
+As a suggestion, this could also be
+installed into the <code class="docutils literal notranslate"><span class="pre">rti_connext_dds-[version]</span></code> directory in your home
 directory space (this was created during installation of the RTI host
-tools). Note: this directory location may need to be placed in your PATH
+tools).
+Note: this directory location may need to be placed in your PATH
 environment variable.
 See the <a class="reference external" href="https://community.rti.com/static/documentation/connext-dds/6.0.1/doc/manuals/connext_dds/dds_security/RTI_SecurityPlugins_GettingStarted.pdf">RTI Security Plugins Getting Started Guide</a> for more information.</p>
 <p>Installation complete.</p>
@@ -513,13 +518,13 @@ See the <a class="reference external" href="https://community.rti.com/static/doc
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

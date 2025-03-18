@@ -24,7 +24,7 @@
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -260,6 +260,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../Demos/Logging-and-logger-configuration.html">Logging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Demos/Content-Filtering-Subscription.html">Creating a content filtering subscription</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Demos/Service-Introspection.html">Configure service introspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Demos/Action-Introspection.html">Configure action introspection</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="../Miscellaneous.html">Miscellaneous</a><ul class="current">
@@ -425,34 +426,34 @@
 Follow the <a class="reference internal" href="../Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html"><span class="doc">Create a package</span></a> tutorial.</p>
 <p>After you created your project, you can edit the source code and build it with eclipse.</p>
 <p>We start eclipse and select a eclipse-workspace.</p>
-<a class="reference external image-reference" href="images/eclipse_work_dir.png"><img alt="eclipse_work_dir" src="../../_images/eclipse_work_dir.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_work_dir.png"><img alt="eclipse_work_dir" src="../../_images/eclipse_work_dir.png" /></a>
 <p>We create a C++ project</p>
-<a class="reference external image-reference" href="images/eclipse_create_c++_project.png"><img alt="eclipse_create_c++_project" src="../../_images/eclipse_create_c%2B%2B_project.png" /></a>
-<a class="reference external image-reference" href="images/eclipse_c++_project_select_type.png"><img alt="eclipse_c++_project_select_type" src="../../_images/eclipse_c%2B%2B_project_select_type.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_create_c++_project.png"><img alt="eclipse_create_c++_project" src="../../_images/eclipse_create_c%2B%2B_project.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_project_select_type.png"><img alt="eclipse_c++_project_select_type" src="../../_images/eclipse_c%2B%2B_project_select_type.png" /></a>
 <p>We see that we got C++ includes.</p>
-<a class="reference external image-reference" href="images/eclipse_c++_project_includes.png"><img alt="eclipse_c++_project_includes" src="../../_images/eclipse_c%2B%2B_project_includes.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_project_includes.png"><img alt="eclipse_c++_project_includes" src="../../_images/eclipse_c%2B%2B_project_includes.png" /></a>
 <p>We now import our ROS 2 project.
 The code is still in the old place.</p>
-<a class="reference external image-reference" href="images/eclipse_import_project.png"><img alt="eclipse_import_project" src="../../_images/eclipse_import_project.png" /></a>
-<a class="reference external image-reference" href="images/eclipse_import_filesystem.png"><img alt="eclipse_import_filesystem" src="../../_images/eclipse_import_filesystem.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_import_project.png"><img alt="eclipse_import_project" src="../../_images/eclipse_import_project.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_import_filesystem.png"><img alt="eclipse_import_filesystem" src="../../_images/eclipse_import_filesystem.png" /></a>
 <p>Click the Advanced in the Options and check the <strong>Create links in worksapce</strong>.</p>
-<a class="reference external image-reference" href="images/eclipse_import_select_my_package.png"><img alt="eclipse_import_select_my_package" src="../../_images/eclipse_import_select_my_package.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_import_select_my_package.png"><img alt="eclipse_import_select_my_package" src="../../_images/eclipse_import_select_my_package.png" /></a>
 <p>We see in the source code that the C++ includes got resolved but not the ROS 2 ones.</p>
-<a class="reference external image-reference" href="images/eclipse_c++_wo_ros_includes.png"><img alt="eclipse_c++_wo_ros_includes" src="../../_images/eclipse_c%2B%2B_wo_ros_includes.png" /></a>
-<a class="reference external image-reference" href="images/eclipse_c++_path_and_symbols.png"><img alt="eclipse_c++_path_and_symbols" src="../../_images/eclipse_c%2B%2B_path_and_symbols.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_wo_ros_includes.png"><img alt="eclipse_c++_wo_ros_includes" src="../../_images/eclipse_c%2B%2B_wo_ros_includes.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_path_and_symbols.png"><img alt="eclipse_c++_path_and_symbols" src="../../_images/eclipse_c%2B%2B_path_and_symbols.png" /></a>
 <p>Add include paths of needed packages.
 (e.g. <strong>/opt/ros/iron/include/rclcpp</strong>, <strong>/opt/ros/iron/include/std_msgs</strong>, etc.)</p>
-<a class="reference external image-reference" href="images/eclipse_c++_add_directory_path.png"><img alt="eclipse_c++_add_directory_path" src="../../_images/eclipse_c%2B%2B_add_directory_path.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_add_directory_path.png"><img alt="eclipse_c++_add_directory_path" src="../../_images/eclipse_c%2B%2B_add_directory_path.png" /></a>
 <p>We now see that the ROS 2 includes got resolved too.</p>
-<a class="reference external image-reference" href="images/eclipse_c++_indexer_ok.png"><img alt="eclipse_c++_indexer_ok" src="../../_images/eclipse_c%2B%2B_indexer_ok.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_indexer_ok.png"><img alt="eclipse_c++_indexer_ok" src="../../_images/eclipse_c%2B%2B_indexer_ok.png" /></a>
 <p>Adding Builder colcon, so that we can build with right-click on project and “Build project”.</p>
-<a class="reference external image-reference" href="images/eclipse_c++_properties_builders.png"><img alt="eclipse_c++_properties_builders" src="../../_images/eclipse_c%2B%2B_properties_builders.png" /></a>
-<a class="reference external image-reference" href="images/eclipse_c++_builder_main.png"><img alt="eclipse_c++_builder_main" src="../../_images/eclipse_c%2B%2B_builder_main.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_properties_builders.png"><img alt="eclipse_c++_properties_builders" src="../../_images/eclipse_c%2B%2B_properties_builders.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_builder_main.png"><img alt="eclipse_c++_builder_main" src="../../_images/eclipse_c%2B%2B_builder_main.png" /></a>
 <p>With PYTHONPATH you can also build python projects.</p>
-<a class="reference external image-reference" href="images/eclipse_c++_builder_env.png"><img alt="eclipse_c++_builder_env" src="../../_images/eclipse_c%2B%2B_builder_env.png" /></a>
-<a class="reference external image-reference" href="images/eclipse_c++_properties_builders_with_colcon.png"><img alt="eclipse_c++_properties_builders_with_colcon" src="../../_images/eclipse_c%2B%2B_properties_builders_with_colcon.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_builder_env.png"><img alt="eclipse_c++_builder_env" src="../../_images/eclipse_c%2B%2B_builder_env.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_properties_builders_with_colcon.png"><img alt="eclipse_c++_properties_builders_with_colcon" src="../../_images/eclipse_c%2B%2B_properties_builders_with_colcon.png" /></a>
 <p>Right-click on the project and select “Build Project”.</p>
-<a class="reference external image-reference" href="images/eclipse_c++_build_project_with_colcon.png"><img alt="eclipse_c++_build_project_with_colcon" src="../../_images/eclipse_c%2B%2B_build_project_with_colcon.png" /></a>
+<a class="reference external image-reference" href="../../_images/eclipse_c++_build_project_with_colcon.png"><img alt="eclipse_c++_build_project_with_colcon" src="../../_images/eclipse_c%2B%2B_build_project_with_colcon.png" /></a>
 </section>
 
 

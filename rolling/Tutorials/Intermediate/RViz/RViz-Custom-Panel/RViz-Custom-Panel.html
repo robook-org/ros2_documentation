@@ -24,7 +24,7 @@
         <script src="../../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -260,6 +260,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../Demos/Logging-and-logger-configuration.html">Logging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Demos/Content-Filtering-Subscription.html">Creating a content filtering subscription</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Demos/Service-Introspection.html">Configure service introspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Demos/Action-Introspection.html">Configure action introspection</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../Miscellaneous.html">Miscellaneous</a><ul>
@@ -566,11 +567,11 @@ Namely, calling <code class="docutils literal notranslate"><span class="pre">plu
 <p>Compile your code, source your workspace and run <code class="docutils literal notranslate"><span class="pre">rviz2</span></code>.</p>
 <p>In the top Menu bar, there should be a “Panels” menu.
 Select “Add New Panel” from that menu.</p>
-<a class="reference external image-reference" href="images/Select0.png"><img alt="screenshot of Add New Panel dialog" src="../../../../_images/Select0.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Select0.png"><img alt="screenshot of Add New Panel dialog" src="../../../../_images/Select0.png" /></a>
 <p>A dialog will pop up showing all the panels accessible in your ROS environment, grouped into folders based on their ROS package.
 Create a new instance of your panel by either double clicking on its name, or selecting it and clicking OK.</p>
 <p>This should create a new panel in your RViz window, albeit with nothing but a title bar with the name of your panel.</p>
-<a class="reference external image-reference" href="images/RViz0.png"><img alt="screenshot of the whole RViz window showing the new simple panel" src="../../../../_images/RViz0.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/RViz0.png"><img alt="screenshot of the whole RViz window showing the new simple panel" src="../../../../_images/RViz0.png" /></a>
 </section>
 </section>
 <section id="filling-in-the-panel">
@@ -696,13 +697,13 @@ We also have methods an initialization method for setting up the ROS components 
 <h3>Testing with ROS<a class="headerlink" href="#testing-with-ros" title="Link to this heading"></a></h3>
 <p>Compile and launch RViz2 with your panel again.
 You should see your label and button in the panel now.</p>
-<a class="reference external image-reference" href="images/RViz1.png"><img alt="screenshot of the RViz panel in its default state" src="../../../../_images/RViz1.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/RViz1.png"><img alt="screenshot of the RViz panel in its default state" src="../../../../_images/RViz1.png" /></a>
 <p>To change the label, we simply have to publish a message on the <code class="docutils literal notranslate"><span class="pre">/input</span></code> topic, which you can do with this command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/input<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">&quot;{data: &#39;Please be kind.&#39;}&quot;</span>
 </pre></div>
 </div>
 <p>Since the widget is subscribed to this topic, it will trigger the callback and change the text of the label.</p>
-<a class="reference external image-reference" href="images/RViz2.png"><img alt="screenshot of the RViz panel with custom string message displayed" src="../../../../_images/RViz2.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/RViz2.png"><img alt="screenshot of the RViz panel with custom string message displayed" src="../../../../_images/RViz2.png" /></a>
 <p>Pressing the button will publish a message, which you can see by echoing the <code class="docutils literal notranslate"><span class="pre">/output</span></code> topic, like with this command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/output
 </pre></div>
@@ -723,9 +724,9 @@ The folder is hardcoded, and the filename should match the name from the plugin 
 </pre></div>
 </div>
 <p>Now when you add the panel, it should show up with an icon and description.</p>
-<a class="reference external image-reference" href="images/Select1.png"><img alt="screenshot of Add New Panel dialog with our custom icon and description" src="../../../../_images/Select1.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Select1.png"><img alt="screenshot of Add New Panel dialog with our custom icon and description" src="../../../../_images/Select1.png" /></a>
 <p>The panel will also have an updated icon.</p>
-<a class="reference external image-reference" href="images/RViz3.png"><img alt="screenshot of the RViz panel with custom icon" src="../../../../_images/RViz3.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/RViz3.png"><img alt="screenshot of the RViz panel with custom icon" src="../../../../_images/RViz3.png" /></a>
 </section>
 </section>
 

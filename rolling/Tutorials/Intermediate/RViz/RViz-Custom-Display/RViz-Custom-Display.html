@@ -24,7 +24,7 @@
         <script src="../../../../_static/doctools.js?v=888ff710"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -260,6 +260,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../Demos/Logging-and-logger-configuration.html">Logging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Demos/Content-Filtering-Subscription.html">Creating a content filtering subscription</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../Demos/Service-Introspection.html">Configure service introspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../Demos/Action-Introspection.html">Configure action introspection</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../Miscellaneous.html">Miscellaneous</a><ul>
@@ -597,11 +598,11 @@ Namely, calling <code class="docutils literal notranslate"><span class="pre">plu
 <h3>Testing it out<a class="headerlink" href="#testing-it-out" title="Link to this heading"></a></h3>
 <p>Compile your code and run <code class="docutils literal notranslate"><span class="pre">rviz2</span></code>.
 You should be able to add your new plugin by clicking <code class="docutils literal notranslate"><span class="pre">Add</span></code> in the bottom left, and then selecting your package/plugin.</p>
-<a class="reference external image-reference" href="images/Step1A.png"><img alt="screenshot of adding display" src="../../../../_images/Step1A.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step1A.png"><img alt="screenshot of adding display" src="../../../../_images/Step1A.png" /></a>
 <p>Initially, the display will be in an error state because you have yet to assign a topic.</p>
-<a class="reference external image-reference" href="images/Step1B.png"><img alt="screenshot of error state" src="../../../../_images/Step1B.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step1B.png"><img alt="screenshot of error state" src="../../../../_images/Step1B.png" /></a>
 <p>If we put the topic <code class="docutils literal notranslate"><span class="pre">/point</span></code> in, it should load fine but not display anything.</p>
-<a class="reference external image-reference" href="images/Step1C.png"><img alt="screenshot of functioning empty display" src="../../../../_images/Step1C.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step1C.png"><img alt="screenshot of functioning empty display" src="../../../../_images/Step1C.png" /></a>
 <p>You can publish messages with the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/point<span class="w"> </span>rviz_plugin_tutorial_msgs/msg/Point2D<span class="w"> </span><span class="s2">&quot;{header: {frame_id: map}, x: 1, y: 2}&quot;</span><span class="w"> </span>-r<span class="w"> </span><span class="m">0</span>.5
 </pre></div>
@@ -662,7 +663,7 @@ This ensures that the visualization does not always appear relative to the fixed
 <li><p>The actual visualization that we’ve been building up to is in the last four lines: we set the position of the visualization to match the message’s position.</p></li>
 </ul>
 <p>The result should look like this:</p>
-<a class="reference external image-reference" href="images/Step2A.png"><img alt="screenshot of functioning display" src="../../../../_images/Step2A.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step2A.png"><img alt="screenshot of functioning display" src="../../../../_images/Step2A.png" /></a>
 <p>If the box does not appear in that location, it might be because:</p>
 <ul class="simple">
 <li><p>You are not publishing the topic at this time</p></li>
@@ -709,9 +710,9 @@ Color is but one of many properties you can set.</p>
 </pre></div>
 </div>
 <p>The result should look like this:</p>
-<a class="reference external image-reference" href="images/Step3A.png"><img alt="screenshot with color property" src="../../../../_images/Step3A.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step3A.png"><img alt="screenshot with color property" src="../../../../_images/Step3A.png" /></a>
 <p>Ooh, pink!</p>
-<a class="reference external image-reference" href="images/Step3B.png"><img alt="screenshot with changed color" src="../../../../_images/Step3B.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step3B.png"><img alt="screenshot with changed color" src="../../../../_images/Step3B.png" /></a>
 </section>
 </section>
 <section id="status-report">
@@ -732,8 +733,8 @@ In <code class="docutils literal notranslate"><span class="pre">processMessage</
 <li><p>We’re assuming a previous <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">rviz_common::properties::StatusProperty;</span></code> declaration.</p></li>
 <li><p>Think of the status as Key/Value pairs, with the key being some string (here we’re using <code class="docutils literal notranslate"><span class="pre">&quot;Message&quot;</span></code>) and the values are the status level (error/warn/ok) and the description (some other string).</p></li>
 </ul>
-<a class="reference external image-reference" href="images/Step4A.png"><img alt="screenshot with ok status" src="../../../../_images/Step4A.png" /></a>
-<a class="reference external image-reference" href="images/Step4B.png"><img alt="screenshot with warning status" src="../../../../_images/Step4B.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step4A.png"><img alt="screenshot with ok status" src="../../../../_images/Step4A.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step4B.png"><img alt="screenshot with warning status" src="../../../../_images/Step4B.png" /></a>
 </section>
 <section id="cleanup">
 <h2>Cleanup<a class="headerlink" href="#cleanup" title="Link to this heading"></a></h2>
@@ -767,11 +768,11 @@ The folder is hardcoded, and the filename should match the name from the plugin 
 </pre></div>
 </div>
 <p>Now when you add the display, it should show up with an icon and description.</p>
-<a class="reference external image-reference" href="images/Step5A.png"><img alt="screenshot with added icon and description" src="../../../../_images/Step5A.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step5A.png"><img alt="screenshot with added icon and description" src="../../../../_images/Step5A.png" /></a>
 <p>Here is the display when attempting to add by topic:</p>
-<a class="reference external image-reference" href="images/Step5B.png"><img alt="screenshot with add by topic dialog" src="../../../../_images/Step5B.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step5B.png"><img alt="screenshot with add by topic dialog" src="../../../../_images/Step5B.png" /></a>
 <p>And finally, here’s the icon in the standard interface:</p>
-<a class="reference external image-reference" href="images/Step5C.png"><img alt="screenshot with icon in standard interface" src="../../../../_images/Step5C.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Step5C.png"><img alt="screenshot with icon in standard interface" src="../../../../_images/Step5C.png" /></a>
 <p>Note, if you change the plugins name, previous RViz configurations will no longer work.</p>
 </section>
 </section>

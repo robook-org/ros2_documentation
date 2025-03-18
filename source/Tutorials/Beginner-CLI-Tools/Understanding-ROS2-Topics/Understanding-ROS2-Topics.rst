@@ -54,6 +54,7 @@ Topics 是数据在节点之间和系统不同部分之间传递的主要方式�
     ros2 run turtlesim turtlesim_node
 
 打开另一个终端并运行:
+
 .. code-block:: console
 
     ros2 run turtlesim turtle_teleop_key

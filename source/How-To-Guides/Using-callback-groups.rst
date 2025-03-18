@@ -68,7 +68,7 @@ Callback groups 可以通过 rclcpp 的 ``create_callback_group`` 函数或是 r
 * timer callbacks,
 * service callbacks (用于在服务端处理 service requests),
 * action 服务端和客户端的不同 callbacks,
-* Futures 的 done-callbacks. (译者注： "Future" 是异步编程中的一个概念，并非ROS 2特有，若需要了解这个例子的含义请先学习异步编程有关的知识)
+* Futures 的 done-callbacks (译者注： "Future" 是异步编程中的一个概念，并非ROS 2特有，若需要了解这个例子的含义请先学习异步编程有关的知识)
 
 在处理回调组时，有几个关于回调的重要信息应该牢记在心。
 

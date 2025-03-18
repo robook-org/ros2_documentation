@@ -254,7 +254,7 @@
 因为 ``subset`` 文件记录的是 ``/turtle1/pose`` 这个 topic，所以只要你不退出 turtlesim， ``ros2 bag play`` 命令就会一直运行。
 
 这是因为只要 ``/turtlesim`` 节点在运行，它就会在固定的时间间隔内（也就是以固定频率）发布数据到 ``/turtle1/pose`` topic 上。
-你应该已经注意到，前面 ``ros2 bag info`` 返回的 ``/turtle1/pose`` topic 的 ``Count`` 值只有9.这是我们录制时按下方向键的次数。
+你应该已经注意到，前面 ``ros2 bag info`` 返回的 ``/turtle1/pose`` topic 的 ``Count`` 值只有9, 这是我们录制时按下方向键的次数。
 
 不过注意， ``/turtle1/pose`` 的 ``Count`` 值是3000多；这意思是，在我们录制时，数据在这个 topic 上发布了3000多次。
 

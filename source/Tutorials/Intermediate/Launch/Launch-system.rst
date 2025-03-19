@@ -201,12 +201,6 @@
 
     .. tabs::
 
-      .. group-tab:: Python launch file
-
-        .. code-block:: console
-
-          ros2 launch py_launch_example my_script_launch.py
-
       .. group-tab:: XML launch file
 
         .. code-block:: console
@@ -219,15 +213,15 @@
 
           ros2 launch py_launch_example my_script_launch.yaml
 
-  .. group-tab:: C++ package
-
-    .. tabs::
-
       .. group-tab:: Python launch file
 
         .. code-block:: console
 
-          ros2 launch cpp_launch_example my_script_launch.py
+          ros2 launch py_launch_example my_script_launch.py
+
+  .. group-tab:: C++ package
+
+    .. tabs::
 
       .. group-tab:: XML launch file
 

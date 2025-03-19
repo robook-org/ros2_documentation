@@ -408,7 +408,7 @@
           <li class="breadcrumb-item"><a href="../RViz-Main.html">RViz</a></li>
       <li class="breadcrumb-item active">Building a Custom RViz Panel</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Tutorials/Intermediate/RViz/RViz-Custom-Panel/RViz-Custom-Panel.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Tutorials/Intermediate/RViz/RViz-Custom-Panel/RViz-Custom-Panel.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -564,11 +564,11 @@ Namely, calling <code class="docutils literal notranslate"><span class="pre">plu
 <p>Compile your code, source your workspace and run <code class="docutils literal notranslate"><span class="pre">rviz2</span></code>.</p>
 <p>In the top Menu bar, there should be a “Panels” menu.
 Select “Add New Panel” from that menu.</p>
-<a class="reference external image-reference" href="images/Select0.png"><img alt="screenshot of Add New Panel dialog" src="../../../../_images/Select0.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Select0.png"><img alt="screenshot of Add New Panel dialog" src="../../../../_images/Select0.png" /></a>
 <p>A dialog will pop up showing all the panels accessible in your ROS environment, grouped into folders based on their ROS package.
 Create a new instance of your panel by either double clicking on its name, or selecting it and clicking OK.</p>
 <p>This should create a new panel in your RViz window, albeit with nothing but a title bar with the name of your panel.</p>
-<a class="reference external image-reference" href="images/RViz0.png"><img alt="screenshot of the whole RViz window showing the new simple panel" src="../../../../_images/RViz0.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/RViz0.png"><img alt="screenshot of the whole RViz window showing the new simple panel" src="../../../../_images/RViz0.png" /></a>
 </section>
 </section>
 <section id="filling-in-the-panel">
@@ -694,13 +694,13 @@ We also have methods an initialization method for setting up the ROS components 
 <h3>Testing with ROS<a class="headerlink" href="#testing-with-ros" title="Link to this heading"></a></h3>
 <p>Compile and launch RViz2 with your panel again.
 You should see your label and button in the panel now.</p>
-<a class="reference external image-reference" href="images/RViz1.png"><img alt="screenshot of the RViz panel in its default state" src="../../../../_images/RViz1.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/RViz1.png"><img alt="screenshot of the RViz panel in its default state" src="../../../../_images/RViz1.png" /></a>
 <p>To change the label, we simply have to publish a message on the <code class="docutils literal notranslate"><span class="pre">/input</span></code> topic, which you can do with this command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/input<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">&quot;{data: &#39;Please be kind.&#39;}&quot;</span>
 </pre></div>
 </div>
 <p>Since the widget is subscribed to this topic, it will trigger the callback and change the text of the label.</p>
-<a class="reference external image-reference" href="images/RViz2.png"><img alt="screenshot of the RViz panel with custom string message displayed" src="../../../../_images/RViz2.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/RViz2.png"><img alt="screenshot of the RViz panel with custom string message displayed" src="../../../../_images/RViz2.png" /></a>
 <p>Pressing the button will publish a message, which you can see by echoing the <code class="docutils literal notranslate"><span class="pre">/output</span></code> topic, like with this command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/output
 </pre></div>
@@ -721,9 +721,9 @@ The folder is hardcoded, and the filename should match the name from the plugin 
 </pre></div>
 </div>
 <p>Now when you add the panel, it should show up with an icon and description.</p>
-<a class="reference external image-reference" href="images/Select1.png"><img alt="screenshot of Add New Panel dialog with our custom icon and description" src="../../../../_images/Select1.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/Select1.png"><img alt="screenshot of Add New Panel dialog with our custom icon and description" src="../../../../_images/Select1.png" /></a>
 <p>The panel will also have an updated icon.</p>
-<a class="reference external image-reference" href="images/RViz3.png"><img alt="screenshot of the RViz panel with custom icon" src="../../../../_images/RViz3.png" /></a>
+<a class="reference external image-reference" href="../../../../_images/RViz3.png"><img alt="screenshot of the RViz panel with custom icon" src="../../../../_images/RViz3.png" /></a>
 </section>
 </section>
 
@@ -775,13 +775,13 @@ The folder is hardcoded, and the filename should match the name from the plugin 
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

@@ -55,7 +55,7 @@ ROS 2 包含一套用于与 ROS 2 系统交互的命令行工具。
 
 在一个终端中发布消息：
 
-.. code-block:: bash
+.. code-block:: console
 
    $ ros2 topic pub /chatter std_msgs/msg/String "data: Hello world"
    publisher: beginning loop
@@ -65,7 +65,7 @@ ROS 2 包含一套用于与 ROS 2 系统交互的命令行工具。
 
 在另一个终端中显示消息，用来充当 listener 端：
 
-.. code-block:: bash
+.. code-block:: console
 
    $ ros2 topic echo /chatter
    data: Hello world

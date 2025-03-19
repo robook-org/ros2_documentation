@@ -262,6 +262,55 @@ ROS 2 中的启动系统负责帮助用户描述其系统的配置，然后按�
               from: "/output/cmd_vel"
               to: "/turtlesim2/turtle1/cmd_vel"
 
+  .. group-tab:: Python
+
+    These import statements pull in some Python ``launch`` modules.
+
+    .. code-block:: python
+
+      from launch import LaunchDescription
+      from launch_ros.actions import Node
+
+    Next, the launch description itself begins:
+
+    .. code-block:: python
+
+      def generate_launch_description():
+         return LaunchDescription([
+
+         ])
+
+    The first two actions in the launch description launch the two turtlesim windows:
+
+    .. code-block:: python
+
+      Node(
+          package='turtlesim',
+          namespace='turtlesim1',
+          executable='turtlesim_node',
+          name='sim'
+      ),
+      Node(
+          package='turtlesim',
+          namespace='turtlesim2',
+          executable='turtlesim_node',
+          name='sim'
+      ),
+
+    The final action launches the mimic node with the remaps:
+
+    .. code-block:: python
+
+      Node(
+          package='turtlesim',
+          executable='mimic',
+          name='mimic',
+          remappings=[
+            ('/input/pose', '/turtlesim1/turtle1/pose'),
+            ('/output/cmd_vel', '/turtlesim2/turtle1/cmd_vel'),
+          ]
+      )
+
 
 3 ros2 launch
 ^^^^^^^^^^^^^
@@ -269,13 +318,6 @@ ROS 2 中的启动系统负责帮助用户描述其系统的配置，然后按�
 要运行上面创建的启动文件，进入之前创建的目录并运行以下命令：
 
 .. tabs::
-
-  .. group-tab:: Python
-
-    .. code-block:: console
-
-      cd launch
-      ros2 launch turtlesim_mimic_launch.py
 
   .. group-tab:: XML
 
@@ -290,6 +332,13 @@ ROS 2 中的启动系统负责帮助用户描述其系统的配置，然后按�
 
       cd launch
       ros2 launch turtlesim_mimic_launch.yaml
+
+  .. group-tab:: Python
+
+    .. code-block:: console
+
+      cd launch
+      ros2 launch turtlesim_mimic_launch.py
 
 .. note::
 

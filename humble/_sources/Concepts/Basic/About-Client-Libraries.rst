@@ -48,7 +48,7 @@ ROS C++ 客户端库（``rclcpp``）是面向用户的、符合 C++ 习惯的接
 
 随代码自动生成的 |API| 文档在这里可以找到：
 
-`api/rclcpp/index.html <http://docs.ros.org/en/{DISTRO}/p/rclcpp>`_
+`api/rclcpp/index.html <http://docs.ros.org/en/{DISTRO}/p/rclcpp/>`_
 
 ``rclpy`` 包
 ~~~~~~~~~~~~~~~~~~~~~

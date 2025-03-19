@@ -37,11 +37,8 @@ Start by creating `venv <https://docs.python.org/3/library/venv.html>`__ to buil
 
 .. code-block:: console
 
-   # activate the venv
-   python3 -m venv ros2doc
-
-   # activate venv
-   source ros2doc/bin/activate
+   $ python3 -m venv ros2doc  # create venv
+   $ source ros2doc/bin/activate  # activate venv
 
 And install requirements located in the ``requirements.txt`` file:
 
@@ -125,6 +122,7 @@ You can run the documentation spell checker locally (using `codespell <https://g
 
    If that detects specific words that need to be ignored, add it to `codespell_whitelist <https://github.com/ros2/ros2_documentation/blob/{REPOS_FILE_BRANCH}/codespell_whitelist.txt>`_ .
 
+To know more about spelling checks, refer to :ref:`Spelling check <spelling-check>`
 
 View Site Through Github CI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -166,6 +164,34 @@ To check for broken links on the site, run:
    make linkcheck
 
 This will check the entire site for broken links, and output the results to the screen and ``build/linkcheck``.
+
+.. _spelling-check:
+
+Spelling check
+^^^^^^^^^^^^^^
+
+The ``make spellcheck`` command scans the documentation files and flags any misspellings.
+If errors are detected, review the suggestions and update the pull request as necessary.
+
+Some words, such as technical terms or proper nouns, maybe mistakenly flagged as misspelled.
+If you encounter such instances, you can add them to the ignore list to prevent them from being flagged in the future.
+To do this, add it to the `codespell_whitelist <https://github.com/ros2/ros2_documentation/blob/{REPOS_FILE_BRANCH}/codespell_whitelist.txt>`_ file as follows:
+
+.. code-block:: text
+
+   empy
+   ws
+   lets
+   jupyter
+
+To include custom corrections that ``codespell`` should apply, you can add them to the `codespell_dictionary <https://github.com/ros2/ros2_documentation/blob/{REPOS_FILE_BRANCH}/codespell_dictionary.txt>`_ file as follows:
+
+.. code-block:: text
+
+   amnet->ament
+   colcn->colcon
+   rosabg->rosbag
+   rosdistroy->rosdistro
 
 Migrating Pages from the ROS Wiki
 ---------------------------------
@@ -389,7 +415,7 @@ In-text code can be formatted using ``backticks`` for showing ``highlighted`` co
 
    In-text code can be formatted using ``backticks`` for showing ``highlighted`` code.
 
-Code blocks inside a page need to be captured using ``.. code-block::`` directive.
+Code blocks inside a page need to be captured using ``.. code-block::`` `directives <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block>`_.
 ``.. code-block::`` supports code highlighting for syntaxes like ``C++``, ``YAML``, ``console``, ``bash``, and more.
 Code inside the directive needs to be indented.
 
@@ -405,6 +431,43 @@ Code inside the directive needs to be indented.
          return 0;
       }
 
+Code blocks: ``bash`` vs. ``console``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``bash`` and ``console`` are similar, but they serve two different purposes.
+
+``bash`` is meant for bash scripts, e.g., for bash commands from a script file.
+Example result:
+
+.. code-block:: bash
+
+   export ROS_DOMAIN_ID=42
+   ros2 run turtlesim turtlesim_node
+
+``console`` is meant for commands to be run in a terminal, optionally including their output.
+This makes it clear that the given commands need to be run in a terminal.
+It also allows separating command lines from output lines using prompt symbols such as ``$`` or ``#``.
+Command lines are formatted as bash commands while output lines are formatted as normal text.
+The prompt symbol is not selectable, and clicking on the copy button in the upper right-hand corner copies *only* the commands, not the outputs nor the prompt symbols.
+In general, the prompt symbol (``$``) can be omitted if the code block does not contain any output lines.
+Example result:
+
+.. code-block:: console
+
+   $ export ROS_DOMAIN_ID=42
+   $ ros2 run turtlesim turtlesim_node --ros-args --remap "__node:=my_turtle"
+   [INFO] [1742150439.022947971] [my_turtle]: Starting turtlesim with node name /my_turtle
+   [INFO] [1742150439.026043867] [my_turtle]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+
+Compare the above with a ``bash`` ``code-block``:
+
+.. code-block:: bash
+
+   $ export ROS_DOMAIN_ID=42
+   $ ros2 run turtlesim turtlesim_node --ros-args --remap "__node:=my_turtle"
+   [INFO] [1742150439.022947971] [my_turtle]: Starting turtlesim with node name /my_turtle
+   [INFO] [1742150439.026043867] [my_turtle]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+
 Images
 ^^^^^^
 
@@ -413,6 +476,16 @@ Images can be inserted using the ``.. image::`` directive.
 .. code-block:: rst
 
    .. image:: images/turtlesim_follow1.png
+
+In this case, the image file (``turtlesim_follow1.png``) is located in the ``images/`` directory relative to the ``.rst`` file that uses the image.
+
+However, all image files end up in an ``_images/`` directory relative to the root of the docs.
+Therefore, when using ``:target:`` to add a hyperlink to the image file, use a relative link going up to the root directory and then down to the ``_images/`` directory.
+
+.. code-block:: rst
+
+   .. image:: images/turtlesim_follow1.png
+      :target: ../../_images/turtlesim_follow1.png
 
 Charts, Graphs, and Diagrams
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

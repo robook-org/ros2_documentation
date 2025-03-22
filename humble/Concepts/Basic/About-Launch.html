@@ -407,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Basic.html">基础概念</a></li>
       <li class="breadcrumb-item active">启动(Launch)</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Concepts/Basic/About-Launch.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Concepts/Basic/About-Launch.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -420,14 +420,15 @@
   <section id="launch">
 <h1>启动(Launch)<a class="headerlink" href="#launch" title="Link to this heading"></a></h1>
 <p>一般来说，一个 ROS 2 系统通常由许多节点组成，这些节点运行在许多不同的进程中（甚至在不同的机器上）。
-虽然可以单独运行每个节点，但随着节点变多，启动操作很快就会变得繁琐起来。</p>
+虽然可以单独手动运行每个节点，但随着节点变多，启动操作很快就会变得繁琐起来。</p>
 <p>ROS 2 的启动 (launch) 系统旨在通过单个命令自动运行很多节点。
 它帮助用户描述系统的配置，然后按照描述的方式执行。
 系统的配置包括要运行的程序、在哪里运行它们、传递给它们的参数以及 ROS 特定的规则，这些规则使得通过为每个组件提供不同的配置来轻松地在整个系统中重用组件。
 当然，启动系统还负责监视启动的进程的状态，并报告或对这些进程状态的变动做出反应。</p>
 <p>以上这些特性都可以在一个启动文件(launch file)中描述，启动文件可以用 Python、XML 或 YAML 编写。
 当使用 <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> 命令运行启动文件时，所有指定的节点都会运行。</p>
-<p><a class="reference external" href="https://design.ros2.org/articles/roslaunch.html">设计文档</a> 详细描述了 ROS 2 启动系统设计的目标（目前并非所有功能都可用）。</p>
+<p>查看 <a class="reference external" href="../../Tutorials/Intermediate/Launch/Launch-Main">the launch tutorials</a> 以了解如何使用 launch 系统。
+更多详细信息请参阅 <a class="reference external" href="https://docs.ros.org/en/humble/p/launch">the launch documentation</a>.</p>
 </section>
 
 
@@ -478,13 +479,13 @@
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

@@ -117,7 +117,8 @@
 
 .. note::
 
-  在 ``rosidl_generate_interfaces`` 中的第一个参数 (库名称) 必须与 ${PROJECT_NAME} 匹配 (参见 https://github.com/ros2/rosidl/issues/441#issuecomment-591025515).
+  ``rosidl_generate_interfaces`` 中的第一个参数（库名称）必须以这个包的名称开始, 例如直接就叫 ``${PROJECT_NAME}`` 或是以这个包名作为前缀的某个名字 ``${PROJECT_NAME}_suffix``.
+  有关信息请参阅 https://github.com/ros2/rosidl/issues/441#issuecomment-591025515.
 
 4 ``package.xml``
 ^^^^^^^^^^^^^^^^^

@@ -5,7 +5,7 @@
    :local:
 
 一般来说，一个 ROS 2 系统通常由许多节点组成，这些节点运行在许多不同的进程中（甚至在不同的机器上）。
-虽然可以单独运行每个节点，但随着节点变多，启动操作很快就会变得繁琐起来。
+虽然可以单独手动运行每个节点，但随着节点变多，启动操作很快就会变得繁琐起来。
 
 ROS 2 的启动 (launch) 系统旨在通过单个命令自动运行很多节点。
 它帮助用户描述系统的配置，然后按照描述的方式执行。
@@ -15,4 +15,5 @@ ROS 2 的启动 (launch) 系统旨在通过单个命令自动运行很多节点�
 以上这些特性都可以在一个启动文件(launch file)中描述，启动文件可以用 Python、XML 或 YAML 编写。
 当使用 ``ros2 launch`` 命令运行启动文件时，所有指定的节点都会运行。
 
-`设计文档 <https://design.ros2.org/articles/roslaunch.html>`__ 详细描述了 ROS 2 启动系统设计的目标（目前并非所有功能都可用）。
+查看 `the launch tutorials <../../Tutorials/Intermediate/Launch/Launch-Main>`__ 以了解如何使用 launch 系统。
+更多详细信息请参阅 `the launch documentation <https://docs.ros.org/en/{DISTRO}/p/launch>`__.

@@ -407,7 +407,7 @@
           <li class="breadcrumb-item"><a href="../Advanced.html">高级概念</a></li>
       <li class="breadcrumb-item active">ROS 2 middleware implementations</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/ros2/ros2_documentation/blob/humble/source/Concepts/Advanced/About-Middleware-Implementations.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/robook-org/ros2_documentation/blob/humble/source/Concepts/Advanced/About-Middleware-Implementations.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -458,7 +458,7 @@ This is done using the <code class="docutils literal notranslate"><span class="p
 It also generates code for converting ROS message structures to and from DDS message structures.
 This generator is also responsible for creating a shared library for the message package it is being used in, which is specific to the messages in the message package and to the DDS vendor being used.</p>
 <p>As mentioned above, the <code class="docutils literal notranslate"><span class="pre">rosidl_typesupport_introspection_&lt;language&gt;</span></code> may be used instead of a vendor specific type support package if an rmw implementation supports runtime interpretation of messages.
-This ability to programmatically send and receive types over topics without generating code beforehand is achieved by supporting the <a class="reference external" href="http://www.omg.org/spec/DDS-XTypes">DDS X-Types Dynamic Data standard</a>.
+This ability to programmatically send and receive types over topics without generating code beforehand is achieved by supporting the <a class="reference external" href="https://www.omg.org/spec/DDS-XTypes/">DDS X-Types Dynamic Data standard</a>.
 As such, rmw implementations may provide support for the X-Types standard, and/or provide a package for type support generated at compile time specific to their DDS implementation.</p>
 <p>As an example of an rmw implementation repository, the <code class="docutils literal notranslate"><span class="pre">Eclipse</span> <span class="pre">Cyclone</span> <span class="pre">DDS</span></code> ROS middleware implementation is on <a class="reference external" href="https://github.com/">GitHub</a> at <a class="reference external" href="https://github.com/ros2/rmw_cyclonedds">ros2/rmw_cyclonedds</a>.</p>
 <p>The rmw implementation for <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">DDS</span></code> is on <a class="reference external" href="https://github.com/">GitHub</a> at <a class="reference external" href="https://github.com/ros2/rmw_fastrtps_cpp">ros2/rmw_fastrtps_cpp</a>.</p>
@@ -515,13 +515,13 @@ As such, rmw implementations may provide support for the X-Types standard, and/o
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-EVD5Z6G6NH', {
+      gtag('config', 'GTM-NFW6MLHB', {
           'anonymize_ip': false,
       });
     </script> 

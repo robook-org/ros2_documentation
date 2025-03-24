@@ -16,4 +16,5 @@ ROS 2 的启动 (launch) 系统旨在通过单个命令自动运行很多节点�
 当使用 ``ros2 launch`` 命令运行启动文件时，所有指定的节点都会运行。
 
 查看 `the launch tutorials <../../Tutorials/Intermediate/Launch/Launch-Main>`__ 以了解如何使用 launch 系统。
+
 更多详细信息请参阅 `the launch documentation <https://docs.ros.org/en/{DISTRO}/p/launch>`__.

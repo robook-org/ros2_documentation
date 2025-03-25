@@ -30,7 +30,7 @@ ROS 2 文档
 ROS2 的目标是适应这些变、保留 ROS1 的优势并改进不足之处。
 
 **你是否在寻找特定 ROS 包的文档，如 MoveIt、image_proc 或 octomap？**
-请查看 `ROS Index <https://index.ros.org/packages/#{DISTRO}>`__ 或查看 `所有包的文档目录 <https://docs.ros.org/en/{DISTRO}/p/>`__。
+请查看 `ROS Index <https://index.ros.org/?search_packages=true#{DISTRO}>`__ 或查看 `所有包的文档目录 <https://docs.ros.org/en/{DISTRO}/p/>`__。
 
 本站点包含 ROS 2 的文档，如果你正在寻找 ROS 1 的文档，请查看 `ROS wiki <https://wiki.ros.org>`__。
 
@@ -169,12 +169,11 @@ Events
 * `Open Source Robotics Foundation official events calendar <https://calendar.google.com/calendar/u/0/embed?src=agf3kajirket8khktupm9go748@group.calendar.google.com&ctz=America/Los_Angeles>`__
 
   - This calendar is for official OSRF Events and working group meetings.
-  - `Submit your events here <https://bit.ly/OSRFCalendarForm>`__.
 
 * `Open Source Robotics Foundation community calendar <https://calendar.google.com/calendar/embed?src=c_3fc5c4d6ece9d80d49f136c1dcd54d7f44e1acefdbe87228c92ff268e85e2ea0%40group.calendar.google.com&ctz=America%2FLos_Angeles>`__
 
   - This calendar is for unofficial ROS community events.
-  - `Submit your events here <https://bit.ly/OSRFCommunityCalendar>`__.
+  - `Submit your events here <https://bit.ly/OSRFCalendarForm>`__.
 
 Miscellaneous
 -------------

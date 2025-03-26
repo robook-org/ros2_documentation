@@ -495,11 +495,11 @@ ROS 2 启动文件使得我们可以在一个地方启动所有节点并设置�
    data_files=[
          ...
          (os.path.join('share', package_name, 'launch'),
-            glob(os.path.join('launch', '*.launch.py'))),
+            glob('launch/*')),
          (os.path.join('share', package_name, 'config'),
-            glob(os.path.join('config', '*.yaml'))),
+            glob('config/*.yaml')),
          (os.path.join('share', package_name, 'rviz'),
-            glob(os.path.join('config', '*.rviz'))),
+            glob('config/*.rviz')),
       ],
 
 2 构建和运行

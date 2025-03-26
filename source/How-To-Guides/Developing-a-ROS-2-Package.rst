@@ -119,7 +119,7 @@ ROS 2 遵循使用使用 ``setuptools`` 的 Python 标准模块分发流程，�
            # Include our package.xml file
            (os.path.join('share', package_name), ['package.xml']),
            # Include all launch files.
-           (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*.launch.py'))),
+           (os.path.join('share', package_name, 'launch'), glob('launch/*')),
        ],
        # This is important as well
        install_requires=['setuptools'],

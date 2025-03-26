@@ -365,7 +365,7 @@
       # ...
       data_files=[
           # ...
-          (os.path.join('share', package_name), glob('launch/*launch.[pxy][yma]*')),
+          (os.path.join('share', package_name, 'launch'), glob('launch/*')),
         ]
       )
 

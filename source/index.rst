@@ -29,13 +29,8 @@ ROS 2 文档
 自从 ROS 于 2007 年启动以来，机器人领域和 ROS 社区发生了很多变化。
 ROS2 的目标是适应这些变、保留 ROS1 的优势并改进不足之处。
 
-<<<<<<< HEAD
 **你是否在寻找特定 ROS 包的文档，如 MoveIt、image_proc 或 octomap？**
 请查看 `ROS Index <https://index.ros.org/?search_packages=true#{DISTRO}>`__ 或查看 `所有包的文档目录 <https://docs.ros.org/en/{DISTRO}/p/>`__。
-=======
-**Are you looking for documentation for a particular ROS package like MoveIt, image_proc, or octomap?**
-Please see `ROS Index <https://index.ros.org/?search_packages=true#{DISTRO}>`__ or check out `this index of per-package documentation <https://docs.ros.org/en/{DISTRO}/p/>`__.
->>>>>>> upstream/humble
 
 本站点包含 ROS 2 的文档，如果你正在寻找 ROS 1 的文档，请查看 `ROS wiki <https://wiki.ros.org>`__。
 

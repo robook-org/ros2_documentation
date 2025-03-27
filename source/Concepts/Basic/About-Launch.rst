@@ -4,31 +4,17 @@
 .. contents:: Table of Contents
    :local:
 
-<<<<<<< HEAD
 一般来说，一个 ROS 2 系统通常由许多节点组成，这些节点运行在许多不同的进程中（甚至在不同的机器上）。
 虽然可以单独手动运行每个节点，但随着节点变多，启动操作很快就会变得繁琐起来。
-=======
-A ROS 2 system typically consists of many nodes running across many different processes (and even different machines).
-While it is possible to manually start each of these nodes, it gets cumbersome quite quickly.
->>>>>>> upstream/humble
 
 ROS 2 的启动 (launch) 系统旨在通过单个命令自动运行很多节点。
 它帮助用户描述系统的配置，然后按照描述的方式执行。
 系统的配置包括要运行的程序、在哪里运行它们、传递给它们的参数以及 ROS 特定的规则，这些规则使得通过为每个组件提供不同的配置来轻松地在整个系统中重用组件。
 当然，启动系统还负责监视启动的进程的状态，并报告或对这些进程状态的变动做出反应。
 
-<<<<<<< HEAD
 以上这些特性都可以在一个启动文件(launch file)中描述，启动文件可以用 Python、XML 或 YAML 编写。
 当使用 ``ros2 launch`` 命令运行启动文件时，所有指定的节点都会运行。
 
 查看 `the launch tutorials <../../Tutorials/Intermediate/Launch/Launch-Main>`__ 以了解如何使用 launch 系统。
 
 更多详细信息请参阅 `the launch documentation <https://docs.ros.org/en/{DISTRO}/p/launch>`__.
-=======
-All of the above is specified in a "launch file", which can be written in XML, YAML, or Python.
-This launch file can then be run using the ``ros2 launch`` command, and all of the nodes specified will be run.
-
-To get started writing and using launch files, see `the launch tutorials <../../Tutorials/Intermediate/Launch/Launch-Main>`.
-
-For more detailed information, see `the launch documentation <https://docs.ros.org/en/{DISTRO}/p/launch>`__.
->>>>>>> upstream/humble

@@ -102,12 +102,25 @@ source setup.bash 时出现异常
    colcon version-check  # 检查是否有可用的更新
    sudo apt install python3-colcon* --only-upgrade  # 升级 colcon 至最新版本
 
+<<<<<<< HEAD
 Anaconda Python 冲突
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``conda`` 与 ROS 2 不兼容。
 确保你的 ``PATH`` 环境变量中没有任何 conda 路径。
 你可能需要检查你的 ``.bashrc`` 文件，注释掉“添加 conda 路径”的那一行。
+=======
+Mixing conda and apt Python Conflict
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+While using ROS 2, mixing packages installed with ``apt`` with packages installed with ``conda`` does not work.
+If you are using the official ``apt`` binaries for ROS 2, make sure that your ``PATH`` environment variable does not have any conda paths in it.
+You may have to check your ``.bashrc`` for this line and comment it out.
+>>>>>>> upstream/humble
+
+On the other hand on Windows, the official ROS 2 installation procedure uses ``conda`` packages via the ``pixi`` package manager, and that works fine as there is no mix of different package managers
+
+``conda`` packages for ROS 2 may be built (such as the one provided by the community-mantained [RoboStack](https://robostack.github.io/) project) but no official conda packages for ROS 2 are provided.
 
 .. _macOS-troubleshooting:
 

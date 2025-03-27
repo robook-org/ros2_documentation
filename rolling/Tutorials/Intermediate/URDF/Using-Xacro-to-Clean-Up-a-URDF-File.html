@@ -291,7 +291,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../How-To-Guides/Migrating-from-ROS1/Migrating-Scripts.html">Migrating Scripts</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Launch-file-different-formats.html">Using Python, XML, and YAML for ROS 2 Launch Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Launch-file-different-formats.html">Using XML, YAML, and Python for ROS 2 Launch Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Launching-composable-nodes.html">Using ROS 2 launch to launch composable nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Node-arguments.html">Passing ROS arguments to nodes via the command-line</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../How-To-Guides/Sync-Vs-Async.html">Synchronous vs. asynchronous service clients</a></li>
@@ -411,7 +411,7 @@
           <li class="breadcrumb-item"><a href="URDF-Main.html">URDF</a></li>
       <li class="breadcrumb-item active">Using Xacro to clean up your code</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/robook-org/ros2_documentation/blob/rolling/source/Tutorials/Intermediate/URDF/Using-Xacro-to-Clean-Up-a-URDF-File.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ros2/ros2_documentation/blob/rolling/source/Tutorials/Intermediate/URDF/Using-Xacro-to-Clean-Up-a-URDF-File.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -488,15 +488,15 @@ However, it does take time to generate, so be aware that your launch file might 
 
 
 <span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
-    <span class="n">ld</span> <span class="o">=</span> <span class="n">LaunchDescription</span><span class="p">()</span>
-
-    <span class="n">ld</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span><span class="n">IncludeLaunchDescription</span><span class="p">(</span>
-        <span class="n">PathJoinSubstitution</span><span class="p">([</span><span class="n">FindPackageShare</span><span class="p">(</span><span class="s1">&#39;urdf_launch&#39;</span><span class="p">),</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;display.launch.py&#39;</span><span class="p">]),</span>
-        <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;urdf_package&#39;</span><span class="p">:</span> <span class="s1">&#39;turtlebot3_description&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;urdf_package_path&#39;</span><span class="p">:</span> <span class="n">PathJoinSubstitution</span><span class="p">([</span><span class="s1">&#39;urdf&#39;</span><span class="p">,</span> <span class="s1">&#39;turtlebot3_burger.urdf&#39;</span><span class="p">])}</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="p">))</span>
-    <span class="k">return</span> <span class="n">ld</span>
+    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">([</span>
+        <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
+            <span class="n">PathJoinSubstitution</span><span class="p">([</span><span class="n">FindPackageShare</span><span class="p">(</span><span class="s1">&#39;urdf_launch&#39;</span><span class="p">),</span> <span class="s1">&#39;launch&#39;</span><span class="p">,</span> <span class="s1">&#39;display.launch.py&#39;</span><span class="p">]),</span>
+            <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;urdf_package&#39;</span><span class="p">:</span> <span class="s1">&#39;turtlebot3_description&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;urdf_package_path&#39;</span><span class="p">:</span> <span class="n">PathJoinSubstitution</span><span class="p">([</span><span class="s1">&#39;urdf&#39;</span><span class="p">,</span> <span class="s1">&#39;turtlebot3_burger.urdf&#39;</span><span class="p">])</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="p">])</span>
 </pre></div>
 </div>
 <p>At the top of the URDF file, you must specify a namespace in order for the file to parse properly.
@@ -749,13 +749,13 @@ See how we use the reflect parameter to put the legs on either side of the body 
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NFW6MLHB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVD5Z6G6NH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GTM-NFW6MLHB', {
+      gtag('config', 'G-EVD5Z6G6NH', {
           'anonymize_ip': false,
       });
     </script> 

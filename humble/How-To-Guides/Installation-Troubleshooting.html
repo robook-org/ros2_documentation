@@ -499,6 +499,8 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <p><code class="docutils literal notranslate"><span class="pre">conda</span></code> 与 ROS 2 不兼容。
 确保你的 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> 环境变量中没有任何 conda 路径。
 你可能需要检查你的 <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> 文件，注释掉“添加 conda 路径”的那一行。</p>
+<p>On the other hand on Windows, the official ROS 2 installation procedure uses <code class="docutils literal notranslate"><span class="pre">conda</span></code> packages via the <code class="docutils literal notranslate"><span class="pre">pixi</span></code> package manager, and that works fine as there is no mix of different package managers</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span></code> packages for ROS 2 may be built (such as the one provided by the community-mantained [RoboStack](<a class="reference external" href="https://robostack.github.io/">https://robostack.github.io/</a>) project) but no official conda packages for ROS 2 are provided.</p>
 </section>
 </section>
 <section id="macos">

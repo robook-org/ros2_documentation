@@ -109,6 +109,10 @@ Anaconda Python 冲突
 确保你的 ``PATH`` 环境变量中没有任何 conda 路径。
 你可能需要检查你的 ``.bashrc`` 文件，注释掉“添加 conda 路径”的那一行。
 
+On the other hand on Windows, the official ROS 2 installation procedure uses ``conda`` packages via the ``pixi`` package manager, and that works fine as there is no mix of different package managers
+
+``conda`` packages for ROS 2 may be built (such as the one provided by the community-mantained [RoboStack](https://robostack.github.io/) project) but no official conda packages for ROS 2 are provided.
+
 .. _macOS-troubleshooting:
 
 macOS

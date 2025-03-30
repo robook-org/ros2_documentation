@@ -487,13 +487,13 @@ As always, though, make sure to add the description, maintainer email and name, 
 <p>Inside the <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/python_parameter_event_handler/python_parameter_event_handler</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">parameter_event_handler.py</span></code> and paste the following code within:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
-<span class="kn">import</span> <span class="nn">rclpy.node</span>
+<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 <span class="kn">import</span> <span class="nn">rclpy.parameter</span>
 
 <span class="kn">from</span> <span class="nn">rclpy.parameter_event_handler</span> <span class="kn">import</span> <span class="n">ParameterEventHandler</span>
 
 
-<span class="k">class</span> <span class="nc">SampleNodeWithParameters</span><span class="p">(</span><span class="n">rclpy</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SampleNodeWithParameters</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;node_with_parameters&#39;</span><span class="p">)</span>
 
@@ -525,7 +525,7 @@ As always, though, make sure to add the description, maintainer email and name, 
 <p>The <code class="docutils literal notranslate"><span class="pre">import</span></code> statements at the top are used to import the package dependencies.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
-<span class="kn">import</span> <span class="nn">rclpy.node</span>
+<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 <span class="kn">import</span> <span class="nn">rclpy.parameter</span>
 
 <span class="kn">from</span> <span class="nn">rclpy.parameter_event_handler</span> <span class="kn">import</span> <span class="n">ParameterEventHandler</span>
@@ -534,7 +534,7 @@ As always, though, make sure to add the description, maintainer email and name, 
 <p>The next piece of code creates the class <code class="docutils literal notranslate"><span class="pre">SampleNodeWithParameters</span></code> and the constructor.
 The constructor for the class declares an integer parameter <code class="docutils literal notranslate"><span class="pre">an_int_param</span></code>,  with a default value of 0.
 Next, the code creates a <code class="docutils literal notranslate"><span class="pre">ParameterEventHandler</span></code> that will be used to monitor changes to parameters.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SampleNodeWithParameters</span><span class="p">(</span><span class="n">rclpy</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SampleNodeWithParameters</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;node_with_parameters&#39;</span><span class="p">)</span>
 

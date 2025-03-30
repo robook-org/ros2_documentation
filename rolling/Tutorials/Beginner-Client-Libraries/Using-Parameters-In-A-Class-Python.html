@@ -483,9 +483,9 @@ Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_
 <p>Inside the <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/python_parameters/python_parameters</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">python_parameters_node.py</span></code> and paste the following code within:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">ExternalShutdownException</span>
-<span class="kn">import</span> <span class="nn">rclpy.node</span>
+<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 
-<span class="k">class</span> <span class="nc">MinimalParam</span><span class="p">(</span><span class="n">rclpy</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MinimalParam</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;minimal_param_node&#39;</span><span class="p">)</span>
 
@@ -525,7 +525,7 @@ Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_
 The line <code class="docutils literal notranslate"><span class="pre">self.declare_parameter('my_parameter',</span> <span class="pre">'world')</span></code> of the constructor creates a parameter with the name <code class="docutils literal notranslate"><span class="pre">my_parameter</span></code> and a default value of <code class="docutils literal notranslate"><span class="pre">world</span></code>.
 The parameter type is inferred from the default value, so in this case it would be set to a string type.
 Next the <code class="docutils literal notranslate"><span class="pre">timer</span></code> is initialized with a period of 1, which causes the <code class="docutils literal notranslate"><span class="pre">timer_callback</span></code> function to be executed once a second.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MinimalParam</span><span class="p">(</span><span class="n">rclpy</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MinimalParam</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;minimal_param_node&#39;</span><span class="p">)</span>
 
@@ -573,7 +573,7 @@ Descriptors allow you to specify a text description of the parameter and its con
 For that to work, the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> code has to be changed to:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span>
 
-<span class="k">class</span> <span class="nc">MinimalParam</span><span class="p">(</span><span class="n">rclpy</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MinimalParam</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;minimal_param_node&#39;</span><span class="p">)</span>
 

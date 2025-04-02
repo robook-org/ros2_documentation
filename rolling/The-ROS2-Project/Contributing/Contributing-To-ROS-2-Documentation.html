@@ -71,10 +71,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../Installation/Maintaining-a-Source-Checkout.html">Maintain source checkout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../Installation/Testing.html">Testing with pre-release binaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../Installation/DDS-Implementations.html">DDS implementations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Install-Connext-Security-Plugins.html">Connext security plugins</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Install-Connext-University-Eval.html">RTI Connext DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Working-with-Eclipse-CycloneDDS.html">Eclipse Cyclone DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Working-with-GurumNetworks-GurumDDS.html">GurumNetworks GurumDDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Working-with-RTI-Connext-DDS.html">RTI Connext DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Working-with-eProsima-Fast-DDS.html">eProsima Fast DDS</a></li>
 </ul>
 </li>
@@ -522,6 +521,10 @@ To see the output, open <code class="docutils literal notranslate"><span class="
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make test</span>
 </pre></div>
 </div>
+<p>You can run the Python documentation tools tests locally (using <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a>) with the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make test-tools</span>
+</pre></div>
+</div>
 <p>You can run the documentation linter locally (using <a class="reference external" href="https://github.com/sphinx-contrib/sphinx-lint">sphinx-lint</a>) with the following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make lint</span>
 </pre></div>
@@ -864,27 +867,35 @@ In the example below, the target is defined as <code class="docutils literal not
 For example, when generating the docs for Rolling on the <code class="docutils literal notranslate"><span class="pre">rolling</span></code> branch:</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Use</p></th>
-<th class="head"><p>Becomes (for Rolling)</p></th>
+<tr class="row-odd"><th class="head"><p>Macro</p></th>
 <th class="head"><p>Example</p></th>
+<th class="head"><p>Becomes (for Rolling)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>{DISTRO}</p></td>
-<td><p>rolling</p></td>
 <td><p>ros-{DISTRO}-pkg</p></td>
+<td><p>ros-rolling-pkg</p></td>
 </tr>
 <tr class="row-odd"><td><p>{DISTRO_TITLE}</p></td>
-<td><p>Rolling</p></td>
 <td><p>ROS 2 {DISTRO_TITLE}</p></td>
+<td><p>ROS 2 Rolling</p></td>
 </tr>
 <tr class="row-even"><td><p>{DISTRO_TITLE_FULL}</p></td>
-<td><p>Rolling Ridley</p></td>
 <td><p>ROS 2 {DISTRO_TITLE_FULL}</p></td>
+<td><p>ROS 2 Rolling Ridley</p></td>
 </tr>
 <tr class="row-odd"><td><p>{REPOS_FILE_BRANCH}</p></td>
-<td><p>rolling</p></td>
 <td><p>git checkout {REPOS_FILE_BRANCH}</p></td>
+<td><p>git checkout rolling</p></td>
+</tr>
+<tr class="row-even"><td><p>{interface_link(std_msgs/msg/String)}</p></td>
+<td><p>See: {interface_link(std_msgs/msg/String)}.</p></td>
+<td><p>See: <a class="reference external" href="https://docs.ros.org/en/rolling/p/std_msgs/msg/String.html">https://docs.ros.org/en/rolling/p/std_msgs/msg/String.html</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>{interface(std_msgs/msg/String)}</p></td>
+<td><p>Publish a {interface(std_msgs/msg/String)}.</p></td>
+<td><p>Publish a <a class="reference external" href="https://docs.ros.org/en/rolling/p/std_msgs/msg/String.html">std_msgs/msg/String</a>.</p></td>
 </tr>
 </tbody>
 </table>

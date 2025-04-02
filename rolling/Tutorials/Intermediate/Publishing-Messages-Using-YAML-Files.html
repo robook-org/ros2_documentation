@@ -70,10 +70,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../Installation/Maintaining-a-Source-Checkout.html">Maintain source checkout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../Installation/Testing.html">Testing with pre-release binaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../Installation/DDS-Implementations.html">DDS implementations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Install-Connext-Security-Plugins.html">Connext security plugins</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Install-Connext-University-Eval.html">RTI Connext DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Working-with-Eclipse-CycloneDDS.html">Eclipse Cyclone DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Working-with-GurumNetworks-GurumDDS.html">GurumNetworks GurumDDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Working-with-RTI-Connext-DDS.html">RTI Connext DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../Installation/DDS-Implementations/Working-with-eProsima-Fast-DDS.html">eProsima Fast DDS</a></li>
 </ul>
 </li>
@@ -429,28 +428,28 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
-<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#tasks" id="id3">Tasks</a></p></li>
-<li><p><a class="reference internal" href="#next-steps" id="id4">Next steps</a></p></li>
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id3">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#tasks" id="id4">Tasks</a></p></li>
+<li><p><a class="reference internal" href="#next-steps" id="id5">Next steps</a></p></li>
 </ul>
 </nav>
 <section id="overview">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>Publishing ROS 2 messages via CLI is straightforward for simple types like <a class="reference external" href="https://docs.ros.org/en/rolling/p/std_msgs/interfaces/msg/Bool.html">std_msgs/msg/Bool</a> or <a class="reference external" href="https://docs.ros.org/en/rolling/p/std_msgs/interfaces/msg/String.html">std_msgs/msg/String</a>.
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Publishing ROS 2 messages via CLI is straightforward for simple types like <a class="reference external" href="https://docs.ros.org/en/rolling/p/std_msgs/msg/Bool.html">std_msgs/msg/Bool</a> or <a class="reference external" href="https://docs.ros.org/en/rolling/p/std_msgs/msg/String.html">std_msgs/msg/String</a>.
 However, it becomes tedious for complex message structures.
 This tutorial demonstrates how to use <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">echo</span></code> and <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pub</span></code> with YAML files to record, edit, and replay topic data efficiently.</p>
 </section>
 <section id="prerequisites">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <p>This tutorial uses concepts like ROS 2 topics and CLI tools covered in the following tutorial:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html"><span class="doc">Understanding topics</span></a></p></li>
 </ul>
 </section>
 <section id="tasks">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
-<p>We assume that an entity is publishing a <code class="docutils literal notranslate"><span class="pre">geometry_msgs/msg/Twist</span></code> message through a topic named <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> and we want to capture the message, edit it and publish it to a topic.
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Tasks</a><a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<p>We assume that an entity is publishing a <a class="reference external" href="https://docs.ros.org/en/rolling/p/geometry_msgs/msg/Twist.html">geometry_msgs/msg/Twist</a> message through a topic named <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> and we want to capture the message, edit it and publish it to a topic.
 We can use the <code class="docutils literal notranslate"><span class="pre">echo</span></code> verb to capture the message and save it in a YAML file <code class="docutils literal notranslate"><span class="pre">cmd_vel.yaml</span></code> using the output redirection operator <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic echo --once  /cmd_vel &gt; cmd_vel.yaml</span>
 </pre></div>
@@ -468,7 +467,7 @@ We can use the <code class="docutils literal notranslate"><span class="pre">echo
 </pre></div>
 </div>
 <p>To publish a message, we utilize the <code class="docutils literal notranslate"><span class="pre">--yaml-file</span></code> option available with the <code class="docutils literal notranslate"><span class="pre">pub</span></code> verb of the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span></code> command.
-First, we specify the target topic—in this case, <code class="docutils literal notranslate"><span class="pre">/cmd_vel</span></code>, followed by the message type <code class="docutils literal notranslate"><span class="pre">geometry_msgs/msg/Twist</span></code>.
+First, we specify the target topic—in this case, <code class="docutils literal notranslate"><span class="pre">/cmd_vel</span></code>, followed by the message type <a class="reference external" href="https://docs.ros.org/en/rolling/p/geometry_msgs/msg/Twist.html">geometry_msgs/msg/Twist</a>.
 Lastly, we specify the YAML file containing the message data.
 The following command will publish the message contained in the <code class="docutils literal notranslate"><span class="pre">YAML</span></code> file to the designated <code class="docutils literal notranslate"><span class="pre">topic</span></code> once.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic pub /cmd_vel geometry_msgs/msg/Twist --yaml-file cmd_vel.yaml</span>
@@ -525,7 +524,7 @@ In this case two messages where added to the YAML file with different values.</p
 </div>
 </section>
 <section id="next-steps">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
 <p>If you are interested in publishing multiple topics using the CLI, you can take a look at the <a class="reference internal" href="../Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html"><span class="doc">Recording and playing back data</span></a> tutorial.</p>
 </section>
 </section>

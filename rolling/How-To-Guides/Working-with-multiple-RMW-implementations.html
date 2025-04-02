@@ -71,10 +71,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../Installation/Maintaining-a-Source-Checkout.html">Maintain source checkout</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Installation/Testing.html">Testing with pre-release binaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Installation/DDS-Implementations.html">DDS implementations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../Installation/DDS-Implementations/Install-Connext-Security-Plugins.html">Connext security plugins</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../Installation/DDS-Implementations/Install-Connext-University-Eval.html">RTI Connext DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Installation/DDS-Implementations/Working-with-Eclipse-CycloneDDS.html">Eclipse Cyclone DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Installation/DDS-Implementations/Working-with-GurumNetworks-GurumDDS.html">GurumNetworks GurumDDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Installation/DDS-Implementations/Working-with-RTI-Connext-DDS.html">RTI Connext DDS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Installation/DDS-Implementations/Working-with-eProsima-Fast-DDS.html">eProsima Fast DDS</a></li>
 </ul>
 </li>
@@ -476,6 +475,8 @@ ros2 run demo_nodes_py listener
 </section>
 <section id="adding-rmw-implementations-to-your-workspace">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Adding RMW implementations to your workspace</a><a class="headerlink" href="#adding-rmw-implementations-to-your-workspace" title="Link to this heading"></a></h2>
+<p>Additional DDS and RMW implementations can be added to your workspace by installing the necessary dependencies and rebuilding the workspace.
+See the <a class="reference internal" href="../Installation/DDS-Implementations.html"><span class="doc">DDS implementations</span></a> page for more information about installing the available DDS options.</p>
 <p>Suppose that you have built your ROS 2 workspace with only Fast DDS installed and therefore only the Fast DDS RMW implementation built.
 The last time your workspace was built, any other RMW implementation packages, <code class="docutils literal notranslate"><span class="pre">rmw_connextdds</span></code> for example, were probably unable to find installations of the relevant DDS implementations.
 If you then install an additional DDS implementation, Connext for example, you will need to re-trigger the check for a Connext installation that occurs when the Connext RMW implementation is being built.
@@ -554,7 +555,7 @@ Either add to your existing <code class="docutils literal notranslate"><span cla
 </div>
 <p>You will need to reboot the machine after modifying this file to have the changes take effect.</p>
 <p>This solution is edited from the RTI Connext community forum.
-See the <a class="reference external" href="https://community.rti.com/kb/osx510">original post</a> for more detailed explanation.</p>
+See the <a class="reference external" href="https://community.rti.com/kb/osx510">original post</a> for a more detailed explanation.</p>
 </section>
 </section>
 </section>

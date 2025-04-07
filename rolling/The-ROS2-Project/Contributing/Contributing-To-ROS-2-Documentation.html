@@ -777,8 +777,10 @@ Code inside the directive needs to be indented.</p>
 </div>
 <section id="code-blocks-bash-vs-console">
 <h4>Code blocks: <code class="docutils literal notranslate"><span class="pre">bash</span></code> vs. <code class="docutils literal notranslate"><span class="pre">console</span></code><a class="headerlink" href="#code-blocks-bash-vs-console" title="Link to this heading"></a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">bash</span></code> and <code class="docutils literal notranslate"><span class="pre">console</span></code> are similar, but they serve two different purposes.</p>
-<p><code class="docutils literal notranslate"><span class="pre">bash</span></code> is meant for bash scripts, e.g., for bash commands from a script file.
+<p><code class="docutils literal notranslate"><span class="pre">bash</span></code> and <code class="docutils literal notranslate"><span class="pre">console</span></code> are similar, but they serve two different purposes.
+Choosing the right one is important to ensure that the content is formatted correctly and that the copy button copies the right content.
+Below is an explanation of each one; skip to the end of this section for a list of use-cases and corresponding examples.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bash</span></code> is meant for scripts, e.g., for bash commands from a script file.
 Example result:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">42</span>
 ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
@@ -789,7 +791,7 @@ This makes it clear that the given commands need to be run in a terminal.
 It also allows separating command lines from output lines using prompt symbols such as <code class="docutils literal notranslate"><span class="pre">$</span></code> or <code class="docutils literal notranslate"><span class="pre">#</span></code>.
 Command lines are formatted as bash commands while output lines are formatted as normal text.
 The prompt symbol is not selectable, and clicking on the copy button in the upper right-hand corner copies <em>only</em> the commands, not the outputs nor the prompt symbols.
-In general, the prompt symbol (<code class="docutils literal notranslate"><span class="pre">$</span></code>) can be omitted if the code block does not contain any output lines.
+This means that, if a <code class="docutils literal notranslate"><span class="pre">console</span></code> code block is used without any <code class="docutils literal notranslate"><span class="pre">$</span></code>, the copy button will not copy any lines.
 Example result:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">42</span>
 <span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node<span class="w"> </span>--ros-args<span class="w"> </span>--remap<span class="w"> </span><span class="s2">&quot;__node:=my_turtle&quot;</span>
@@ -804,6 +806,56 @@ $<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1742150439</span>.026043867<span class="o">]</span><span class="w"> </span><span class="o">[</span>my_turtle<span class="o">]</span>:<span class="w"> </span>Spawning<span class="w"> </span>turtle<span class="w"> </span><span class="o">[</span>turtle1<span class="o">]</span><span class="w"> </span>at<span class="w"> </span><span class="nv">x</span><span class="o">=[</span><span class="m">5</span>.544445<span class="o">]</span>,<span class="w"> </span><span class="nv">y</span><span class="o">=[</span><span class="m">5</span>.544445<span class="o">]</span>,<span class="w"> </span><span class="nv">theta</span><span class="o">=[</span><span class="m">0</span>.000000<span class="o">]</span>
 </pre></div>
 </div>
+<p>To simplify code blocks, <code class="docutils literal notranslate"><span class="pre">bash</span></code> can still be used without <code class="docutils literal notranslate"><span class="pre">$</span></code> for commands meant to be run in a terminal if the code block does not include any output lines.</p>
+<p>To help choose between <code class="docutils literal notranslate"><span class="pre">bash</span></code> and <code class="docutils literal notranslate"><span class="pre">console</span></code>, see the following list of use-cases and corresponding examples:</p>
+<ol class="arabic">
+<li><p>Commands meant to be copied into a script file</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span> <span class="pre">bash</span></code> without <code class="docutils literal notranslate"><span class="pre">$</span></code>:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">42</span>
+ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p>Commands meant to be run in a terminal <em>without</em> any output lines</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span> <span class="pre">bash</span></code> without <code class="docutils literal notranslate"><span class="pre">$</span></code>:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/rolling/setup.bash
+ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Or use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span> <span class="pre">console</span></code> with <code class="docutils literal notranslate"><span class="pre">$</span></code> on all command lines, i.e., all lines:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>/opt/ros/rolling/setup.bash
+<span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p>Commands meant to be run in a terminal <em>with</em> output lines</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span> <span class="pre">console</span></code> with <code class="docutils literal notranslate"><span class="pre">$</span></code> on all command lines:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>/opt/ros/rolling/setup.bash
+<span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
+<span class="go">[INFO] [1743878028.269334696] [turtlesim]: Starting turtlesim with node name /turtlesim</span>
+<span class="go">[INFO] [1743878028.275096618] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ol>
 </section>
 </section>
 <section id="images">

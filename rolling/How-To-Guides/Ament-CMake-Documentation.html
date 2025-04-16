@@ -591,25 +591,14 @@ The executable may also have to be linked with any libraries created in this pac
 </section>
 <section id="linking-to-dependencies">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">Linking to dependencies</a><a class="headerlink" href="#linking-to-dependencies" title="Link to this heading"></a></h3>
-<p>There are two ways to link your targets against a dependency.</p>
-<p>The first and recommended way is to use the ament macro <code class="docutils literal notranslate"><span class="pre">ament_target_dependencies</span></code>.
-As an example, suppose we want to link <code class="docutils literal notranslate"><span class="pre">my_library</span></code> against the linear algebra library Eigen3.</p>
+<p>Link to your dependencies using [target_link_libraries](<a class="reference external" href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html">https://cmake.org/cmake/help/latest/command/target_link_libraries.html</a>)
+It will give your target the necessary headers, libraries, and all their dependencies.</p>
+<p>As an example, suppose we want to link <code class="docutils literal notranslate"><span class="pre">my_library</span></code> against the linear algebra library Eigen3.
+<code class="docutils literal notranslate"><span class="pre">Eigen3</span></code> defines the target <code class="docutils literal notranslate"><span class="pre">Eigen3::Eigen</span></code>.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">Eigen3</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">my_library</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">Eigen3</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_library</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">Eigen3::Eigen</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>It includes the necessary headers and libraries and their dependencies to be correctly found by the project.</p>
-<p>The second way is to use <code class="docutils literal notranslate"><span class="pre">target_link_libraries</span></code>.</p>
-<p>Modern CMake prefers to use only targets, exporting and linking against them.
-CMake targets may be namespaced, similar to C++.
-Prefer to use the namespaced targets if they are available.
-For instance, <code class="docutils literal notranslate"><span class="pre">Eigen3</span></code> defines the target <code class="docutils literal notranslate"><span class="pre">Eigen3::Eigen</span></code>.</p>
-<p>In the example of Eigen3, the call should then look like</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_library</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">Eigen3::Eigen</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This will also include necessary headers, libraries and their dependencies.
-Note that this dependency must have been previously discovered via a call to <code class="docutils literal notranslate"><span class="pre">find_package</span></code>.</p>
 </section>
 <section id="installing">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Installing</a><a class="headerlink" href="#installing" title="Link to this heading"></a></h3>
@@ -659,7 +648,7 @@ It is therefore advised to keep the <code class="docutils literal notranslate"><
 <li><p>The <code class="docutils literal notranslate"><span class="pre">EXPORT</span></code> notation of the install call requires additional attention:
 It installs the CMake files for the <code class="docutils literal notranslate"><span class="pre">my_library</span></code> target.
 It must be named exactly the same as the argument in <code class="docutils literal notranslate"><span class="pre">ament_export_targets</span></code>.
-To ensure that it can be used via <code class="docutils literal notranslate"><span class="pre">ament_target_dependencies</span></code>, it should not be named exactly the same as the library name, but instead should have a prefix like <code class="docutils literal notranslate"><span class="pre">export_</span></code> (as shown above).</p></li>
+By convention the export name is given a prefix like <code class="docutils literal notranslate"><span class="pre">export_</span></code>, but this prefix is not critical.</p></li>
 <li><p>All install paths are relative to <code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code>, which is already set correctly by colcon/ament.</p></li>
 </ul>
 <p>There are two additional functions which are available, but are superfluous for target based installs:</p>

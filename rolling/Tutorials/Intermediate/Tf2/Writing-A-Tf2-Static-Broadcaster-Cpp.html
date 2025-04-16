@@ -643,12 +643,12 @@ Before passing the actual transform values we need to give it the appropriate me
 <h4>2.3 CMakeLists.txt<a class="headerlink" href="#cmakelists-txt" title="Link to this heading"></a></h4>
 <p>Add the executable to the CMakeLists.txt and name it <code class="docutils literal notranslate"><span class="pre">static_turtle_tf2_broadcaster</span></code>, which you’ll use later with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(static_turtle_tf2_broadcaster src/static_turtle_tf2_broadcaster.cpp)</span>
-<span class="go">ament_target_dependencies(</span>
-<span class="go">   static_turtle_tf2_broadcaster</span>
-<span class="go">   geometry_msgs</span>
-<span class="go">   rclcpp</span>
-<span class="go">   tf2</span>
-<span class="go">   tf2_ros</span>
+<span class="go">target_link_libraries(</span>
+<span class="go">   static_turtle_tf2_broadcaster PUBLIC</span>
+<span class="gp">   $</span><span class="o">{</span>geometry_msgs_TARGETS<span class="o">}</span>
+<span class="go">   rclcpp::rclcpp</span>
+<span class="go">   tf2::tf2</span>
+<span class="go">   tf2_ros::tf2_ros</span>
 <span class="go">)</span>
 </pre></div>
 </div>

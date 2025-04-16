@@ -774,10 +774,10 @@ Since you’ll be changing the standard string msg to a numerical one, the outpu
 <span class="nb">find_package</span><span class="p">(</span><span class="s">tutorial_interfaces</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span><span class="w">                      </span><span class="c"># CHANGE</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">src/publisher_member_function.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">tutorial_interfaces</span><span class="p">)</span><span class="w">    </span><span class="c"># CHANGE</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="w"> </span><span class="o">${</span><span class="nv">tutorial_interfaces_TARGETS</span><span class="o">}</span><span class="p">)</span><span class="w">    </span><span class="c"># CHANGE</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">listener</span><span class="w"> </span><span class="s">src/subscriber_member_function.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">listener</span><span class="w"> </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">tutorial_interfaces</span><span class="p">)</span><span class="w">  </span><span class="c"># CHANGE</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">listener</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="w"> </span><span class="o">${</span><span class="nv">tutorial_interfaces_TARGETS</span><span class="o">}</span><span class="p">)</span><span class="w">  </span><span class="c"># CHANGE</span>
 
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">  </span><span class="s">talker</span>
@@ -1011,12 +1011,10 @@ Since you’ll be changing the original two integer request srv to a three integ
 <span class="nb">find_package</span><span class="p">(</span><span class="s">tutorial_interfaces</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span><span class="w">         </span><span class="c"># CHANGE</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">server</span><span class="w"> </span><span class="s">src/add_two_ints_server.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">server</span>
-<span class="w">  </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">tutorial_interfaces</span><span class="p">)</span><span class="w">                      </span><span class="c"># CHANGE</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">server</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="w"> </span><span class="o">${</span><span class="nv">tutorial_interfaces_TARGETS</span><span class="o">}</span><span class="p">)</span><span class="w">  </span><span class="c"># CHANGE</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">client</span><span class="w"> </span><span class="s">src/add_two_ints_client.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">client</span>
-<span class="w">  </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">tutorial_interfaces</span><span class="p">)</span><span class="w">                      </span><span class="c"># CHANGE</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">client</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="w"> </span><span class="o">${</span><span class="nv">tutorial_interfaces_TARGETS</span><span class="o">}</span><span class="p">)</span>
 
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">  </span><span class="s">server</span>

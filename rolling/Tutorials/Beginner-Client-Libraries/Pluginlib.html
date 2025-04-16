@@ -495,7 +495,7 @@ The base class will define a generic polygon class, and then our plugins will de
 One thing to notice is the presence of the initialize method.
 With <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>, a constructor without parameters is required, so if any parameters to the class are needed, we use the initialize method to pass them to the object.</p>
 <p>We need to make this header available to other classes, so open <code class="docutils literal notranslate"><span class="pre">ros2_ws/src/polygon_base/CMakeLists.txt</span></code> for editing.
-Add the following lines after the <code class="docutils literal notranslate"><span class="pre">ament_target_dependencies</span></code> command:</p>
+Add the following lines after the <code class="docutils literal notranslate"><span class="pre">target_link_libraries</span></code> command:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">install</span><span class="p">(</span>
 <span class="w">  </span><span class="s">DIRECTORY</span><span class="w"> </span><span class="s">include/</span>
 <span class="w">  </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">include</span>

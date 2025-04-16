@@ -428,8 +428,13 @@
 <li><p><a class="reference internal" href="#supported-platforms" id="id8">Supported Platforms</a></p></li>
 <li><p><a class="reference internal" href="#installation" id="id9">Installation</a></p></li>
 <li><p><a class="reference internal" href="#new-features-in-this-ros-2-release" id="id10">New features in this ROS 2 release</a></p></li>
-<li><p><a class="reference internal" href="#development-progress" id="id11">Development progress</a></p></li>
-<li><p><a class="reference internal" href="#release-timeline" id="id12">Release Timeline</a></p></li>
+<li><p><a class="reference internal" href="#changes-since-the-jazzy-release" id="id11">Changes since the Jazzy release</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ament-target-dependencies-is-deprecated" id="id12">ament_target_dependencies is deprecated</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#development-progress" id="id13">Development progress</a></p></li>
+<li><p><a class="reference internal" href="#release-timeline" id="id14">Release Timeline</a></p></li>
 </ul>
 </nav>
 <p><em>Kilted Kaiju</em> is the eleventh release of ROS 2.
@@ -460,13 +465,32 @@ What follows is highlights of the important changes and features in Kilted Kaiju
 <section id="new-features-in-this-ros-2-release">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">New features in this ROS 2 release</a><a class="headerlink" href="#new-features-in-this-ros-2-release" title="Link to this heading"></a></h2>
 </section>
+<section id="changes-since-the-jazzy-release">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Changes since the Jazzy release</a><a class="headerlink" href="#changes-since-the-jazzy-release" title="Link to this heading"></a></h2>
+<section id="ament-target-dependencies-is-deprecated">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">ament_target_dependencies is deprecated</a><a class="headerlink" href="#ament-target-dependencies-is-deprecated" title="Link to this heading"></a></h3>
+<p>The CMake macro <code class="docutils literal notranslate"><span class="pre">ament_target_dependencies()</span></code> has been deprecated in favor of <code class="docutils literal notranslate"><span class="pre">target_link_libraries()</span></code> with modern CMake targets.
+The macro still works, but it emits a CMake deprecation warning at build time like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CMake</span> <span class="n">Deprecation</span> <span class="ne">Warning</span> <span class="n">at</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">/</span><span class="n">ament_cmake_target_dependencies</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ament_cmake_target_dependencies</span><span class="o">/</span><span class="n">cmake</span><span class="o">/</span><span class="n">ament_target_dependencies</span><span class="o">.</span><span class="n">cmake</span><span class="p">:</span><span class="mi">89</span> <span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="n">ament_target_dependencies</span><span class="p">()</span> <span class="ow">is</span> <span class="n">deprecated</span><span class="o">.</span>  <span class="n">Use</span> <span class="n">target_link_libraries</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">modern</span> <span class="n">CMake</span> <span class="n">targets</span> <span class="n">instead</span><span class="o">.</span>  <span class="n">Try</span> <span class="n">replacing</span> <span class="n">this</span> <span class="n">call</span> <span class="k">with</span><span class="p">:</span>
+
+    <span class="n">target_link_libraries</span><span class="p">([</span><span class="o">...</span><span class="p">]</span> <span class="n">PUBLIC</span>
+    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Try replacing the <code class="docutils literal notranslate"><span class="pre">ament_target_dependencies()</span></code> call with the  <code class="docutils literal notranslate"><span class="pre">target_link_libraries()</span></code> call suggested by the warning.</p>
+<p>For more information see <a class="reference external" href="https://github.com/ament/ament_cmake/pull/572">ament/ament_cmake#572</a> and <a class="reference external" href="https://github.com/ament/ament_cmake/issues/292">ament/ament_cmake#292</a>.</p>
+</section>
+</section>
 <section id="development-progress">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Development progress</a><a class="headerlink" href="#development-progress" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Development progress</a><a class="headerlink" href="#development-progress" title="Link to this heading"></a></h2>
 <p>For progress on the development of Kiltled Kaiju, see <a class="reference external" href="https://github.com/orgs/ros2/projects/63">this project board</a>.</p>
 <p>For the broad process followed by Kilted Kaiju, see the <a class="reference internal" href="Release-Process.html"><span class="doc">process description page</span></a>.</p>
 </section>
 <section id="release-timeline">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Release Timeline</a><a class="headerlink" href="#release-timeline" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Release Timeline</a><a class="headerlink" href="#release-timeline" title="Link to this heading"></a></h2>
 <blockquote>
 <div><dl class="simple">
 <dt>December, 2024 - Platform decisions</dt><dd><p>REP 2000 is updated with the target platforms and major dependency versions.</p>

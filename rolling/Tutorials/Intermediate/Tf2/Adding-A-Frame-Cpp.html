@@ -575,11 +575,11 @@ The <code class="docutils literal notranslate"><span class="pre">carrot1</span><
 <p>Navigate one level back to the <code class="docutils literal notranslate"><span class="pre">learning_tf2_cpp</span></code> directory, where the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> files are located.</p>
 <p>Now open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> add the executable and name it <code class="docutils literal notranslate"><span class="pre">fixed_frame_tf2_broadcaster</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(fixed_frame_tf2_broadcaster src/fixed_frame_tf2_broadcaster.cpp)</span>
-<span class="go">ament_target_dependencies(</span>
-<span class="go">    fixed_frame_tf2_broadcaster</span>
-<span class="go">    geometry_msgs</span>
-<span class="go">    rclcpp</span>
-<span class="go">    tf2_ros</span>
+<span class="go">target_link_libraries(</span>
+<span class="go">    fixed_frame_tf2_broadcaster PUBLIC</span>
+<span class="gp">    $</span><span class="o">{</span>geometry_msgs_TARGETS<span class="o">}</span>
+<span class="go">    rclcpp::rclcpp</span>
+<span class="go">    tf2_ros::tf2_ros</span>
 <span class="go">)</span>
 </pre></div>
 </div>
@@ -794,11 +794,11 @@ Inside the <code class="docutils literal notranslate"><span class="pre">src</spa
 <p>Navigate one level back to the <code class="docutils literal notranslate"><span class="pre">learning_tf2_cpp</span></code> directory, where the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> files are located.</p>
 <p>Now open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> add the executable and name it <code class="docutils literal notranslate"><span class="pre">dynamic_frame_tf2_broadcaster</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(dynamic_frame_tf2_broadcaster src/dynamic_frame_tf2_broadcaster.cpp)</span>
-<span class="go">ament_target_dependencies(</span>
-<span class="go">    dynamic_frame_tf2_broadcaster</span>
-<span class="go">    geometry_msgs</span>
-<span class="go">    rclcpp</span>
-<span class="go">    tf2_ros</span>
+<span class="go">target_link_libraries(</span>
+<span class="go">    dynamic_frame_tf2_broadcaster PUBLIC</span>
+<span class="gp">    $</span><span class="o">{</span>geometry_msgs_TARGETS<span class="o">}</span>
+<span class="go">    rclcpp::rclcpp</span>
+<span class="go">    tf2_ros::tf2_ros</span>
 <span class="go">)</span>
 </pre></div>
 </div>

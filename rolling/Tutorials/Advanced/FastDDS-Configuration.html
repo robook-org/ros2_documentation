@@ -582,7 +582,7 @@ Note that the synchronous publisher will be publishing on topic <code class="doc
 </div>
 <p>Now open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file and add a new executable and name it <code class="docutils literal notranslate"><span class="pre">SyncAsyncWriter</span></code> so you can run your node using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">SyncAsyncWriter</span><span class="w"> </span><span class="s">src/sync_async_writer.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">SyncAsyncWriter</span><span class="w"> </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">std_msgs</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">SyncAsyncWriter</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="w"> </span><span class="o">${</span><span class="nv">std_msgs_TARGETS</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Finally, add the <code class="docutils literal notranslate"><span class="pre">install(TARGETS…)</span></code> section so <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> can find your executable:</p>
@@ -609,7 +609,7 @@ Note that the synchronous publisher will be publishing on topic <code class="doc
 <span class="nb">find_package</span><span class="p">(</span><span class="s">std_msgs</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">SyncAsyncWriter</span><span class="w"> </span><span class="s">src/sync_async_writer.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">SyncAsyncWriter</span><span class="w"> </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">std_msgs</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">SyncAsyncWriter</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="w"> </span><span class="o">${</span><span class="nv">std_msgs_TARGETS</span><span class="o">}</span><span class="p">)</span>
 
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">    </span><span class="s">SyncAsyncWriter</span>
@@ -753,7 +753,7 @@ In a new source file named <code class="docutils literal notranslate"><span clas
 </div>
 <p>Open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file and add a new executable and name it <code class="docutils literal notranslate"><span class="pre">SyncAsyncReader</span></code> under the previous <code class="docutils literal notranslate"><span class="pre">SyncAsyncWriter</span></code>:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">SyncAsyncReader</span><span class="w"> </span><span class="s">src/sync_async_reader.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">SyncAsyncReader</span><span class="w"> </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">std_msgs</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">SyncAsyncReader</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="w"> </span><span class="o">${</span><span class="nv">std_msgs_TARGETS</span><span class="o">}</span><span class="p">)</span>
 
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">    </span><span class="s">SyncAsyncReader</span>
@@ -1026,10 +1026,10 @@ Add a new source file named <code class="docutils literal notranslate"><span cla
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">example_interfaces</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">ping_service</span><span class="w"> </span><span class="s">src/ping_service.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">ping_service</span><span class="w"> </span><span class="s">example_interfaces</span><span class="w"> </span><span class="s">rclcpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">ping_service</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="o">${</span><span class="nv">example_interfaces_TARGETS</span><span class="o">}</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">ping_client</span><span class="w"> </span><span class="s">src/ping_client.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">ping_client</span><span class="w"> </span><span class="s">example_interfaces</span><span class="w"> </span><span class="s">rclcpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">ping_client</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="o">${</span><span class="nv">example_interfaces_TARGETS</span><span class="o">}</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="p">)</span>
 
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">    </span><span class="s">ping_service</span>

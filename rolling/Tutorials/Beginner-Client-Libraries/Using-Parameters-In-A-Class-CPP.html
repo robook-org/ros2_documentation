@@ -609,7 +609,7 @@ Once you run the node, you can then run <code class="docutils literal notranslat
 <p>Now open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file.
 Below the dependency <code class="docutils literal notranslate"><span class="pre">find_package(rclcpp</span> <span class="pre">REQUIRED)</span></code> add the following lines of code.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">minimal_param_node</span><span class="w"> </span><span class="s">src/cpp_parameters_node.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">minimal_param_node</span><span class="w"> </span><span class="s">rclcpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">minimal_param_node</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="p">)</span>
 
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">    </span><span class="s">minimal_param_node</span>

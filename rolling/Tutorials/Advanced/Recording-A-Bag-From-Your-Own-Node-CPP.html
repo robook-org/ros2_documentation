@@ -611,7 +611,7 @@ Other writers may be available with different behaviours.</p></li>
 </div>
 <p>Below the dependencies block, which contains <code class="docutils literal notranslate"><span class="pre">find_package(rosbag2_cpp</span> <span class="pre">REQUIRED)</span></code>, add the following lines of code.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(simple_bag_recorder src/simple_bag_recorder.cpp)</span>
-<span class="go">ament_target_dependencies(simple_bag_recorder rclcpp rosbag2_cpp std_msgs)</span>
+<span class="go">target_link_libraries(simple_bag_recorder rclcpp::rclcpp rosbag2_cpp::rosbag2_cpp ${std_msgs_TARGETS})</span>
 
 <span class="go">install(TARGETS</span>
 <span class="go">  simple_bag_recorder</span>
@@ -776,7 +776,7 @@ The writer will serialize the data for us before writing it into the bag.</p>
 <h4>4.3 Add executable<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
 <p>Open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file and add the following lines after the previously-added lines (specifically, after the <code class="docutils literal notranslate"><span class="pre">install(TARGETS</span> <span class="pre">...)</span></code> macro call).</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(data_generator_node src/data_generator_node.cpp)</span>
-<span class="go">ament_target_dependencies(data_generator_node rclcpp rosbag2_cpp example_interfaces)</span>
+<span class="go">target_link_libraries(data_generator_node PUBLIC rclcpp::rclcpp rosbag2_cpp::rosbag2_cpp ${example_interfaces_TARGETS})</span>
 
 <span class="go">install(TARGETS</span>
 <span class="go">  data_generator_node</span>
@@ -900,7 +900,7 @@ This allows us to generate a lot of data covering a wide span of time in much le
 <h4>5.3 Add executable<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
 <p>Open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file and add the following lines after the previously-added lines.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(data_generator_executable src/data_generator_executable.cpp)</span>
-<span class="go">ament_target_dependencies(data_generator_executable rclcpp rosbag2_cpp example_interfaces)</span>
+<span class="go">target_link_libraries(data_generator_executable PUBLIC rclcpp::rclcpp rosbag2_cpp::rosbag2_cpp ${example_interfaces_TARGETS})</span>
 
 <span class="go">install(TARGETS</span>
 <span class="go">  data_generator_executable</span>

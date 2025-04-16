@@ -909,14 +909,14 @@ And the callback function is the function that will be called when the data is r
 </div>
 <p>After that, add the executable and name it <code class="docutils literal notranslate"><span class="pre">turtle_tf2_message_filter</span></code>, which you’ll use later with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(turtle_tf2_message_filter src/turtle_tf2_message_filter.cpp)</span>
-<span class="go">ament_target_dependencies(</span>
-<span class="go">  turtle_tf2_message_filter</span>
-<span class="go">  geometry_msgs</span>
-<span class="go">  message_filters</span>
-<span class="go">  rclcpp</span>
-<span class="go">  tf2</span>
-<span class="go">  tf2_geometry_msgs</span>
-<span class="go">  tf2_ros</span>
+<span class="go">target_link_libraries(</span>
+<span class="go">  turtle_tf2_message_filter PUBLIC</span>
+<span class="gp">  $</span><span class="o">{</span>geometry_msgs_TARGETS<span class="o">}</span>
+<span class="go">  message_filters::message_filters</span>
+<span class="go">  rclcpp::rclcpp</span>
+<span class="go">  tf2::tf2</span>
+<span class="gp">  $</span><span class="o">{</span>tf2_geometry_msgs_TARGETS<span class="o">}</span>
+<span class="go">  tf2_ros::tf2_ros</span>
 <span class="go">)</span>
 
 <span class="go">if(EXISTS ${TF2_CPP_HEADERS})</span>

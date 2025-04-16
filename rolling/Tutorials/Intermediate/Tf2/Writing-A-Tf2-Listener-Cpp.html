@@ -651,13 +651,13 @@ For more general information about tf2 see also the <a class="reference internal
 <p>Navigate one level back to the <code class="docutils literal notranslate"><span class="pre">learning_tf2_cpp</span></code> directory, where the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">package.xml</span></code> files are located.</p>
 <p>Now open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> add the executable and name it <code class="docutils literal notranslate"><span class="pre">turtle_tf2_listener</span></code>, which you’ll use later with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(turtle_tf2_listener src/turtle_tf2_listener.cpp)</span>
-<span class="go">ament_target_dependencies(</span>
-<span class="go">    turtle_tf2_listener</span>
-<span class="go">    geometry_msgs</span>
-<span class="go">    rclcpp</span>
-<span class="go">    tf2</span>
-<span class="go">    tf2_ros</span>
-<span class="go">    turtlesim</span>
+<span class="go">target_link_libraries(</span>
+<span class="go">    turtle_tf2_listener PUBLIC</span>
+<span class="gp">    $</span><span class="o">{</span>geometry_msgs_TARGETS<span class="o">}</span>
+<span class="go">    rclcpp::rclcpp</span>
+<span class="go">    tf2::tf2</span>
+<span class="go">    tf2_ros::tf2_ros</span>
+<span class="gp">    $</span><span class="o">{</span>turtlesim_msgs_TARGETS<span class="o">}</span>
 <span class="go">)</span>
 </pre></div>
 </div>

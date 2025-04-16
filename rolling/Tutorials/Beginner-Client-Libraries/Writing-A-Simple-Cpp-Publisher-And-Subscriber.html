@@ -628,7 +628,7 @@ Below the existing dependency <code class="docutils literal notranslate"><span c
 </div>
 <p>After that, add the executable and name it <code class="docutils literal notranslate"><span class="pre">talker</span></code> so you can run your node using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(talker src/publisher_lambda_function.cpp)</span>
-<span class="go">ament_target_dependencies(talker rclcpp std_msgs)</span>
+<span class="go">target_link_libraries(talker PUBLIC rclcpp::rclcpp ${std_msgs_TARGETS})</span>
 </pre></div>
 </div>
 <p>Finally, add the <code class="docutils literal notranslate"><span class="pre">install(TARGETS...)</span></code> section so <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> can find your executable:</p>
@@ -655,7 +655,7 @@ Below the existing dependency <code class="docutils literal notranslate"><span c
 <span class="go">find_package(std_msgs REQUIRED)</span>
 
 <span class="go">add_executable(talker src/publisher_lambda_function.cpp)</span>
-<span class="go">ament_target_dependencies(talker rclcpp std_msgs)</span>
+<span class="go">target_link_libraries(talker PUBLIC rclcpp::rclcpp ${std_msgs_TARGETS})</span>
 
 <span class="go">install(TARGETS</span>
 <span class="go">  talker</span>
@@ -757,7 +757,7 @@ For the publisher node, spinning meant starting the timer, but for the subscribe
 <h4>3.2 CMakeLists.txt<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
 <p>Reopen <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> and add the executable and target for the subscriber node below the publisher’s entries.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">listener</span><span class="w"> </span><span class="s">src/subscriber_lambda_function.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">listener</span><span class="w"> </span><span class="s">rclcpp</span><span class="w"> </span><span class="s">std_msgs</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">talker</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="w"> </span><span class="o">${</span><span class="nv">std_msgs_TARGETS</span><span class="o">}</span><span class="p">)</span>
 
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">  </span><span class="s">talker</span>

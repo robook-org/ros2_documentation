@@ -555,10 +555,10 @@ You can view the full version of this code with the branch name <code class="doc
 <span class="w">  </span><span class="o">$&lt;</span><span class="nv">BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include</span><span class="o">&gt;</span>
 <span class="w">  </span><span class="o">$&lt;</span><span class="nv">INSTALL_INTERFACE:include</span><span class="o">&gt;</span>
 <span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">point_display</span>
-<span class="w">  </span><span class="s">pluginlib</span>
-<span class="w">  </span><span class="s">rviz_common</span>
-<span class="w">  </span><span class="s">rviz_plugin_tutorial_msgs</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">point_display</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">  </span><span class="s">pluginlib::pluginlib</span>
+<span class="w">  </span><span class="s">rviz_common::rviz_common</span>
+<span class="w">  </span><span class="o">${</span><span class="nv">rviz_plugin_tutorial_msgs_TARGETS</span><span class="o">}</span>
 <span class="p">)</span>
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="s">point_display</span>
 <span class="w">        </span><span class="s">EXPORT</span><span class="w"> </span><span class="s">export_rviz_plugin_tutorial</span>

@@ -512,7 +512,7 @@ See section below.</p>
 </pre></div>
 </div>
 <p>Third, replace other build commands that used the old target to act on the new target.
-i.e. <code class="docutils literal notranslate"><span class="pre">ament_target_dependencies(vincent_driver</span> <span class="pre">...)</span></code> becomes <code class="docutils literal notranslate"><span class="pre">ament_target_dependencies(vincent_driver_component</span> <span class="pre">...)</span></code></p>
+i.e. <code class="docutils literal notranslate"><span class="pre">target_link_libraries(vincent_driver</span> <span class="pre">...)</span></code> becomes <code class="docutils literal notranslate"><span class="pre">target_link_libraries(vincent_driver_component</span> <span class="pre">...)</span></code></p>
 <p>Fourth, add a new command to declare your component.</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">rclcpp_components_register_node</span><span class="p">(</span>
 <span class="w">    </span><span class="s">vincent_driver_component</span>

@@ -635,7 +635,7 @@ We’ll skip the compile step for now as we’ll do it all together below in ste
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">rclcpp</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">publish_address_book</span><span class="w"> </span><span class="s">src/publish_address_book.cpp</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">publish_address_book</span><span class="w"> </span><span class="s">rclcpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">publish_address_book</span><span class="w"> </span><span class="s">rclcpp::rclcpp</span><span class="p">)</span>
 
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">    </span><span class="s">publish_address_book</span>

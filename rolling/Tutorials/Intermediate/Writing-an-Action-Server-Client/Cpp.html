@@ -759,11 +759,11 @@ Open up <code class="docutils literal notranslate"><span class="pre">custom_acti
 <span class="w">  </span><span class="o">$&lt;</span><span class="nv">INSTALL_INTERFACE:include</span><span class="o">&gt;</span><span class="p">)</span>
 <span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">action_server</span>
 <span class="w">  </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s2">&quot;CUSTOM_ACTION_CPP_BUILDING_DLL&quot;</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">action_server</span>
-<span class="w">  </span><span class="s2">&quot;custom_action_interfaces&quot;</span>
-<span class="w">  </span><span class="s2">&quot;rclcpp&quot;</span>
-<span class="w">  </span><span class="s2">&quot;rclcpp_action&quot;</span>
-<span class="w">  </span><span class="s2">&quot;rclcpp_components&quot;</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">action_server</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">  </span><span class="o">${</span><span class="nv">custom_action_interfaces_TARGETS</span><span class="o">}</span>
+<span class="w">  </span><span class="s">rclcpp::rclcpp</span>
+<span class="w">  </span><span class="s">rclcpp_action::rclcpp_action</span>
+<span class="w">  </span><span class="s">rclcpp_components::component</span><span class="p">)</span>
 <span class="nb">rclcpp_components_register_node</span><span class="p">(</span><span class="s">action_server</span><span class="w"> </span><span class="s">PLUGIN</span><span class="w"> </span><span class="s2">&quot;custom_action_cpp::FibonacciActionServer&quot;</span><span class="w"> </span><span class="s">EXECUTABLE</span><span class="w"> </span><span class="s">fibonacci_action_server</span><span class="p">)</span>
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">  </span><span class="s">action_server</span>
@@ -1073,11 +1073,11 @@ Open up <code class="docutils literal notranslate"><span class="pre">custom_acti
 <span class="w">  </span><span class="o">$&lt;</span><span class="nv">INSTALL_INTERFACE:include</span><span class="o">&gt;</span><span class="p">)</span>
 <span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">action_client</span>
 <span class="w">  </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s2">&quot;CUSTOM_ACTION_CPP_BUILDING_DLL&quot;</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">action_client</span>
-<span class="w">  </span><span class="s2">&quot;custom_action_interfaces&quot;</span>
-<span class="w">  </span><span class="s2">&quot;rclcpp&quot;</span>
-<span class="w">  </span><span class="s2">&quot;rclcpp_action&quot;</span>
-<span class="w">  </span><span class="s2">&quot;rclcpp_components&quot;</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">action_client</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="w">  </span><span class="o">${</span><span class="nv">custom_action_interfaces_TARGETS</span><span class="o">}</span>
+<span class="w">  </span><span class="s">rclcpp::rclcpp</span>
+<span class="w">  </span><span class="s">rclcpp_action::rclcpp_action</span>
+<span class="w">  </span><span class="s">rclcpp_components::component</span><span class="p">)</span>
 <span class="nb">rclcpp_components_register_node</span><span class="p">(</span><span class="s">action_client</span><span class="w"> </span><span class="s">PLUGIN</span><span class="w"> </span><span class="s2">&quot;custom_action_cpp::FibonacciActionClient&quot;</span><span class="w"> </span><span class="s">EXECUTABLE</span><span class="w"> </span><span class="s">fibonacci_action_client</span><span class="p">)</span>
 <span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
 <span class="w">  </span><span class="s">action_client</span>

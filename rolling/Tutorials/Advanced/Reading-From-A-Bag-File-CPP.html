@@ -647,7 +647,7 @@ We also break out of the loop so that we publish the next message during the nex
 <p>Now open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file.</p>
 <p>Below the dependencies block, which contains <code class="docutils literal notranslate"><span class="pre">find_package(rosbag2_transport</span> <span class="pre">REQUIRED)</span></code>, add the following lines of code.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(simple_bag_reader src/simple_bag_reader.cpp)</span>
-<span class="go">ament_target_dependencies(simple_bag_reader rclcpp rosbag2_transport turtlesim)</span>
+<span class="go">target_link_libraries(simple_bag_reader PUBLIC rclcpp::rclcpp rosbag2_transport::rosbag2_transport ${turtlesim_msgs_TARGETS})</span>
 
 <span class="go">install(TARGETS</span>
 <span class="go">  simple_bag_reader</span>

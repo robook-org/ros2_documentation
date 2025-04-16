@@ -568,7 +568,7 @@ Navigate into <code class="docutils literal notranslate"><span class="pre">ros2_
 <p>The <code class="docutils literal notranslate"><span class="pre">add_executable</span></code> macro generates an executable you can run using <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code>.
 Add the following code block to <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> to create an executable named <code class="docutils literal notranslate"><span class="pre">server</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(server src/add_two_ints_server.cpp)</span>
-<span class="go">ament_target_dependencies(server rclcpp example_interfaces)</span>
+<span class="go">target_link_libraries(server PUBLIC rclcpp::rclcpp ${example_interfaces_TARGETS})</span>
 </pre></div>
 </div>
 <p>So <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> can find the executable, add the following lines to the end of the file, right before <code class="docutils literal notranslate"><span class="pre">ament_package()</span></code>:</p>
@@ -665,10 +665,10 @@ After removing some unnecessary boilerplate from the automatically generated fil
 <span class="go">find_package(example_interfaces REQUIRED)</span>
 
 <span class="go">add_executable(server src/add_two_ints_server.cpp)</span>
-<span class="go">ament_target_dependencies(server rclcpp example_interfaces)</span>
+<span class="go">target_link_libraries(server PUBLIC rclcpp::rclcpp ${example_interfaces_TARGETS})</span>
 
 <span class="go">add_executable(client src/add_two_ints_client.cpp)</span>
-<span class="go">ament_target_dependencies(client rclcpp example_interfaces)</span>
+<span class="go">target_link_libraries(server PUBLIC rclcpp::rclcpp ${example_interfaces_TARGETS})</span>
 
 <span class="go">install(TARGETS</span>
 <span class="go">  server</span>

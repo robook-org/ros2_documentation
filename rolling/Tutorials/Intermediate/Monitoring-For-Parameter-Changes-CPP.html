@@ -575,7 +575,7 @@ Finally, the code creates a lambda function and sets it as the callback to invok
 <h4>2.2 Add executable<a class="headerlink" href="#add-executable" title="Link to this heading"></a></h4>
 <p>To build this code, first open the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file and add the following lines of code below the dependency <code class="docutils literal notranslate"><span class="pre">find_package(rclcpp</span> <span class="pre">REQUIRED)</span></code></p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_executable(parameter_event_handler src/parameter_event_handler.cpp)</span>
-<span class="go">ament_target_dependencies(parameter_event_handler rclcpp)</span>
+<span class="go">target_link_libraries(parameter_event_handler PUBLIC rclcpp::rclcpp)</span>
 
 <span class="go">install(TARGETS</span>
 <span class="go">  parameter_event_handler</span>

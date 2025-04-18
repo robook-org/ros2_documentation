@@ -471,20 +471,16 @@ All of these concepts will be elaborated on in later tutorials; for now, you wil
 <p>As always, start by sourcing your setup files in a new terminal, as described in the <a class="reference internal" href="../Configuring-ROS2-Environment.html"><span class="doc">previous tutorial</span></a>.</p>
 <p>Install the turtlesim package for your ROS 2 distro:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt update</span>
-
-<span class="go">sudo apt install ros-rolling-turtlesim</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-rolling-turtlesim
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><p>As long as the archive you installed ROS 2 from contains the <code class="docutils literal notranslate"><span class="pre">ros_tutorials</span></code> repository, you should already have turtlesim installed.</p>
 </div><div aria-labelledby="tab-0-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>As long as the archive you installed ROS 2 from contains the <code class="docutils literal notranslate"><span class="pre">ros_tutorials</span></code> repository, you should already have turtlesim installed.</p>
 </div></div>
-<p>Check that the package is installed:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 pkg executables turtlesim</span>
-</pre></div>
-</div>
-<p>The above command should return a list of turtlesim’s executables:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">turtlesim draw_square</span>
+<p>To check if the package is installed, run the following command, which should return a list of turtlesim’s executables:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>pkg<span class="w"> </span>executables<span class="w"> </span>turtlesim
+<span class="go">turtlesim draw_square</span>
 <span class="go">turtlesim mimic</span>
 <span class="go">turtlesim turtle_teleop_key</span>
 <span class="go">turtlesim turtlesim_node</span>
@@ -494,23 +490,21 @@ All of these concepts will be elaborated on in later tutorials; for now, you wil
 <section id="start-turtlesim">
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">2 Start turtlesim</a><a class="headerlink" href="#start-turtlesim" title="Link to this heading"></a></h3>
 <p>To start turtlesim, enter the following command in your terminal:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node</span>
-</pre></div>
-</div>
-<p>The simulator window should appear, with a random turtle in the center.</p>
-<img alt="../../../_images/turtlesim.png" src="../../../_images/turtlesim.png" />
-<p>In the terminal, under the command, you will see messages from the node:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [turtlesim]: Starting turtlesim with node name /turtlesim</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
+<span class="go">[INFO] [turtlesim]: Starting turtlesim with node name /turtlesim</span>
 <span class="go">[INFO] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]</span>
 </pre></div>
 </div>
-<p>There you can see the default turtle’s name and the coordinates where it spawns.</p>
+<p>Under the command, you will see messages from the node.
+There you can see the default turtle’s name and the coordinates where it spawns.</p>
+<p>The simulator window should appear, with a random turtle in the center.</p>
+<img alt="../../../_images/turtlesim.png" src="../../../_images/turtlesim.png" />
 </section>
 <section id="use-turtlesim">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">3 Use turtlesim</a><a class="headerlink" href="#use-turtlesim" title="Link to this heading"></a></h3>
 <p>Open a new terminal and source ROS 2 again.</p>
 <p>Now you will run a new node to control the turtle in the first node:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtle_teleop_key</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtle_teleop_key
 </pre></div>
 </div>
 <p>At this point you should have three windows open: a terminal running <code class="docutils literal notranslate"><span class="pre">turtlesim_node</span></code>, a terminal running <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code> and the turtlesim window.
@@ -523,10 +517,10 @@ It will move around the screen, using its attached “pen” to draw the path it
 This is because, realistically, you wouldn’t want a robot to continue carrying on an instruction if, for example, the operator lost the connection to the robot.</p>
 </div>
 <p>You can see the nodes, and their associated topics, services, and actions, using the <code class="docutils literal notranslate"><span class="pre">list</span></code> subcommands of the respective commands:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 node list</span>
-<span class="go">ros2 topic list</span>
-<span class="go">ros2 service list</span>
-<span class="go">ros2 action list</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>node<span class="w"> </span>list
+<span class="gp">$ </span>ros2<span class="w"> </span>topic<span class="w"> </span>list
+<span class="gp">$ </span>ros2<span class="w"> </span>service<span class="w"> </span>list
+<span class="gp">$ </span>ros2<span class="w"> </span>action<span class="w"> </span>list
 </pre></div>
 </div>
 <p>You will learn more about these concepts in the coming tutorials.
@@ -536,19 +530,18 @@ Since the goal of this tutorial is only to get a general overview of turtlesim, 
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">4 Install rqt</a><a class="headerlink" href="#install-rqt" title="Link to this heading"></a></h3>
 <p>Open a new terminal to install <code class="docutils literal notranslate"><span class="pre">rqt</span></code> and its plugins:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-VWJ1bnR1" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-VWJ1bnR1" name="VWJ1bnR1" role="tab" tabindex="0">Ubuntu</button><button aria-controls="panel-1-UkhFTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UkhFTA==" name="UkhFTA==" role="tab" tabindex="-1">RHEL</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-1-VWJ1bnR1" class="sphinx-tabs-panel group-tab" id="panel-1-VWJ1bnR1" name="VWJ1bnR1" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt update</span>
-
-<span class="go">sudo apt install &#39;~nros-rolling-rqt*&#39;</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-VWJ1bnR1" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-VWJ1bnR1" name="VWJ1bnR1" role="tab" tabindex="0">Ubuntu</button><button aria-controls="panel-1-UkhFTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UkhFTA==" name="UkhFTA==" role="tab" tabindex="-1">RHEL</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-1-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-1-VWJ1bnR1" class="sphinx-tabs-panel group-tab" id="panel-1-VWJ1bnR1" name="VWJ1bnR1" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;~nros-rolling-rqt*&#39;</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-UkhFTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UkhFTA==" name="UkhFTA==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo dnf install &#39;ros-rolling-rqt*&#39;</span>
+</div><div aria-labelledby="tab-1-UkhFTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UkhFTA==" name="UkhFTA==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;ros-rolling-rqt*&#39;</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><p>The standard archive for installing ROS 2 on macOS contains <code class="docutils literal notranslate"><span class="pre">rqt</span></code> and its plugins, so you should already have <code class="docutils literal notranslate"><span class="pre">rqt</span></code> installed.</p>
 </div><div aria-labelledby="tab-1-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>The standard archive for installing ROS 2 on Windows contains <code class="docutils literal notranslate"><span class="pre">rqt</span></code> and its plugins, so you should already have <code class="docutils literal notranslate"><span class="pre">rqt</span></code> installed.</p>
 </div></div>
 <p>To run rqt:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rqt</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rqt
 </pre></div>
 </div>
 </section>
@@ -602,7 +595,7 @@ That’s because there is no teleop node for <code class="docutils literal notra
 However, if you try to run the same command as before, you will notice that this one also controls <code class="docutils literal notranslate"><span class="pre">turtle1</span></code>.
 The way to change this behavior is by remapping the <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> topic.</p>
 <p>In a new terminal, source ROS 2, and run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtle_teleop_key<span class="w"> </span>--ros-args<span class="w"> </span>--remap<span class="w"> </span>turtle1/cmd_vel:<span class="o">=</span>turtle2/cmd_vel
 </pre></div>
 </div>
 <p>Now, you can move <code class="docutils literal notranslate"><span class="pre">turtle2</span></code> when this terminal is active, and <code class="docutils literal notranslate"><span class="pre">turtle1</span></code> when the other terminal running <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code> is active.</p>

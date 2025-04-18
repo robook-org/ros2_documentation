@@ -475,11 +475,11 @@ It also uses the <a class="reference internal" href="../Introducing-Turtlesim/In
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">1 Setup</a><a class="headerlink" href="#setup" title="Link to this heading"></a></h3>
 <p>You’ll be recording your keyboard input in the <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code> system to save and replay later on, so begin by starting up the <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> and <code class="docutils literal notranslate"><span class="pre">/teleop_turtle</span></code> nodes.</p>
 <p>Open a new terminal and run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
 </pre></div>
 </div>
 <p>Open another terminal and run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtle_teleop_key</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtle_teleop_key
 </pre></div>
 </div>
 <p>Let’s also make a new directory to store our saved recordings, just as good practice:</p>
@@ -502,11 +502,8 @@ It also uses the <a class="reference internal" href="../Introducing-Turtlesim/In
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">2 Choose a topic</a><a class="headerlink" href="#choose-a-topic" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span></code> can record data from messages published to topics.
 To see the list of your system’s topics, open a new terminal and run the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic list</span>
-</pre></div>
-</div>
-<p>Which will return:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">/parameter_events</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>topic<span class="w"> </span>list
+<span class="go">/parameter_events</span>
 <span class="go">/rosout</span>
 <span class="go">/turtle1/cmd_vel</span>
 <span class="go">/turtle1/color_sensor</span>
@@ -515,7 +512,7 @@ To see the list of your system’s topics, open a new terminal and run the comma
 </div>
 <p>In the topics tutorial, you learned that the <code class="docutils literal notranslate"><span class="pre">/turtle_teleop</span></code> node publishes commands on the <code class="docutils literal notranslate"><span class="pre">/turtle1/cmd_vel</span></code> topic to make the turtle move in turtlesim.</p>
 <p>To see the data that <code class="docutils literal notranslate"><span class="pre">/turtle1/cmd_vel</span></code> is publishing, run the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic echo /turtle1/cmd_vel</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/turtle1/cmd_vel
 </pre></div>
 </div>
 <p>Nothing will show up at first because no data is being published by the teleop.
@@ -538,16 +535,13 @@ Use the arrow keys to move the turtle around, and you will see data being publis
 <section id="record-a-single-topic">
 <h4>3.1 Record a single topic<a class="headerlink" href="#record-a-single-topic" title="Link to this heading"></a></h4>
 <p>To record the data published to a topic use the command syntax:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag record &lt;topic_name&gt;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>&lt;topic_name&gt;
 </pre></div>
 </div>
 <p>Before running this command on your chosen topic, open a new terminal and move into the <code class="docutils literal notranslate"><span class="pre">bag_files</span></code> directory you created earlier, because the rosbag file will save in the directory where you run it.</p>
 <p>Run the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag record /turtle1/cmd_vel</span>
-</pre></div>
-</div>
-<p>You will see the following messages in the terminal (the date and time will be different):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [rosbag2_storage]: Opened database &#39;rosbag2_2019_10_11-05_18_45&#39;.</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>/turtle1/cmd_vel
+<span class="go">[INFO] [rosbag2_storage]: Opened database &#39;rosbag2_2019_10_11-05_18_45&#39;.</span>
 <span class="go">[INFO] [rosbag2_transport]: Listening for topics...</span>
 <span class="go">[INFO] [rosbag2_transport]: Subscribed to topic &#39;/turtle1/cmd_vel&#39;</span>
 <span class="go">[INFO] [rosbag2_transport]: All requested topics are subscribed. Stopping discovery...</span>
@@ -565,20 +559,18 @@ This directory will contain a <code class="docutils literal notranslate"><span c
 <h4>3.2 Record multiple topics<a class="headerlink" href="#record-multiple-topics" title="Link to this heading"></a></h4>
 <p>You can also record multiple topics, as well as change the name of the file <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span></code> saves to.</p>
 <p>Run the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag record -o subset /turtle1/cmd_vel /turtle1/pose</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">-o</span></code> option allows you to choose a unique name for your bag file.
-The following string, in this case <code class="docutils literal notranslate"><span class="pre">subset</span></code>, is the file name.</p>
-<p>To record more than one topic at a time, simply list each topic separated by a space.</p>
-<p>You will see the following message, confirming that both topics are being recorded.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [rosbag2_storage]: Opened database &#39;subset&#39;.</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>-o<span class="w"> </span>subset<span class="w"> </span>/turtle1/cmd_vel<span class="w"> </span>/turtle1/pose
+<span class="go">[INFO] [rosbag2_storage]: Opened database &#39;subset&#39;.</span>
 <span class="go">[INFO] [rosbag2_transport]: Listening for topics...</span>
 <span class="go">[INFO] [rosbag2_transport]: Subscribed to topic &#39;/turtle1/cmd_vel&#39;</span>
 <span class="go">[INFO] [rosbag2_transport]: Subscribed to topic &#39;/turtle1/pose&#39;</span>
 <span class="go">[INFO] [rosbag2_transport]: All requested topics are subscribed. Stopping discovery...</span>
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-o</span></code> option allows you to choose a unique name for your bag file.
+The following string, in this case <code class="docutils literal notranslate"><span class="pre">subset</span></code>, is the file name.</p>
+<p>To record more than one topic at a time, simply list each topic separated by a space.
+In this case, the command output above confirms that both topics are being recorded.</p>
 <p>You can move the turtle around and press <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> when you’re finished.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -589,14 +581,12 @@ The following string, in this case <code class="docutils literal notranslate"><s
 <section id="inspect-topic-data">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">4 Inspect topic data</a><a class="headerlink" href="#inspect-topic-data" title="Link to this heading"></a></h3>
 <p>You can see details about your recording by running:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag info &lt;bag_file_name&gt;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>info<span class="w"> </span>&lt;bag_file_name&gt;
 </pre></div>
 </div>
 <p>Running this command on the <code class="docutils literal notranslate"><span class="pre">subset</span></code> bag file will return a list of information on the file:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag info subset</span>
-</pre></div>
-</div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Files:             subset.mcap</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>info<span class="w"> </span>subset
+<span class="go">Files:             subset.mcap</span>
 <span class="go">Bag size:          228.5 KiB</span>
 <span class="go">Storage id:        mcap</span>
 <span class="go">Duration:          48.47s</span>
@@ -604,7 +594,7 @@ The following string, in this case <code class="docutils literal notranslate"><s
 <span class="go">End                Oct 11 2019 06:09:57.60 (1570799397.60)</span>
 <span class="go">Messages:          3013</span>
 <span class="go">Topic information: Topic: /turtle1/cmd_vel | Type: geometry_msgs/msg/Twist | Count: 9 | Serialization Format: cdr</span>
-<span class="go">                 Topic: /turtle1/pose | Type: turtlesim_msgs/msg/Pose | Count: 3004 | Serialization Format: cdr</span>
+<span class="go">                   Topic: /turtle1/pose | Type: turtlesim_msgs/msg/Pose | Count: 3004 | Serialization Format: cdr</span>
 </pre></div>
 </div>
 </section>
@@ -613,11 +603,8 @@ The following string, in this case <code class="docutils literal notranslate"><s
 <p>Before replaying the bag file, enter <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in the terminal where the teleop is running.
 Then make sure your turtlesim window is visible so you can see the bag file in action.</p>
 <p>Enter the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag play subset</span>
-</pre></div>
-</div>
-<p>The terminal will return the message:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [rosbag2_storage]: Opened database &#39;subset&#39;.</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>play<span class="w"> </span>subset
+<span class="go">[INFO] [rosbag2_storage]: Opened database &#39;subset&#39;.</span>
 </pre></div>
 </div>
 <p>Your turtle will follow the same path you entered while recording (though not 100% exactly; turtlesim is sensitive to small changes in the system’s timing).</p>
@@ -627,7 +614,7 @@ Then make sure your turtlesim window is visible so you can see the bag file in a
 You may have noticed in the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span> <span class="pre">info</span></code> example result above that the  <code class="docutils literal notranslate"><span class="pre">/turtle1/cmd_vel</span></code> topic’s <code class="docutils literal notranslate"><span class="pre">Count</span></code> information was only 9; that’s how many times we pressed the arrow keys while recording.</p>
 <p>Notice that <code class="docutils literal notranslate"><span class="pre">/turtle1/pose</span></code> has a <code class="docutils literal notranslate"><span class="pre">Count</span></code> value of over 3000; while we were recording, data was published on that topic 3000 times.</p>
 <p>To get an idea of how often position data is published, you can run the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 topic hz /turtle1/pose</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>topic<span class="w"> </span>hz<span class="w"> </span>/turtle1/pose
 </pre></div>
 </div>
 </section>
@@ -641,11 +628,11 @@ To record service data between service client and server, <code class="docutils 
 <p>Let’s start <code class="docutils literal notranslate"><span class="pre">introspection_client</span></code> and <code class="docutils literal notranslate"><span class="pre">introspection_service</span></code> nodes and enable <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Introspection</span></code>.
 You can see more details for <a class="reference internal" href="../../Demos/Service-Introspection.html"><span class="doc">Service Introspection Demo</span></a>.</p>
 <p>Open a new terminal and run <code class="docutils literal notranslate"><span class="pre">introspection_service</span></code>, enabling <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Introspection</span></code>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run demo_nodes_cpp introspection_service --ros-args -p service_configure_introspection:=contents</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>introspection_service<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>service_configure_introspection:<span class="o">=</span>contents
 </pre></div>
 </div>
 <p>Open another terminal and run <code class="docutils literal notranslate"><span class="pre">introspection_client</span></code>, enabling <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Introspection</span></code>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run demo_nodes_cpp introspection_client --ros-args -p client_configure_introspection:=contents</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>introspection_client<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>client_configure_introspection:<span class="o">=</span>contents
 </pre></div>
 </div>
 </section>
@@ -653,11 +640,8 @@ You can see more details for <a class="reference internal" href="../../Demos/Ser
 <h3><a class="toc-backref" href="#id12" role="doc-backlink">2 Check service availability</a><a class="headerlink" href="#check-service-availability" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span></code> can only record data from available services.
 To see the list of your system’s services, open a new terminal and run the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service list</span>
-</pre></div>
-</div>
-<p>Which will return:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">/add_two_ints</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>service<span class="w"> </span>list
+<span class="go">/add_two_ints</span>
 <span class="go">/introspection_client/describe_parameters</span>
 <span class="go">/introspection_client/get_parameter_types</span>
 <span class="go">/introspection_client/get_parameters</span>
@@ -675,11 +659,8 @@ To see the list of your system’s services, open a new terminal and run the com
 </pre></div>
 </div>
 <p>To check if <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Introspection</span></code> is enabled on the client and service, run the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service echo --flow-style /add_two_ints</span>
-</pre></div>
-</div>
-<p>You should see service communication like below:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">info:</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>service<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>--flow-style<span class="w"> </span>/add_two_ints
+<span class="go">info:</span>
 <span class="go">  event_type: REQUEST_SENT</span>
 <span class="go">  stamp:</span>
 <span class="go">    sec: 1713995389</span>
@@ -691,25 +672,23 @@ To see the list of your system’s services, open a new terminal and run the com
 <span class="go">---</span>
 </pre></div>
 </div>
+<p>You should see the service communication.</p>
 </section>
 <section id="record-services">
 <h3><a class="toc-backref" href="#id13" role="doc-backlink">3 Record services</a><a class="headerlink" href="#record-services" title="Link to this heading"></a></h3>
 <p>To record service data, the following options are supported.
 Service data can be recorded with topics at the same time.</p>
 <p>To record specific services:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag record --service &lt;service_names&gt;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>--service<span class="w"> </span>&lt;service_names&gt;
 </pre></div>
 </div>
 <p>To record all services:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag record --all-services</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>--all-services
 </pre></div>
 </div>
 <p>Run the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag record --service /add_two_ints</span>
-</pre></div>
-</div>
-<p>You will see the following messages in the terminal (the date and time will be different):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [1713995957.643573503] [rosbag2_recorder]: Press SPACE for pausing/resuming</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>--service<span class="w"> </span>/add_two_ints
+<span class="go">[INFO] [1713995957.643573503] [rosbag2_recorder]: Press SPACE for pausing/resuming</span>
 <span class="go">[INFO] [1713995957.662067587] [rosbag2_recorder]: Event publisher thread: Starting</span>
 <span class="go">[INFO] [1713995957.662067614] [rosbag2_recorder]: Listening for topics...</span>
 <span class="go">[INFO] [1713995957.666048323] [rosbag2_recorder]: Subscribed to topic &#39;/add_two_ints/_service_event&#39;</span>
@@ -724,11 +703,8 @@ This directory will contain a <code class="docutils literal notranslate"><span c
 <section id="inspect-service-data">
 <h3><a class="toc-backref" href="#id14" role="doc-backlink">4 Inspect service data</a><a class="headerlink" href="#inspect-service-data" title="Link to this heading"></a></h3>
 <p>You can see details about your recording by running:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag info &lt;bag_file_name&gt;</span>
-</pre></div>
-</div>
-<p>Running this command will return a list of information on the file:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Files:             rosbag2_2024_04_24-14_59_17_0.mcap</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>info<span class="w"> </span>&lt;bag_file_name&gt;
+<span class="go">Files:             rosbag2_2024_04_24-14_59_17_0.mcap</span>
 <span class="go">Bag size:          15.1 KiB</span>
 <span class="go">Storage id:        mcap</span>
 <span class="go">ROS Distro:        rolling</span>
@@ -748,11 +724,8 @@ This directory will contain a <code class="docutils literal notranslate"><span c
 When <code class="docutils literal notranslate"><span class="pre">introspection_client</span></code> stops running, <code class="docutils literal notranslate"><span class="pre">introspection_service</span></code> also stops printing the result because there are no incoming requests.</p>
 <p>Replaying the service data from the bag file will start sending the requests to <code class="docutils literal notranslate"><span class="pre">introspection_service</span></code>.</p>
 <p>Enter the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 bag play --publish-service-requests &lt;bag_file_name&gt;</span>
-</pre></div>
-</div>
-<p>The terminal will return the message:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [1713997477.870856190] [rosbag2_player]: Set rate to 1</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>bag<span class="w"> </span>play<span class="w"> </span>--publish-service-requests<span class="w"> </span>&lt;bag_file_name&gt;
+<span class="go">[INFO] [1713997477.870856190] [rosbag2_player]: Set rate to 1</span>
 <span class="go">[INFO] [1713997477.877417477] [rosbag2_player]: Adding keyboard callbacks.</span>
 <span class="go">[INFO] [1713997477.877442404] [rosbag2_player]: Press SPACE for Pause/Resume</span>
 <span class="go">[INFO] [1713997477.877447855] [rosbag2_player]: Press CURSOR_RIGHT for Play Next Message</span>
@@ -769,7 +742,7 @@ When <code class="docutils literal notranslate"><span class="pre">introspection_
 <p>This is because <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span> <span class="pre">play</span></code> sends the service request data from the bag file to the <code class="docutils literal notranslate"><span class="pre">/add_two_ints</span></code> service.</p>
 <p>We can also introspect service communication as <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span> <span class="pre">play</span></code> is playing it back to verify the <code class="docutils literal notranslate"><span class="pre">introspection_service</span></code>.</p>
 <p>Run this command before <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span> <span class="pre">play</span></code> to see the <code class="docutils literal notranslate"><span class="pre">introspection_service</span></code>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 service echo --flow-style /add_two_ints</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>service<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>--flow-style<span class="w"> </span>/add_two_ints
 </pre></div>
 </div>
 <p>You can see the service request from the bag file and the service response from  <code class="docutils literal notranslate"><span class="pre">introspection_service</span></code>.</p>

@@ -474,11 +474,11 @@ In ROS 2, a single executable (C++ program, Python program, etc.) can contain on
 <section id="ros2-run">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">1 ros2 run</a><a class="headerlink" href="#ros2-run" title="Link to this heading"></a></h3>
 <p>The command <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> launches an executable from a package.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run &lt;package_name&gt; &lt;executable_name&gt;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>&lt;package_name&gt;<span class="w"> </span>&lt;executable_name&gt;
 </pre></div>
 </div>
 <p>To run turtlesim, open a new terminal, and enter the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node
 </pre></div>
 </div>
 <p>The turtlesim window will open, as you saw in the <a class="reference internal" href="../Introducing-Turtlesim/Introducing-Turtlesim.html"><span class="doc">previous tutorial</span></a>.</p>
@@ -491,7 +491,7 @@ You can find node names by using <code class="docutils literal notranslate"><spa
 <p><code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">node</span> <span class="pre">list</span></code> will show you the names of all running nodes.
 This is especially useful when you want to interact with a node, or when you have a system running many nodes and need to keep track of them.</p>
 <p>Open a new terminal while turtlesim is still running in the other one, and enter the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 node list</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>node<span class="w"> </span>list
 </pre></div>
 </div>
 <p>The terminal will return the node name:</p>
@@ -499,7 +499,7 @@ This is especially useful when you want to interact with a node, or when you hav
 </pre></div>
 </div>
 <p>Open another new terminal and start the teleop node with the command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtle_teleop_key</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtle_teleop_key
 </pre></div>
 </div>
 <p>Here, we are referring to the <code class="docutils literal notranslate"><span class="pre">turtlesim</span></code> package again, but this time we target the executable named <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code>.</p>
@@ -515,7 +515,7 @@ You will now see the names of two active nodes:</p>
 In the last tutorial, you used remapping on <code class="docutils literal notranslate"><span class="pre">turtle_teleop_key</span></code> to change the cmd_vel topic and target <strong>turtle2</strong>.</p>
 <p>Now, let’s reassign the name of our <code class="docutils literal notranslate"><span class="pre">/turtlesim</span></code> node.
 In a new terminal, run the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>run<span class="w"> </span>turtlesim<span class="w"> </span>turtlesim_node<span class="w"> </span>--ros-args<span class="w"> </span>--remap<span class="w"> </span>__node:<span class="o">=</span>my_turtle
 </pre></div>
 </div>
 <p>Since you’re calling <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">run</span></code> on turtlesim again, another turtlesim window will open.
@@ -530,17 +530,12 @@ However, now if you return to the terminal where you ran <code class="docutils l
 <section id="ros2-node-info">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">3 ros2 node info</a><a class="headerlink" href="#ros2-node-info" title="Link to this heading"></a></h3>
 <p>Now that you know the names of your nodes, you can access more information about them with:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 node info &lt;node_name&gt;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>node<span class="w"> </span>info<span class="w"> </span>&lt;node_name&gt;
 </pre></div>
 </div>
 <p>To examine your latest node, <code class="docutils literal notranslate"><span class="pre">my_turtle</span></code>, run the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 node info /my_turtle</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">node</span> <span class="pre">info</span></code> returns a list of subscribers, publishers, services, and actions.
-i.e. the ROS graph connections that interact with that node.
-The output should look like this:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">/my_turtle</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ros2<span class="w"> </span>node<span class="w"> </span>info<span class="w"> </span>/my_turtle
+<span class="go">/my_turtle</span>
 <span class="go">  Subscribers:</span>
 <span class="go">    /parameter_events: rcl_interfaces/msg/ParameterEvent</span>
 <span class="go">    /turtle1/cmd_vel: geometry_msgs/msg/Twist</span>
@@ -570,6 +565,8 @@ The output should look like this:</p>
 <span class="go">  Action Clients:</span>
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">node</span> <span class="pre">info</span></code> returns a list of subscribers, publishers, services, and actions.
+i.e. the ROS graph connections that interact with that node.</p>
 <p>Now try running the same command on the <code class="docutils literal notranslate"><span class="pre">/teleop_turtle</span></code> node, and see how its connections differ from <code class="docutils literal notranslate"><span class="pre">my_turtle</span></code>.</p>
 <p>You will learn more about the ROS graph connection concepts including the message types in the upcoming tutorials.</p>
 </section>
